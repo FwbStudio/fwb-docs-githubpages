@@ -3,75 +3,96 @@ layout: home
 title: FWB Studio
 hero:
   name: FWB Studio
-  text: FiveM scripts built to install clean.
-  tagline: ESX, QBCore, and Qbox ready. Start with Bridge docs, then open the script you need.
+  text: Premium FiveM scripts for real servers.
+  tagline: Jobs, crime, clothing, and utilities built for ESX, QBCore, and Qbox.
   image:
-    src: /hero-mark.svg
-    alt: FWB Studio
+    src: /logo.png
+    alt: FWB Studio logo
   actions:
     - theme: brand
-      text: Open Docs
-      link: /docs/
+      text: Browse Scripts
+      link: /#scripts
     - theme: alt
-      text: Visit Store
+      text: Open Store
       link: https://fwbstudio.tebex.io/
 ---
 
-<div class="home-strip">
-  <p><strong>Bridge first.</strong> Keep FWB resources in <code>[fs]</code>, start Bridge after your framework, and your scripts load in a stable order.</p>
-  <a href="/docs/install-fwb-scripts">Install guide →</a>
-</div>
-
 <section id="scripts" class="script-board">
   <div class="script-board__head">
-    <p class="script-board__eyebrow">Featured scripts</p>
-    <h2 class="script-board__title">Advertise what players feel.</h2>
+    <p class="script-board__eyebrow">Best sellers</p>
+    <h2 class="script-board__title">Scripts players actually use.</h2>
     <p class="script-board__copy">
-      Use this board for store highlights. We will swap these placeholders for your live products, Tebex links, and docs pages as we port content.
+      Highlighted FWB products for busy city servers. Open the store for pricing, or jump into docs when you are ready to install.
     </p>
   </div>
 
   <div class="script-grid">
-    <a class="script-card" href="/docs/bridge/">
-      <p class="script-card__tag">Core</p>
-      <h3 class="script-card__name">fs_bridge</h3>
-      <p class="script-card__desc">Compatibility layer for frameworks, inventories, and FWB scripts.</p>
-      <p class="script-card__cta">Read docs →</p>
+    <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
+      <p class="script-card__tag">Jobs</p>
+      <h3 class="script-card__name">Saucy Wings</h3>
+      <p class="script-card__desc">Full food business flow with MLO support — cook, sell, and run the shop.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
 
     <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
       <p class="script-card__tag">Jobs</p>
-      <h3 class="script-card__name">Food businesses</h3>
-      <p class="script-card__desc">Burger, pizza, White Widow, and more shop flows with shared install patterns.</p>
-      <p class="script-card__cta">View store →</p>
+      <h3 class="script-card__name">White Widow</h3>
+      <p class="script-card__desc">Weed shop business with processing, sales, and placeable compatibility.</p>
+      <p class="script-card__cta">View on store →</p>
+    </a>
+
+    <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
+      <p class="script-card__tag">Jobs</p>
+      <h3 class="script-card__name">Burger & Pizza Shops</h3>
+      <p class="script-card__desc">Ready-to-run restaurant jobs with shared install patterns across frameworks.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
 
     <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
       <p class="script-card__tag">Crime</p>
-      <h3 class="script-card__name">Fraud & Trap Phone</h3>
-      <p class="script-card__desc">High-engagement crime systems with ESX and QBCore config packs.</p>
-      <p class="script-card__cta">View store →</p>
+      <h3 class="script-card__name">Fraud System V2</h3>
+      <p class="script-card__desc">Modern fraud gameplay with fresh configs, integrations, and ESX/QB packs.</p>
+      <p class="script-card__cta">View on store →</p>
+    </a>
+
+    <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
+      <p class="script-card__tag">Crime</p>
+      <h3 class="script-card__name">Trap Phone</h3>
+      <p class="script-card__desc">Burner phone crime loops that keep illegal roleplay active on your city.</p>
+      <p class="script-card__cta">View on store →</p>
+    </a>
+
+    <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
+      <p class="script-card__tag">Crime</p>
+      <h3 class="script-card__name">Chop Shop</h3>
+      <p class="script-card__desc">Vehicle chop loops with exports and framework configs ready to drop in.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
 
     <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
       <p class="script-card__tag">Clothing</p>
-      <h3 class="script-card__name">Wigs & Outfit Bags</h3>
-      <p class="script-card__desc">Wearable systems and bags that plug into common appearance menus.</p>
-      <p class="script-card__cta">View store →</p>
+      <h3 class="script-card__name">Clothing As Item</h3>
+      <p class="script-card__desc">Wear clothing from inventory items with whitelist control and integrations.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
 
     <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
-      <p class="script-card__tag">Utility</p>
-      <h3 class="script-card__name">Safezone & Duty</h3>
-      <p class="script-card__desc">Server utilities your staff and players use every day.</p>
-      <p class="script-card__cta">View store →</p>
+      <p class="script-card__tag">Clothing</p>
+      <h3 class="script-card__name">Wigs Bundle</h3>
+      <p class="script-card__desc">Expandable wig packs players can buy, wear, and restyle in-city.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
 
-    <a class="script-card" href="/docs/">
-      <p class="script-card__tag">Docs</p>
-      <h3 class="script-card__name">Full catalog</h3>
-      <p class="script-card__desc">Install, config, integrations, and common issues — ported next from the old GitBook set.</p>
-      <p class="script-card__cta">Browse docs →</p>
+    <a class="script-card" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">
+      <p class="script-card__tag">Lifestyle</p>
+      <h3 class="script-card__name">Ice Box</h3>
+      <p class="script-card__desc">Jewelry flex systems that make high-end RP visible on the street.</p>
+      <p class="script-card__cta">View on store →</p>
     </a>
   </div>
 </section>
+
+<div class="home-strip">
+  <p><strong>Need install help?</strong> Docs cover setup, configs, and common issues. Bridge docs stay there for older resources still using it.</p>
+  <a href="/docs/">Open docs →</a>
+</div>

@@ -18,15 +18,16 @@ export default defineConfig({
         href: 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&display=swap'
       }
     ],
-    ['meta', { name: 'theme-color', content: '#0f1419' }]
+    ['meta', { name: 'theme-color', content: '#050505' }],
+    ['link', { rel: 'icon', href: '/fwb-docs-githubpages/logo.png', type: 'image/png' }]
   ],
   themeConfig: {
-    logo: '/brand-mark.svg',
+    logo: '/logo.png',
     siteTitle: 'FWB Studio',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Docs', link: '/docs/' },
       { text: 'Scripts', link: '/#scripts' },
+      { text: 'Docs', link: '/docs/' },
       {
         text: 'Store',
         link: 'https://fwbstudio.tebex.io/',
@@ -44,7 +45,7 @@ export default defineConfig({
           ]
         },
         {
-          text: 'Bridge',
+          text: 'Bridge (legacy)',
           items: [
             { text: 'Overview', link: '/docs/bridge/' }
           ]
@@ -61,7 +62,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/FwbStudio' }
     ],
     footer: {
-      message: 'Public docs for FWB Studio FiveM resources.',
+      message: 'FWB Studio FiveM scripts and public documentation.',
       copyright: 'Copyright © FWB Studio'
     },
     search: {

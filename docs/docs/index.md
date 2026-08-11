@@ -1,8 +1,8 @@
 # Docs
 
-Public documentation for FWB Studio resources.
+Install guides and setup docs for FWB Studio resources.
 
-This docs site is built for FiveM servers using:
+Built for FiveM servers using:
 
 - ESX
 - QBCore
@@ -12,6 +12,11 @@ This docs site is built for FiveM servers using:
 
 - [Install FWB Scripts](./install-fwb-scripts)
 - [Basic Server Knowledge](./basic-server-knowledge)
-- [Bridge](./bridge/)
 
-Script pages from the old GitBook set will be ported into this section next.
+## Bridge (legacy)
+
+`fs_bridge` is being phased out over time, but docs remain here for resources that still depend on it:
+
+- [Bridge overview](./bridge/)
+
+Script pages from the old docs set will be ported into this section next.

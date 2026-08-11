@@ -1,8 +1,10 @@
-# Bridge (`fs_bridge`)
+# Bridge (`fs_bridge`) — legacy
 
-Bridge is the shared compatibility layer for FWB resources.
+Bridge is the older shared compatibility layer used by many existing FWB resources.
 
-## What these docs will cover
+FWB is moving away from Bridge over time. Keep these docs available while older scripts still need it.
+
+## What these docs cover
 
 - Installation order
 - Supported frameworks and integrations
