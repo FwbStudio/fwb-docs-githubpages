@@ -13,13 +13,22 @@ Temporary URL (project pages, only if you use repo base path):
 
 This project is set up for a **custom domain** with `base: '/'`, so prefer step B.
 
-## B) Connect `doc.fwbstudio.com` (recommended)
+## B) Connect `doc.fwbstudio.com` (later)
 
-This repo already includes:
+Right now the site uses the project Pages URL with:
 
-`docs/public/CNAME` → `doc.fwbstudio.com`
+```ts
+base: '/fwb-docs-githubpages/'
+```
 
-That file is copied into the built site root on deploy.
+When you are ready for the custom domain:
+
+1. Set `base: '/'` in `docs/.vitepress/config.mts`
+2. Add `docs/public/CNAME` containing exactly:
+
+```text
+doc.fwbstudio.com
+```
 
 ### DNS (at your domain provider)
 
@@ -53,14 +62,10 @@ While cutting over from the old GitBook site:
 
 If you want old GitBook paths to land on new pages later, add redirects in VitePress or a simple `404.html` mapping after the catalog is ported.
 
-## C) If custom domain is NOT ready yet
+## C) Current mode (no custom domain yet)
 
-Change in `docs/.vitepress/config.mts`:
+Use:
 
-```ts
-base: '/fwb-docs-githubpages/'
-```
+`https://fwbstudio.github.io/fwb-docs-githubpages/`
 
-Remove or empty `docs/public/CNAME`, push, and use the `github.io/fwb-docs-githubpages/` URL.
-
-When the custom domain is ready, set `base` back to `'/'` and restore the CNAME.
+Keep `base: '/fwb-docs-githubpages/'` and do not ship a `CNAME` file until DNS is ready.

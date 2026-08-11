@@ -5,9 +5,9 @@ export default defineConfig({
   description: 'FiveM scripts, Bridge docs, and install guides for ESX, QBCore, and Qbox.',
   lang: 'en-US',
   cleanUrls: true,
-  // Custom domain → keep base as '/'
-  // If you only use https://fwbstudio.github.io/fwb-docs-githubpages/ set base to '/fwb-docs-githubpages/'
-  base: '/',
+  // Project Pages URL first. When you add doc.fwbstudio.com later, set base back to '/'
+  // and restore docs/public/CNAME.
+  base: '/fwb-docs-githubpages/',
   head: [
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
