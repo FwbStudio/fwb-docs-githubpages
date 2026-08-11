@@ -5,6 +5,7 @@ export default defineConfig({
   description: 'FiveM scripts, Bridge docs, and install guides for ESX, QBCore, and Qbox.',
   lang: 'en-US',
   cleanUrls: true,
+  appearance: 'dark',
   // Project Pages URL first. When you add doc.fwbstudio.com later, set base back to '/'
   // and restore docs/public/CNAME.
   base: '/fwb-docs-githubpages/',
@@ -15,10 +16,10 @@ export default defineConfig({
       'link',
       {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;500;600;700&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap'
       }
     ],
-    ['meta', { name: 'theme-color', content: '#050505' }],
+    ['meta', { name: 'theme-color', content: '#07070f' }],
     ['link', { rel: 'icon', href: '/fwb-docs-githubpages/logo.png', type: 'image/png' }]
   ],
   themeConfig: {
@@ -26,7 +27,6 @@ export default defineConfig({
     siteTitle: 'FWB Studio',
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Scripts', link: '/#scripts' },
       { text: 'Docs', link: '/docs/' },
       {
         text: 'Store',
@@ -58,9 +58,7 @@ export default defineConfig({
         }
       ]
     },
-    socialLinks: [
-      { icon: 'github', link: 'https://github.com/FwbStudio' }
-    ],
+    socialLinks: [],
     footer: {
       message: 'FWB Studio FiveM scripts and public documentation.',
       copyright: 'Copyright © FWB Studio'
