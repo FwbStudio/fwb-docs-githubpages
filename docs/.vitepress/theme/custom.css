@@ -138,6 +138,64 @@ body {
   background: rgba(7, 7, 15, 0.9) !important;
 }
 
+/* Search + nav links on the left; theme toggle on the right */
+.VPNavBar .content-body {
+  justify-content: flex-start !important;
+  gap: 0.35rem;
+}
+
+.VPNavBar .content-body .search {
+  order: 1;
+  flex-grow: 0 !important;
+  padding-left: 0 !important;
+}
+
+.VPNavBar .content-body .menu {
+  order: 2;
+}
+
+.VPNavBar .content-body .translations {
+  order: 18;
+}
+
+.VPNavBar .content-body .appearance {
+  order: 19;
+  margin-left: auto;
+}
+
+.VPNavBar .content-body .social-links {
+  order: 20;
+}
+
+.VPNavBar .content-body .extra {
+  order: 21;
+}
+
+.VPNavBar .content-body .hamburger {
+  order: 22;
+}
+
+@media (max-width: 767px) {
+  .VPNavBar .content-body .appearance {
+    margin-left: 0;
+  }
+
+  .VPNavBar .content-body .extra,
+  .VPNavBar .content-body .hamburger {
+    margin-left: auto;
+  }
+}
+
+/* Keep doc categories pinned on the left sidebar */
+.VPSidebar {
+  border-right: 1px solid var(--fwb-border);
+}
+
+.dark .VPSidebar {
+  background: rgba(7, 7, 15, 0.72);
+  backdrop-filter: blur(16px);
+}
+
 .VPNavBarTitle .title {
   font-family: var(--vp-font-family-heading);
   font-weight: 800;
