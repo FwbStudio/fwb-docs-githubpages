@@ -1,11 +1,11 @@
-# FWB Studio — Docs + Product Site
+# FWB Studio Docs
 
-VitePress site for:
+Public documentation site for FWB Studio FiveM scripts.
 
-- Marketing home (script highlights / store CTAs)
-- Public docs (Bridge + scripts)
-- Free hosting on **GitHub Pages**
-- Optional custom domain (`doc.fwbstudio.com`)
+- **Docs** is the main page (this site)
+- **Store** links out to Tebex: https://fwbstudio.tebex.io/
+
+Hosted on GitHub Pages. Theme matches the FWB Tebex store.
 
 ## Local preview
 
@@ -14,8 +14,6 @@ npm install
 npm run dev
 ```
 
-Open the local URL VitePress prints (usually `http://localhost:5173`).
-
 ## Build
 
 ```bash
@@ -23,14 +21,10 @@ npm run build
 npm run preview
 ```
 
-## Go live (GitHub Pages)
+## Deploy
 
-1. Push this repo to `main`
-2. GitHub → **Settings** → **Pages**
-3. Source: **GitHub Actions**
-4. After the workflow succeeds, the site is live at:
-   - `https://fwbstudio.github.io/fwb-docs-githubpages/`  
-     (only if you change `base` in `docs/.vitepress/config.mts` to `/fwb-docs-githubpages/`)
-   - or your custom domain once DNS is set (recommended; `base: '/'` already)
+Push to `main`. GitHub Actions deploys automatically.
 
-See [DEPLOY.md](./DEPLOY.md) for custom domain / redirect steps.
+Pages source must be **GitHub Actions**.
+
+See [DEPLOY.md](./DEPLOY.md) for custom domain steps later.

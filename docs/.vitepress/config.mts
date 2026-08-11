@@ -1,8 +1,8 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'FWB Studio',
-  description: 'FiveM scripts, Bridge docs, and install guides for ESX, QBCore, and Qbox.',
+  title: 'FWB Studio Docs',
+  description: 'Install guides and docs for FWB Studio FiveM scripts (ESX, QBCore, Qbox).',
   lang: 'en-US',
   cleanUrls: true,
   appearance: 'dark',
@@ -26,41 +26,38 @@ export default defineConfig({
     logo: '/logo.png',
     siteTitle: 'FWB Studio',
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Docs', link: '/docs/' },
+      { text: 'Docs', link: '/' },
       {
         text: 'Store',
         link: 'https://fwbstudio.tebex.io/',
         target: '_blank'
       }
     ],
-    sidebar: {
-      '/docs/': [
-        {
-          text: 'Get Started',
-          items: [
-            { text: 'Docs Home', link: '/docs/' },
-            { text: 'Install FWB Scripts', link: '/docs/install-fwb-scripts' },
-            { text: 'Basic Server Knowledge', link: '/docs/basic-server-knowledge' }
-          ]
-        },
-        {
-          text: 'Bridge (legacy)',
-          items: [
-            { text: 'Overview', link: '/docs/bridge/' }
-          ]
-        },
-        {
-          text: 'Resources',
-          items: [
-            { text: 'Coming soon', link: '/docs/' }
-          ]
-        }
-      ]
-    },
+    sidebar: [
+      {
+        text: 'Get Started',
+        items: [
+          { text: 'Docs Home', link: '/' },
+          { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
+          { text: 'Basic Server Knowledge', link: '/basic-server-knowledge' }
+        ]
+      },
+      {
+        text: 'Bridge (legacy)',
+        items: [
+          { text: 'Overview', link: '/bridge/' }
+        ]
+      },
+      {
+        text: 'Resources',
+        items: [
+          { text: 'Coming soon', link: '/' }
+        ]
+      }
+    ],
     socialLinks: [],
     footer: {
-      message: 'FWB Studio FiveM scripts and public documentation.',
+      message: 'FWB Studio documentation.',
       copyright: 'Copyright © FWB Studio'
     },
     search: {
