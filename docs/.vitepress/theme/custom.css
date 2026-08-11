@@ -160,8 +160,7 @@ body {
 }
 
 .VPNavBar .content-body .appearance {
-  order: 20;
-  margin-left: 0;
+  display: none !important;
 }
 
 .VPNavBar .content-body .social-links {

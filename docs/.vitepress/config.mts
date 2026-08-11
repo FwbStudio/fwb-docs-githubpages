@@ -5,7 +5,7 @@ export default defineConfig({
   description: 'Install guides and docs for FWB Studio FiveM scripts (ESX, QBCore, Qbox).',
   lang: 'en-US',
   cleanUrls: true,
-  appearance: 'dark',
+  appearance: 'force-dark',
   // Project Pages URL first. When you add doc.fwbstudio.com later, set base back to '/'
   // and restore docs/public/CNAME.
   base: '/fwb-docs-githubpages/',
