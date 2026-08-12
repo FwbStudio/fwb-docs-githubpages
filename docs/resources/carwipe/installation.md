@@ -25,17 +25,6 @@ description: Install Carwipe on FiveM — dependencies and server.cfg. FiveM car
 
 
 
-## Supported integrations
-
-| System | Support |
-| --- | --- |
-| ESX / QBCore / Qbox | Yes (via `fs_bridge`) |
-| ox_inventory / qb-inventory / qs-inventory | Yes (Bridge inventory override) |
-| ox_target / qb-target | When configured in Bridge |
-| Dispatch adapters | Configure in Bridge overrides |
-
-Notification and inventory hooks are handled through Bridge. See [Bridge Supported](/bridge/supported).
-
 
 ## Install steps
 

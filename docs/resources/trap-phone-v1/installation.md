@@ -32,13 +32,6 @@ description: Install Trap Phone v1 on FiveM — dependencies and server.cfg. Fiv
 
 Open `fs_trapphone_v1/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
 
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-| ox_inventory | `ox_inventory.lua` | `ox_inventory/web/images/` |
-| qs-inventory | `qs_inventory.lua` | `qs-inventory/html/images/` |
-| Item images | `fs_trapphone.png` | See file notes |
-| Other | `qb_core_items.lua` | See file notes |
-
 <div class="fwb-inv-tabs">
 <details>
 <summary>ox_inventory</summary>

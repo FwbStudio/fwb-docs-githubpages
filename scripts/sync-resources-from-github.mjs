@@ -22,7 +22,6 @@ import {
   extraDepsForResource,
   buildInventoryInstallSection,
   dispatchJobsSection,
-  integrationInstallNote,
   formatExpandableCommonErrors,
   formatExpandableQuestions,
   detectPages
@@ -372,8 +371,6 @@ ${depsTable(meta.deps)}
 ${dispatchJobsSection(meta.configExtras.dispatchJobs)}
 
 ${buildInventoryInstallSection(meta.installFiles, resource.repo, resource.category)}
-
-${integrationInstallNote(meta.manifest)}
 
 ## Install steps
 

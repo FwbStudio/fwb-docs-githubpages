@@ -26,15 +26,6 @@ description: Install Outfitbag on FiveM — dependencies and server.cfg. FiveM o
 
 Open `fs_outfitbag/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
 
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-| ox_inventory | `ox_inventory.lua` | `ox_inventory/web/images/` |
-| QBCore / qb-inventory | `qb-core_items.lua` | `qb-inventory/html/images/items/` |
-| qs-inventory | `qs_inventory.lua` | `qs-inventory/html/images/` |
-| SQL | `sql.sql` | See file notes |
-| Item images | `fs_large_bag.png`, `fs_medium_bag.png`, `fs_small_bag.png` | See file notes |
-| Other | `ak_inventory.lua` | See file notes |
-
 <div class="fwb-inv-tabs">
 <details>
 <summary>ox_inventory</summary>
@@ -214,17 +205,6 @@ CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
 
 </div>
 
-
-## Supported integrations
-
-| System | Support |
-| --- | --- |
-| ESX / QBCore / Qbox | Yes (via `fs_bridge`) |
-| ox_inventory / qb-inventory / qs-inventory | Yes (Bridge inventory override) |
-| ox_target / qb-target | When configured in Bridge |
-| Dispatch adapters | Configure in Bridge overrides |
-
-Notification and inventory hooks are handled through Bridge. See [Bridge Supported](/bridge/supported).
 
 
 ## Install steps

@@ -271,23 +271,9 @@ export function buildInventoryInstallSection(installFiles, repo, category) {
     ? ['props', 'ox_inventory', 'qb', 'qs_inventory', 'esx', 'sql', 'images', 'other']
     : ['ox_inventory', 'qb', 'qs_inventory', 'esx', 'sql', 'images', 'props', 'other']
 
-  const tableRows = []
-  for (const kind of order) {
-    const files = byKind[kind]
-    if (!files?.length) continue
-    const imagePath = INVENTORY_IMAGE_PATHS[kind]
-    tableRows.push(
-      `| ${labels[kind]} | \`${files.map((f) => f.name).join('`, `')}\` | ${imagePath ? `\`${imagePath}\`` : 'See file notes'} |`
-    )
-  }
-
   let md = `## Items & inventory setup
 
 Open \`${repo}/[INSTALL_ME_FIRST]\` and use the block for **your** inventory system.
-
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-${tableRows.join('\n')}
 
 <div class="fwb-inv-tabs">
 `
@@ -335,21 +321,6 @@ export function dispatchJobsSection(jobs, title = 'Dispatch / alert jobs') {
 | Job name | Notes |
 | --- | --- |
 ${jobs.map((j) => `| \`${j}\` | Must match your framework job name exactly |`).join('\n')}
-`
-}
-
-export function integrationInstallNote(manifest) {
-  if (!/@fs_bridge|fs_bridge/.test(manifest ?? '')) return ''
-  return `## Supported integrations
-
-| System | Support |
-| --- | --- |
-| ESX / QBCore / Qbox | Yes (via \`fs_bridge\`) |
-| ox_inventory / qb-inventory / qs-inventory | Yes (Bridge inventory override) |
-| ox_target / qb-target | When configured in Bridge |
-| Dispatch adapters | Configure in Bridge overrides |
-
-Notification and inventory hooks are handled through Bridge. See [Bridge Supported](/bridge/supported).
 `
 }
 

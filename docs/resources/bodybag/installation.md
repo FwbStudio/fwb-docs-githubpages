@@ -33,14 +33,6 @@ description: Install Bodybag on FiveM — dependencies and server.cfg. FiveM bod
 
 Open `fs_bodybag/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
 
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-| ox_inventory | `ox_inventory.lua` | `ox_inventory/web/images/` |
-| QBCore / qb-inventory | `qb-core-items.lua` | `qb-inventory/html/images/items/` |
-| qs-inventory | `qs_inventory.lua` | `qs-inventory/html/images/` |
-| Item images | `fs_ashesemptybag.png`, `fs_deadbodybag.png`, `fs_lighter.png`, `fs_shovel.png` | See file notes |
-| Other | `ak47_inventory.lua` | See file notes |
-
 <div class="fwb-inv-tabs">
 <details>
 <summary>ox_inventory</summary>
@@ -252,17 +244,6 @@ Copy item/weapon images into `qs-inventory/html/images/`.
 
 </div>
 
-
-## Supported integrations
-
-| System | Support |
-| --- | --- |
-| ESX / QBCore / Qbox | Yes (via `fs_bridge`) |
-| ox_inventory / qb-inventory / qs-inventory | Yes (Bridge inventory override) |
-| ox_target / qb-target | When configured in Bridge |
-| Dispatch adapters | Configure in Bridge overrides |
-
-Notification and inventory hooks are handled through Bridge. See [Bridge Supported](/bridge/supported).
 
 
 ## Install steps

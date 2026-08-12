@@ -25,14 +25,6 @@ description: Install Tranquilizer on FiveM — dependencies and server.cfg. Five
 
 Open `fs_tranquilizer/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
 
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-| ox_inventory | `ox_inventory.lua` | `ox_inventory/web/images/` |
-| QBCore / qb-inventory | `qb-core.lua` | `qb-inventory/html/images/items/` |
-| ESX | `esx_items.sql` | `es_extended or your inventory images folder` |
-| Item images | `tranquilizer_kit.png` | See file notes |
-| Other | `ak47_inventory.lua` | See file notes |
-
 <div class="fwb-inv-tabs">
 <details>
 <summary>ox_inventory</summary>

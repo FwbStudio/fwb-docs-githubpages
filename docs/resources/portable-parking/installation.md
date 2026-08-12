@@ -32,11 +32,6 @@ description: Install Portable Parking on FiveM — dependencies and server.cfg. 
 
 Open `fs_portableparking/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
 
-| Inventory | Files | Copy images to |
-| --- | --- | --- |
-| ESX | `esx_database.sql` | `es_extended or your inventory images folder` |
-| SQL | `qb_database.sql` | See file notes |
-
 <div class="fwb-inv-tabs">
 <details>
 <summary>ESX</summary>
