@@ -42,7 +42,11 @@ export default defineConfig({
           { text: 'Supported', link: '/bridge/supported' },
           { text: 'Script Overrides', link: '/bridge/script-overrides' },
           { text: 'Client Overrides', link: '/bridge/overrides/client' },
-          { text: 'Server Overrides', link: '/bridge/overrides/server' }
+          { text: 'Server Overrides', link: '/bridge/overrides/server' },
+          { text: 'Configuration Files', link: '/bridge/configuration/' },
+          { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
+          { text: 'Client Config', link: '/bridge/configuration/client-config' },
+          { text: 'Server Config', link: '/bridge/configuration/server-config' }
         ]
       },
       {

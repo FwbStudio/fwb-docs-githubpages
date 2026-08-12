@@ -622,6 +622,104 @@ body {
   color: var(--fwb-teal);
 }
 
+/* Expandable override sections */
+.vp-doc details {
+  margin: 0.85rem 0;
+  border: 1px solid var(--fwb-border);
+  border-radius: 12px;
+  background: rgba(19, 19, 32, 0.72);
+  overflow: hidden;
+  transition: border-color var(--fwb-ease), box-shadow var(--fwb-ease), background-color var(--fwb-ease);
+}
+
+.vp-doc details[open] {
+  border-color: rgba(45, 212, 191, 0.35);
+  background: rgba(14, 14, 26, 0.96);
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.08),
+    0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.vp-doc details > summary {
+  position: relative;
+  list-style: none;
+  cursor: pointer;
+  margin: 0;
+  padding: 0.9rem 2.6rem 0.9rem 1rem;
+  font-family: var(--vp-font-family-heading);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  user-select: none;
+  transition: background-color var(--fwb-ease), color var(--fwb-ease);
+}
+
+.vp-doc details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc details > summary::after {
+  content: '+';
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  width: 1.35rem;
+  height: 1.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--fwb-teal);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.vp-doc details[open] > summary {
+  border-bottom: 1px solid rgba(45, 212, 191, 0.2);
+  background: rgba(45, 212, 191, 0.08);
+  color: var(--fwb-teal);
+}
+
+.vp-doc details[open] > summary::after {
+  content: '–';
+  border-color: rgba(45, 212, 191, 0.35);
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.vp-doc details > summary:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.vp-doc details[open] > summary:hover {
+  background: rgba(45, 212, 191, 0.12);
+}
+
+.vp-doc details > :not(summary) {
+  margin-left: 1rem !important;
+  margin-right: 1rem !important;
+}
+
+.vp-doc details > :not(summary):first-of-type {
+  margin-top: 1rem !important;
+}
+
+.vp-doc details > :not(summary):last-child {
+  margin-bottom: 1.1rem !important;
+}
+
+.vp-doc details + details {
+  margin-top: 0.7rem;
+}
+
+.vp-doc h3 {
+  margin-top: 2rem;
+  padding-bottom: 0.45rem;
+  border-bottom: 1px solid var(--fwb-border);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .VPButton,
   .script-card,

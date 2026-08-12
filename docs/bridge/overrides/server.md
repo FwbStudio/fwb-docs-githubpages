@@ -6,6 +6,8 @@ Use this page when you need server-side compatibility for an unsupported or cust
 
 Paste these overrides into `fs_bridge/unlocked/server.lua`.
 
+Each item below is its own expandable section. Open one to see description, arguments, return value, and example code.
+
 ### Ambulance
 
 <details>

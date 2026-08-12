@@ -25,6 +25,7 @@ The current public docs focus on FiveM usage with:
 | --- | --- |
 | [Supported](./supported) | Frameworks and integrations Bridge can detect |
 | [Script Overrides](./script-overrides) | Manual compatibility when your resource is not listed |
+| [Configuration Files](./configuration/) | Editable `sh_config`, `cl_config`, and `sv_config` |
 
 ## Quick setup notes
 

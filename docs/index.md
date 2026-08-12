@@ -20,5 +20,6 @@ Docs for `fs_bridge`:
 - [Overview](/bridge/)
 - [Supported](/bridge/supported)
 - [Script Overrides](/bridge/script-overrides)
+- [Configuration Files](/bridge/configuration/)
 
 Script pages will be added next as we port the rest of the catalog.
