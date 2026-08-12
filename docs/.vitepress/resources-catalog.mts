@@ -363,13 +363,13 @@ export function buildDocsSidebar(): SidebarItem[] {
     },
     {
       text: 'Scripts',
-      link: '#fwb-section-scripts',
+      link: '/fwb-section-scripts',
       collapsed: false,
       items: buildScriptsSidebar()
     },
     {
       text: 'Weapons',
-      link: '#fwb-section-weapons',
+      link: '/fwb-section-weapons',
       collapsed: false,
       items: buildWeaponsSidebar()
     }
