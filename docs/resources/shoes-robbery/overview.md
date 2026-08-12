@@ -55,9 +55,7 @@ This script adds realistic and engaging robbery mechanics to your server, making
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
 - [Exports](./exports/client)
-- [Functions](./functions/client) / [Server](./functions/server)
-- [Integrations](./integrations)
 - [Common Errors](./common-errors)

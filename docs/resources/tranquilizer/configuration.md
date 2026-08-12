@@ -6,9 +6,9 @@ description: Configure Tranquilizer — config files and key options.
 
 # Tranquilizer — Configuration
 
-Edit the config files inside `fs_tranquilizer/config/`. Exact keys depend on your package version.
+Edit `fs_tranquilizer/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -40,3 +40,4 @@ Edit the config files inside `fs_tranquilizer/config/`. Exact keys depend on you
 Config = {}
 ```
 
+</div>

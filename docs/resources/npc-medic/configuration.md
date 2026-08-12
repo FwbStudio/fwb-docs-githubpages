@@ -6,9 +6,9 @@ description: Configure Npc Medic — config files and key options.
 
 # Npc Medic — Configuration
 
-Edit the config files inside `fs_npcmedic/config/`. Exact keys depend on your package version.
+Edit `fs_npcmedic/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -45,5 +45,78 @@ config.mediccommands = {
 
         stop_command_if_active_ems_more_then = 2,
     },
+
+
+    -- only if anyone do /help id {call medic for other player}
+    -- animation will not player if player use /help for himself
+    animation = {
+        dict = 'missheistdockssetup1clipboard@base',
+        name = 'base',
+        flag = 49,
+    }
+}
+
+config.revive = {
+
+    revive_fee = { min = 500, max = 1000}, -- Price to revive if minigame is lost
+
+    revive_time = 30000,            -- Time in milliseconds it takes for the medic to revive a player
+
+    revive_money_to_society = true, -- If true, the revive fee will be added to the society account
+
+    -- for esx it put society_ infront of job name written in money_job_name {if you have different society_ prefix then change it in bridg folders}
+    -- for qbcore it will just use job name written in money_job_name
+    money_job_name = 'ambulance',
+
+    crutch = {
+        enable = false,
+        time = 10,  -- time in mints
+    }
+}
+ 
+config.blacklistzone = {
+    enable = false, -- Enable or disable blacklist zones
+    zones = {
+        [1] = { coords = vector3(1151.21, -1529.63, 34.84), radius = 100.0 },
+    }
+}
+
+config.whitelistzone = {
+    -- if you enable this then /help command will only work in these zones
+    enable = false, -- Enable or disable whitelist zones
+    zones = {
+        [1] = { coords = vector3(1151.21, -1529.63, 34.84), radius = 100.0 },
+    }
+}
+
+config.medic = {
+    models = { ped = 's_m_m_paramedic_01', vehicle = 'ambulance' },
+
+    -- distance from player where medic vehicle will spawn
+    vehicle_spawn_distance = 200.0,
+
+    -- if true then medic will bring dead player to hospital and then revive him
+    bring_to_hospital = false,
+
+    hospital_area = {
+        slowdown_radius = 40.0,
+        stop_radius = 15.0,
+
+        -- if distance between player and hospital is greater then this value then medic will teleport player to hospital {in black screen teleportation}
+        teleport_distance = 5.0,
+    },
+
+    -- hospital points only used if bring_to_hospital = true
+    hospitals_dropoff = { -- {script will choose cloesest hospital from this list}
+        [1] = vector3(292.4496, -585.3409, 43.1954),
+    },
+}
+
+config.timeouts = {
+    ambulance_to_player = 60000, -- Time in ms for ambulance to reach the player
+    doctor_to_player = 20000,    -- Time in ms for doctor to reach the player
+    bring_to_hospital = 120000,  -- Time in ms for medic to bring player to hospital
+}
 ```
 
+</div>

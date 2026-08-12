@@ -6,9 +6,9 @@ description: Configure Icebox — config files and key options.
 
 # Icebox — Configuration
 
-Edit the config files inside `fs_icebox/config/`. Exact keys depend on your package version.
+Edit `fs_icebox/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 -- FS Clothing Item is configured in-game from the admin tablet.
@@ -31,3 +31,4 @@ Edit the config files inside `fs_icebox/config/`. Exact keys depend on your pack
 -- Use Settings > Preset Folder to detect and import only new items, then delete those preset files when you are ready.
 ```
 
+</div>

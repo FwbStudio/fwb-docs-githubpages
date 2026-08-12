@@ -19,18 +19,100 @@ description: Install Trap Phone v1 on FiveM — dependencies and server.cfg. Fiv
 | `ESX, QBCore, or Qbox` | Yes | One framework per server |
 
 
+## Dispatch / alert jobs
+
+| Job name | Notes |
+| --- | --- |
+| `police` | Must match your framework job name exactly |
+| `sheriff` | Must match your framework job name exactly |
+| `statepolice` | Must match your framework job name exactly |
+
+
+## Items & inventory setup
+
+Open `fs_trapphone_v1/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
+
+| Inventory | Files | Copy images to |
+| --- | --- | --- |
+| ox_inventory | `ox_inventory.lua` | `ox_inventory/web/images/` |
+| qs-inventory | `qs_inventory.lua` | `qs-inventory/html/images/` |
+| Item images | `fs_trapphone.png` | See file notes |
+| Other | `qb_core_items.lua` | See file notes |
+
+<div class="fwb-inv-tabs">
+<details>
+<summary>ox_inventory</summary>
+
+Copy item/weapon images into `ox_inventory/web/images/`.
+
+**`ox_inventory.lua`**
+
+```lua
+['fs_trapphone'] = {
+    label = 'Trap Phone',
+    weight = 1,
+    stack = true,
+    close = true,
+    description = 'Secure Phone for Drug sell',
+},
+```
+
+</details>
+
+<details>
+<summary>qs-inventory</summary>
+
+Copy item/weapon images into `qs-inventory/html/images/`.
+
+**`qs_inventory.lua`**
+
+```lua
+['fs_trapphone'] = {
+    ['name'] = 'fs_trapphone',
+    ['label'] = 'Trap Phone',
+    ['weight'] = 1,
+    ['type'] = 'item',
+    ['image'] = 'fs_trapphone.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'Secure Phone for Drug sell',
+},
+```
+
+</details>
+
+<details>
+<summary>Item images</summary>
+
+**Image:** `fs_trapphone.png` — place in the path above.
+
+</details>
+
+<details>
+<summary>Other install files</summary>
+
+- `qb_core_items.lua`
+
+</details>
+
+</div>
+
+
 
 
 ## Install steps
 
 1. Place `fs_trapphone_v1` in `resources/[fs]/`.
-2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
-3. Configure `config/` files before first start.
-4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
+3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
+4. Configure `fs_trapphone_v1/config/` before first start.
+5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_trapphone_v1
 ```
 
-5. Restart the server and check the console for errors.
+6. Restart the server and check the console for errors.

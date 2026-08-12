@@ -6,9 +6,9 @@ description: Configure Notify — config files and key options.
 
 # Notify — Configuration
 
-Edit the config files inside `fs_notify/config/`. Exact keys depend on your package version.
+Edit `fs_notify/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -28,3 +28,4 @@ config = {
 }
 ```
 
+</div>

@@ -6,9 +6,9 @@ description: Configure Carwipe — config files and key options.
 
 # Carwipe — Configuration
 
-Edit the config files inside `fs_carwipe/config/`. Exact keys depend on your package version.
+Edit `fs_carwipe/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 config = {} --DON'T touch it otherwise script will be broke
@@ -45,5 +45,48 @@ config.commands = { -- all commaands permissions
     zonecommand = {
         command = 'carwipezone',
         allowed = {
+            admingroups = {
+                ['admin'] = true
+            },
+            jobgroups = {
+                ['police'] = 0
+            },
+            aces = {
+                ['whitewidow'] = true,
+            },
+            identifiers = {
+                ['lic:asasasa'] = true,
+                ['discord:asasas'] = true,
+            },
+            characters = {
+                ['char1:asasasasas'] = true,
+                ['char2:asasasasas'] = true,
+            }
+        }
+    },
+    instantwipecommand = {
+        command = 'carwipe',
+        allowed = {
+            admingroups = {
+                ['admin'] = true
+            },
+            jobgroups = {
+                ['police'] = 0
+            },
+            aces = {
+                ['whitewidow'] = true,
+            },
+            identifiers = {
+                ['lic:asasasa'] = true,
+                ['discord:asasas'] = true,
+            },
+            characters = {
+                ['char1:asasasasas'] = true,
+                ['char2:asasasasas'] = true,
+            }
+        }
+    }
+}
 ```
 
+</div>

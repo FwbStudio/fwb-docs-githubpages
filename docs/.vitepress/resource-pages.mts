@@ -4,23 +4,11 @@ import type { ResourcePages } from './resources-catalog.mts'
 export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   "bodybag": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "burger-shop": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "carwipe": {
     "configuration": true,
@@ -28,13 +16,7 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "functions": {
-      "client": false,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "chopshop": {
     "configuration": true,
@@ -42,12 +24,7 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "duty-system": {
     "configuration": true,
@@ -55,92 +32,43 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "fraud-v1": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false,
-    "exports": {
-      "client": true,
-      "server": true
-    }
+    "commonErrors": true
   },
   "fraud-v2": {
     "configuration": true,
     "exports": {
       "client": true,
-      "server": true
+      "server": false
     },
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "gun-jamming": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "icebox": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "lashes-saloon": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "loading-screen": {
     "configuration": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "nails-saloon": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "npc-medic": {
     "configuration": true,
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "notify": {
     "configuration": true,
@@ -148,54 +76,40 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "commonErrors": false,
-    "questions": true
+    "questions": true,
+    "commonErrors": false
   },
   "outfitbag": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "pizza-shop": {
     "configuration": true,
+    "commonErrors": true
+  },
+  "items-placeables": {
+    "configuration": true,
+    "exports": {
+      "client": true,
+      "server": false
+    },
+    "commonErrors": true
+  },
+  "portable-parking": {
+    "configuration": true,
+    "commonErrors": true
+  },
+  "safezone-creator": {
+    "configuration": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
     "functions": {
       "client": true,
       "server": true
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
-  },
-  "items-placeables": {
-    "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
-  },
-  "portable-parking": {
-    "configuration": true,
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
-  },
-  "safezone-creator": {
-    "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "shoes-robbery": {
     "configuration": true,
@@ -203,45 +117,31 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": false
     },
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "skitz-shoes-store": {
     "configuration": true,
-    "functions": {
+    "exports": {
       "client": true,
       "server": false
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "smoking": {
     "configuration": true,
-    "functions": {
+    "exports": {
       "client": true,
       "server": false
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "starter-pack": {
     "configuration": true,
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "switch": {
     "configuration": true,
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "tranquilizer": {
     "configuration": true,
@@ -249,33 +149,18 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "functions": {
-      "client": true,
-      "server": true
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "trap-phone-v1": {
     "configuration": true,
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "trap-phone-v2": {
-    "functions": {
-      "client": true,
+    "exports": {
+      "client": false,
       "server": true
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false,
-    "configuration": true,
-    "exports": {
-      "client": true,
-      "server": true
-    }
+    "commonErrors": true
   },
   "useable-foods": {
     "configuration": true,
@@ -283,50 +168,32 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "weave-wear": {
     "configuration": true,
-    "functions": {
+    "exports": {
       "client": true,
       "server": false
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "white-widow": {
     "configuration": true,
-    "functions": {
+    "exports": {
       "client": true,
       "server": false
     },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "wigs-bundle": {
     "configuration": true,
-    "functions": {
-      "client": true,
-      "server": false
-    },
-    "integrations": true,
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "automatic-pistol-pack": {
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   },
   "weapon-pack-v1": {
-    "commonErrors": true,
-    "questions": false
+    "commonErrors": true
   }
 }

@@ -6,9 +6,9 @@ description: Configure Portable Parking — config files and key options.
 
 # Portable Parking — Configuration
 
-Edit the config files inside `fs_portableparking/config/`. Exact keys depend on your package version.
+Edit `fs_portableparking/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -46,5 +46,69 @@ config.portableparking = {
         }
     }
 }
+
+-- for qbcore u have to make sure to add this line in server.cfg
+
+config.admins = { -- for admin access using menu
+    ['admin'] = true,
+    ['mod'] = true,
+}
+
+-- can write in server cfg
+-- add_ace license:1c17a180cdad995771fea75248f0ed95569b9e6a "fs_portableparkingadmin" allow
+
+-- support player identifier means player character id for both esx and qb
+config.identifier = {
+    ['char1:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
+    ['AOZ29226'] = true,
+
+}
+
+-- if u don't want to use impounds u can comment all impound in config.impounds
+config.impounds = {
+    [1] = {
+        blip = { enable = true, id = 524, color = 1, scale = 0.7, name = "Impound Lot" },
+        coords = vector4(143.5679, -1081.8391, 28.1923, 352.7644),
+        radius = 10.0,
+    }
+}
+
+-- on config.parking player will be able to use Press [E] to open menu
+config.parking = { -- incase u wanted to setup some permanent parking too
+    [1] = {
+        -- if u don't want blip just make enable = false
+        blip = { enable = true, id = 357, color = 3, scale = 0.7, name = "Parking Lot" },
+        coords = vector4(150.9730, -1082.3186, 28.1924, 359.4603),
+        radius = 10.0,
+    }
+}
+
+Notify = function(text)
+    if GetResourceState('fs_notify') ~= 'missing' then
+        return exports.fs_notify:show(text, 'info', 5000, 'Portable Parking')
+    end
+    exports.ox_lib:notify({
+        title = 'Portable Parking',
+        description = text,
+        type = 'info',
+        duration = 5000,
+        position = 'top',
+    })
+end
+
+
+config.marker = {
+    Garage = {
+        type = 1,
+        scale = vector3(2.0, 2.0, 0.2),
+        color = { r = 202, g = 17, b = 272, a = 200 },
+    },
+    Impound = {
+        type = 1,
+        scale = vector3(2.0, 2.0, 0.2),
+        color = { r = 255, g = 0, b = 0, a = 200 },
+    },
+}
 ```
 
+</div>

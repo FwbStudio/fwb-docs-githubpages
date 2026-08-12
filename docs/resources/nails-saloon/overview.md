@@ -26,8 +26,6 @@ Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation fo
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
-- [Functions](./functions/client)
-- [Integrations](./integrations)
 - [Common Errors](./common-errors)

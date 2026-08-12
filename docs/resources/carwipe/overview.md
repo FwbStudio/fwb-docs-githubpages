@@ -24,9 +24,7 @@ description: Carwipe features and setup overview for FiveM. FiveM car wipe admin
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
-- [Exports](./exports/client) / [Server](./exports/server)
-- [Functions](./functions/server)
-- [Integrations](./integrations)
+- [Exports — Client](./exports/client) / [Server](./exports/server)
 - [Common Errors](./common-errors)

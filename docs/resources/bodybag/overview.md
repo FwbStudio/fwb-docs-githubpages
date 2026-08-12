@@ -67,7 +67,7 @@ Take your roleplay server to the next level with this immersive **Bodybag Script
 📦 Easy to install. Drag, drop, and configure.
 🧠 Built for immersive FiveM servers.
 
-> 💻 **Made with love by \[FWB Studio]**
+> 💻 **Made with love by [FWB Studio]**
 
 ## Package
 
@@ -80,8 +80,6 @@ Take your roleplay server to the next level with this immersive **Bodybag Script
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
-- [Functions](./functions/client) / [Server](./functions/server)
-- [Integrations](./integrations)
 - [Common Errors](./common-errors)

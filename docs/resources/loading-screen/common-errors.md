@@ -1,16 +1,14 @@
 ---
-title: Loading Screen v1 Common Errors | FWB Studio Docs
-description: Fix common Loading Screen v1 issues on FiveM.
+title: Loading Screen Common Errors | FWB Studio Docs
+description: Fix common Loading Screen issues on FiveM.
 ---
 
 
-# Loading Screen v1 — Common Errors
+# Loading Screen — Common Errors
 
-| Symptom | Likely cause | Fix |
-| --- | --- | --- |
-| Resource fails to start | Missing `fs_bridge` or `ox_lib` | Install dependencies and start them before `fs_loadingscreen` |
-| SQL / item errors | `[INSTALL_ME_FIRST]` not applied | Run SQL and add items from install folder |
-| UI not opening | Old NUI build or wrong inventory | Match Bridge inventory override to your server |
-| Nothing happens in-game | Config job/item names wrong | Compare config with your framework job names |
+<details class="fwb-faq">
+<summary>no problem found yet</summary>
 
-Check F8 client console and server console for `fs_loadingscreen` errors after restart.
+
+
+</details>

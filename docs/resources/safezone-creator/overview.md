@@ -27,8 +27,8 @@ Use the pages below to check supported resources, understand the in-game config 
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
-- [Functions](./functions/client)
-- [Integrations](./integrations)
+- [Exports — Client](./exports/client) / [Server](./exports/server)
+- [Functions — Client](./functions/client) / [Server](./functions/server)
 - [Common Errors](./common-errors)

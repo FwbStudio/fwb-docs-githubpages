@@ -6,72 +6,65 @@ description: Client exports for Tranquilizer.
 
 # Client exports
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetConfig</code></summary>
 
 ```lua
--- client example
-exports['GetConfig']:FunctionName(args)
+exports['fs_tranquilizer']: GetConfig(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetSelectedBridge</code></summary>
 
 ```lua
--- client example
-exports['GetSelectedBridge']:FunctionName(args)
+exports['fs_tranquilizer']: GetSelectedBridge(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetState</code></summary>
 
 ```lua
--- client example
-exports['GetState']:FunctionName(args)
+exports['fs_tranquilizer']: GetState(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>IsParalyzed</code></summary>
 
 ```lua
--- client example
-exports['IsParalyzed']:FunctionName(args)
+exports['fs_tranquilizer']: IsParalyzed(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>IsReady</code></summary>
 
 ```lua
--- client example
-exports['IsReady']:FunctionName(args)
+exports['fs_tranquilizer']: IsReady(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>Translate</code></summary>
 
 ```lua
--- client example
-exports['Translate']:FunctionName(args)
+exports['fs_tranquilizer']: Translate(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isplayerintranquilizer</code></summary>
 
 ```lua
--- client example
-exports['isplayerintranquilizer']:FunctionName(args)
+exports['fs_tranquilizer']: isplayerintranquilizer(args)
 ```
 
 </details>

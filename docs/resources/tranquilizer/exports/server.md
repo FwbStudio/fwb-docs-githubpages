@@ -6,82 +6,74 @@ description: Server exports for Tranquilizer.
 
 # Server exports
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetConfig</code></summary>
 
 ```lua
--- server example
-exports['GetConfig']:FunctionName(args)
+exports['fs_tranquilizer']: GetConfig(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetPlayerParalysisState</code></summary>
 
 ```lua
--- server example
-exports['GetPlayerParalysisState']:FunctionName(args)
+exports['fs_tranquilizer']: GetPlayerParalysisState(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>IsPlayerParalyzed</code></summary>
 
 ```lua
--- server example
-exports['IsPlayerParalyzed']:FunctionName(args)
+exports['fs_tranquilizer']: IsPlayerParalyzed(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>IsReady</code></summary>
 
 ```lua
--- server example
-exports['IsReady']:FunctionName(args)
+exports['fs_tranquilizer']: IsReady(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>Translate</code></summary>
 
 ```lua
--- server example
-exports['Translate']:FunctionName(args)
+exports['fs_tranquilizer']: Translate(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>forceendtranquilizer</code></summary>
 
 ```lua
--- server example
-exports['forceendtranquilizer']:FunctionName(args)
+exports['fs_tranquilizer']: forceendtranquilizer(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>forcetranquilizer</code></summary>
 
 ```lua
--- server example
-exports['forcetranquilizer']:FunctionName(args)
+exports['fs_tranquilizer']: forcetranquilizer(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isplayerintranquilizer</code></summary>
 
 ```lua
--- server example
-exports['isplayerintranquilizer']:FunctionName(args)
+exports['fs_tranquilizer']: isplayerintranquilizer(args)
 ```
 
 </details>

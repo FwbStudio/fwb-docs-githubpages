@@ -6,9 +6,9 @@ description: Configure Safezone Creator — config files and key options.
 
 # Safezone Creator — Configuration
 
-Edit the config files inside `fs_safezonecreator/config/`. Exact keys depend on your package version.
+Edit `fs_safezonecreator/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -35,3 +35,4 @@ Edit the config files inside `fs_safezonecreator/config/`. Exact keys depend on 
 ]]
 ```
 
+</div>

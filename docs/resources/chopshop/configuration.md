@@ -6,6 +6,12 @@ description: Configure ChopShop — config files and key options.
 
 # ChopShop — Configuration
 
-Edit the config files inside `fs_chopshop/config/`. Exact keys depend on your package version.
+Edit `fs_chopshop/config/config.lua` in your download.
 
-_Open `config/config.lua` in your download for all options._
+<div class="fwb-config-block">
+
+```lua
+_Open config/config.lua in your package._
+```
+
+</div>

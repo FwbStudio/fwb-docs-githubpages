@@ -6,22 +6,20 @@ description: Client exports for Fraud System v2.
 
 # Client exports
 
-<details>
+<details class="fwb-faq">
 <summary><code>magni-cardswipe</code></summary>
 
 ```lua
--- client example
-exports['magni-cardswipe']:FunctionName(args)
+exports['fs_fraud_v2']: magni-cardswipe(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>qs-housing</code></summary>
 
 ```lua
--- client example
-exports['qs-housing']:FunctionName(args)
+exports['fs_fraud_v2']: qs-housing(args)
 ```
 
 </details>

@@ -6,22 +6,34 @@ description: Client exports for Carwipe.
 
 # Client exports
 
-<details>
-<summary><code>WipeCars</code></summary>
+### White List Vehicle:
+
+this export can be used to whitelist plate from wipe. This export can be added into same function where you add vehicle keys function. only use this if you want to whitelist plate on runtime
 
 ```lua
--- client example
-exports['WipeCars']:FunctionName(args)
+-- Client/Server {can be used in both side}
+
+--@plate - string
+--@singlewipe - true = means only whitelist for upcoming 1 wipe
+--@singlewipe - false = means whitelist for all wipes untill server restart
+
+exports.fs_carwipe:whitelistvehicle(plate, singlewipe)
+
+--example:
+exports.fs_carwipe:whitelistvehicle('Dealer', false)
 ```
 
-</details>
+### Wipe Cars:
 
-<details>
-<summary><code>whitelistvehicle</code></summary>
+this export can be used in your any other admin to trigger carwipe keep in mind it don't check any kind of admin permissions this will simply trigger carwipe.
 
 ```lua
--- client example
-exports['whitelistvehicle']:FunctionName(args)
-```
+-- Client/Server {can be used in both side}
 
-</details>
+--@notifypeople = true - means if you want should notify people
+--@notifypeople = false - means instant wipe of cars without notify to anyone
+exports.fs_carwipe:WipeCars(notifypeople)
+
+example:
+exports.fs_carwipe:WipeCars(false)
+```

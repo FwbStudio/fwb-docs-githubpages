@@ -6,112 +6,101 @@ description: Server exports for Useable Foods.
 
 # Server exports
 
-<details>
+<details class="fwb-faq">
 <summary><code>AddDrunkLevel</code></summary>
 
 ```lua
--- server example
-exports['AddDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: AddDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>AddItem</code></summary>
 
 ```lua
--- server example
-exports['AddItem']:FunctionName(args)
+exports['fs_useablefoods']: AddItem(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>CanCarryItem</code></summary>
 
 ```lua
--- server example
-exports['CanCarryItem']:FunctionName(args)
+exports['fs_useablefoods']: CanCarryItem(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetDrunkLevel</code></summary>
 
 ```lua
--- server example
-exports['GetDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: GetDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetExpiredItemCount</code></summary>
 
 ```lua
--- server example
-exports['GetExpiredItemCount']:FunctionName(args)
+exports['fs_useablefoods']: GetExpiredItemCount(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetItemCount</code></summary>
 
 ```lua
--- server example
-exports['GetItemCount']:FunctionName(args)
+exports['fs_useablefoods']: GetItemCount(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>RemoveDrunkLevel</code></summary>
 
 ```lua
--- server example
-exports['RemoveDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: RemoveDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>RemoveItem</code></summary>
 
 ```lua
--- server example
-exports['RemoveItem']:FunctionName(args)
+exports['fs_useablefoods']: RemoveItem(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>SetDrunkLevel</code></summary>
 
 ```lua
--- server example
-exports['SetDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: SetDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>createitemsuseable</code></summary>
 
 ```lua
--- server example
-exports['createitemsuseable']:FunctionName(args)
+exports['fs_useablefoods']: createitemsuseable(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isitemuseableready</code></summary>
 
 ```lua
--- server example
-exports['isitemuseableready']:FunctionName(args)
+exports['fs_useablefoods']: isitemuseableready(args)
 ```
 
 </details>

@@ -16,7 +16,10 @@ description: Install Automatic Pistol Pack on FiveM — dependencies and server.
 | Resource | Required | Notes |
 | --- | --- | --- |
 | `FiveM server` | Yes | Latest artifacts recommended |
-| `Inventory items (optional)` | Optional | If your pack includes ox_inventory item lines |
+
+
+
+
 
 
 
@@ -24,8 +27,8 @@ description: Install Automatic Pistol Pack on FiveM — dependencies and server.
 ## Install steps
 
 1. Extract `fs_weapons_gangautopistol_v1` into `resources/[fs]/`.
-2. Copy weapon meta / stream files from `[INSTALL_ME_FIRST]` if included.
-3. Add inventory / item lines from the install folder.
+2. Follow the **Items & inventory setup** section below for your inventory (weapon meta, items, images).
+3. Run any SQL files if included in `[INSTALL_ME_FIRST]`.
 4. Add to `server.cfg`:
 
 ```cfg

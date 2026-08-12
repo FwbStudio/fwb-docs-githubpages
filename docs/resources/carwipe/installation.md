@@ -15,7 +15,7 @@ description: Install Carwipe on FiveM — dependencies and server.cfg. FiveM car
 
 | Resource | Required | Notes |
 | --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — required for framework integration |
+| `fs_bridge` | Yes | FWB Bridge — framework, inventory, target, dispatch |
 | `ox_lib` | Yes | Shared UI / callbacks |
 | `oxmysql` | Yes | MySQL database |
 | `ESX, QBCore, or Qbox` | Yes | One framework per server |
@@ -23,16 +23,31 @@ description: Install Carwipe on FiveM — dependencies and server.cfg. FiveM car
 
 
 
+
+
+## Supported integrations
+
+| System | Support |
+| --- | --- |
+| ESX / QBCore / Qbox | Yes (via `fs_bridge`) |
+| ox_inventory / qb-inventory / qs-inventory | Yes (Bridge inventory override) |
+| ox_target / qb-target | When configured in Bridge |
+| Dispatch adapters | Configure in Bridge overrides |
+
+Notification and inventory hooks are handled through Bridge. See [Bridge Supported](/bridge/supported).
+
+
 ## Install steps
 
 1. Place `fs_carwipe` in `resources/[fs]/`.
-2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
-3. Configure `config/` files before first start.
-4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
+3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
+4. Configure `fs_carwipe/config/` before first start.
+5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_carwipe
 ```
 
-5. Restart the server and check the console for errors.
+6. Restart the server and check the console for errors.

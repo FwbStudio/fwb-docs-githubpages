@@ -1000,6 +1000,88 @@ html {
   overflow-x: auto;
 }
 
+/* Sidebar section headings (Scripts / Weapons) — not clickable products */
+.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts'],
+.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons'] {
+  font-family: var(--vp-font-family-heading);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--fwb-teal) !important;
+  pointer-events: none;
+  cursor: default;
+  padding-top: 1.1rem;
+  padding-bottom: 0.25rem;
+  margin-top: 0.35rem;
+  border-top: 1px solid var(--fwb-border-teal);
+  opacity: 1;
+}
+
+.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts']:hover,
+.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons']:hover {
+  color: var(--fwb-teal) !important;
+}
+
+/* Full config blocks — no height clipping */
+.fwb-config-block div[class*='language-'],
+.fwb-config-block pre {
+  max-height: none !important;
+}
+
+.fwb-config-block {
+  margin: 1rem 0 2rem;
+}
+
+/* Inventory install picker */
+.fwb-inv-tabs details {
+  border: 1px solid var(--fwb-border);
+  border-radius: 10px;
+  margin: 0.75rem 0;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.fwb-inv-tabs details[open] {
+  border-color: var(--fwb-border-teal);
+}
+
+.fwb-inv-tabs summary {
+  cursor: pointer;
+  font-family: var(--vp-font-family-heading);
+  font-weight: 700;
+  color: var(--fwb-teal);
+  padding: 0.35rem 0;
+}
+
+.fwb-inv-tabs summary:hover {
+  color: #5eead4;
+}
+
+/* Expandable FAQ / common errors */
+.vp-doc details.fwb-faq {
+  border: 1px solid var(--fwb-border);
+  border-radius: 10px;
+  margin: 0.65rem 0;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.vp-doc details.fwb-faq[open] {
+  border-color: var(--fwb-border-teal);
+}
+
+.vp-doc details.fwb-faq > summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  padding: 0.35rem 0;
+}
+
+.vp-doc details.fwb-faq > summary:hover {
+  color: var(--fwb-teal);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .VPButton,
   .script-card,

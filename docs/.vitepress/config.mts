@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { buildScriptsSidebar, buildWeaponsSidebar } from './resources-catalog.mts'
+import { buildDocsSidebar } from './resources-catalog.mts'
 
 export default defineConfig({
   title: 'FWB Studio Docs',
@@ -39,54 +39,7 @@ export default defineConfig({
     logo: '/logo.png',
     siteTitle: 'FWB Studio',
     nav: [],
-    sidebar: [
-      {
-        text: 'Get Started',
-        collapsed: false,
-        items: [
-          { text: 'Docs Home', link: '/' },
-          { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
-          { text: 'Basic Server Knowledge', link: '/basic-server-knowledge' }
-        ]
-      },
-      {
-        text: 'Bridge',
-        collapsed: false,
-        items: [
-          { text: 'Overview', link: '/bridge/' },
-          { text: 'Supported', link: '/bridge/supported' },
-          {
-            text: 'Script Overrides',
-            collapsed: true,
-            items: [
-              { text: 'Overview', link: '/bridge/script-overrides' },
-              { text: 'Client', link: '/bridge/overrides/client' },
-              { text: 'Server', link: '/bridge/overrides/server' }
-            ]
-          },
-          {
-            text: 'Configuration',
-            collapsed: true,
-            items: [
-              { text: 'Overview', link: '/bridge/configuration/' },
-              { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
-              { text: 'Client Config', link: '/bridge/configuration/client-config' },
-              { text: 'Server Config', link: '/bridge/configuration/server-config' }
-            ]
-          }
-        ]
-      },
-      {
-        text: 'Scripts',
-        collapsed: false,
-        items: buildScriptsSidebar()
-      },
-      {
-        text: 'Weapons',
-        collapsed: false,
-        items: buildWeaponsSidebar()
-      }
-    ],
+    sidebar: buildDocsSidebar(),
     socialLinks: [],
     footer: {
       message: 'FWB Studio documentation.',

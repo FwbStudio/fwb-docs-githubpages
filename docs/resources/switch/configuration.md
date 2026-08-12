@@ -6,9 +6,9 @@ description: Configure Switch — config files and key options.
 
 # Switch — Configuration
 
-Edit the config files inside `fs_switch/config/`. Exact keys depend on your package version.
+Edit `fs_switch/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 Config = Config or {}
@@ -46,5 +46,14 @@ Config.weapons = {
         custom_switch = {     -- if written don't matter global switch enable or not still it work under this weapon
             ['fs_redswitch'] = { limitedUse = { enable = true, count = 20 } },
             ['fs_blueswitch'] = { limitedUse = { enable = true, count = 2 } },
+            ['fs_greenswitch'] = { limitedUse = { enable = true, count = 3 } }
+        }
+    },
+    {
+        without_switch = 'WEAPON_CARBINERIFLE',
+        with_switch = 'WEAPON_SPECIALCARBINE'
+    }
+}
 ```
 
+</div>

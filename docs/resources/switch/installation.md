@@ -21,16 +21,21 @@ description: Install Switch on FiveM — dependencies and server.cfg. FiveM gun 
 
 
 
+
+
+
+
 ## Install steps
 
 1. Place `fs_switch` in `resources/[fs]/`.
-2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
-3. Configure `config/` files before first start.
-4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
+3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
+4. Configure `fs_switch/config/` before first start.
+5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_switch
 ```
 
-5. Restart the server and check the console for errors.
+6. Restart the server and check the console for errors.

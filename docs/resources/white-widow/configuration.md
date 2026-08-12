@@ -6,9 +6,9 @@ description: Configure White Widow — config files and key options.
 
 # White Widow — Configuration
 
-Edit the config files inside `fs_whitewidow/config/`. Exact keys depend on your package version.
+Edit `fs_whitewidow/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 config.target = false -- config.target = true will use coords from config/target.lua and if false then use marker from other configs in config folder
@@ -34,3 +34,4 @@ config.ShopMarker = {
 config.smoking = true
 ```
 
+</div>

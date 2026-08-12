@@ -6,12 +6,12 @@ description: Server exports for ChopShop.
 
 # Server exports
 
-<details>
-<summary><code>qb-banking</code></summary>
+Optional export for developers — blacklist vehicle plates at runtime (e.g. PD/EMS/admin spawner plates).
 
 ```lua
--- server example
-exports['qb-banking']:FunctionName(args)
-```
+-- Blacklist a plate from chop shop
+exports['fs_chopshop']:addplateblacklist(plate)
 
-</details>
+-- Example with a vehicle entity
+exports['fs_chopshop']:addplateblacklist(GetVehiclePlateType(vehicle))
+```

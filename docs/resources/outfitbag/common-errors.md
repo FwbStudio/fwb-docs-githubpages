@@ -6,10 +6,9 @@ description: Fix common Outfitbag issues on FiveM.
 
 # Outfitbag — Common Errors
 
-* ### Problem:&#x20;
+<details class="fwb-faq">
+<summary>Index a nil value (field 'FWB') * **Solution :** Make sure to update bridge script to fix this error</summary>
 
-Index a nil value (field 'FWB')
 
-* **Solution :**
 
-Make sure to update bridge script to fix this error
+</details>

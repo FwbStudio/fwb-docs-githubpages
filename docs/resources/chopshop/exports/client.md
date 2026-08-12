@@ -6,32 +6,12 @@ description: Client exports for ChopShop.
 
 # Client exports
 
-<details>
-<summary><code>cd_dispatch</code></summary>
+Optional export for developers — blacklist vehicle plates at runtime (e.g. PD/EMS/admin spawner plates).
 
 ```lua
--- client example
-exports['cd_dispatch']:FunctionName(args)
+-- Blacklist a plate from chop shop
+exports['fs_chopshop']:addplateblacklist(plate)
+
+-- Example with a vehicle entity
+exports['fs_chopshop']:addplateblacklist(GetVehiclePlateType(vehicle))
 ```
-
-</details>
-
-<details>
-<summary><code>okokNotify</code></summary>
-
-```lua
--- client example
-exports['okokNotify']:FunctionName(args)
-```
-
-</details>
-
-<details>
-<summary><code>qs-dispatch</code></summary>
-
-```lua
--- client example
-exports['qs-dispatch']:FunctionName(args)
-```
-
-</details>

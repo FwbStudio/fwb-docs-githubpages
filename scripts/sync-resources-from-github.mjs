@@ -8,6 +8,25 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import {
+  LEGACY_EXPORT_CANDIDATES,
+  stripGitBookFrontmatter,
+  sanitizeLegacyMarkdown,
+  loadLegacyMarkdown,
+  loadLegacyExportDoc,
+  loadLegacyFunctionsDoc,
+  loadNotifyExportDocs,
+  extractExportsFromCode,
+  exportDocForSide,
+  parseConfigExtras,
+  extraDepsForResource,
+  buildInventoryInstallSection,
+  dispatchJobsSection,
+  integrationInstallNote,
+  formatExpandableCommonErrors,
+  formatExpandableQuestions,
+  detectPages
+} from './lib/resource-doc-helpers.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '..')
@@ -63,14 +82,8 @@ const { RESOURCES_PUBLISHED, DEFAULT_TEBEX_STORE } = await import(
 
 /** Manual page overrides when auto-detect is wrong */
 const PAGE_OVERRIDES = {
-  notify: { configuration: true, questions: true },
-  'fraud-v1': { configuration: true, integrations: true, exports: { client: true, server: true }, commonErrors: true },
-  'fraud-v2': { configuration: true, integrations: true, exports: { client: true, server: true }, functions: { client: true, server: true }, commonErrors: true },
-  'trap-phone-v1': { configuration: true, integrations: true, commonErrors: true },
-  'trap-phone-v2': { configuration: true, integrations: true, exports: { client: true, server: true }, commonErrors: true },
-  'loading-screen': { configuration: true, commonErrors: true },
-  'safezone-creator': { configuration: true, integrations: true, commonErrors: true },
-  'duty-system': { configuration: true, commonErrors: true },
+  notify: { configuration: true, questions: true, exports: { client: true, server: true }, commonErrors: false },
+  'safezone-creator': { configuration: true, exports: { client: true, server: true }, functions: { client: true, server: true }, commonErrors: true },
   'automatic-pistol-pack': { commonErrors: true },
   'weapon-pack-v1': { commonErrors: true }
 }
@@ -94,100 +107,68 @@ async function fetchRepoFile(repo, filePath) {
   return Buffer.from(data.content, 'base64').toString('utf8')
 }
 
-async function listInstallFolder(repo) {
-  const data = await ghFetch(`https://api.github.com/repos/${ORG}/${repo}/contents/[INSTALL_ME_FIRST]`)
-  if (!Array.isArray(data)) return []
-  return data.filter((f) => f.type === 'file').map((f) => f.name)
+async function listRepoDir(repo, dirPath) {
+  const data = await ghFetch(
+    `https://api.github.com/repos/${ORG}/${repo}/contents/${encodeURIComponent(dirPath)}`
+  )
+  return Array.isArray(data) ? data : []
 }
 
-function parseManifestDeps(manifest, category) {
-  const rows = []
-  const add = (name, required, notes) => {
-    if (!rows.some((r) => r.name === name)) rows.push({ name, required, notes })
-  }
+async function listInstallTree(repo, folder = '[INSTALL_ME_FIRST]') {
+  const data = await listRepoDir(repo, folder)
+  if (!data.length) return []
 
-  if (category === 'weapons') {
-    add('FiveM server', true, 'Latest artifacts recommended')
-    add('Inventory items (optional)', false, 'If your pack includes ox_inventory item lines')
-    return rows
+  const files = []
+  for (const entry of data) {
+    if (entry.type === 'file') {
+      const content = await fetchRepoFile(repo, entry.path)
+      files.push({ name: entry.name, path: entry.path, content: content ?? '' })
+      await sleep(80)
+    } else if (entry.type === 'dir') {
+      files.push(...(await listInstallTree(repo, entry.path)))
+    }
   }
-
-  if (/@fs_bridge|fs_bridge\/import/.test(manifest)) {
-    add('fs_bridge', true, 'FWB Bridge — required for framework integration')
-  }
-  if (/@ox_lib/.test(manifest)) {
-    add('ox_lib', true, 'Shared UI / callbacks')
-  }
-  if (/oxmysql|@oxmysql/.test(manifest) || /dependency\s+['"]oxmysql['"]/.test(manifest)) {
-    add('oxmysql', true, 'MySQL database')
-  }
-  if (/dependency\s+['"]ox_target['"]/.test(manifest)) {
-    add('ox_target', false, 'Target system (if configured)')
-  }
-
-  add('ESX, QBCore, or Qbox', true, 'One framework per server')
-  return rows
+  return files
 }
 
-function extractExports(code) {
-  if (!code) return []
-  const names = new Set()
-  const patterns = [
-    /exports\s*\(\s*['"]([^'"]+)['"]/g,
-    /exports\s*\[\s*['"]([^'"]+)['"]\s*\]/g
-  ]
-  for (const re of patterns) {
-    for (const m of code.matchAll(re)) names.add(m[1])
-  }
-  return [...names].sort()
+function parseManifestDeps(manifest, category, resource, legacyInstall) {
+  return extraDepsForResource(resource, legacyInstall, manifest)
 }
 
 async function scanSideExports(repo, side) {
-  const paths = [
-    `${side}/unlocked.lua`,
-    `${side}/exports.lua`,
-    `${side}/main.lua`,
-    `bridge/${side}.lua`
-  ]
+  const entries = await listRepoDir(repo, side)
+  const luaPaths = entries.filter((e) => e.type === 'file' && e.name.endsWith('.lua')).map((e) => e.path)
+  const paths = [...new Set([...luaPaths, `${side}/unlocked.lua`, `${side}/exports.lua`, `${side}/main.lua`, `bridge/${side}.lua`])]
   const found = new Set()
   for (const p of paths) {
     const code = await fetchRepoFile(repo, p)
-    extractExports(code).forEach((n) => found.add(n))
-    await sleep(120)
+    extractExportsFromCode(code, repo).forEach((n) => found.add(n))
+    await sleep(100)
   }
   return [...found]
 }
 
-function detectPages(resource, manifest, exportScan) {
-  const base = {
-    configuration: resource.category === 'scripts' && /config\//.test(manifest),
-    exports: {
-      client: exportScan.client.length > 0,
-      server: exportScan.server.length > 0
-    },
-    functions: {
-      client: /client\/unlocked\.lua|client\/function/.test(manifest),
-      server: /server\/unlocked\.lua|server\/function/.test(manifest)
-    },
-    integrations: /@fs_bridge|bridge\//.test(manifest) && resource.category === 'scripts',
-    commonErrors: resource.category === 'scripts' && resource.slug !== 'notify',
-    questions: resource.slug === 'notify'
+function exportPageBody(resource, side, legacyExportDoc, exportScan) {
+  const legacySide = exportDocForSide(legacyExportDoc, side)
+  if (legacySide) return legacySide
+
+  const names = exportScan[side]
+  if (!names?.length) {
+    return `_No public ${side} exports documented yet. Check \`${resource.repo}/${side}/unlocked.lua\` in your package._`
   }
 
-  if (!base.exports.client && !base.exports.server) delete base.exports
-  if (!base.functions.client && !base.functions.server) delete base.functions
-  if (!base.integrations) delete base.integrations
-  if (!base.configuration) delete base.configuration
+  return names
+    .map(
+      (name) => `<details class="fwb-faq">
+<summary><code>${name}</code></summary>
 
-  const override = PAGE_OVERRIDES[resource.slug]
-  if (!override) return base
+\`\`\`lua
+exports['${resource.repo}']: ${name}(args)
+\`\`\`
 
-  return {
-    ...base,
-    ...override,
-    exports: override.exports ?? base.exports,
-    functions: override.functions ?? base.functions
-  }
+</details>`
+    )
+    .join('\n\n')
 }
 
 function depsTable(rows) {
@@ -196,41 +177,6 @@ function depsTable(rows) {
 | --- | --- | --- |
 ${rows.map((r) => `| \`${r.name}\` | ${r.required ? 'Yes' : 'Optional'} | ${r.notes} |`).join('\n')}
 `
-}
-
-function exportList(exports, side) {
-  if (!exports.length) {
-    return `_No public ${side} exports detected in unlocked files. Check \`client/unlocked.lua\` or \`server/unlocked.lua\` in your package._\n`
-  }
-  return exports
-    .map(
-      (name) => `<details>
-<summary><code>${name}</code></summary>
-
-\`\`\`lua
--- ${side} example
-exports['${name.replace(/^[^:]+:/, '')}']:FunctionName(args)
-\`\`\`
-
-</details>`
-    )
-    .join('\n\n')
-}
-
-function sanitizeLegacyMarkdown(text) {
-  return text
-    .replace(/^-\s\[[^\]]+\]\([^)]+\)[^\n]*\n?/gm, '')
-    .replace(/\[([^\]]+)\]\(\.\/?[^)]+\.md\)/g, '$1')
-    .replace(/\[([^\]]+)\]\(\.\.\/[^)]+\)/g, '$1')
-    .replace(/\[([^\]]+)\]\(\.\/[^)]+\)/g, '$1')
-    .replace(/\\+\s*$/gm, '')
-    .replace(/\\\n/g, '\n')
-    .replace(/\n{3,}/g, '\n\n')
-    .trim()
-}
-
-function stripGitBookFrontmatter(text) {
-  return text.replace(/^---[\s\S]*?---\s*/m, '').trim()
 }
 
 function isNavOnlyReadme(text) {
@@ -244,16 +190,12 @@ function isNavOnlyReadme(text) {
   return mdLinks.length > 0 && mdLinks.length >= nonEmpty.length - headings.length
 }
 
-function loadLegacyMarkdown(slug, fileName) {
-  const folder = LEGACY_DOC_FOLDERS[slug]
-  if (!folder) return null
-  const filePath = path.join(legacyDocsRoot, folder, fileName)
-  if (!fs.existsSync(filePath)) return null
-  return stripGitBookFrontmatter(fs.readFileSync(filePath, 'utf8'))
+function legacyMd(slug, fileName) {
+  return loadLegacyMarkdown(legacyDocsRoot, slug, LEGACY_DOC_FOLDERS, fileName)
 }
 
 function buildOverview(resource, manifest, fallback) {
-  const legacyRaw = loadLegacyMarkdown(resource.slug, 'README.md')
+  const legacyRaw = legacyMd(resource.slug, 'README.md')
   if (legacyRaw && !isNavOnlyReadme(legacyRaw)) {
     return sanitizeLegacyMarkdown(
       legacyRaw
@@ -273,12 +215,8 @@ function buildOverview(resource, manifest, fallback) {
 }
 
 function buildCommonErrors(resource) {
-  const legacyRaw = loadLegacyMarkdown(resource.slug, 'common-issues.md')
-  if (legacyRaw && legacyRaw.length > 120) {
-    return sanitizeLegacyMarkdown(legacyRaw.replace(/^#\s[^\n]+\n+/, ''))
-  }
-
-  return `| Symptom | Likely cause | Fix |
+  const legacyRaw = legacyMd(resource.slug, 'common-issues.md')
+  const fallback = `| Symptom | Likely cause | Fix |
 | --- | --- | --- |
 | Resource fails to start | Missing \`fs_bridge\` or \`ox_lib\` | Install dependencies and start them before \`${resource.repo}\` |
 | SQL / item errors | \`[INSTALL_ME_FIRST]\` not applied | Run SQL and add items from install folder |
@@ -286,26 +224,31 @@ function buildCommonErrors(resource) {
 | Nothing happens in-game | Config job/item names wrong | Compare config with your framework job names |
 
 Check F8 client console and server console for \`${resource.repo}\` errors after restart.`
+
+  const body =
+    legacyRaw && legacyRaw.length > 120
+      ? formatExpandableCommonErrors(legacyRaw)
+      : formatExpandableCommonErrors(fallback)
+  return body
 }
 
 function docNavLinks(pages) {
-  const lines = ['- [Installation](./installation) — dependencies and setup']
+  const lines = ['- [Installation](./installation) — dependencies, items, and setup']
   if (pages.configuration) lines.push('- [Configuration](./configuration)')
   if (pages.exports?.client || pages.exports?.server) {
     if (pages.exports.client && pages.exports.server) {
-      lines.push('- [Exports](./exports/client) / [Server](./exports/server)')
+      lines.push('- [Exports — Client](./exports/client) / [Server](./exports/server)')
     } else {
       lines.push(`- [Exports](./exports/${pages.exports.client ? 'client' : 'server'})`)
     }
   }
   if (pages.functions?.client || pages.functions?.server) {
     if (pages.functions.client && pages.functions.server) {
-      lines.push('- [Functions](./functions/client) / [Server](./functions/server)')
+      lines.push('- [Functions — Client](./functions/client) / [Server](./functions/server)')
     } else {
       lines.push(`- [Functions](./functions/${pages.functions.client ? 'client' : 'server'})`)
     }
   }
-  if (pages.integrations) lines.push('- [Integrations](./integrations)')
   if (pages.commonErrors) lines.push('- [Common Errors](./common-errors)')
   if (pages.questions) lines.push('- [Questions](./questions)')
   return lines.join('\n')
@@ -390,8 +333,8 @@ ${docNavLinks(pages)}
   const installSteps =
     resource.category === 'weapons'
       ? `1. Extract \`${resource.repo}\` into \`resources/[fs]/\`.
-2. Copy weapon meta / stream files from \`[INSTALL_ME_FIRST]\` if included.
-3. Add inventory / item lines from the install folder.
+2. Follow the **Items & inventory setup** section below for your inventory (weapon meta, items, images).
+3. Run any SQL files if included in \`[INSTALL_ME_FIRST]\`.
 4. Add to \`server.cfg\`:
 
 \`\`\`cfg
@@ -400,16 +343,17 @@ ensure ${resource.repo}
 
 5. Restart the server and test in-game.`
       : `1. Place \`${resource.repo}\` in \`resources/[fs]/\`.
-2. Import SQL and add items from \`[INSTALL_ME_FIRST]\` when provided.
-3. Configure \`config/\` files before first start.
-4. Add to \`server.cfg\` (**after** \`fs_bridge\` when Bridge is required):
+2. Install dependencies listed below (Bridge, \`ox_lib\`, etc.).
+3. Complete **Items & inventory setup** from \`[INSTALL_ME_FIRST]\`.
+4. Configure \`${resource.repo}/config/\` before first start.
+5. Add to \`server.cfg\` (**after** \`fs_bridge\` when Bridge is required):
 
 \`\`\`cfg
 ensure fs_bridge
 ensure ${resource.repo}
 \`\`\`
 
-5. Restart the server and check the console for errors.`
+6. Restart the server and check the console for errors.`
 
   fs.writeFileSync(
     path.join(dir, 'installation.md'),
@@ -425,14 +369,11 @@ ensure ${resource.repo}
 
 ${depsTable(meta.deps)}
 
-${
-  meta.installFiles.length
-    ? `## [INSTALL_ME_FIRST] files
+${dispatchJobsSection(meta.configExtras.dispatchJobs)}
 
-${meta.installFiles.map((f) => `- \`${f}\``).join('\n')}
-`
-    : ''
-}
+${buildInventoryInstallSection(meta.installFiles, resource.repo, resource.category)}
+
+${integrationInstallNote(meta.manifest)}
 
 ## Install steps
 
@@ -446,14 +387,15 @@ ${installSteps}
       `${fm(`${resource.name} Configuration | FWB Studio Docs`, `Configure ${resource.name} — config files and key options.`)}
 # ${resource.name} — Configuration
 
-Edit the config files inside \`${resource.repo}/config/\`. Exact keys depend on your package version.
+Edit \`${resource.repo}/config/config.lua\` in your download.
 
-${meta.configSnippet ? `## Config excerpt
+<div class="fwb-config-block">
 
 \`\`\`lua
-${meta.configSnippet.trim()}
+${meta.configFull?.trim() || '_Open config/config.lua in your package._'}
 \`\`\`
-` : '_Open `config/config.lua` in your download for all options._'}
+
+</div>
 `
     )
   }
@@ -461,22 +403,30 @@ ${meta.configSnippet.trim()}
   if (pages.exports?.client || pages.exports?.server) {
     fs.mkdirSync(path.join(dir, 'exports'), { recursive: true })
     if (pages.exports.client) {
+      const body =
+        resource.slug === 'notify' && meta.notifyDocs?.client
+          ? meta.notifyDocs.client
+          : exportPageBody(resource, 'client', meta.legacyExportDoc, meta.exports)
       fs.writeFileSync(
         path.join(dir, 'exports', 'client.md'),
         `${fm(`${resource.name} Client Exports | FWB Studio Docs`, `Client exports for ${resource.name}.`)}
 # Client exports
 
-${exportList(meta.exports.client, 'client')}
+${body}
 `
       )
     }
     if (pages.exports.server) {
+      const body =
+        resource.slug === 'notify' && meta.notifyDocs?.server
+          ? meta.notifyDocs.server
+          : exportPageBody(resource, 'server', meta.legacyExportDoc, meta.exports)
       fs.writeFileSync(
         path.join(dir, 'exports', 'server.md'),
         `${fm(`${resource.name} Server Exports | FWB Studio Docs`, `Server exports for ${resource.name}.`)}
 # Server exports
 
-${exportList(meta.exports.server, 'server')}
+${body}
 `
       )
     }
@@ -484,15 +434,14 @@ ${exportList(meta.exports.server, 'server')}
 
   if (pages.functions?.client || pages.functions?.server) {
     fs.mkdirSync(path.join(dir, 'functions'), { recursive: true })
+    const fnBody = meta.legacyFunctionsDoc || ''
     if (pages.functions.client) {
       fs.writeFileSync(
         path.join(dir, 'functions', 'client.md'),
-        `${fm(`${resource.name} Client Functions | FWB Studio Docs`, `Client functions and events for ${resource.name}.`)}
+        `${fm(`${resource.name} Client Functions | FWB Studio Docs`, `Client functions for ${resource.name}.`)}
 # Client functions
 
-Use these from other resources via exports or events documented in \`${resource.repo}/client/unlocked.lua\`.
-
-${exportList(meta.exports.client, 'client')}
+${exportDocForSide(fnBody, 'client') || fnBody || '_No separate client functions doc._'}
 `
       )
     }
@@ -502,32 +451,10 @@ ${exportList(meta.exports.client, 'client')}
         `${fm(`${resource.name} Server Functions | FWB Studio Docs`, `Server functions for ${resource.name}.`)}
 # Server functions
 
-See \`${resource.repo}/server/unlocked.lua\` in your download.
-
-${exportList(meta.exports.server, 'server')}
+${exportDocForSide(fnBody, 'server') || fnBody || '_No separate server functions doc._'}
 `
       )
     }
-  }
-
-  if (pages.integrations) {
-    fs.writeFileSync(
-      path.join(dir, 'integrations.md'),
-      `${fm(`${resource.name} Integrations | FWB Studio Docs`, `Supported inventories, targets, and Bridge integrations.`)}
-# ${resource.name} — Integrations
-
-Works with **FS Bridge** for framework, inventory, target, and dispatch adapters.
-
-| Integration | Supported |
-| --- | --- |
-| ESX / QBCore / Qbox | Yes (via Bridge) |
-| ox_inventory | Yes |
-| qb-inventory / qs-inventory | Yes (via Bridge overrides) |
-| ox_target / qb-target | When configured in Bridge |
-
-Configure unsupported resources in \`fs_bridge/config/\` overrides. See [Bridge Supported](/bridge/supported).
-`
-    )
   }
 
   if (pages.commonErrors) {
@@ -542,12 +469,7 @@ ${buildCommonErrors(resource)}
   }
 
   if (pages.questions) {
-    fs.writeFileSync(
-      path.join(dir, 'questions.md'),
-      `${fm(`${resource.name} Questions | FWB Studio Docs`, `FAQ for ${resource.name}.`)}
-# ${resource.name} — Questions
-
-### Does this replace my existing notify resource?
+    const faq = formatExpandableQuestions(`### Does this replace my existing notify resource?
 
 Configure \`${resource.repo}\` to hook into your UI flow. See Configuration for editor settings.
 
@@ -557,26 +479,54 @@ ${/@fs_bridge/.test(meta.manifest ?? '') ? 'Yes — `fs_bridge` must be installe
 
 ### Where do I get support?
 
-[Discord](https://discord.gg/WH6uQ6uFvq) with your Tebex invoice and server console logs.
+[Discord](https://discord.gg/WH6uQ6uFvq) with your Tebex invoice and server console logs.`)
+
+    fs.writeFileSync(
+      path.join(dir, 'questions.md'),
+      `${fm(`${resource.name} Questions | FWB Studio Docs`, `FAQ for ${resource.name}.`)}
+# ${resource.name} — Questions
+
+${faq}
 `
     )
   }
 
-  // Remove stale pages from old structure
-  for (const stale of ['common-issues.md']) {
-    const p = path.join(dir, stale)
+  cleanupStalePages(dir, pages)
+
+  return { slug: resource.slug, pages, base }
+}
+
+function cleanupStalePages(dir, pages) {
+  const alwaysRemove = ['common-issues.md', 'integrations.md']
+  for (const name of alwaysRemove) {
+    const p = path.join(dir, name)
     if (fs.existsSync(p)) fs.unlinkSync(p)
   }
 
-  return { slug: resource.slug, pages, base }
+  const maybeRemove = [
+    ['exports/client.md', pages.exports?.client],
+    ['exports/server.md', pages.exports?.server],
+    ['functions/client.md', pages.functions?.client],
+    ['functions/server.md', pages.functions?.server],
+    ['configuration.md', pages.configuration],
+    ['common-errors.md', pages.commonErrors],
+    ['questions.md', pages.questions]
+  ]
+
+  for (const [rel, keep] of maybeRemove) {
+    if (keep) continue
+    const p = path.join(dir, rel)
+    if (fs.existsSync(p)) fs.unlinkSync(p)
+  }
 }
 
 async function analyzeResource(resource) {
   const manifest = (await fetchRepoFile(resource.repo, 'fxmanifest.lua')) ?? ''
   await sleep(150)
-  const configSnippet = ((await fetchRepoFile(resource.repo, 'config/config.lua')) ?? '').split('\n').slice(0, 35).join('\n')
+  const configFull = (await fetchRepoFile(resource.repo, 'config/config.lua')) ?? ''
   await sleep(150)
-  const installFiles = await listInstallFolder(resource.repo)
+  const legacyInstall = legacyMd(resource.slug, 'installation.md')
+  const installFiles = await listInstallTree(resource.repo)
   await sleep(150)
 
   const exportScan = {
@@ -584,11 +534,16 @@ async function analyzeResource(resource) {
     server: await scanSideExports(resource.repo, 'server')
   }
 
+  const legacyExportDoc = loadLegacyExportDoc(legacyDocsRoot, resource.slug, LEGACY_DOC_FOLDERS)
+  const legacyFunctionsDoc = loadLegacyFunctionsDoc(legacyDocsRoot, resource.slug, LEGACY_DOC_FOLDERS)
+  const notifyDocs = resource.slug === 'notify' ? loadNotifyExportDocs(root) : null
+
   const version =
     manifest.match(/^\s*version\s+['"]([^'"]+)['"]/im)?.[1] ??
     manifest.match(/^\s*version\s+(\S+)/im)?.[1]
-  const deps = parseManifestDeps(manifest, resource.category)
-  const pages = detectPages(resource, manifest, exportScan)
+  const configExtras = parseConfigExtras(configFull, resource)
+  const deps = parseManifestDeps(manifest, resource.category, resource, legacyInstall)
+  const pages = detectPages(resource, manifest, exportScan, legacyExportDoc, legacyFunctionsDoc, PAGE_OVERRIDES)
 
   const fallbackOverview =
     resource.category === 'weapons'
@@ -597,7 +552,20 @@ async function analyzeResource(resource) {
 
   const overview = buildOverview(resource, manifest, fallbackOverview)
 
-  return { manifest, version, deps, installFiles, configSnippet, exports: exportScan, pages, overview }
+  return {
+    manifest,
+    version,
+    deps,
+    installFiles,
+    configFull,
+    configExtras,
+    exports: exportScan,
+    legacyExportDoc,
+    legacyFunctionsDoc,
+    notifyDocs,
+    pages,
+    overview
+  }
 }
 
 const pageRecords = {}

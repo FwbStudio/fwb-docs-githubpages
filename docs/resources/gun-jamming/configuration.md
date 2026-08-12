@@ -6,9 +6,9 @@ description: Configure Gun Jamming — config files and key options.
 
 # Gun Jamming — Configuration
 
-Edit the config files inside `fs_gunjamming/config/`. Exact keys depend on your package version.
+Edit `fs_gunjamming/config/config.lua` in your download.
 
-## Config excerpt
+<div class="fwb-config-block">
 
 ```lua
 --[[
@@ -40,3 +40,4 @@ config.Notification = {
 }
 ```
 
+</div>

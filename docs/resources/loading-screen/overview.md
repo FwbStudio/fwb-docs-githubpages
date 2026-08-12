@@ -25,6 +25,6 @@ A clean, immersive loading screen designed to keep players engaged while the wor
 
 ## Documentation
 
-- [Installation](./installation) — dependencies and setup
+- [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
 - [Common Errors](./common-errors)

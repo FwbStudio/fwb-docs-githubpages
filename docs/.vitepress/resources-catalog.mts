@@ -319,7 +319,53 @@ export function buildScriptsSidebar() {
 
 export function buildWeaponsSidebar() {
   const weapons = RESOURCES_PUBLISHED.filter((r) => r.category === 'weapons')
-  return weapons.map((r) => buildResourceGroup(r, false))
+  return weapons.map((r) => buildResourceGroup(r))
+}
+
+/** Flat sidebar: Get Started + Bridge groups, then Scripts/Weapons section headings + products */
+export function buildDocsSidebar(): SidebarItem[] {
+  return [
+    {
+      text: 'Get Started',
+      collapsed: false,
+      items: [
+        { text: 'Docs Home', link: '/' },
+        { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
+        { text: 'Basic Server Knowledge', link: '/basic-server-knowledge' }
+      ]
+    },
+    {
+      text: 'Bridge',
+      collapsed: false,
+      items: [
+        { text: 'Overview', link: '/bridge/' },
+        { text: 'Supported', link: '/bridge/supported' },
+        {
+          text: 'Script Overrides',
+          collapsed: true,
+          items: [
+            { text: 'Overview', link: '/bridge/script-overrides' },
+            { text: 'Client', link: '/bridge/overrides/client' },
+            { text: 'Server', link: '/bridge/overrides/server' }
+          ]
+        },
+        {
+          text: 'Configuration',
+          collapsed: true,
+          items: [
+            { text: 'Overview', link: '/bridge/configuration/' },
+            { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
+            { text: 'Client Config', link: '/bridge/configuration/client-config' },
+            { text: 'Server Config', link: '/bridge/configuration/server-config' }
+          ]
+        }
+      ]
+    },
+    { text: 'Scripts', link: '#fwb-section-scripts' },
+    ...buildScriptsSidebar(),
+    { text: 'Weapons', link: '#fwb-section-weapons' },
+    ...buildWeaponsSidebar()
+  ]
 }
 
 type SidebarItem =
@@ -358,7 +404,7 @@ function buildScriptSidebarItems(scripts: ResourceEntry[]): SidebarItem[] {
   return items
 }
 
-function buildResourceGroup(resource: ResourceEntry, collapsed = true): SidebarItem {
+function buildResourceGroup(resource: ResourceEntry): SidebarItem {
   const base = `/resources/${resource.slug}`
   const pages = getPages(resource)
   const items: SidebarItem[] = [
@@ -393,10 +439,6 @@ function buildResourceGroup(resource: ResourceEntry, collapsed = true): SidebarI
     }
   }
 
-  if (pages.integrations) {
-    items.push({ text: 'Integrations', link: `${base}/integrations` })
-  }
-
   if (pages.commonErrors) {
     items.push({ text: 'Common Errors', link: `${base}/common-errors` })
   }
@@ -407,7 +449,7 @@ function buildResourceGroup(resource: ResourceEntry, collapsed = true): SidebarI
 
   return {
     text: resource.name,
-    collapsed,
+    collapsed: true,
     items
   }
 }

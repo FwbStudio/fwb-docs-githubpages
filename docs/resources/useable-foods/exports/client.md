@@ -6,102 +6,92 @@ description: Client exports for Useable Foods.
 
 # Client exports
 
-<details>
+<details class="fwb-faq">
 <summary><code>AddDrunkLevel</code></summary>
 
 ```lua
--- client example
-exports['AddDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: AddDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>GetDrunkLevel</code></summary>
 
 ```lua
--- client example
-exports['GetDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: GetDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>RemoveDrunkLevel</code></summary>
 
 ```lua
--- client example
-exports['RemoveDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: RemoveDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>SetDrunkLevel</code></summary>
 
 ```lua
--- client example
-exports['SetDrunkLevel']:FunctionName(args)
+exports['fs_useablefoods']: SetDrunkLevel(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>createitemsuseable</code></summary>
 
 ```lua
--- client example
-exports['createitemsuseable']:FunctionName(args)
+exports['fs_useablefoods']: createitemsuseable(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isDrunk</code></summary>
 
 ```lua
--- client example
-exports['isDrunk']:FunctionName(args)
+exports['fs_useablefoods']: isDrunk(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isPlacingObject</code></summary>
 
 ```lua
--- client example
-exports['isPlacingObject']:FunctionName(args)
+exports['fs_useablefoods']: isPlacingObject(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isalreadyusingitem</code></summary>
 
 ```lua
--- client example
-exports['isalreadyusingitem']:FunctionName(args)
+exports['fs_useablefoods']: isalreadyusingitem(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>isitemuseableready</code></summary>
 
 ```lua
--- client example
-exports['isitemuseableready']:FunctionName(args)
+exports['fs_useablefoods']: isitemuseableready(args)
 ```
 
 </details>
 
-<details>
+<details class="fwb-faq">
 <summary><code>openui</code></summary>
 
 ```lua
--- client example
-exports['openui']:FunctionName(args)
+exports['fs_useablefoods']: openui(args)
 ```
 
 </details>
