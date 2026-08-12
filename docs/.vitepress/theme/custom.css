@@ -138,14 +138,14 @@ body {
   background: rgba(7, 7, 15, 0.9) !important;
 }
 
-/* Nav links on the left; search just left of day/night toggle on the right */
+/* No top Docs/Store tabs. Right side: Search, then Store + Discord */
 .VPNavBar .content-body {
   justify-content: flex-start !important;
   gap: 0.35rem;
 }
 
 .VPNavBar .content-body .menu {
-  order: 1;
+  display: none !important;
 }
 
 .VPNavBar .content-body .translations {
@@ -164,15 +164,59 @@ body {
 }
 
 .VPNavBar .content-body .social-links {
-  order: 21;
+  display: none !important;
 }
 
 .VPNavBar .content-body .extra {
-  order: 22;
+  order: 30;
 }
 
 .VPNavBar .content-body .hamburger {
-  order: 23;
+  order: 31;
+}
+
+.fwb-nav-actions {
+  order: 20;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.35rem;
+}
+
+.fwb-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--fwb-border-teal);
+  background: rgba(45, 212, 191, 0.1);
+  color: var(--fwb-teal) !important;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  transition: background-color var(--fwb-ease), border-color var(--fwb-ease), transform var(--fwb-ease), color var(--fwb-ease);
+}
+
+.fwb-nav-btn:hover {
+  background: rgba(45, 212, 191, 0.18);
+  border-color: rgba(45, 212, 191, 0.45);
+  transform: translateY(-1px);
+  color: #5eead4 !important;
+}
+
+.fwb-nav-btn--discord {
+  border-color: rgba(88, 101, 242, 0.35);
+  background: rgba(88, 101, 242, 0.12);
+  color: #aab1ff !important;
+}
+
+.fwb-nav-btn--discord:hover {
+  border-color: rgba(88, 101, 242, 0.55);
+  background: rgba(88, 101, 242, 0.2);
+  color: #c5caff !important;
 }
 
 @media (max-width: 767px) {
@@ -180,10 +224,71 @@ body {
     margin-left: auto;
   }
 
+  .fwb-nav-actions {
+    gap: 0.3rem;
+  }
+
+  .fwb-nav-btn {
+    padding: 0 0.65rem;
+    font-size: 0.75rem;
+  }
+
   .VPNavBar .content-body .extra,
   .VPNavBar .content-body .hamburger {
     margin-left: 0;
   }
+}
+
+/* Rising white dots (Tebex-style) */
+.fwb-site-particles {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fwb-site-particles span {
+  position: absolute;
+  bottom: -10vh;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.35), 0 0 18px rgba(45, 212, 191, 0.2);
+  opacity: 0;
+  animation: fwbParticleFloat linear infinite;
+}
+
+.fwb-site-particles span:nth-child(1)  { left: 5%;  animation-duration: 15s; animation-delay: 0s;   width:6px; height:6px; }
+.fwb-site-particles span:nth-child(2)  { left: 15%; animation-duration: 20s; animation-delay: 2s;   width:4px; height:4px; }
+.fwb-site-particles span:nth-child(3)  { left: 25%; animation-duration: 18s; animation-delay: 4s;   width:7px; height:7px; }
+.fwb-site-particles span:nth-child(4)  { left: 35%; animation-duration: 22s; animation-delay: 1s;   width:5px; height:5px; }
+.fwb-site-particles span:nth-child(5)  { left: 45%; animation-duration: 16s; animation-delay: 7s;   width:8px; height:8px; }
+.fwb-site-particles span:nth-child(6)  { left: 55%; animation-duration: 19s; animation-delay: 3s;   width:6px; height:6px; }
+.fwb-site-particles span:nth-child(7)  { left: 65%; animation-duration: 25s; animation-delay: 5s;   width:5px; height:5px; }
+.fwb-site-particles span:nth-child(8)  { left: 75%; animation-duration: 17s; animation-delay: 0.5s; width:7px; height:7px; }
+.fwb-site-particles span:nth-child(9)  { left: 85%; animation-duration: 21s; animation-delay: 2.5s; width:4px; height:4px; }
+.fwb-site-particles span:nth-child(10) { left: 95%; animation-duration: 14s; animation-delay: 6s;   width:6px; height:6px; }
+.fwb-site-particles span:nth-child(11) { left: 10%; animation-duration: 19s; animation-delay: 8s;   width:5px; height:5px; }
+.fwb-site-particles span:nth-child(12) { left: 30%; animation-duration: 24s; animation-delay: 4s;   width:8px; height:8px; }
+.fwb-site-particles span:nth-child(13) { left: 50%; animation-duration: 15s; animation-delay: 1.5s; width:4px; height:4px; }
+.fwb-site-particles span:nth-child(14) { left: 70%; animation-duration: 20s; animation-delay: 9s;   width:7px; height:7px; }
+.fwb-site-particles span:nth-child(15) { left: 90%; animation-duration: 18s; animation-delay: 3s;   width:5px; height:5px; }
+
+@keyframes fwbParticleFloat {
+  0% { transform: translate3d(0, 105vh, 0) scale(0.75); opacity: 0; }
+  12% { opacity: 0.85; }
+  72% { opacity: 0.55; }
+  100% { transform: translate3d(0, -16vh, 0) scale(1.05); opacity: 0; }
+}
+
+.VPContent,
+.VPNav,
+.VPSidebar,
+.VPFooter {
+  position: relative;
+  z-index: 1;
 }
 
 /* Keep doc categories pinned on the left sidebar */
@@ -436,13 +541,15 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .VPButton,
   .script-card,
-  .dark body::before {
+  .dark body::before,
+  .fwb-site-particles span {
     animation: none !important;
     transition: none;
   }
 
   .VPButton:hover,
-  .script-card:hover {
+  .script-card:hover,
+  .fwb-nav-btn:hover {
     transform: none;
   }
 }

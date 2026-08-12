@@ -1,23 +1,36 @@
-# Bridge (`fs_bridge`) — legacy
+# Bridge
 
-Bridge is the older shared compatibility layer used by many existing FWB resources.
+Bridge is the docs section for the `fs_bridge` resource.
 
-FWB is moving away from Bridge over time. Keep these docs available while older scripts still need it.
+These docs focus on the parts users and developers actually work with:
 
-## What these docs cover
-
-- Installation order
-- Supported frameworks and integrations
-- Config files
-- Public `FWB.*` APIs and exports
-- Common setup mistakes
+- installation order
+- supported frameworks and integrations
+- common setup mistakes
+- unlocked override snippets
+- editable config files
+- public `FWB.*` namespaces and exports
 
 ## Current focus
 
-FiveM usage with:
+The current public docs focus on FiveM usage with:
 
-- ESX
-- QBCore
-- Qbox
+- `ESX`
+- `QBCore`
+- `Qbox`
 
-Detailed Bridge API pages will be ported from the previous docs repo next.
+## Sections
+
+| Section | What it covers |
+| --- | --- |
+| [Supported](./supported) | Frameworks and integrations Bridge can detect |
+| [Script Overrides](./script-overrides) | Manual compatibility when your resource is not listed |
+
+## Quick setup notes
+
+1. Keep Bridge with your other FWB resources under `[fs]`
+2. Start framework / inventory / target before Bridge when possible
+3. Prefer auto-detect (`selected_key = 1`) unless support tells you to force a resource
+4. Use unlocked override files for custom compatibility — do not edit locked Bridge files
+
+Script-specific pages will be added next as we port the rest of the catalog.

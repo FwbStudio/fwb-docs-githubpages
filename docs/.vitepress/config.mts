@@ -25,14 +25,7 @@ export default defineConfig({
   themeConfig: {
     logo: '/logo.png',
     siteTitle: 'FWB Studio',
-    nav: [
-      { text: 'Docs', link: '/' },
-      {
-        text: 'Store',
-        link: 'https://fwbstudio.tebex.io/',
-        target: '_blank'
-      }
-    ],
+    nav: [],
     sidebar: [
       {
         text: 'Get Started',
@@ -43,9 +36,13 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Bridge (legacy)',
+        text: 'Bridge',
         items: [
-          { text: 'Overview', link: '/bridge/' }
+          { text: 'Overview', link: '/bridge/' },
+          { text: 'Supported', link: '/bridge/supported' },
+          { text: 'Script Overrides', link: '/bridge/script-overrides' },
+          { text: 'Client Overrides', link: '/bridge/overrides/client' },
+          { text: 'Server Overrides', link: '/bridge/overrides/server' }
         ]
       },
       {
@@ -63,6 +60,10 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    outline: [2, 3]
-  }
+    outline: [2, 3],
+    fwbLinks: {
+      store: 'https://fwbstudio.tebex.io/',
+      discord: 'https://discord.gg/WH6uQ6uFvq'
+    }
+  } as any
 })

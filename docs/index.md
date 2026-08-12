@@ -11,12 +11,14 @@ Built for FiveM servers using:
 ## Start here
 
 - [Install FWB Scripts](/install-fwb-scripts)
-- [Basic Server Knowledge](/basic-server-knowledge)
+- [Basic Server Knowledge](/basic-server-knowledge) — general FiveM server basics
 
-## Bridge (legacy)
+## Bridge
 
-`fs_bridge` is being phased out over time, but docs remain here for resources that still depend on it:
+Docs for `fs_bridge`:
 
-- [Bridge overview](/bridge/)
+- [Overview](/bridge/)
+- [Supported](/bridge/supported)
+- [Script Overrides](/bridge/script-overrides)
 
-Script pages will be added here as we port them from the old docs set.
+Script pages will be added next as we port the rest of the catalog.
