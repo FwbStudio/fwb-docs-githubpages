@@ -802,26 +802,35 @@ html {
     max-width: none !important;
   }
 
-  .VPDoc .content {
+  .VPDoc .content,
+  .VPDoc .content-container,
+  .VPDoc .main,
+  .vp-doc {
     max-width: none !important;
+    width: 100%;
+  }
+
+  .VPDoc .content {
     padding-right: 28px !important;
   }
 
-  .VPDoc .content-container {
+  /* VitePress wraps page markdown in an anonymous div — do not width-cap that wrapper */
+  .vp-doc > div {
     max-width: none !important;
+    width: 100% !important;
   }
 
-  /* Keep titles/text readable at normal width */
-  .vp-doc > :not(div[class*='language-']):not(.vp-code-group):not(.vp-adaptive-theme) {
+  /* Keep readable text/tables at normal prose width */
+  .vp-doc :is(h1, h2, h3, h4, h5, h6, p, ul, ol, table, blockquote, details, .custom-block) {
     max-width: var(--fwb-prose-width);
   }
 
-  /* Code / config blocks stretch across the empty right space */
-  .vp-doc > div[class*='language-'],
-  .vp-doc > .vp-code-group,
-  .vp-doc > .vp-adaptive-theme {
-    width: 100%;
-    max-width: none;
+  /* Code / config blocks fill the unused right space in the content column */
+  .vp-doc div[class*='language-'],
+  .vp-doc .vp-code-group,
+  .vp-doc .vp-adaptive-theme {
+    width: 100% !important;
+    max-width: none !important;
   }
 }
 
