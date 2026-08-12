@@ -6,9 +6,6 @@ description: Fix common Bodybag issues on FiveM.
 
 # Bodybag — Common Errors
 
-<details class="fwb-faq">
-<summary>Index a nil value (field 'FWB') * **Solution :** Make sure to update bridge script to fix this error</summary>
-
-
-
-</details>
+::: details Index a nil value (field 'FWB')
+Make sure to update bridge script to fix this error
+:::

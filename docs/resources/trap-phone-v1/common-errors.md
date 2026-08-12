@@ -6,17 +6,20 @@ description: Fix common Trap Phone V1 issues on FiveM.
 
 # Trap Phone V1 — Common Errors
 
-### Buyer Not Avilable :
+::: details Resource fails to start
+Likely cause: Missing `fs_bridge` or `ox_lib`
 
-Solution: This is due to ped is spawning too far to solve this issue you can go in config and change this 
-\ Change this in config:
+Fix: Install dependencies and start them before the script
+:::
 
+::: details SQL / item errors
+Likely cause: `[INSTALL_ME_FIRST]` not applied
 
+Fix: Run SQL and add items from install folder
+:::
 
-TO  This:
+::: details UI not opening
+Likely cause: Wrong inventory override
 
-```
-Config.Offsets = {
-    [1] = { x = 0.0, y = 7.0 },
-}
-```
+Fix: Match Bridge inventory to your server
+:::

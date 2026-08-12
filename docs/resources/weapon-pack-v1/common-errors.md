@@ -1,43 +1,25 @@
 ---
-title: Weapon Pack v1 Common Errors | FWB Studio Docs
-description: Fix common Weapon Pack v1 issues on FiveM.
+title: Weapon Pack V1 Common Errors | FWB Studio Docs
+description: Fix common Weapon Pack V1 issues on FiveM.
 ---
 
 
-# Weapon Pack v1 — Common Errors
+# Weapon Pack V1 — Common Errors
 
-<details class="fwb-faq">
-<summary>Resource fails to start</summary>
+::: details Resource fails to start
+Likely cause: Missing `fs_bridge` or `ox_lib`
 
-**Likely cause:** Missing `fs_bridge` or `ox_lib`
+Fix: Install dependencies and start them before the script
+:::
 
-**Fix:** Install dependencies and start them before `fs_weapons_v1`
+::: details SQL / item errors
+Likely cause: `[INSTALL_ME_FIRST]` not applied
 
-</details>
+Fix: Run SQL and add items from install folder
+:::
 
-<details class="fwb-faq">
-<summary>SQL / item errors</summary>
+::: details UI not opening
+Likely cause: Wrong inventory override
 
-**Likely cause:** `[INSTALL_ME_FIRST]` not applied
-
-**Fix:** Run SQL and add items from install folder
-
-</details>
-
-<details class="fwb-faq">
-<summary>UI not opening</summary>
-
-**Likely cause:** Old NUI build or wrong inventory
-
-**Fix:** Match Bridge inventory override to your server
-
-</details>
-
-<details class="fwb-faq">
-<summary>Nothing happens in-game</summary>
-
-**Likely cause:** Config job/item names wrong
-
-**Fix:** Compare config with your framework job names
-
-</details>
+Fix: Match Bridge inventory to your server
+:::

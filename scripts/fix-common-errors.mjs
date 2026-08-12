@@ -54,7 +54,10 @@ for (const slug of fs.readdirSync(docsRoot)) {
     if (fs.existsSync(p)) legacy = fs.readFileSync(p, 'utf8')
   }
 
-  const body = formatExpandableCommonErrors(legacy && legacy.length > 120 ? stripGitBookFrontmatter(legacy) : fallback)
+  let body = formatExpandableCommonErrors(legacy ? stripGitBookFrontmatter(legacy) : fallback)
+  if (!body.includes('::: details')) {
+    body = formatExpandableCommonErrors(fallback)
+  }
   const title = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())
 
   fs.writeFileSync(

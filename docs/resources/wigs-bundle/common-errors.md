@@ -1,43 +1,25 @@
 ---
-title: WigsBundle Business Common Errors | FWB Studio Docs
-description: Fix common WigsBundle Business issues on FiveM.
+title: Wigs Bundle Common Errors | FWB Studio Docs
+description: Fix common Wigs Bundle issues on FiveM.
 ---
 
 
-# WigsBundle Business — Common Errors
+# Wigs Bundle — Common Errors
 
-<details class="fwb-faq">
-<summary>Resource fails to start</summary>
+::: details Resource fails to start
+Likely cause: Missing `fs_bridge` or `ox_lib`
 
-**Likely cause:** Missing `fs_bridge` or `ox_lib`
+Fix: Install dependencies and start them before the script
+:::
 
-**Fix:** Install dependencies and start them before `fs_wigsbundles`
+::: details SQL / item errors
+Likely cause: `[INSTALL_ME_FIRST]` not applied
 
-</details>
+Fix: Run SQL and add items from install folder
+:::
 
-<details class="fwb-faq">
-<summary>SQL / item errors</summary>
+::: details UI not opening
+Likely cause: Wrong inventory override
 
-**Likely cause:** `[INSTALL_ME_FIRST]` not applied
-
-**Fix:** Run SQL and add items from install folder
-
-</details>
-
-<details class="fwb-faq">
-<summary>UI not opening</summary>
-
-**Likely cause:** Old NUI build or wrong inventory
-
-**Fix:** Match Bridge inventory override to your server
-
-</details>
-
-<details class="fwb-faq">
-<summary>Nothing happens in-game</summary>
-
-**Likely cause:** Config job/item names wrong
-
-**Fix:** Compare config with your framework job names
-
-</details>
+Fix: Match Bridge inventory to your server
+:::

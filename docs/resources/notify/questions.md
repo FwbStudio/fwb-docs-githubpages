@@ -6,23 +6,14 @@ description: FAQ for Notify.
 
 # Notify — Questions
 
-<details class="fwb-faq">
-<summary>### Does this replace my existing notify resource?</summary>
-
+::: details Does this replace my existing notify resource?
 Configure `fs_notify` to hook into your UI flow. See Configuration for editor settings.
+:::
 
-</details>
-
-<details class="fwb-faq">
-<summary>Is Bridge required?</summary>
-
+::: details Is Bridge required?
 No — this resource does not require Bridge.
+:::
 
-</details>
-
-<details class="fwb-faq">
-<summary>Where do I get support?</summary>
-
+::: details Where do I get support?
 [Discord](https://discord.gg/WH6uQ6uFvq) with your Tebex invoice and server console logs.
-
-</details>
+:::

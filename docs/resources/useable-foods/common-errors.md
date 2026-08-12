@@ -6,10 +6,20 @@ description: Fix common Useable Foods issues on FiveM.
 
 # Useable Foods — Common Errors
 
-Q - Not able to spawn food?
+::: details Resource fails to start
+Likely cause: Missing `fs_bridge` or `ox_lib`
 
-A - make sure you added that food business too in your server related to that item which you are trying to spawn
+Fix: Install dependencies and start them before the script
+:::
 
-Q - On using item nothing happened in ox_inventory?
+::: details SQL / item errors
+Likely cause: `[INSTALL_ME_FIRST]` not applied
 
-A - Make sure ur using latest version of ox_inventory from overextended github. because some people using modified version of ox_inventory from ak47 base that missing alot updates that making issue in using item.
+Fix: Run SQL and add items from install folder
+:::
+
+::: details UI not opening
+Likely cause: Wrong inventory override
+
+Fix: Match Bridge inventory to your server
+:::

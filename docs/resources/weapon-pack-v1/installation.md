@@ -26,16 +26,16 @@ Open `fs_weapons_v1/[INSTALL_ME_FIRST]` and follow the guide for **your** invent
 <div class="fwb-inv-tabs">
 
 <details>
-<summary>ox_inventory</summary>
+<summary>ox_inventory</summary><div class="fwb-inv-tab-body">
 
 1. Open **`OX-INSTALLATION.md`** in `[INSTALL_ME_FIRST]`
 2. Copy weapon/item lines into `ox_inventory/data/weapons.lua` and items as instructed
 3. Copy all `WEAPON_*.png` images to `ox_inventory/web/images/`
 
-</details>
+</div></details>
 
 <details>
-<summary>QBCore (new)</summary>
+<summary>QBCore (new)</summary><div class="fwb-inv-tab-body">
 
 1. Open **`NEW-QBCORE-INSTALLATION copy.md`** in `[INSTALL_ME_FIRST]`
 2. Add items to `qb-core/shared/items.lua`
@@ -43,40 +43,40 @@ Open `fs_weapons_v1/[INSTALL_ME_FIRST]` and follow the guide for **your** invent
 4. Add durability + attachments in `qb-weapons/config.lua`
 5. Copy images to `qb-inventory/html/images/`
 
-</details>
+</div></details>
 
 <details>
-<summary>QBCore (old)</summary>
+<summary>QBCore (old)</summary><div class="fwb-inv-tab-body">
 
 1. Open **`OLD-QBCORE-INSTALLATION.md`** in `[INSTALL_ME_FIRST]`
 2. Follow the same sections: items, weapons, durability, attachments
 3. Copy images to your inventory images folder
 
-</details>
+</div></details>
 
 <details>
-<summary>qs-inventory</summary>
+<summary>qs-inventory</summary><div class="fwb-inv-tab-body">
 
 1. Open **`NEW QS INVENTORY-INSTALLATION.md`** or **`OLD QS INVENTORY-INSTALLATION.md`**
 2. Apply item/weapon lines to the paths shown in that file
 3. Copy weapon images to your qs-inventory images folder
 
-</details>
+</div></details>
 
 <details>
-<summary>ak47 inventory</summary>
+<summary>ak47 inventory</summary><div class="fwb-inv-tab-body">
 
 1. Open **`AK47-INSTALLATION.md`** in `[INSTALL_ME_FIRST]`
 2. Follow item and weapon setup for ak47 inventory
 
-</details>
+</div></details>
 
 <details>
-<summary>Item & attachment images</summary>
+<summary>Item & attachment images</summary><div class="fwb-inv-tab-body">
 
 Copy all PNG files from `[INSTALL_ME_FIRST]` (weapon icons + attachment icons) into your inventory images folder.
 
-</details>
+</div></details>
 
 </div>
 

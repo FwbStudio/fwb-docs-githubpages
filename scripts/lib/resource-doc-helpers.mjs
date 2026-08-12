@@ -38,53 +38,60 @@ export function sanitizeLegacyMarkdown(text) {
     .trim()
 }
 
+function splitProblemSolution(section) {
+  const patterns = [
+    /###\s*Solution\s*:?\s*/i,
+    /\*?\s*\*\*Solution\s*:?\*\*\s*/i,
+    /\*\*Solution\s*:?\*\*\s*/i
+  ]
+  for (const re of patterns) {
+    const match = section.match(re)
+    if (match && match.index !== undefined) {
+      return [section.slice(0, match.index), section.slice(match.index + match[0].length)]
+    }
+  }
+  return [section, '']
+}
+
+function detailsBlock(title, body) {
+  const cleanTitle = title
+    .replace(/\s+/g, ' ')
+    .replace(/\s*\*?\s*\*\*Solution\s*:?\*\*.*$/i, '')
+    .trim()
+  const cleanBody = (body || '').replace(/^\*\s*/gm, '').trim()
+  if (!cleanTitle || !cleanBody || /^no problem found yet$/i.test(cleanTitle)) return ''
+  return `::: details ${cleanTitle}\n${cleanBody}\n:::`
+}
+
 export function formatExpandableCommonErrors(content) {
   if (!content) return ''
 
   content = sanitizeLegacyMarkdown(content.replace(/^#\s[^\n]+\n+/, ''))
 
-  if (content.includes('<details')) {
-    return content.replace(/<details>/g, '<details class="fwb-faq">')
-  }
-
-  const problemSections = content.split(/###\s*Problem\s*:?\s*/i)
+  const blocks = []
+  const problemSections = content.split(/(?:^|\n)\*?\s*#{1,3}\s*Problem\s*:?\s*/im)
   if (problemSections.length > 1) {
-    return problemSections
-      .slice(1)
-      .map((section) => {
-        const parts = section.split(/###\s*Solution\s*:?\s*/i)
-        const problem = parts[0].replace(/\s+/g, ' ').trim()
-        const solution = (parts[1] || '').replace(/^\*\s*/gm, '').trim()
-        return `<details class="fwb-faq">\n<summary>${problem}</summary>\n\n${solution}\n\n</details>`
-      })
-      .join('\n\n')
+    for (const section of problemSections.slice(1)) {
+      const [problem, solution] = splitProblemSolution(section)
+      const block = detailsBlock(problem, solution)
+      if (block) blocks.push(block)
+    }
   }
 
-  const problemBlocks = content.split(/\*?\s*#{0,3}\s*Problem\s*:?\s*/i)
-  if (problemBlocks.length > 1) {
-    return problemBlocks
-      .slice(1)
-      .map((block) => {
-        const parts = block.split(/\*?\s*\*\*Solution\s*:?\*\*\s*/i)
-        const problem = parts[0].replace(/\s+/g, ' ').trim()
-        const solution = (parts[1] || '').trim()
-        return `<details class="fwb-faq">\n<summary>${problem}</summary>\n\n${solution}\n\n</details>`
-      })
-      .join('\n\n')
-  }
+  if (blocks.length) return blocks.join('\n\n')
 
   if (content.includes('| Symptom |')) {
     const lines = content.split('\n').filter((l) => l.startsWith('|') && !l.includes('---') && !l.includes('Symptom'))
-    return lines
-      .map((line) => {
-        const cols = line
-          .split('|')
-          .map((c) => c.trim())
-          .filter(Boolean)
-        if (cols.length < 3) return line
-        return `<details class="fwb-faq">\n<summary>${cols[0]}</summary>\n\n**Likely cause:** ${cols[1]}\n\n**Fix:** ${cols[2]}\n\n</details>`
-      })
-      .join('\n\n')
+    for (const line of lines) {
+      const cols = line
+        .split('|')
+        .map((c) => c.trim())
+        .filter(Boolean)
+      if (cols.length < 3) continue
+      const block = detailsBlock(cols[0], `Likely cause: ${cols[1]}\n\nFix: ${cols[2]}`)
+      if (block) blocks.push(block)
+    }
+    if (blocks.length) return blocks.join('\n\n')
   }
 
   return content
@@ -289,7 +296,7 @@ ${tableRows.join('\n')}
     const files = byKind[kind]
     if (!files?.length || kind === 'other') continue
 
-    md += `<details>\n<summary>${labels[kind]}</summary>\n\n`
+    md += `<details>\n<summary>${labels[kind]}</summary><div class="fwb-inv-tab-body">\n\n`
     if (INVENTORY_IMAGE_PATHS[kind]) {
       md += `Copy item/weapon images into \`${INVENTORY_IMAGE_PATHS[kind]}\`.\n\n`
     }
@@ -306,15 +313,15 @@ ${tableRows.join('\n')}
         md += `**\`${file.name}\`** — copy from your download package.\n\n`
       }
     }
-    md += `</details>\n\n`
+    md += `</div></details>\n\n`
   }
 
   if (byKind.other?.length) {
-    md += `<details>\n<summary>Other install files</summary>\n\n`
+    md += `<details>\n<summary>Other install files</summary><div class="fwb-inv-tab-body">\n\n`
     for (const file of byKind.other) {
       md += `- \`${file.name}\`\n`
     }
-    md += `\n</details>\n\n`
+    md += `\n</div></details>\n\n`
   }
 
   md += `</div>\n`
@@ -348,9 +355,8 @@ Notification and inventory hooks are handled through Bridge. See [Bridge Support
 
 export function formatExpandableQuestions(content) {
   if (!content) return ''
-  if (content.includes('<details')) {
-    return content.replace(/<details>/g, '<details class="fwb-faq">')
-  }
+
+  content = sanitizeLegacyMarkdown(content.replace(/^#\s[^\n]+\n+/, ''))
 
   const blocks = content.split(/\n###\s+/).filter(Boolean)
   if (blocks.length <= 1) return content
@@ -360,8 +366,9 @@ export function formatExpandableQuestions(content) {
       const nl = block.indexOf('\n')
       const q = nl >= 0 ? block.slice(0, nl).trim() : block.trim()
       const a = nl >= 0 ? block.slice(nl).trim() : ''
-      return `<details class="fwb-faq">\n<summary>${q}</summary>\n\n${a}\n\n</details>`
+      return detailsBlock(q, a)
     })
+    .filter(Boolean)
     .join('\n\n')
 }
 

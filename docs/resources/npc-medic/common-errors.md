@@ -6,29 +6,20 @@ description: Fix common Npc Medic issues on FiveM.
 
 # Npc Medic — Common Errors
 
-<details class="fwb-faq">
-<summary>Resource fails to start</summary>
+::: details Resource fails to start
+Likely cause: Missing `fs_bridge` or `ox_lib`
 
-**Likely cause:** Missing `fs_bridge` or `ox_lib`
+Fix: Install dependencies and start them before the script
+:::
 
-**Fix:** Install dependencies and start them before the script
+::: details SQL / item errors
+Likely cause: `[INSTALL_ME_FIRST]` not applied
 
-</details>
+Fix: Run SQL and add items from install folder
+:::
 
-<details class="fwb-faq">
-<summary>SQL / item errors</summary>
+::: details UI not opening
+Likely cause: Wrong inventory override
 
-**Likely cause:** `[INSTALL_ME_FIRST]` not applied
-
-**Fix:** Run SQL and add items from install folder
-
-</details>
-
-<details class="fwb-faq">
-<summary>UI not opening</summary>
-
-**Likely cause:** Wrong inventory override
-
-**Fix:** Match Bridge inventory to your server
-
-</details>
+Fix: Match Bridge inventory to your server
+:::
