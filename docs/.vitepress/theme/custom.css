@@ -1000,74 +1000,30 @@ html {
   overflow-x: auto;
 }
 
-/* Sidebar section headings (Scripts / Weapons) — not clickable products */
-.VPSidebarItem.level-0 > .link[href*='fwb-section-scripts'],
-.VPSidebarItem.level-0 > .link[href*='fwb-section-weapons'] {
+/* Top-level sidebar section headings (Get Started / Bridge / Scripts / Weapons) */
+.VPSidebarItem.level-0.collapsible + .VPSidebarItem.level-0.collapsible > .item {
+  margin-top: 0.65rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--fwb-border-teal);
+}
+
+.VPSidebarItem.level-0.collapsible > .item h2.text {
   font-family: var(--vp-font-family-heading);
-  font-weight: 900;
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
+  font-weight: 800;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--fwb-teal) !important;
-  pointer-events: none;
-  cursor: default;
-  padding-top: 1.1rem;
-  padding-bottom: 0.25rem;
-  margin-top: 0.35rem;
-  border-top: 1px solid var(--fwb-border-teal);
-  opacity: 1;
+  line-height: 1.35;
 }
 
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts'],
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons'] {
-  font-family: var(--vp-font-family-heading);
-  font-weight: 900;
-  font-size: 0.74rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.VPSidebarItem.level-0.collapsible.is-link > .item > .link {
   color: var(--fwb-teal) !important;
-  pointer-events: none;
-  cursor: default;
-  padding-top: 1.1rem;
-  padding-bottom: 0.25rem;
-  margin-top: 0.35rem;
-  border-top: 1px solid var(--fwb-border-teal);
-  opacity: 1;
+  text-decoration: none !important;
 }
 
-.VPSidebarItem.level-0 > .link[href*='fwb-section-scripts']::before,
-.VPSidebarItem.level-0 > .link[href*='fwb-section-weapons']::before {
-  display: inline-block;
-  margin-right: 0.45rem;
-  font-weight: 900;
-}
-
-.VPSidebarItem.level-0 > .link[href*='fwb-section-scripts']::before {
-  content: '🧩';
-}
-
-.VPSidebarItem.level-0 > .link[href*='fwb-section-weapons']::before {
-  content: '⚔️';
-}
-
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts']::before,
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons']::before {
-  display: inline-block;
-  margin-right: 0.45rem;
-  font-weight: 900;
-}
-
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts']::before {
-  content: '🧩';
-}
-
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons']::before {
-  content: '⚔️';
-}
-
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-scripts']:hover,
-.VPSidebarItem.level-0.is-link > .link[href*='fwb-section-weapons']:hover {
-  color: var(--fwb-teal) !important;
+.VPSidebarItem.level-0.collapsible.is-link > .item > .link:hover {
+  color: #5eead4 !important;
 }
 
 /* Full config blocks — no height clipping */

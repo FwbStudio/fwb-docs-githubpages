@@ -326,7 +326,7 @@ export function buildWeaponsSidebar() {
 export function buildDocsSidebar(): SidebarItem[] {
   return [
     {
-      text: 'Get Started',
+      text: '🚀 Get Started',
       collapsed: false,
       items: [
         { text: 'Docs Home', link: '/' },
@@ -335,7 +335,7 @@ export function buildDocsSidebar(): SidebarItem[] {
       ]
     },
     {
-      text: 'Bridge',
+      text: '🌉 Bridge',
       collapsed: false,
       items: [
         { text: 'Overview', link: '/bridge/' },
@@ -362,13 +362,13 @@ export function buildDocsSidebar(): SidebarItem[] {
       ]
     },
     {
-      text: 'Scripts',
+      text: '🧩 Scripts',
       link: '/fwb-section-scripts',
       collapsed: false,
       items: buildScriptsSidebar()
     },
     {
-      text: 'Weapons',
+      text: '⚔️ Weapons',
       link: '/fwb-section-weapons',
       collapsed: false,
       items: buildWeaponsSidebar()
