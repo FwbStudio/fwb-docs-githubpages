@@ -1,10 +1,10 @@
 ---
-title: Weave Wear Wig Carting Configuration | FWB Studio Docs
-description: Configure Weave Wear Wig Carting — config files and key options.
+title: Wigs Craft & Sell Configuration | FWB Studio Docs
+description: Configure Wigs Craft & Sell — config files and key options.
 ---
 
 
-# Weave Wear Wig Carting — Configuration
+# Wigs Craft & Sell — Configuration
 
 Edit `fs_weavewear_V1/config/config.lua` in your download.
 

@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import DefaultTheme from 'vitepress/theme'
-import { useData } from 'vitepress'
-import { computed } from 'vue'
+import { useData, useRoute } from 'vitepress'
+import { computed, onMounted, watch } from 'vue'
 
 const { Layout } = DefaultTheme
 const { theme } = useData()
+const route = useRoute()
 
 const storeUrl = computed(
   () => theme.value.fwbLinks?.store ?? 'https://fwbstudio.tebex.io/'
@@ -12,6 +13,155 @@ const storeUrl = computed(
 const discordUrl = computed(
   () => theme.value.fwbLinks?.discord ?? 'https://discord.gg/WH6uQ6uFvq'
 )
+
+function setSidebarOpen(open: boolean) {
+  const sidebar = document.querySelector('.VPSidebar') as HTMLElement | null
+  const backdrop = document.querySelector('.VPBackdrop') as HTMLElement | null
+  const hamburger = document.querySelector('.VPNavBarHamburger, .hamburger')
+  const navScreen = document.querySelector('.VPNavScreen')
+
+  if (sidebar) sidebar.style.transform = ''
+  if (backdrop) backdrop.style.opacity = ''
+
+  if (open) {
+    sidebar?.classList.add('open')
+    backdrop?.classList.add('active')
+    hamburger?.classList.add('active')
+  } else {
+    sidebar?.classList.remove('open')
+    backdrop?.classList.remove('active')
+    hamburger?.classList.remove('active')
+    navScreen?.classList.remove('open', 'active')
+    document.documentElement.classList.remove('overflow-hidden', 'screen-open')
+    document.body.classList.remove('overflow-hidden', 'screen-open')
+  }
+}
+
+function toggleSidebar(e?: Event) {
+  if (e) {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+  const sidebar = document.querySelector('.VPSidebar')
+  const isOpen = sidebar?.classList.contains('open')
+  setSidebarOpen(!isOpen)
+}
+
+watch(
+  () => route.path,
+  () => {
+    setSidebarOpen(false)
+  }
+)
+
+onMounted(() => {
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement
+    const hamburger = target.closest('.VPNavBarHamburger, .hamburger')
+    const backdrop = target.closest('.VPBackdrop')
+    const sidebarLink = target.closest('.VPSidebar a')
+
+    if (hamburger) {
+      toggleSidebar(e)
+    } else if (sidebarLink) {
+      setSidebarOpen(false)
+    } else if (backdrop) {
+      setSidebarOpen(false)
+    } else {
+      const sidebar = document.querySelector('.VPSidebar')
+      if (sidebar?.classList.contains('open') && !target.closest('.VPSidebar')) {
+        setSidebarOpen(false)
+      }
+    }
+  })
+
+  // Real-Time Finger Tracking Touch Dragging
+  let startX = 0
+  let startY = 0
+  let isDragging = false
+  let sidebarEl: HTMLElement | null = null
+  let backdropEl: HTMLElement | null = null
+
+  document.addEventListener('touchstart', (e) => {
+    sidebarEl = document.querySelector('.VPSidebar') as HTMLElement
+    backdropEl = document.querySelector('.VPBackdrop') as HTMLElement
+    if (!sidebarEl) return
+
+    const isOpen = sidebarEl.classList.contains('open')
+    startX = e.touches[0].clientX
+    startY = e.touches[0].clientY
+
+    if (isOpen || (!isOpen && startX < 35)) {
+      isDragging = true
+      sidebarEl.style.transition = 'none'
+      if (backdropEl) backdropEl.style.transition = 'none'
+    }
+  }, { passive: true })
+
+  document.addEventListener('touchmove', (e) => {
+    if (!isDragging || !sidebarEl) return
+    const currentX = e.touches[0].clientX
+    const currentY = e.touches[0].clientY
+    const deltaX = currentX - startX
+    const deltaY = Math.abs(currentY - startY)
+
+    if (deltaY > Math.abs(deltaX) && Math.abs(deltaX) < 15) return
+
+    const isOpen = sidebarEl.classList.contains('open')
+    const sidebarWidth = sidebarEl.offsetWidth || 280
+
+    if (isOpen) {
+      if (deltaX < 0) {
+        const moveX = Math.max(-sidebarWidth, deltaX)
+        sidebarEl.style.transform = `translateX(${moveX}px)`
+        if (backdropEl) {
+          const ratio = Math.max(0, 1 + moveX / sidebarWidth)
+          backdropEl.style.opacity = `${ratio}`
+        }
+      }
+    } else {
+      if (deltaX > 0 && startX < 35) {
+        const moveX = Math.min(0, -sidebarWidth + deltaX)
+        sidebarEl.style.transform = `translateX(${moveX}px)`
+        if (backdropEl) {
+          backdropEl.classList.add('active')
+          const ratio = Math.min(1, deltaX / sidebarWidth)
+          backdropEl.style.opacity = `${ratio}`
+        }
+      }
+    }
+  }, { passive: true })
+
+  document.addEventListener('touchend', (e) => {
+    if (!isDragging || !sidebarEl) return
+    isDragging = false
+
+    const endX = e.changedTouches[0].clientX
+    const deltaX = endX - startX
+    const isOpen = sidebarEl.classList.contains('open')
+
+    sidebarEl.style.transition = ''
+    if (backdropEl) {
+      backdropEl.style.transition = ''
+      backdropEl.style.opacity = ''
+    }
+    sidebarEl.style.transform = ''
+
+    if (isOpen) {
+      if (deltaX < -60) {
+        setSidebarOpen(false)
+      } else {
+        setSidebarOpen(true)
+      }
+    } else {
+      if (startX < 35 && deltaX > 60) {
+        setSidebarOpen(true)
+      } else {
+        setSidebarOpen(false)
+      }
+    }
+  }, { passive: true })
+})
 </script>
 
 <template>
@@ -20,6 +170,10 @@ const discordUrl = computed(
       <div class="fwb-site-particles" aria-hidden="true">
         <span v-for="n in 18" :key="n" />
       </div>
+    </template>
+
+    <template #nav-bar-title-after>
+      <span class="fwb-center-title">Docs</span>
     </template>
 
     <template #nav-bar-content-after>

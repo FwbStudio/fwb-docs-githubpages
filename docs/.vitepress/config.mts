@@ -13,6 +13,7 @@ export default defineConfig({
   // and restore docs/public/CNAME.
   base: '/fwb-docs-githubpages/',
   head: [
+    ['style', {}, 'html, body { background-color: #07070f !important; color: #e2e8f0; }'],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [
@@ -37,7 +38,7 @@ export default defineConfig({
   ],
   themeConfig: {
     logo: '/logo.png',
-    siteTitle: 'FWB Studio',
+    siteTitle: false,
     nav: [],
     sidebar: buildDocsSidebar(),
     socialLinks: [],

@@ -1,6 +1,6 @@
 ---
-title: Weave Wear Wig Carting Installation | FWB Studio Docs
-description: Install Weave Wear Wig Carting on FiveM — dependencies and server.cfg. FiveM weave wear wig script.
+title: Wigs Craft & Sell Installation | FWB Studio Docs
+description: Install Wigs Craft & Sell on FiveM — dependencies and server.cfg. FiveM wigs craft and sell wig script.
 ---
 
 
@@ -9,7 +9,7 @@ description: Install Weave Wear Wig Carting on FiveM — dependencies and server
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426495" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Weave Wear Wig Carting — Installation
+# Wigs Craft & Sell — Installation
 
 ## Dependencies
 

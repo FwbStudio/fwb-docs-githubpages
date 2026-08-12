@@ -1,6 +1,6 @@
 ---
-title: Weave Wear Wig Carting Overview | FWB Studio Docs
-description: Weave Wear Wig Carting features and setup overview for FiveM. FiveM weave wear wig script.
+title: Wigs Craft & Sell Overview | FWB Studio Docs
+description: Wigs Craft & Sell features and setup overview for FiveM. FiveM wigs craft and sell wig script.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,11 +8,11 @@ description: Weave Wear Wig Carting features and setup overview for FiveM. FiveM
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426495" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Weave Wear Wig Carting
+# Wigs Craft & Sell
 
-### 💇 Weave Wear – Wig Crafting on Wheels
+### 💇 Wigs Craft & Sell – Mobile Wig Business
 
-Run a mobile wig business with crafting tables, supply shops, a business phone, and carting mechanics. Weave Wear lets players buy materials, craft wigs, and serve clients across the city.
+Run a mobile wig business with crafting tables, supply shops, a business phone, and carting mechanics. Wigs Craft & Sell lets players buy materials, craft wigs, and serve clients across the city.
 
 Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
 

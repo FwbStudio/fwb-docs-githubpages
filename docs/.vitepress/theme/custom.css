@@ -78,9 +78,26 @@
   --vp-home-hero-name-background: linear-gradient(135deg, var(--fwb-teal) 0%, #67e8f9 100%);
 }
 
-html,
-body {
-  background: var(--vp-c-bg);
+html {
+  background-color: #05070d;
+}
+
+/* Hide heading anchor '#' link symbol across all headings */
+h1 .header-anchor,
+h2 .header-anchor,
+h3 .header-anchor,
+h4 .header-anchor,
+.header-anchor,
+.header-anchor:before,
+.header-anchor:after {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Themed scrollbars (page + code) */
@@ -123,9 +140,10 @@ html {
 .dark body,
 .dark #app {
   background:
-    radial-gradient(ellipse 70% 45% at 50% -5%, rgba(45, 212, 191, 0.18), transparent 60%),
-    radial-gradient(circle at 85% 20%, rgba(45, 212, 191, 0.08), transparent 35%),
-    linear-gradient(180deg, #05070d 0%, #070a12 100%);
+    radial-gradient(ellipse 80% 50% at 50% -5%, rgba(45, 212, 191, 0.22), transparent 65%),
+    radial-gradient(circle at 85% 25%, rgba(45, 212, 191, 0.12), transparent 40%),
+    radial-gradient(circle at 15% 75%, rgba(45, 212, 191, 0.08), transparent 35%),
+    linear-gradient(180deg, #05070d 0%, #070a14 100%);
   background-attachment: fixed;
 }
 
@@ -136,10 +154,10 @@ html {
   pointer-events: none;
   z-index: 0;
   background-image:
-    linear-gradient(rgba(45, 212, 191, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(45, 212, 191, 0.035) 1px, transparent 1px);
+    linear-gradient(rgba(45, 212, 191, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(45, 212, 191, 0.06) 1px, transparent 1px);
   background-size: 55px 55px;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 85%, transparent 100%);
   animation: grid-drift 28s linear infinite;
 }
 
@@ -169,14 +187,31 @@ html {
   }
 }
 
+.VPNav,
 .VPNavBar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 100 !important;
   background: rgba(7, 7, 15, 0.92) !important;
   backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--fwb-border) !important;
 }
 
+.dark .VPNav,
 .dark .VPNavBar {
   background: rgba(7, 7, 15, 0.92) !important;
+}
+
+/* Logo non-clickable */
+.VPNavBarTitle,
+.VPNavBarTitle a,
+.VPNavBarTitle .title,
+.VPNavBarTitle .logo {
+  pointer-events: none !important;
+  cursor: default !important;
 }
 
 /* Full-width divider (fixes the half-line under logo/sidebar) */
@@ -349,18 +384,238 @@ html {
   box-shadow: 0 6px 16px rgba(88, 101, 242, 0.4);
 }
 
-@media (max-width: 767px) {
-  .VPNavBar .content-body {
-    gap: 0.4rem;
+/* Centered 'Docs' Title in navbar */
+.fwb-center-title {
+  display: block !important;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--vp-font-family-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--fwb-white);
+  pointer-events: none;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+@media (max-width: 959px) {
+  /* 1. Hide second sub-navbar completely (Menu & Return to Top) */
+  .VPLocalNav,
+  .VPLocalNav-mobile {
+    display: none !important;
   }
 
+  /* Reset layout padding without second navbar */
+  .VPContent.has-sidebar {
+    padding-top: var(--vp-nav-height) !important;
+  }
+
+  .VPNavBar .wrapper {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .VPNavBar .container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    padding: 0 0.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Unwrap content containers so children participate directly in navbar flexbox */
+  .VPNavBar .content,
+  .VPNavBar .content-body {
+    display: contents !important;
+  }
+
+  /* 1. Sleek 3-lines icon on FAR LEFT CORNER (strictly before logo) */
+  .VPNavBarHamburger,
+  .VPNavBar .hamburger {
+    order: -10 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    padding: 0 !important;
+    margin: 0 0.35rem 0 0 !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    cursor: pointer !important;
+  }
+
+  .VPNavBarHamburger .container {
+    width: 18px !important;
+    height: 14px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
+  .VPNavBarHamburger .top,
+  .VPNavBarHamburger .middle,
+  .VPNavBarHamburger .bottom {
+    display: block !important;
+    width: 18px !important;
+    height: 2px !important;
+    background-color: var(--fwb-white) !important;
+    border-radius: 2px !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, background-color 0.2s ease !important;
+  }
+
+  /* Transform 3 horizontal lines to 'X' Cross icon when active / sidebar open */
+  .VPNavBarHamburger.active,
+  .hamburger.active {
+    background: rgba(45, 212, 191, 0.15) !important;
+    border-color: rgba(45, 212, 191, 0.35) !important;
+  }
+
+  .VPNavBarHamburger.active .top,
+  .hamburger.active .top {
+    transform: translateY(6px) rotate(45deg) !important;
+    background-color: var(--fwb-teal) !important;
+  }
+
+  .VPNavBarHamburger.active .middle,
+  .hamburger.active .middle {
+    opacity: 0 !important;
+  }
+
+  .VPNavBarHamburger.active .bottom,
+  .hamburger.active .bottom {
+    transform: translateY(-6px) rotate(-45deg) !important;
+    background-color: var(--fwb-teal) !important;
+  }
+
+  .VPNavBarHamburger:hover .top,
+  .VPNavBarHamburger:hover .middle,
+  .VPNavBarHamburger:hover .bottom {
+    background-color: var(--fwb-teal) !important;
+  }
+
+  /* 2. Logo strictly AFTER 3-lines icon & non-clickable */
+  .VPNavBarTitle {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    border-bottom: none !important;
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
+  .VPNavBarTitle a,
+  .VPNavBarTitle .title,
+  .VPNavBarTitle .logo {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
+  /* Hide long siteTitle text on mobile */
+  .VPNavBarTitle .title-text {
+    display: none !important;
+  }
+
+  /* 1. Prevent VPNavScreen & VPBackdrop from ever blocking content with a black box */
+  .VPNavScreen,
+  .VPNavScreen.open,
+  .VPNavScreen.active {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  /* 2. Prevent VitePress internal screen state from ever hiding .VPContent */
+  .VPContent,
+  .VPContent.has-sidebar,
+  .VPApp,
+  #VPContent {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* 3. Mobile sidebar toggle support - strictly BELOW navbar */
+  .VPSidebar {
+    top: var(--vp-nav-height) !important;
+    height: calc(100vh - var(--vp-nav-height)) !important;
+    padding-top: 1rem !important;
+  }
+
+  .VPSidebar.open {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 100 !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85) !important;
+  }
+
+  /* Inactive backdrop MUST be completely hidden & non-interactive */
+  .VPBackdrop,
+  .VPBackdrop:not(.active) {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    background: transparent !important;
+  }
+
+  /* Active backdrop ONLY shown when sidebar is open */
+  .VPBackdrop.active {
+    top: var(--vp-nav-height) !important;
+    height: calc(100vh - var(--vp-nav-height)) !important;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    background: rgba(0, 0, 0, 0.65) !important;
+    backdrop-filter: blur(4px) !important;
+    z-index: 90 !important;
+  }
+
+  /* 5. Hide search on small screens */
+  .VPNavBar .search,
+  .VPNavBarSearch {
+    display: none !important;
+  }
+
+  /* 6. Both action buttons on right side */
   .fwb-nav-actions {
-    gap: 0.4rem;
+    order: 3 !important;
+    margin-left: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
   }
 
   .fwb-nav-store {
-    padding: 0 0.75rem;
-    font-size: 0.8rem;
+    height: 36px !important;
+    padding: 0 0.65rem !important;
+    font-size: 0.78rem !important;
+    border-radius: 8px !important;
+  }
+
+  .fwb-nav-discord {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 8px !important;
   }
 }
 
@@ -1102,3 +1357,210 @@ html {
     transform: none;
   }
 }
+
+/* Homepage Framework Badges & Custom Layout */
+.fwb-home-section {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0 3rem;
+}
+
+.fwb-home-badge-container {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(14, 14, 26, 0.6);
+  border: 1px solid var(--fwb-border-teal);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.fwb-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--vp-font-family-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.fwb-badge--esx {
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.35);
+  color: #60a5fa;
+}
+
+.fwb-badge--qbcore {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  color: #c084fc;
+}
+
+.fwb-badge--qbox {
+  background: rgba(45, 212, 191, 0.15);
+  border: 1px solid rgba(45, 212, 191, 0.35);
+  color: #2dd4bf;
+}
+
+/* Active Sidebar Item Glowing Indicator */
+.VPSidebarItem.is-active > .item > .link {
+  border-left: 3px solid var(--fwb-teal) !important;
+  padding-left: 0.65rem !important;
+  color: var(--fwb-teal) !important;
+  font-weight: 700 !important;
+  background: rgba(45, 212, 191, 0.08) !important;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Quick Navigation Links Grid */
+.fwb-quick-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+.fwb-quick-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(14, 14, 26, 0.7);
+  border: 1px solid var(--fwb-border);
+  border-radius: 12px;
+  text-decoration: none !important;
+  color: var(--fwb-text) !important;
+  transition: transform var(--fwb-ease), border-color var(--fwb-ease), box-shadow var(--fwb-ease), background-color var(--fwb-ease);
+}
+
+.fwb-quick-card:hover {
+  border-color: var(--fwb-teal);
+  background: rgba(45, 212, 191, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45, 212, 191, 0.12);
+}
+
+.fwb-quick-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.fwb-quick-card__content h3 {
+  margin: 0 0 0.35rem 0 !important;
+  font-family: var(--vp-font-family-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--fwb-white);
+}
+
+.fwb-quick-card__content p {
+  margin: 0 !important;
+  font-size: 0.88rem;
+  color: var(--fwb-muted);
+  line-height: 1.45;
+}
+
+/* Resources Catalog Grid */
+.fwb-catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.1rem;
+  margin: 1.5rem 0 3rem;
+}
+
+.fwb-cat-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.15rem;
+  background: rgba(14, 14, 26, 0.5);
+  border: 1px solid var(--fwb-border);
+  border-radius: 12px;
+  transition: transform var(--fwb-ease), border-color var(--fwb-ease), box-shadow var(--fwb-ease);
+}
+
+.fwb-cat-card:hover {
+  border-color: var(--fwb-border-teal);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.fwb-cat-card__media {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 0.85rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--fwb-border);
+}
+
+.fwb-cat-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fwb-cat-card:hover .fwb-cat-card__media img {
+  transform: scale(1.04);
+}
+
+.fwb-cat-card__header-link {
+  text-decoration: none !important;
+  color: inherit !important;
+  display: block;
+}
+
+.fwb-cat-card:hover .fwb-cat-card__header-link h3 {
+  color: var(--fwb-teal) !important;
+}
+
+.fwb-cat-card h3 {
+  margin: 0 0 0.4rem 0 !important;
+  font-family: var(--vp-font-family-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fwb-white);
+}
+
+.fwb-cat-card p {
+  margin: 0 0 1rem 0 !important;
+  font-size: 0.85rem;
+  color: var(--fwb-muted);
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.fwb-cat-card__links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.fwb-cat-card__links a {
+  flex: 1;
+  text-align: center;
+  padding: 0.3rem 0.4rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--fwb-text) !important;
+  transition: background-color var(--fwb-ease), border-color var(--fwb-ease), color var(--fwb-ease);
+}
+
+.fwb-cat-card__links a:hover {
+  background: rgba(45, 212, 191, 0.15);
+  border-color: var(--fwb-teal);
+  color: var(--fwb-teal) !important;
+}
+
+

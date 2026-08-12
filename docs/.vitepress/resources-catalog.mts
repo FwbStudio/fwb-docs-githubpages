@@ -150,10 +150,10 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'outfitbag',
-    name: 'Outfitbag',
+    name: 'Clothing As Item',
     repo: 'fs_outfitbag',
     category: 'scripts',
-    seoKeywords: 'FiveM outfit bag wardrobe script'
+    seoKeywords: 'FiveM clothing as item outfit bag wardrobe script'
   },
   {
     slug: 'pizza-shop',
@@ -252,10 +252,10 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'weave-wear',
-    name: 'Weave Wear Wig Carting',
+    name: 'Wigs Craft & Sell',
     repo: 'fs_weavewear_V1',
     category: 'scripts',
-    seoKeywords: 'FiveM weave wear wig script'
+    seoKeywords: 'FiveM wigs craft and sell wig script'
   },
   {
     slug: 'white-widow',
@@ -363,13 +363,11 @@ export function buildDocsSidebar(): SidebarItem[] {
     },
     {
       text: '🧩 Scripts',
-      link: '/fwb-section-scripts',
       collapsed: false,
       items: buildScriptsSidebar()
     },
     {
       text: '⚔️ Weapons',
-      link: '/fwb-section-weapons',
       collapsed: false,
       items: buildWeaponsSidebar()
     }

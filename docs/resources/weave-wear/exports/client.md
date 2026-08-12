@@ -1,6 +1,6 @@
 ---
-title: Weave Wear Wig Carting Client Exports | FWB Studio Docs
-description: client exports for Weave Wear Wig Carting.
+title: Wigs Craft & Sell Client Exports | FWB Studio Docs
+description: Client exports for Wigs Craft & Sell.
 ---
 
 
