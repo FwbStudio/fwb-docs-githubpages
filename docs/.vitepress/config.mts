@@ -78,7 +78,8 @@ export default defineConfig({
     search: {
       provider: 'local'
     },
-    outline: [2, 3],
+    // Off: frees the right column so code blocks can use full content width
+    outline: false,
     fwbLinks: {
       store: 'https://fwbstudio.tebex.io/',
       discord: 'https://discord.gg/WH6uQ6uFvq'

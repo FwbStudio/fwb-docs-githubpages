@@ -810,8 +810,13 @@ html {
     width: 100%;
   }
 
+  /* No outline column — content can use the full right side */
+  .VPDoc .aside {
+    display: none !important;
+  }
+
   .VPDoc .content {
-    padding-right: 28px !important;
+    padding-right: 32px !important;
   }
 
   /* VitePress wraps page markdown in an anonymous div — do not width-cap that wrapper */
@@ -825,7 +830,7 @@ html {
     max-width: var(--fwb-prose-width);
   }
 
-  /* Code / config blocks fill the unused right space in the content column */
+  /* Code / config blocks fill all unused space in the content column */
   .vp-doc div[class*='language-'],
   .vp-doc .vp-code-group,
   .vp-doc .vp-adaptive-theme {
