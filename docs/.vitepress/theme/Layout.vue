@@ -16,6 +16,12 @@ const discordUrl = computed(
 
 <template>
   <Layout>
+    <template #layout-top>
+      <div class="fwb-site-particles" aria-hidden="true">
+        <span v-for="n in 18" :key="n" />
+      </div>
+    </template>
+
     <template #nav-bar-content-after>
       <div class="fwb-nav-actions">
         <a class="fwb-nav-store" :href="storeUrl" target="_blank" rel="noreferrer">Store</a>
@@ -36,8 +42,4 @@ const discordUrl = computed(
       </div>
     </template>
   </Layout>
-
-  <div class="fwb-site-particles" aria-hidden="true">
-    <span v-for="n in 15" :key="n" />
-  </div>
 </template>
