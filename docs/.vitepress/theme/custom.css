@@ -129,42 +129,46 @@ body {
 }
 
 .VPNavBar {
-  background: rgba(7, 7, 15, 0.9) !important;
+  background: rgba(7, 7, 15, 0.92) !important;
   backdrop-filter: blur(20px);
-  border-bottom-color: var(--fwb-border) !important;
+  border-bottom: 1px solid var(--fwb-border) !important;
 }
 
 .dark .VPNavBar {
-  background: rgba(7, 7, 15, 0.9) !important;
+  background: rgba(7, 7, 15, 0.92) !important;
 }
 
-/* No top Docs/Store tabs. Right side: Search, then Store + Discord */
+/* Full-width divider (fixes the half-line under logo/sidebar) */
+.VPNavBar .divider,
+.VPNavBar.has-sidebar .divider {
+  padding-left: 0 !important;
+}
+
+.VPNavBar .divider-line,
+.VPNavBar.has-sidebar .divider-line {
+  width: 100% !important;
+  background-color: var(--fwb-border) !important;
+}
+
+/* Compact right toolbar: Search + Store + Discord */
 .VPNavBar .content-body {
-  justify-content: flex-start !important;
-  gap: 0.35rem;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 0.55rem;
 }
 
-.VPNavBar .content-body .menu {
-  display: none !important;
-}
-
+.VPNavBar .content-body .menu,
+.VPNavBar .content-body .appearance,
+.VPNavBar .content-body .social-links,
 .VPNavBar .content-body .translations {
-  order: 18;
+  display: none !important;
 }
 
 .VPNavBar .content-body .search {
-  order: 19;
+  order: 1;
   flex-grow: 0 !important;
   padding-left: 0 !important;
-  margin-left: auto;
-}
-
-.VPNavBar .content-body .appearance {
-  display: none !important;
-}
-
-.VPNavBar .content-body .social-links {
-  display: none !important;
+  margin-left: 0 !important;
 }
 
 .VPNavBar .content-body .extra {
@@ -176,66 +180,146 @@ body {
 }
 
 .fwb-nav-actions {
-  order: 20;
+  order: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  margin-left: 0.35rem;
+  gap: 0.55rem;
 }
 
-.fwb-nav-btn {
+/* Make DocSearch match the action cluster */
+.VPNavBarSearch {
+  display: flex;
+  align-items: center;
+}
+
+.VPNavBar .DocSearch-Button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  height: 40px !important;
+  margin: 0 !important;
+  padding: 0 0.85rem 0 0.75rem !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: var(--fwb-text) !important;
+  transition: border-color var(--fwb-ease), background-color var(--fwb-ease), transform var(--fwb-ease) !important;
+}
+
+.VPNavBar .DocSearch-Button:hover {
+  border-color: rgba(45, 212, 191, 0.35) !important;
+  background: rgba(45, 212, 191, 0.08) !important;
+  transform: translateY(-1px);
+}
+
+.VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder,
+.VPNavBar .DocSearch-Button .DocSearch-Button-Keys {
+  display: none !important;
+}
+
+.VPNavBar .DocSearch-Button .DocSearch-Search-Icon {
+  width: 16px;
+  height: 16px;
+  color: var(--fwb-teal);
+  opacity: 1;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar .DocSearch-Button {
+    min-width: 180px;
+    padding-right: 0.95rem !important;
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Placeholder {
+    display: inline-block !important;
+    padding: 0 0 0 0.55rem !important;
+    font-size: 0.88rem !important;
+    font-weight: 600 !important;
+    color: var(--fwb-muted) !important;
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Keys {
+    display: inline-flex !important;
+    margin-left: auto !important;
+    min-width: auto !important;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 0.1rem 0.35rem;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .VPNavBar .DocSearch-Button .DocSearch-Button-Key {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 0.1rem !important;
+    border: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: var(--fwb-muted) !important;
+    font-size: 0.7rem !important;
+  }
+}
+
+.fwb-nav-store {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
-  padding: 0 0.85rem;
-  border-radius: 999px;
-  border: 1px solid var(--fwb-border-teal);
-  background: rgba(45, 212, 191, 0.1);
-  color: var(--fwb-teal) !important;
-  font-size: 0.82rem;
+  height: 40px;
+  padding: 0 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background: var(--fwb-teal);
+  color: #041016 !important;
+  font-family: var(--vp-font-family-heading);
+  font-size: 0.88rem;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
   text-decoration: none !important;
-  transition: background-color var(--fwb-ease), border-color var(--fwb-ease), transform var(--fwb-ease), color var(--fwb-ease);
+  transition: transform var(--fwb-ease), box-shadow var(--fwb-ease), background-color var(--fwb-ease);
 }
 
-.fwb-nav-btn:hover {
-  background: rgba(45, 212, 191, 0.18);
-  border-color: rgba(45, 212, 191, 0.45);
+.fwb-nav-store:hover {
+  background: #5eead4;
   transform: translateY(-1px);
-  color: #5eead4 !important;
+  box-shadow: 0 8px 18px rgba(45, 212, 191, 0.28);
+  color: #041016 !important;
 }
 
-.fwb-nav-btn--discord {
-  border-color: rgba(88, 101, 242, 0.35);
-  background: rgba(88, 101, 242, 0.12);
-  color: #aab1ff !important;
+.fwb-nav-discord {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid rgba(88, 101, 242, 0.3);
+  background: rgba(88, 101, 242, 0.15);
+  color: #5865f2 !important;
+  text-decoration: none !important;
+  transition: transform var(--fwb-ease), background-color var(--fwb-ease), border-color var(--fwb-ease), color var(--fwb-ease), box-shadow var(--fwb-ease);
 }
 
-.fwb-nav-btn--discord:hover {
-  border-color: rgba(88, 101, 242, 0.55);
-  background: rgba(88, 101, 242, 0.2);
-  color: #c5caff !important;
+.fwb-nav-discord:hover {
+  background: #5865f2;
+  border-color: #5865f2;
+  color: #fff !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(88, 101, 242, 0.4);
 }
 
 @media (max-width: 767px) {
-  .VPNavBar .content-body .search {
-    margin-left: auto;
+  .VPNavBar .content-body {
+    gap: 0.4rem;
   }
 
   .fwb-nav-actions {
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 
-  .fwb-nav-btn {
-    padding: 0 0.65rem;
-    font-size: 0.75rem;
-  }
-
-  .VPNavBar .content-body .extra,
-  .VPNavBar .content-body .hamburger {
-    margin-left: 0;
+  .fwb-nav-store {
+    padding: 0 0.75rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -308,9 +392,9 @@ body {
 }
 
 .VPNavBarTitle .logo {
-  height: 28px;
-  width: 28px;
-  border-radius: 6px;
+  height: 34px;
+  width: 34px;
+  border-radius: 8px;
 }
 
 .VPHero {
@@ -549,7 +633,9 @@ body {
 
   .VPButton:hover,
   .script-card:hover,
-  .fwb-nav-btn:hover {
+  .fwb-nav-btn:hover,
+  .fwb-nav-store:hover,
+  .fwb-nav-discord:hover {
     transform: none;
   }
 }
