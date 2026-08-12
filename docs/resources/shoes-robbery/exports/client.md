@@ -1,16 +1,9 @@
 ---
 title: Shoes Robbery Client Exports | FWB Studio Docs
-description: Client exports for Shoes Robbery.
+description: client exports for Shoes Robbery.
 ---
 
 
 # Client exports
 
-<details class="fwb-faq">
-<summary><code>qb-target</code></summary>
-
-```lua
-exports['fs_shoesrobbery']: qb-target(args)
-```
-
-</details>
+_No public client exports documented yet. Check `fs_shoesrobbery/client/unlocked.lua` in your package._

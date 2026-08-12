@@ -1,140 +1,64 @@
 ---
 title: Duty System Client Exports | FWB Studio Docs
-description: Client exports for Duty System.
+description: client exports for Duty System.
 ---
 
 
 # Client exports
 
-### Exports:
-
 If you want to just do onduty player to keep record duty from any of ur mdt or any script these exports will help you in all ways
 
-#### Get Job Name Of Player
+Each export below is expandable. Open one to see description, arguments, return value, and example code.
 
-<pre class="language-lua"><code class="lang-lua">Client Side:
+::: details GetJobName()
+job name as string
 
--- return
--- job name as string
-
-<strong>exports.fs_dutysystem:GetJobName()
-</strong>
--------------------------------------------------------------------------------------
---===================================================================================
--------------------------------------------------------------------------------------
-
-Server Side:
--- return 
--- job name as string
-
--- argument
--- player server id ex- source
-
-exports.fs_dutysystem:GetJobName(source)
-</code></pre>
-
-#### Check If Player  Is Onduty
+**Example**
 
 ```lua
-Client Side:
-
--- return
--- true as boolean if player is on duty
--- false as boolean if player is off duty
-
-exports.fs_dutysystem:IsOnDuty()
-
--------------------------------------------------------------------------------------
---===================================================================================
--------------------------------------------------------------------------------------
-
-Server Side:
--- return 
--- true as boolean if player is on duty
--- false as boolean if player is off duty
-
--- argument
--- player server id ex- source
-
-exports.fs_dutysystem:IsOnDuty(source)
+exports['fs_dutysystem']:GetJobName()
 ```
+:::
 
-#### Toggle Duty Status
+::: details IsOnDuty()
+**Returns**
+
+- true as boolean if player is on duty
+- false as boolean if player is off duty
+
+**Example**
 
 ```lua
-Client Side:
-
--- use to toggle duty status of player 
--- will make on duty if player is off duty currently
--- will make off duty if playeris on duty currently
-
-exports.fs_dutysystem:ToggleDutyStatus()
-
--------------------------------------------------------------------------------------
---===================================================================================
--------------------------------------------------------------------------------------
-
-Server Side:
-
--- use to toggle duty status of player 
--- will make on duty if player is off duty currently
--- will make off duty if playeris on duty currently
-
--- argument
--- player server id ex- source
-
-exports.fs_dutysystem:ToggleDutyStatus(source)
+exports['fs_dutysystem']:IsOnDuty()
 ```
+:::
 
-#### Set On Duty
+::: details ToggleDutyStatus()
+use to toggle duty status of player will make on duty if player is off duty currently will make off duty if playeris on duty currently
 
-<pre class="language-lua"><code class="lang-lua">Client Side:
-
--- use to make set player job as on duty only if he is off duty
--- will make player on duty if player is currently offduty
--- will keep On duty if player is currently on duty
-
-exports.fs_dutysystem:SetOnDuty()
-
--------------------------------------------------------------------------------------
---===================================================================================
--------------------------------------------------------------------------------------
-
-<strong>Server Side:
-</strong>
--- use to make set player job as on duty only if he is off duty
--- will make player on duty if player is currently offduty
--- will keep On duty if player is currently on duty
-
--- argument
--- player server id ex- source
-
-exports.fs_dutysystem:SetOnDuty(source)
-</code></pre>
-
-#### Set Off Duty
+**Example**
 
 ```lua
-Client Side:
-
--- use to make set player job as on duty only if he is off duty
--- will make player off duty if player is currently onduty
--- will keep off duty if player is currently off duty
-
-exports.fs_dutysystem:SetOffDuty()
-
--------------------------------------------------------------------------------------
---===================================================================================
--------------------------------------------------------------------------------------
-
-Server Side:
-
--- use to make set player job as on duty only if he is off duty
--- will make player off duty if player is currently onduty
--- will keep off duty if player is currently off duty
-
--- argument
--- player server id ex- source
-
-exports.fs_dutysystem:SetOffDuty(source)
+exports['fs_dutysystem']:ToggleDutyStatus()
 ```
+:::
+
+::: details SetOnDuty()
+use to make set player job as on duty only if he is off duty will make player on duty if player is currently offduty will keep On duty if player is currently on duty
+
+**Example**
+
+```lua
+exports['fs_dutysystem']:SetOnDuty()
+```
+:::
+
+::: details SetOffDuty()
+use to make set player job as on duty only if he is off duty will make player off duty if player is currently onduty will keep off duty if player is currently off duty
+
+**Example**
+
+```lua
+exports['fs_dutysystem']:SetOffDuty()
+```
+:::

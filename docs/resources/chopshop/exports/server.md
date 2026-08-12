@@ -1,17 +1,9 @@
 ---
 title: ChopShop Server Exports | FWB Studio Docs
-description: Server exports for ChopShop.
+description: server exports for ChopShop.
 ---
 
 
 # Server exports
 
-Optional export for developers — blacklist vehicle plates at runtime (e.g. PD/EMS/admin spawner plates).
-
-```lua
--- Blacklist a plate from chop shop
-exports['fs_chopshop']:addplateblacklist(plate)
-
--- Example with a vehicle entity
-exports['fs_chopshop']:addplateblacklist(GetVehiclePlateType(vehicle))
-```
+_No public server exports documented yet. Check `fs_chopshop/server/unlocked.lua` in your package._

@@ -10,7 +10,7 @@ export const LEGACY_EXPORT_CANDIDATES = [
 ]
 
 export function stripGitBookFrontmatter(text) {
-  return text.replace(/^---[\s\S]*?---\s*/m, '').trim()
+  return text.replace(/^\uFEFF?---[\s\S]*?---\s*/m, '').trim()
 }
 
 export function sanitizeGitBookTokens(text) {
@@ -97,6 +97,110 @@ export function formatExpandableCommonErrors(content) {
   return content
 }
 
+export function isNavOnlyReadme(text) {
+  const body = stripGitBookFrontmatter(text)
+  const nonEmpty = body
+    .split('\n')
+    .map((l) => l.trim())
+    .filter(Boolean)
+  const headings = nonEmpty.filter((l) => /^#\s/.test(l))
+  const mdLinks = nonEmpty.filter((l) => /^-\s.*\([^)]+\.md\)/.test(l))
+  return mdLinks.length > 0 && mdLinks.length >= nonEmpty.length - headings.length
+}
+
+export function formatOverviewBody(content) {
+  if (!content) return ''
+
+  let text = sanitizeLegacyMarkdown(normalizeLineEndings(content).replace(/^#\s[^\n]+\n+/m, ''))
+    .replace(/Purchase Here:[^\n]*/gi, '')
+    .replace(/Discord\s*:[^\n]*/gi, '')
+    .replace(/Preview\s*:[^\n]*/gi, '')
+    .replace(/\*\*\*+/g, '')
+    .replace(/^-\s\[[^\]]+\]\([^)]+\)[^\n]*\n?/gm, '')
+    .replace(/\\+\s*$/gm, '')
+    .replace(/>\s*💻\s*\*\*Made with love by[^]*$/im, '')
+    .trim()
+
+  text = text.replace(/\n## Tags and SEO[\s\S]*$/i, '')
+  text = text.replace(/\n## Details[\s\S]*?(?=\n## |\n#### |$)/i, '')
+  text = text.replace(/^[^\n#]*\|[^\n]*FiveM[^\n]*\n+/im, '')
+  text = text.replace(/^\\#FiveM[^\n]*\n*/gim, '')
+  text = text.replace(/^## Main Features/m, '#### ⚙️ Key Features')
+  text = text.replace(/^## Why Use This Script\?/m, '')
+  text = text.replace(/\n{3,}/g, '\n\n')
+
+  if (!/#### ⚙️ Key Features/i.test(text) && /\n\* \*\*/.test(text)) {
+    text = text.replace(/(\n\* \*\*[^*]+\*\*)/, '\n\n#### ⚙️ Key Features\n$1')
+  }
+
+  if (!/Built for immersive FiveM servers/i.test(text)) {
+    text += '\n\n💬 **All configs and locales included**.\n📦 Easy to install. Drag, drop, and configure.\n🧠 Built for immersive FiveM servers.'
+  }
+
+  return text.trim()
+}
+
+export function buildOverviewBody(resource, { legacyRaw, catalogOverview, fallback } = {}) {
+  if (catalogOverview?.trim()) return catalogOverview.trim()
+
+  if (legacyRaw && !isNavOnlyReadme(legacyRaw)) {
+    const formatted = formatOverviewBody(legacyRaw)
+    if (formatted.length > 120) return formatted
+  }
+
+  if (catalogOverview?.trim()) return catalogOverview.trim()
+
+  return fallback ?? ''
+}
+
+export function overviewPackageTable(resource, categoryLabel) {
+  return `| | |
+| --- | --- |
+| **Resource folder** | \`${resource.repo}\` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | ${categoryLabel} |`
+}
+
+export function writeOverviewPage({
+  resource,
+  body,
+  pages,
+  docsRoot,
+  store,
+  categoryLabel,
+  documentationLinks
+}) {
+  const dir = path.join(docsRoot, resource.slug)
+  fs.mkdirSync(dir, { recursive: true })
+
+  const fm = `---
+title: ${resource.name} Overview | FWB Studio Docs
+description: ${resource.name} features and setup overview for FiveM. ${resource.seoKeywords}.
+---
+
+`
+
+  const content = `${fm}<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="${store}" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
+
+# ${resource.name}
+
+${body}
+
+## Package
+
+${overviewPackageTable(resource, categoryLabel)}
+
+## Documentation
+
+${documentationLinks}
+`
+
+  fs.writeFileSync(path.join(dir, 'overview.md'), content)
+}
+
 export function loadLegacyMarkdown(legacyDocsRoot, slug, folderMap, fileName) {
   const folder = folderMap[slug]
   if (!folder) return null
@@ -124,7 +228,10 @@ export function loadNotifyExportDocs(root) {
   const read = (name) => {
     const p = path.join(base, name)
     if (!fs.existsSync(p)) return null
-    return sanitizeLegacyMarkdown(stripGitBookFrontmatter(fs.readFileSync(p, 'utf8')).replace(/^#\s[^\n]+\n+/, ''))
+    return stripGitBookFrontmatter(fs.readFileSync(p, 'utf8'))
+      .replace(/^#\s[^\n]+\n+/m, '')
+      .replace(/\r\n/g, '\n')
+      .trim()
   }
   return { client: read('client.md'), server: read('server.md') }
 }
@@ -144,7 +251,6 @@ export function extractExportsFromCode(code, repo) {
 
 export function exportDocForSide(fullDoc, side) {
   if (!fullDoc) return null
-  if (/Client\/Server/i.test(fullDoc)) return fullDoc
 
   const sideHeading = side === 'client' ? /###\s*Client Side/i : /###\s*Server Side/i
   const otherHeading = side === 'client' ? /###\s*Server Side/i : /###\s*Client Side/i
@@ -169,6 +275,309 @@ export function exportDocForSide(fullDoc, side) {
   if (side === 'server' && /Server/i.test(fullDoc) && !/Client/i.test(fullDoc)) return fullDoc
 
   return fullDoc
+}
+
+function cleanExportHeading(text) {
+  return text
+    .replace(/<mark[^>]*>([^<]*)<\/mark>/gi, '$1')
+    .replace(/<[^>]+>/g, '')
+    .replace(/[:：]\s*$/, '')
+    .trim()
+}
+
+function normalizeLineEndings(text) {
+  return text.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+}
+
+function normalizeExportDoc(content) {
+  return sanitizeLegacyMarkdown(normalizeLineEndings(content).replace(/^#\s[^\n]+\n+/, ''))
+    .replace(/<pre[^>]*><code[^>]*>([\s\S]*?)<\/code><\/pre>/gi, (_, code) => {
+      const decoded = code
+        .replace(/<[^>]+>/g, '')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&amp;/g, '&')
+      return `\`\`\`lua\n${decoded.trim()}\n\`\`\``
+    })
+    .replace(/^##\s+(Client|Server)\s+Exports?\s*$/gim, '')
+}
+
+function extractSideCode(code, side) {
+  if (!/Client Side:/i.test(code) && !/Server Side:/i.test(code)) return code.trim()
+
+  const parts = code.split(/(?=Server Side:)/i)
+  const chunk = side === 'client' ? parts[0] : parts[1] || ''
+  return chunk
+    .replace(/^Client Side:\s*/i, '')
+    .replace(/^Server Side:\s*/i, '')
+    .replace(/-{5,}[\s\S]*?(?=exports|$)/g, '')
+    .replace(/={5,}[\s\S]*/g, '')
+    .trim()
+}
+
+function parseExportComments(code) {
+  const args = []
+  const returns = []
+  const description = []
+
+  for (const line of code.split('\n')) {
+    const trimmed = line.trim()
+    const param = trimmed.match(/^--@(\w+)\s*[-–—=]\s*(.+)/i)
+    if (param) {
+      args.push({
+        name: param[1],
+        type: 'any',
+        required: 'Yes',
+        notes: param[2].trim()
+      })
+      continue
+    }
+
+    if (/^--\s*argument/i.test(trimmed)) {
+      const note = trimmed.replace(/^--\s*argument\s*/i, '')
+      if (note) args.push({ name: 'source', type: 'number', required: 'Yes', notes: note })
+      continue
+    }
+
+    if (/^--\s*return/i.test(trimmed)) {
+      const value = trimmed.replace(/^--\s*return\s*/i, '').trim()
+      if (value) returns.push(value)
+      continue
+    }
+
+    if (
+      trimmed.startsWith('--') &&
+      !/^--@/.test(trimmed) &&
+      !/^--\s*example/i.test(trimmed) &&
+      !/^-{3,}/.test(trimmed) &&
+      !/^={3,}/.test(trimmed)
+    ) {
+      const note = trimmed.replace(/^--\s*/, '').trim()
+      if (/^(true|false|\w+\s+as\s+\w+|\w+\s+when|\w+\s+if|nil|\w+\s+table)/i.test(note)) {
+        returns.push(note)
+      } else if (note) {
+        description.push(note)
+      }
+    }
+  }
+
+  return { args, returns, description: description.join(' ') }
+}
+
+function exportCallName(code) {
+  const match = code.match(/exports(?:\[['"]([^'"]+)['"]\]|\.([a-z0-9_]+)):([a-zA-Z_][\w]*)\s*\(/)
+  return match?.[3] || null
+}
+
+function buildExampleCode(code, resource) {
+  const cleaned = normalizeLineEndings(code)
+    .split('\n')
+    .filter((line) => {
+      const t = line.trim()
+      return t && !/^--/.test(t) && !/^example:?/i.test(t)
+    })
+    .join('\n')
+    .trim()
+
+  if (!resource) return cleaned
+  return cleaned
+    .replace(/exports\[['"]fs_bridge['"]\]/g, `exports['${resource}']`)
+    .replace(/exports\.fs_[a-z0-9_]+/gi, `exports['${resource}']`)
+}
+
+function exportDetailsBlock(title, inner) {
+  return `::: details ${title}\n${inner.trim()}\n:::`
+}
+
+function formatExportEntry(title, body, { resource, side }) {
+  const prose = body.replace(/```[\s\S]*?```/g, '').replace(/\*\*/g, '').trim()
+  const codeMatch = body.match(/```(?:lua)?\n([\s\S]*?)```/)
+  let code = codeMatch?.[1] || ''
+  if (!code.trim()) return null
+
+  code = normalizeLineEndings(extractSideCode(code, side))
+  if (!code.trim()) return null
+
+  const fnName = exportCallName(code)
+  const displayTitle = fnName ? `${fnName}()` : title
+  const meta = parseExportComments(code)
+  const description = prose.replace(/\s+/g, ' ').trim() || meta.description
+
+  let inner = ''
+  if (description) inner += `${description}\n\n`
+
+  if (meta.args.length) {
+    inner += `**Arguments**\n\n| Name | Type | Required | Notes |\n| --- | --- | --- | --- |\n`
+    inner += meta.args
+      .map((arg) => `| \`${arg.name}\` | \`${arg.type}\` | ${arg.required} | ${arg.notes} |`)
+      .join('\n')
+    inner += '\n\n'
+  }
+
+  if (meta.returns.length) {
+    inner += `**Returns**\n\n${meta.returns.map((value) => `- ${value}`).join('\n')}\n\n`
+  }
+
+  inner += `**Example**\n\n\`\`\`lua\n${buildExampleCode(code, resource)}\n\`\`\``
+  return exportDetailsBlock(displayTitle, inner)
+}
+
+function convertHtmlDetailsToVitePress(content) {
+  return content.replace(
+    /<details[^>]*>\s*<summary>(?:<strong>)?([^<]+?)(?:<\/strong>)?<\/summary>\s*([\s\S]*?)<\/details>/gi,
+    (_, title, body) => {
+      const cleanTitle = title.replace(/<\/?code>/g, '').replace(/^\d+\.\s*/, '').trim()
+      const fnTitle = /^notify$/i.test(cleanTitle) ? 'Notify()' : cleanTitle.includes('(') ? cleanTitle : `${cleanTitle}()`
+      let cleanBody = body
+        .replace(/Short description:\s*/gi, '')
+        .replace(/How to write it as function:[\s\S]*?Example as export:\s*/gi, '')
+        .replace(/Returns:/g, '**Returns**\n\n')
+        .replace(/Arguments:/g, '**Arguments**\n\n')
+        .replace(/Example as export:\s*/g, '**Example**\n\n')
+        .replace(/Example as function:[\s\S]*/gi, '')
+        .replace(/Example:\s*/g, '**Example**\n\n')
+        .replace(/\n\n\*\*Example\*\*\n\n+\*\*Example\*\*/g, '\n\n**Example**')
+        .trim()
+      if (!/\*\*Example\*\*/.test(cleanBody) && /```lua/.test(cleanBody)) {
+        cleanBody = cleanBody.replace(/```lua/, '**Example**\n\n```lua')
+      }
+      return exportDetailsBlock(fnTitle, cleanBody)
+    }
+  )
+}
+
+function collectExportBlocks(normalized, { resource, side }) {
+  const intro = []
+  const blocks = []
+
+  const pushEntry = (title, body) => {
+    const block = formatExportEntry(title, body, { resource, side })
+    if (block) blocks.push(block)
+  }
+
+  const sections = normalized.split(/\n(?=#{2,4}\s+)/).filter(Boolean)
+  for (const section of sections) {
+    const headingMatch = section.match(/^#{2,4}\s+(.+?)(?:\n([\s\S]*))?$/)
+    if (!headingMatch) continue
+
+    const title = cleanExportHeading(headingMatch[1])
+    const body = headingMatch[2] || ''
+
+    if (/^(Client|Server)\s+Exports?$/i.test(title)) continue
+
+    if (/^Exports?$/i.test(title)) {
+      const introText = body.split(/\n(?=####\s+)/)[0]?.trim()
+      if (introText && !introText.includes('exports.')) intro.push(introText)
+
+      for (const sub of body.split(/\n(?=####\s+)/).slice(1)) {
+        const subMatch = sub.match(/^####\s+(.+?)(?:\n([\s\S]*))?$/)
+        if (!subMatch) continue
+        pushEntry(cleanExportHeading(subMatch[1]), subMatch[2] || '')
+      }
+      continue
+    }
+
+    pushEntry(title, body)
+  }
+
+  if (!blocks.length) {
+    for (const sub of normalized.split(/\n(?=####\s+)/)) {
+      const subMatch = sub.match(/^####\s+(.+?)(?:\n([\s\S]*))?$/)
+      if (!subMatch) continue
+      pushEntry(cleanExportHeading(subMatch[1]), subMatch[2] || '')
+    }
+  }
+
+  if (!blocks.length) {
+    for (const sub of normalized.split(/\n(?=###\s+(?!Exports?\b))/)) {
+      const subMatch = sub.match(/^###\s+(.+?)(?:\n([\s\S]*))?$/)
+      if (!subMatch) continue
+      const title = cleanExportHeading(subMatch[1])
+      if (/^(Client|Server)\s+Exports?$/i.test(title)) continue
+      pushEntry(title, subMatch[2] || '')
+    }
+  }
+
+  return { intro, blocks }
+}
+
+export function formatExpandableExportDoc(content, { resource, side } = {}) {
+  if (!content) return ''
+
+  if (content.includes('::: details')) return content
+
+  content = normalizeLineEndings(content)
+
+  if (content.includes('<details')) {
+    const converted = convertHtmlDetailsToVitePress(content)
+    const blocks = [...converted.matchAll(/::: details[\s\S]*?:::/g)].map((match) => match[0])
+    if (blocks.length) {
+      const lead =
+        'Each export below is expandable. Open one to see description, arguments, return value, and example code.\n\n'
+      return `${lead}${blocks.join('\n\n')}`.trim()
+    }
+  }
+
+  let normalized = normalizeExportDoc(content)
+
+  const { intro, blocks } = collectExportBlocks(normalized, { resource, side })
+
+  if (!blocks.length && normalized.includes('exports')) {
+    const codeBlocks = [...normalized.matchAll(/```(?:lua)?\n([\s\S]*?)```/g)]
+    const names = new Set()
+    for (const block of codeBlocks) {
+      const sideCode = extractSideCode(block[1], side)
+      for (const m of sideCode.matchAll(/exports(?:\[['"][^'"]+['"]\]|\.[a-z0-9_]+):([a-zA-Z_][\w]*)/g)) {
+        names.add(m[1])
+      }
+    }
+    if (names.size) {
+      for (const name of names) {
+        blocks.push(
+          exportDetailsBlock(
+            `${name}()`,
+            `**Example**\n\n\`\`\`lua\nexports['${resource}']:${name}(...)\n\`\`\``
+          )
+        )
+      }
+    }
+  }
+
+  const header = intro.length ? `${intro.join('\n\n')}\n\n` : ''
+  const lead =
+    blocks.length > 0
+      ? 'Each export below is expandable. Open one to see description, arguments, return value, and example code.\n\n'
+      : ''
+
+  return `${header}${lead}${blocks.join('\n\n')}`.trim()
+}
+
+export function buildExportPageBody(resource, side, legacyExportDoc, exportScan) {
+  const legacySide = exportDocForSide(legacyExportDoc, side)
+  if (legacySide) {
+    const formatted = formatExpandableExportDoc(legacySide, { resource: resource.repo, side })
+    if (formatted.includes('::: details')) return formatted
+  }
+
+  const names = exportScan?.[side]
+  if (!names?.length) {
+    return `_No public ${side} exports documented yet. Check \`${resource.repo}/${side}/unlocked.lua\` in your package._`
+  }
+
+  const lead =
+    'Each export below is expandable. Open one to see description, arguments, return value, and example code.\n\n'
+
+  return (
+    lead +
+    names
+      .map((name) =>
+        exportDetailsBlock(
+          `${name}()`,
+          `**Example**\n\n\`\`\`lua\nexports['${resource.repo}']:${name}()\n\`\`\``
+        )
+      )
+      .join('\n\n')
+  )
 }
 
 export function parseConfigExtras(configText, resource) {

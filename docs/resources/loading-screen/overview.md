@@ -3,7 +3,6 @@ title: Loading Screen v1 Overview | FWB Studio Docs
 description: Loading Screen v1 features and setup overview for FiveM. FiveM loading screen FWB Studio.
 ---
 
-
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426475" target="_blank" rel="noreferrer">Purchase on Tebex</a>
@@ -11,15 +10,37 @@ description: Loading Screen v1 features and setup overview for FiveM. FiveM load
 
 # Loading Screen v1
 
+### 🖥️ Loading Screen – First Impressions Matter
 
-A clean, immersive loading screen designed to keep players engaged while the world loads in the background. Smooth progress animations, subtle visuals, and optimized performance ensure a seamless transition into gameplay without unnecessary delays. Built with stability in mind, it syncs perfectly with player spawn events to avoid glitches or stuck states, delivering a professional first impression every time players join the server.
+Replace the default FiveM load screen with a branded FWB experience — video backgrounds, slideshows, music, social links, and a fully themeable UI. Loading Screen v1 is lightweight and easy to customize without touching NUI code.
+
+Standalone — works on any FiveM server.
+
+#### ⚙️ Key Features
+
+* **Video, Image, or Slideshow** — Pick a background type including local webm or hosted video links.
+* **Background Music** — Multiple audio tracks with artist labels, shuffled on each connect.
+* **Theme Editor** — Set colors, fonts, and accent styles from a single config file.
+* **Social & Server Info** — Show Discord, Tebex, rules, and staff messages on the load screen.
+* **No Framework Required** — Pure client NUI resource; no Bridge or database needed.
+
+#### 💼 Perfect For:
+
+* Any FiveM server wanting a polished brand
+* New launches and relaunches
+* Servers promoting Discord and Tebex on connect
+* Owners who want video backgrounds without custom dev work
+* Communities that care about first impressions
+
+💬 **All configs and locales included**.
+📦 Easy to install. Drag, drop, and configure.
+🧠 Built for immersive FiveM servers.
 
 ## Package
 
 | | |
 | --- | --- |
 | **Resource folder** | `fs_loadingscreen` |
-| **Version** | `v1.2` |
 | **Frameworks** | ESX, QBCore, Qbox |
 | **Category** | FiveM Script |
 

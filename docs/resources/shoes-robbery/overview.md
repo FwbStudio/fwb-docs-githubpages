@@ -3,7 +3,6 @@ title: Shoes Robbery Overview | FWB Studio Docs
 description: Shoes Robbery features and setup overview for FiveM. FiveM shoes robbery script.
 ---
 
-
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426476" target="_blank" rel="noreferrer">Purchase on Tebex</a>
@@ -11,45 +10,37 @@ description: Shoes Robbery features and setup overview for FiveM. FiveM shoes ro
 
 # Shoes Robbery
 
+### 👟 Shoes Robbery – Hit the Stores, Flip the Kicks
 
-Shoes Robbery Script | Custom Stores, Police Alerts, and Selling System | FiveM RP Script | FwB Studio
+Rob shoe stores, dodge police, and sell stolen pairs or bundles for profit. Shoes Robbery adds a full robbery loop with configurable stores, timers, alerts, and selling points for economy and criminal RP servers.
 
-Get ready to rob shoe stores and make huge profits with the Shoes Robbery Script by FwB Studio.
+Supports **ESX**, **QBCore**, and **Qbox**.
 
-This realistic and fun FiveM robbery script lets players steal shoes from multiple stores, customize robbery locations, set timers, and even sell stolen pairs or bundles for extra cash.
+#### ⚙️ Key Features
 
-But be careful, the police alert system will notify officers during robberies.
+* **Multiple Shoe Stores** — Rob configured locations with custom timers and loot.
+* **Police Alerts** — Configurable dispatch when robberies are in progress.
+* **Selling Points** — Sell stolen shoes as pairs or bundles for extra cash.
+* **Player Robberies** — Rob other players and sell their shoes through the system.
+* **Fully Editable Config** — Add stores, rob points, timers, and payouts without touching core code.
 
-## Main Features
+#### 💼 Perfect For:
 
-* Rob multiple shoe stores
-* Add new stores, rob points, and timers in config
-* Customizable police alert system ("Beware of Police")
-* Sell shoes at selling points, either as pairs or bundles
-* Fully editable config file for easy setup
-* Good fit for RP and economy servers
-* Rob real players to sell shoes and make money
+* Robbery and heist RP
+* Economy and black-market servers
+* Police vs criminal gameplay
+* Streetwear and sneaker culture scenes
+* Servers wanting unique illegal side jobs
 
-## Why Use This Script?
-
-This script adds realistic and engaging robbery mechanics to your server, making it more fun for both players and police. Great for roleplay, economy balancing, and custom missions.
-
-## Details
-
-* Script Name: Shoes Robbery
-* Developer: FwB Studio
-* Framework Support: ESX / QBCore
-
-## Tags and SEO
-
-\#FiveMScripts #FwBStudio #ShoesRobbery #FiveMRoleplay #RobberyScript #FiveMRP #FiveMStore #FiveMEconomy #FiveMPolice #FiveMHeist
+💬 **All configs and locales included**.
+📦 Easy to install. Drag, drop, and configure.
+🧠 Built for immersive FiveM servers.
 
 ## Package
 
 | | |
 | --- | --- |
 | **Resource folder** | `fs_shoesrobbery` |
-| **Version** | `v1.0` |
 | **Frameworks** | ESX, QBCore, Qbox |
 | **Category** | FiveM Script |
 

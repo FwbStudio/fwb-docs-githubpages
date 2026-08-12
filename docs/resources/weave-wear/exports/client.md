@@ -1,16 +1,15 @@
 ---
 title: Weave Wear Wig Carting Client Exports | FWB Studio Docs
-description: Client exports for Weave Wear Wig Carting.
+description: client exports for Weave Wear Wig Carting.
 ---
 
 
 # Client exports
 
-### Client Exports:
+Each export below is expandable. Open one to see description, arguments, return value, and example code.
 
-<details>
-
-<summary>Open Phone UI</summary>
+::: details Open Phone UI()
+**Example**
 
 ```lua
 -- You can open Phone Ui using this export.
@@ -18,12 +17,10 @@ description: Client exports for Weave Wear Wig Carting.
 exports.fs_weavewear:OpenPhone()
 
 ```
+:::
 
-</details>
-
-<details>
-
-<summary>Open Shop UI</summary>
+::: details Open Shop UI()
+**Example**
 
 ```lua
 -- You can open Sbop Ui using this export.
@@ -31,12 +28,10 @@ exports.fs_weavewear:OpenPhone()
 exports.fs_weavewear:OpenShop()
 
 ```
+:::
 
-</details>
-
-<details>
-
-<summary>Open Crafting UI</summary>
+::: details Open Crafting UI()
+**Example**
 
 ```lua
 -- You can open Crafting Ui using this export.
@@ -44,5 +39,4 @@ exports.fs_weavewear:OpenShop()
 exports.fs_weavewear:OpenCrafting()
 
 ```
-
-</details>
+:::

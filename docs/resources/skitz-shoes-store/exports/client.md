@@ -1,16 +1,15 @@
 ---
 title: Skitz Shoes Store Client Exports | FWB Studio Docs
-description: Client exports for Skitz Shoes Store.
+description: client exports for Skitz Shoes Store.
 ---
 
 
 # Client exports
 
-### Client Exports:
+Each export below is expandable. Open one to see description, arguments, return value, and example code.
 
-<details>
-
-<summary>Open Phone UI</summary>
+::: details Open Phone UI()
+**Example**
 
 ```lua
 -- You can open Phone Ui using this export.
@@ -18,12 +17,10 @@ description: Client exports for Skitz Shoes Store.
 exports.fs_skitz:OpenPhone()
 
 ```
+:::
 
-</details>
-
-<details>
-
-<summary>Open Shop UI</summary>
+::: details Open Shop UI()
+**Example**
 
 ```lua
 -- You can open Sbop Ui using this export.
@@ -31,12 +28,10 @@ exports.fs_skitz:OpenPhone()
 exports.fs_skitz:OpenShop()
 
 ```
+:::
 
-</details>
-
-<details>
-
-<summary>Open Crafting UI</summary>
+::: details Open Crafting UI()
+**Example**
 
 ```lua
 -- You can open Crafting Ui using this export.
@@ -44,5 +39,4 @@ exports.fs_skitz:OpenShop()
 exports.fs_skitz:OpenCrafting()
 
 ```
-
-</details>
+:::

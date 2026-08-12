@@ -3,14 +3,12 @@ title: Bodybag Overview | FWB Studio Docs
 description: Bodybag features and setup overview for FiveM. FiveM bodybag script ESX QBCore.
 ---
 
-
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426479" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
 # Bodybag
-
 
 ### 🪦 Bodybag Script – Bury the Evidence, Shape the Fate
 
@@ -51,8 +49,6 @@ Take your roleplay server to the next level with this immersive **Bodybag Script
 * **♻️ Auto Cleanup**
   * If a player with a bodybag is revived, the bag is **automatically removed** to prevent reuse.
 
-
-
 #### 💼 Perfect For:
 
 * Gang RP
@@ -61,20 +57,15 @@ Take your roleplay server to the next level with this immersive **Bodybag Script
 * Religious / Ritual RP
 * Permanent Death Roleplay (Permadeath Servers)
 
-
-
 💬 **All configs and locales included**.
 📦 Easy to install. Drag, drop, and configure.
 🧠 Built for immersive FiveM servers.
-
-> 💻 **Made with love by [FWB Studio]**
 
 ## Package
 
 | | |
 | --- | --- |
 | **Resource folder** | `fs_bodybag` |
-| **Version** | `v1.4` |
 | **Frameworks** | ESX, QBCore, Qbox |
 | **Category** | FiveM Script |
 

@@ -22,46 +22,22 @@ import {
   extraDepsForResource,
   buildInventoryInstallSection,
   dispatchJobsSection,
+  buildExportPageBody,
+  formatExpandableExportDoc,
   formatExpandableCommonErrors,
   formatExpandableQuestions,
-  detectPages
+  detectPages,
+  buildOverviewBody,
+  writeOverviewPage
 } from './lib/resource-doc-helpers.mjs'
+import { LEGACY_DOC_FOLDERS } from './lib/legacy-doc-folders.mjs'
+import { RESOURCE_OVERVIEWS } from './lib/resource-overviews.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const root = path.join(__dirname, '..')
 const docsRoot = path.join(root, 'docs', 'resources')
 const legacyDocsRoot = path.join(root, '..', 'docs', 'scripts')
 const ORG = 'Friends-With-Benefits-Studio'
-
-/** Map catalog slug → old GitBook folder name under docs/scripts */
-const LEGACY_DOC_FOLDERS = {
-  bodybag: 'bodybag',
-  'burger-shop': 'burger-shop',
-  carwipe: 'carwipe',
-  chopshop: 'chop-shop',
-  'duty-system': 'duty-system',
-  'fraud-v1': 'fraud-system-v1-old',
-  'fraud-v2': 'fraud-system-v2-new',
-  'gun-jamming': 'gun-jamming',
-  icebox: 'ice-box',
-  'lashes-saloon': 'lashes-saloon',
-  'loading-screen': 'loading-screen',
-  'nails-saloon': 'nails-saloon',
-  outfitbag: 'outfit-bags',
-  'pizza-shop': 'pizza-shop',
-  'items-placeables': 'item-placeables',
-  'safezone-creator': 'safezone-creator',
-  'shoes-robbery': 'shoes-robbery',
-  'skitz-shoes-store': 'skitz',
-  smoking: 'smoking',
-  switch: 'gun-switch',
-  'trap-phone-v1': 'trap-phone',
-  'trap-phone-v2': 'trap-phone',
-  'useable-foods': 'useable-foods',
-  'weave-wear': 'weave-wear',
-  'white-widow': 'white-widow',
-  'wigs-bundle': 'wigs-bundle'
-}
 
 const token = process.env.GITHUB_TOKEN
 if (!token) {
@@ -148,26 +124,8 @@ async function scanSideExports(repo, side) {
 }
 
 function exportPageBody(resource, side, legacyExportDoc, exportScan) {
-  const legacySide = exportDocForSide(legacyExportDoc, side)
-  if (legacySide) return legacySide
-
-  const names = exportScan[side]
-  if (!names?.length) {
-    return `_No public ${side} exports documented yet. Check \`${resource.repo}/${side}/unlocked.lua\` in your package._`
-  }
-
-  return names
-    .map(
-      (name) => `<details class="fwb-faq">
-<summary><code>${name}</code></summary>
-
-\`\`\`lua
-exports['${resource.repo}']: ${name}(args)
-\`\`\`
-
-</details>`
-    )
-    .join('\n\n')
+  if (resource.slug === 'notify') return null
+  return buildExportPageBody(resource, side, legacyExportDoc, exportScan)
 }
 
 function depsTable(rows) {
@@ -178,39 +136,8 @@ ${rows.map((r) => `| \`${r.name}\` | ${r.required ? 'Yes' : 'Optional'} | ${r.no
 `
 }
 
-function isNavOnlyReadme(text) {
-  const body = stripGitBookFrontmatter(text)
-  const nonEmpty = body
-    .split('\n')
-    .map((l) => l.trim())
-    .filter(Boolean)
-  const headings = nonEmpty.filter((l) => /^#\s/.test(l))
-  const mdLinks = nonEmpty.filter((l) => /^-\s.*\([^)]+\.md\)/.test(l))
-  return mdLinks.length > 0 && mdLinks.length >= nonEmpty.length - headings.length
-}
-
 function legacyMd(slug, fileName) {
   return loadLegacyMarkdown(legacyDocsRoot, slug, LEGACY_DOC_FOLDERS, fileName)
-}
-
-function buildOverview(resource, manifest, fallback) {
-  const legacyRaw = legacyMd(resource.slug, 'README.md')
-  if (legacyRaw && !isNavOnlyReadme(legacyRaw)) {
-    return sanitizeLegacyMarkdown(
-      legacyRaw
-        .replace(/Purchase Here:[^\n]*/gi, '')
-        .replace(/Discord\s*:[^\n]*/gi, '')
-        .replace(/Preview\s*:[^\n]*/gi, '')
-        .replace(/\*\*\*+/g, '')
-    )
-  }
-
-  const description = manifest.match(/description\s+['"]([^'"]+)['"]/i)?.[1]
-  if (description) {
-    return `**${resource.name}** (\`${resource.repo}\`) — ${description}\n\nSupports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and \`[INSTALL_ME_FIRST]\` steps.`
-  }
-
-  return fallback
 }
 
 function buildCommonErrors(resource) {
@@ -302,32 +229,15 @@ ${videoBlock}
 `
   )
 
-  fs.writeFileSync(
-    path.join(dir, 'overview.md'),
-    `${fm(`${resource.name} Overview | FWB Studio Docs`, `${resource.name} features and setup overview for FiveM. ${resource.seoKeywords}.`)}
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview</a>
-  <a class="fwb-product-hero__buy" href="${store}" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
-
-# ${resource.name}
-
-${meta.overview.startsWith('#') ? meta.overview.replace(/^#\s[^\n]+\n+/, '') : meta.overview}
-
-## Package
-
-| | |
-| --- | --- |
-| **Resource folder** | \`${resource.repo}\` |
-| **Version** | \`${meta.version ?? 'see fxmanifest'}\` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | ${categoryLabel} |
-
-## Documentation
-
-${docNavLinks(pages)}
-`
-  )
+  writeOverviewPage({
+    resource,
+    body: meta.overview,
+    pages,
+    docsRoot,
+    store,
+    categoryLabel,
+    documentationLinks: docNavLinks(pages)
+  })
 
   const installSteps =
     resource.category === 'weapons'
@@ -400,9 +310,10 @@ ${meta.configFull?.trim() || '_Open config/config.lua in your package._'}
   if (pages.exports?.client || pages.exports?.server) {
     fs.mkdirSync(path.join(dir, 'exports'), { recursive: true })
     if (pages.exports.client) {
-      const body =
+      let body =
         resource.slug === 'notify' && meta.notifyDocs?.client
-          ? meta.notifyDocs.client
+          ? formatExpandableExportDoc(meta.notifyDocs.client, { resource: 'fs_notify', side: 'client' })
+              .replace(/FWB\.Notify\(/g, "exports['fs_notify']:Notify(")
           : exportPageBody(resource, 'client', meta.legacyExportDoc, meta.exports)
       fs.writeFileSync(
         path.join(dir, 'exports', 'client.md'),
@@ -414,9 +325,10 @@ ${body}
       )
     }
     if (pages.exports.server) {
-      const body =
+      let body =
         resource.slug === 'notify' && meta.notifyDocs?.server
-          ? meta.notifyDocs.server
+          ? formatExpandableExportDoc(meta.notifyDocs.server, { resource: 'fs_notify', side: 'server' })
+              .replace(/FWB\.Notify\(/g, "exports['fs_notify']:Notify(")
           : exportPageBody(resource, 'server', meta.legacyExportDoc, meta.exports)
       fs.writeFileSync(
         path.join(dir, 'exports', 'server.md'),
@@ -535,9 +447,6 @@ async function analyzeResource(resource) {
   const legacyFunctionsDoc = loadLegacyFunctionsDoc(legacyDocsRoot, resource.slug, LEGACY_DOC_FOLDERS)
   const notifyDocs = resource.slug === 'notify' ? loadNotifyExportDocs(root) : null
 
-  const version =
-    manifest.match(/^\s*version\s+['"]([^'"]+)['"]/im)?.[1] ??
-    manifest.match(/^\s*version\s+(\S+)/im)?.[1]
   const configExtras = parseConfigExtras(configFull, resource)
   const deps = parseManifestDeps(manifest, resource.category, resource, legacyInstall)
   const pages = detectPages(resource, manifest, exportScan, legacyExportDoc, legacyFunctionsDoc, PAGE_OVERRIDES)
@@ -545,13 +454,17 @@ async function analyzeResource(resource) {
   const fallbackOverview =
     resource.category === 'weapons'
       ? `**${resource.name}** is a FWB Studio weapon pack for FiveM. It includes weapon meta and stream assets for ESX, QBCore, and Qbox servers. Follow Installation for \`[INSTALL_ME_FIRST]\` steps and inventory item setup.`
-      : `**${resource.name}** (\`${resource.repo}\`) is a FWB Studio script for ESX, QBCore, and Qbox. It uses FS Bridge for framework and inventory compatibility where noted in the manifest. Install dependencies first, then configure \`config/\` before going live.`
+      : `**${resource.name}** is a FWB Studio script for ESX, QBCore, and Qbox. Install dependencies first, then configure \`config/\` before going live.`
 
-  const overview = buildOverview(resource, manifest, fallbackOverview)
+  const legacyRaw = legacyMd(resource.slug, 'README.md')
+  const overview = buildOverviewBody(resource, {
+    legacyRaw,
+    catalogOverview: RESOURCE_OVERVIEWS[resource.slug],
+    fallback: fallbackOverview
+  })
 
   return {
     manifest,
-    version,
     deps,
     installFiles,
     configFull,

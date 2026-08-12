@@ -1,23 +1,9 @@
 ---
 title: White Widow Client Exports | FWB Studio Docs
-description: Client exports for White Widow.
+description: client exports for White Widow.
 ---
 
 
 # Client exports
 
-### Client Export:
-
-If you want to add your function.
-
-fs\_whitewidow/client/unlocked.lua
-
-```lua
--- you can change boss menu function here 
-RegisterNetEvent(Settings.Prefix..':openbossaction')
-AddEventHandler(Settings.Prefix..':openbossaction', function(job)
-    TriggerEvent('esx_society:openBossMenu', job, function(data, menu)
-        ESX.CloseContext()
-    end, {wash = false})
-end)
-```
+_No public client exports documented yet. Check `fs_whitewidow/client/unlocked.lua` in your package._

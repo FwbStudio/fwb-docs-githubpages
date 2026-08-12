@@ -1,28 +1,30 @@
 ---
 title: Safezone Creator Server Exports | FWB Studio Docs
-description: Server exports for Safezone Creator.
+description: server exports for Safezone Creator.
 ---
 
 
 # Server exports
 
-## Server Exports
+Each export below is expandable. Open one to see description, arguments, return value, and example code.
 
-<details>
-<summary><strong>4. IsPlayerInsideSafezone(playerId)</strong></summary>
-
+::: details IsPlayerInsideSafezone(playerId)
 Checks whether a specific player is currently inside a safezone.
 
-Arguments:
+**Arguments**
+
+
 
 * `playerId` - server id of the player
 
-Returns:
+**Returns**
+
+
 
 * `true` if the player is inside a safezone
 * `false` if the player is not inside a safezone
 
-Example:
+**Example**
 
 ```lua
 local inside = exports['fs_safezonecreator']:IsPlayerInsideSafezone(source)
@@ -31,24 +33,25 @@ if inside then
     print('This player is inside a safezone')
 end
 ```
+:::
 
-</details>
-
-<details>
-<summary><strong>5. GetPlayerSafezone(playerId)</strong></summary>
-
+::: details GetPlayerSafezone(playerId)
 Returns the current safezone data for a specific player.
 
-Arguments:
+**Arguments**
+
+
 
 * `playerId` - server id of the player
 
-Returns:
+**Returns**
+
+
 
 * safezone table when the player is inside a safezone
 * `nil` when the player is not inside a safezone
 
-Example:
+**Example**
 
 ```lua
 local safezone = exports['fs_safezonecreator']:GetPlayerSafezone(source)
@@ -57,5 +60,4 @@ if safezone then
     print(('Player is inside safezone: %s'):format(safezone.name))
 end
 ```
-
-</details>
+:::

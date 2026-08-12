@@ -1,31 +1,38 @@
 ---
 title: Notify Server Exports | FWB Studio Docs
-description: Server exports for fs_notify.
+description: server exports for Notify.
 ---
 
 
 # Server exports
 
-<details class="fwb-faq">
-<summary><code>Notify</code> — send notification to a player</summary>
+Each export below is expandable. Open one to see description, arguments, return value, and example code.
 
+::: details Notify()
 Forward a notification from the server to one target client.
 
 **Arguments**
 
+
+
 | Name | Type | Notes |
-| --- | --- | --- |
-| `source` | `number` | Target player server id |
-| `argument` | `table` \| `string` | Payload, or plain string → `{ description = argument }` on client |
+|---|---|---|
+| `source` | `number` | Target player source |
+| `argument` | `table|string` | Notification payload, or a plain string that Bridge converts to `{ description = argument }` on the client |
+
+**Returns**
+
+
+
+- `nil`
 
 **Example**
 
 ```lua
 exports['fs_notify']:Notify(source, {
-    title = 'FWB',
+    title = 'Bridge',
     description = 'Garage updated',
     type = 'inform'
 })
 ```
-
-</details>
+:::
