@@ -791,19 +791,37 @@ html {
   border-bottom: 1px solid var(--fwb-border);
 }
 
-/* Wider reading column + full-width code blocks */
+/* Prose stays normal width; code uses full available content width */
 :root {
-  --vp-layout-max-width: 1580px;
-}
-
-.VPDoc .content-container,
-.VPDoc .content {
-  max-width: 100% !important;
+  --fwb-prose-width: 48rem;
+  --vp-layout-max-width: 1680px;
 }
 
 @media (min-width: 960px) {
+  .VPDoc .container {
+    max-width: none !important;
+  }
+
   .VPDoc .content {
-    padding-right: 20px !important;
+    max-width: none !important;
+    padding-right: 28px !important;
+  }
+
+  .VPDoc .content-container {
+    max-width: none !important;
+  }
+
+  /* Keep titles/text readable at normal width */
+  .vp-doc > :not(div[class*='language-']):not(.vp-code-group):not(.vp-adaptive-theme) {
+    max-width: var(--fwb-prose-width);
+  }
+
+  /* Code / config blocks stretch across the empty right space */
+  .vp-doc > div[class*='language-'],
+  .vp-doc > .vp-code-group,
+  .vp-doc > .vp-adaptive-theme {
+    width: 100%;
+    max-width: none;
   }
 }
 
