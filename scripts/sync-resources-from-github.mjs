@@ -337,7 +337,7 @@ ${docNavLinks(pages)}
 3. Run any SQL files if included in \`[INSTALL_ME_FIRST]\`.
 4. Add to \`server.cfg\`:
 
-\`\`\`cfg
+\`\`\`ini
 ensure ${resource.repo}
 \`\`\`
 
@@ -348,7 +348,7 @@ ensure ${resource.repo}
 4. Configure \`${resource.repo}/config/\` before first start.
 5. Add to \`server.cfg\` (**after** \`fs_bridge\` when Bridge is required):
 
-\`\`\`cfg
+\`\`\`ini
 ensure fs_bridge
 ensure ${resource.repo}
 \`\`\`
