@@ -1,8 +1,10 @@
 import { defineConfig } from 'vitepress'
+import { buildResourcesSidebar } from './resources-catalog.mts'
 
 export default defineConfig({
   title: 'FWB Studio Docs',
-  description: 'Install guides and docs for FWB Studio FiveM scripts (ESX, QBCore, Qbox).',
+  description:
+    'Official FWB Studio FiveM documentation — install guides, Bridge setup, and script docs for ESX, QBCore, and Qbox servers.',
   lang: 'en-US',
   cleanUrls: true,
   appearance: 'force-dark',
@@ -21,6 +23,16 @@ export default defineConfig({
       }
     ],
     ['meta', { name: 'theme-color', content: '#07070f' }],
+    [
+      'meta',
+      {
+        name: 'description',
+        content:
+          'FWB Studio docs for FiveM scripts — Bridge, Fraud, Trap Phone, jobs, weapons, and install guides for ESX, QBCore, and Qbox.'
+      }
+    ],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:site_name', content: 'FWB Studio Docs' }],
     ['link', { rel: 'icon', href: '/fwb-docs-githubpages/logo.png', type: 'image/png' }]
   ],
   themeConfig: {
@@ -30,6 +42,7 @@ export default defineConfig({
     sidebar: [
       {
         text: 'Get Started',
+        collapsed: true,
         items: [
           { text: 'Docs Home', link: '/' },
           { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
@@ -38,12 +51,13 @@ export default defineConfig({
       },
       {
         text: 'Bridge',
+        collapsed: true,
         items: [
           { text: 'Overview', link: '/bridge/' },
           { text: 'Supported', link: '/bridge/supported' },
           {
             text: 'Script Overrides',
-            collapsed: false,
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/bridge/script-overrides' },
               { text: 'Client', link: '/bridge/overrides/client' },
@@ -52,7 +66,7 @@ export default defineConfig({
           },
           {
             text: 'Configuration',
-            collapsed: false,
+            collapsed: true,
             items: [
               { text: 'Overview', link: '/bridge/configuration/' },
               { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
@@ -64,10 +78,8 @@ export default defineConfig({
       },
       {
         text: 'Resources',
-        collapsed: false,
-        items: [
-          { text: 'Coming soon', link: '/' }
-        ]
+        collapsed: true,
+        items: buildResourcesSidebar()
       }
     ],
     socialLinks: [],
