@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { buildResourcesSidebar } from './resources-catalog.mts'
+import { buildScriptsSidebar, buildWeaponsSidebar } from './resources-catalog.mts'
 
 export default defineConfig({
   title: 'FWB Studio Docs',
@@ -42,7 +42,7 @@ export default defineConfig({
     sidebar: [
       {
         text: 'Get Started',
-        collapsed: true,
+        collapsed: false,
         items: [
           { text: 'Docs Home', link: '/' },
           { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
@@ -51,7 +51,7 @@ export default defineConfig({
       },
       {
         text: 'Bridge',
-        collapsed: true,
+        collapsed: false,
         items: [
           { text: 'Overview', link: '/bridge/' },
           { text: 'Supported', link: '/bridge/supported' },
@@ -77,9 +77,14 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Resources',
-        collapsed: true,
-        items: buildResourcesSidebar()
+        text: 'Scripts',
+        collapsed: false,
+        items: buildScriptsSidebar()
+      },
+      {
+        text: 'Weapons',
+        collapsed: false,
+        items: buildWeaponsSidebar()
       }
     ],
     socialLinks: [],

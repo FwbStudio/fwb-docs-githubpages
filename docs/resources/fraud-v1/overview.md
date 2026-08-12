@@ -1,30 +1,34 @@
 ---
 title: Fraud System v1 Overview | FWB Studio Docs
-description: Fraud System v1 overview for FiveM servers — features, frameworks, and documentation links. FiveM fraud script v1 ESX QBCore.
+description: Fraud System v1 features and setup overview for FiveM. FiveM fraud script v1 ESX QBCore.
 ---
 
-# Fraud System v1 — Overview
-
-Official FWB Studio documentation for **Fraud System v1**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426478" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Fraud System v1
 
-- **Package:** `fs_fraud_v1`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Fraud System v1** (`fs_fraud_v1`) — fs_fraud_v1 @ https://discord.gg/sPqkfQHPAa
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
+
+| | |
+| --- | --- |
+| **Resource folder** | `fs_fraud_v1` |
+| **Version** | `v1.9` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
+
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
 - [Configuration](./configuration)
+- [Exports](./exports/client) / [Server](./exports/server)
+- [Functions](./functions/client) / [Server](./functions/server)
 - [Integrations](./integrations)
-- [Common Issues](./common-issues)
-
-## Status
-
-Content is being ported from the org repo and legacy GitBook docs.
+- [Common Errors](./common-errors)

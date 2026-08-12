@@ -1,27 +1,32 @@
 ---
 title: Npc Medic Overview | FWB Studio Docs
-description: Npc Medic overview for FiveM servers — features, frameworks, and documentation links. FiveM NPC medic script.
+description: Npc Medic features and setup overview for FiveM. FiveM NPC medic script.
 ---
 
-# Npc Medic — Overview
-
-Official FWB Studio documentation for **Npc Medic**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7459663" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Npc Medic
 
-- **Package:** `fs_npcmedic`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Npc Medic** (`fs_npcmedic`) — Team FwB Studio @ https://discord.gg/sPqkfQHPAa
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_npcmedic` |
+| **Version** | `v1.1` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

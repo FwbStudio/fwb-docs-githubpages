@@ -1,37 +1,41 @@
 ---
 title: Portable Parking Installation | FWB Studio Docs
-description: Install Portable Parking on ESX, QBCore, or Qbox FiveM servers. Dependencies, server.cfg, and fs_portableparking setup. FiveM portable parking script.
+description: Install Portable Parking on FiveM — dependencies and server.cfg. FiveM portable parking script.
 ---
 
-# Portable Parking — Installation
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7431940" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Requirements
+# Portable Parking — Installation
 
-- FiveM server (latest artifacts recommended)
-- **ESX**, **QBCore**, or **Qbox**
-- Dependencies listed in `fs_portableparking/fxmanifest.lua` (commonly `ox_lib`, `fs_bridge`, etc.)
+## Dependencies
+
+| Resource | Required | Notes |
+| --- | --- | --- |
+| `ox_lib` | Yes | Shared UI / callbacks |
+| `oxmysql` | Yes | MySQL database |
+| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+
+
+## [INSTALL_ME_FIRST] files
+
+- `esx_database.sql`
+- `qb_database.sql`
+
 
 ## Install steps
 
 1. Place `fs_portableparking` in `resources/[fs]/`.
-2. Run SQL / add items from `[INSTALL_ME_FIRST]` if included.
-3. Configure shared config files before first start.
-4. Add to `server.cfg`:
+2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
+3. Configure `config/` files before first start.
+4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_portableparking
 ```
 
-5. Restart the server and check F8 / server console for errors.
-
-## Next
-
-- [Preview](./)
-- [Overview](./overview)
-
+5. Restart the server and check the console for errors.

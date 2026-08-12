@@ -1,18 +1,18 @@
 ---
 title: Trap Phone v2 Integrations | FWB Studio Docs
-description: Trap Phone v2 integrations guide for FiveM. FiveM trap phone v2 drug script.
+description: Supported inventories, targets, and Bridge integrations.
 ---
+
 
 # Trap Phone v2 — Integrations
 
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426493" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
+Works with **FS Bridge** for framework, inventory, target, and dispatch adapters.
 
-Documentation for **Trap Phone v2** is being ported from `fs_trapphone_v2`.
+| Integration | Supported |
+| --- | --- |
+| ESX / QBCore / Qbox | Yes (via Bridge) |
+| ox_inventory | Yes |
+| qb-inventory / qs-inventory | Yes (via Bridge overrides) |
+| ox_target / qb-target | When configured in Bridge |
 
-## Related
-
-- [Overview](./overview)
-- [Installation](./installation)
+Configure unsupported resources in `fs_bridge/config/` overrides. See [Bridge Supported](/bridge/supported).

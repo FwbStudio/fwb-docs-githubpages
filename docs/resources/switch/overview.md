@@ -1,27 +1,32 @@
 ---
 title: Switch Overview | FWB Studio Docs
-description: Switch overview for FiveM servers — features, frameworks, and documentation links. FiveM gun switch script.
+description: Switch features and setup overview for FiveM. FiveM gun switch script.
 ---
 
-# Switch — Overview
-
-Official FWB Studio documentation for **Switch**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426485" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Switch
 
-- **Package:** `fs_switch`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Switch** (`fs_switch`) — fs_switch
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_switch` |
+| **Version** | `v2.4` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

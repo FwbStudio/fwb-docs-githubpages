@@ -1,37 +1,36 @@
 ---
 title: Tranquilizer Installation | FWB Studio Docs
-description: Install Tranquilizer on ESX, QBCore, or Qbox FiveM servers. Dependencies, server.cfg, and fs_tranquilizer setup. FiveM tranquilizer script.
+description: Install Tranquilizer on FiveM — dependencies and server.cfg. FiveM tranquilizer script.
 ---
 
-# Tranquilizer — Installation
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7444827" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Requirements
+# Tranquilizer — Installation
 
-- FiveM server (latest artifacts recommended)
-- **ESX**, **QBCore**, or **Qbox**
-- Dependencies listed in `fs_tranquilizer/fxmanifest.lua` (commonly `ox_lib`, `fs_bridge`, etc.)
+## Dependencies
+
+| Resource | Required | Notes |
+| --- | --- | --- |
+| `oxmysql` | Yes | MySQL database |
+| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+
+
+
 
 ## Install steps
 
 1. Place `fs_tranquilizer` in `resources/[fs]/`.
-2. Run SQL / add items from `[INSTALL_ME_FIRST]` if included.
-3. Configure shared config files before first start.
-4. Add to `server.cfg`:
+2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
+3. Configure `config/` files before first start.
+4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_tranquilizer
 ```
 
-5. Restart the server and check F8 / server console for errors.
-
-## Next
-
-- [Preview](./)
-- [Overview](./overview)
-
+5. Restart the server and check the console for errors.

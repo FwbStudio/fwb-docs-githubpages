@@ -1,18 +1,50 @@
 ---
 title: Fraud System v2 Configuration | FWB Studio Docs
-description: Fraud System v2 configuration guide for FiveM. FiveM fraud script v2 ESX QBCore Qbox.
+description: Configure Fraud System v2 — config files and key options.
 ---
+
 
 # Fraud System v2 — Configuration
 
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426477" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
+Edit the config files inside `fs_fraud_v2/config/`. Exact keys depend on your package version.
 
-Documentation for **Fraud System v2** is being ported from `fs_fraud_v2`.
+## Config excerpt
 
-## Related
+```lua
+--[[*
+*
+* Config File Start Here
+*
+]]
 
-- [Overview](./overview)
-- [Installation](./installation)
+config.target = true
+
+--if u don't have jarry in fuel station then as 'weapon_petrolcan' as item or weapon according to ur inventory into any shop
+config.InfinteFuel = false -- no need jarry can to refuel
+
+-- config.generator = true -- if this true means generator acting as power source
+-- config.generator = false -- if this false means laptop act as power source
+config.generator = true
+
+-- increase in this fuelConsumption will consume fuel faster
+-- decrease in this fuelcnsumption value will consume fuel slower
+config.FuelConsumption = 1  -- defult = 1 mean fuel Consumption per mintue 1 from total fuel 100 so 100% filled generator will run 100 mints
+
+config.RemoveFuelCan = true -- remove fuel can from player after refill done
+
+config.PickupAllowed = {    -- items can be pickup back if once placed?
+    generator = true,
+    skimmer = true,
+    laptop = true,
+    printer = true,
+    cardshark = true,
+    clonejack = true,
+    doppel = true,
+}
+
+-- config.RemoveOnUse = true --means remove item from inventory on use like laptop , printer,generator,skimmer,cardshark,doppel,clonnedsocialcard
+-- config.RemoveOnUse = false --don't remove item from inventory on use like laptop , printer,generator,skimmer,cardshark,doppel,clonnedsocialcard
+config.RemoveOnUse = true
+config.PickupAdded = true -- pickup added to inventory when u pickup item from ground
+```
+

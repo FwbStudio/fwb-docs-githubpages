@@ -1,27 +1,33 @@
 ---
 title: Weave Wear Wig Carting Overview | FWB Studio Docs
-description: Weave Wear Wig Carting overview for FiveM servers — features, frameworks, and documentation links. FiveM weave wear wig script.
+description: Weave Wear Wig Carting features and setup overview for FiveM. FiveM weave wear wig script.
 ---
 
-# Weave Wear Wig Carting — Overview
-
-Official FWB Studio documentation for **Weave Wear Wig Carting**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426495" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Weave Wear Wig Carting
 
-- **Package:** `fs_weavewear_V1`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Weave Wear Wig Carting** (`fs_weavewear_V1`) — fs_weavewear
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_weavewear_V1` |
+| **Version** | `v1.1` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Functions](./functions/client)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

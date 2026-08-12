@@ -1,18 +1,50 @@
 ---
 title: Fraud System v1 Configuration | FWB Studio Docs
-description: Fraud System v1 configuration guide for FiveM. FiveM fraud script v1 ESX QBCore.
+description: Configure Fraud System v1 — config files and key options.
 ---
+
 
 # Fraud System v1 — Configuration
 
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426478" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
+Edit the config files inside `fs_fraud_v1/config/`. Exact keys depend on your package version.
 
-Documentation for **Fraud System v1** is being ported from `fs_fraud_v1`.
+## Config excerpt
 
-## Related
+```lua
+Config = {}
 
-- [Overview](./overview)
-- [Installation](./installation)
+--if u don't have jarry in fuel station then as 'weapon_petrolcan' as item or weapon according to ur inventory into any shop
+Config.InfinteFuel = false -- no need jarry can to refuel
+
+-- increase in this fuelConsumption will consume fuel faster
+-- decrease in this fuelcnsumption value will consume fuel slower
+Config.FuelConsumption = 1  -- defult = 1 mean fuel Consumption per mintue 1 from total fuel 100 so 100% filled generator will run 100 mints
+
+Config.RemoveFuelCan = true -- remove fuel can from player after refill done
+
+Config.PickupAllowed = {    -- items can be pickup back if once placed?
+    generator = true,
+    skimmer = true,
+    laptop = true,
+    printer = true
+}
+
+Config.JobOnly = false     -- work only under job
+Config.JobName = 'scammer' -- jobname only work if Config.JobOnly will be true
+
+-- Config.RemoveOnUse = true --means remove item from inventory on use like laptop , printer,generator,skimmer
+-- onfig.RemoveOnUse = false --don't remove item from inventory on use like laptop , printer,generator,skimmer
+Config.RemoveOnUse = true
+
+Config.Controls = {
+    up = 172,
+    down = 173,
+    left = 15,
+    right = 14,
+
+    place = 38,   -- E
+    cancel = 177, -- H
+    pickup = 47,  -- G
+}
+```
+

@@ -1,27 +1,34 @@
 ---
 title: Duty System Overview | FWB Studio Docs
-description: Duty System overview for FiveM servers — features, frameworks, and documentation links. FiveM duty system ESX QBCore Qbox.
+description: Duty System features and setup overview for FiveM. FiveM duty system ESX QBCore Qbox.
 ---
 
-# Duty System — Overview
-
-Official FWB Studio documentation for **Duty System**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426483" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Duty System
 
-- **Package:** `fs_dutysystem`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Duty System** (`fs_dutysystem`) — fs_dutysystem
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_dutysystem` |
+| **Version** | `1.4` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Exports](./exports/client) / [Server](./exports/server)
+- [Functions](./functions/client)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

@@ -1,11 +1,21 @@
 export type ResourceCategory = 'scripts' | 'weapons'
 
 import { TEBEX_MEDIA, tebexPackageUrl } from './tebex-media.mts'
+import { RESOURCE_PAGES } from './resource-pages.mts'
 
 export interface ResourceVideo {
   title: string
   /** YouTube video ID (the part after watch?v=) */
   youtubeId: string
+}
+
+export interface ResourcePages {
+  configuration?: boolean
+  exports?: { client?: boolean; server?: boolean }
+  functions?: { client?: boolean; server?: boolean }
+  integrations?: boolean
+  commonErrors?: boolean
+  questions?: boolean
 }
 
 export interface ResourceEntry {
@@ -24,8 +34,8 @@ export interface ResourceEntry {
   /** Group versioned products under one sidebar family (e.g. fraud → Fraud v1 + v2) */
   family?: string
   familyLabel?: string
-  /** Extra pages beyond preview, overview, installation */
-  extraPages?: Array<'configuration' | 'integrations' | 'common-issues'>
+  /** Override auto-detected pages (see resource-pages.mts) */
+  pages?: ResourcePages
 }
 
 export const DEFAULT_TEBEX_STORE = 'https://fwbstudio.tebex.io/'
@@ -78,8 +88,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'fraud',
     familyLabel: 'Fraud',
-    seoKeywords: 'FiveM fraud script v1 ESX QBCore',
-    extraPages: ['configuration', 'integrations', 'common-issues']
+    seoKeywords: 'FiveM fraud script v1 ESX QBCore'
   },
   {
     slug: 'fraud-v2',
@@ -88,8 +97,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'fraud',
     familyLabel: 'Fraud',
-    seoKeywords: 'FiveM fraud script v2 ESX QBCore Qbox',
-    extraPages: ['configuration', 'integrations', 'common-issues']
+    seoKeywords: 'FiveM fraud script v2 ESX QBCore Qbox'
   },
   {
     slug: 'gun-jamming',
@@ -224,8 +232,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'trap-phone',
     familyLabel: 'Trap Phone',
-    seoKeywords: 'FiveM trap phone v1 drug script',
-    extraPages: ['configuration', 'integrations', 'common-issues']
+    seoKeywords: 'FiveM trap phone v1 drug script'
   },
   {
     slug: 'trap-phone-v2',
@@ -234,8 +241,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'trap-phone',
     familyLabel: 'Trap Phone',
-    seoKeywords: 'FiveM trap phone v2 drug script',
-    extraPages: ['configuration', 'integrations', 'common-issues']
+    seoKeywords: 'FiveM trap phone v2 drug script'
   },
   {
     slug: 'useable-foods',
@@ -295,23 +301,25 @@ export function applyTebexMedia(entry: ResourceEntry): ResourceEntry {
 /** Catalog entries merged with Tebex purchase URLs + preview videos */
 export const RESOURCES_PUBLISHED = RESOURCES.map(applyTebexMedia)
 
-export function buildResourcesSidebar() {
-  const scripts = RESOURCES_PUBLISHED.filter((r) => r.category === 'scripts')
-  const weapons = RESOURCES_PUBLISHED.filter((r) => r.category === 'weapons')
-
-  return [
-    { text: 'All Scripts', link: '/resources/' },
-    {
-      text: RESOURCE_CATEGORIES.scripts,
-      collapsed: true,
-      items: buildScriptSidebarItems(scripts)
-    },
-    {
-      text: RESOURCE_CATEGORIES.weapons,
-      collapsed: true,
-      items: weapons.map(buildResourceGroup)
+function getPages(resource: ResourceEntry): ResourcePages {
+  return (
+    RESOURCE_PAGES[resource.slug] ??
+    resource.pages ?? {
+      configuration: resource.category === 'scripts',
+      commonErrors: resource.category === 'scripts' && resource.slug !== 'notify',
+      questions: resource.slug === 'notify'
     }
-  ]
+  )
+}
+
+export function buildScriptsSidebar() {
+  const scripts = RESOURCES_PUBLISHED.filter((r) => r.category === 'scripts')
+  return buildScriptSidebarItems(scripts)
+}
+
+export function buildWeaponsSidebar() {
+  const weapons = RESOURCES_PUBLISHED.filter((r) => r.category === 'weapons')
+  return weapons.map((r) => buildResourceGroup(r, false))
 }
 
 type SidebarItem =
@@ -350,39 +358,56 @@ function buildScriptSidebarItems(scripts: ResourceEntry[]): SidebarItem[] {
   return items
 }
 
-function buildResourceGroup(resource: ResourceEntry): SidebarItem {
+function buildResourceGroup(resource: ResourceEntry, collapsed = true): SidebarItem {
   const base = `/resources/${resource.slug}`
-  const items: Array<
-    | { text: string; link: string }
-    | { text: string; collapsed: boolean; items: Array<{ text: string; link: string }> }
-  > = [
+  const pages = getPages(resource)
+  const items: SidebarItem[] = [
     { text: 'Preview', link: `${base}/` },
     { text: 'Overview', link: `${base}/overview` },
     { text: 'Installation', link: `${base}/installation` }
   ]
 
-  const docExtras: Array<{ text: string; link: string }> = []
-  if (resource.extraPages?.includes('configuration')) {
-    docExtras.push({ text: 'Configuration', link: `${base}/configuration` })
-  }
-  if (resource.extraPages?.includes('integrations')) {
-    docExtras.push({ text: 'Integrations', link: `${base}/integrations` })
-  }
-  if (resource.extraPages?.includes('common-issues')) {
-    docExtras.push({ text: 'Common Issues', link: `${base}/common-issues` })
+  if (pages.configuration) {
+    items.push({ text: 'Configuration', link: `${base}/configuration` })
   }
 
-  if (docExtras.length > 0) {
-    items.push({
-      text: 'Documentation',
-      collapsed: true,
-      items: docExtras
-    })
+  if (pages.exports?.client || pages.exports?.server) {
+    const exportItems: SidebarItem[] = []
+    if (pages.exports.client) exportItems.push({ text: 'Client', link: `${base}/exports/client` })
+    if (pages.exports.server) exportItems.push({ text: 'Server', link: `${base}/exports/server` })
+    if (exportItems.length === 1) {
+      items.push({ text: 'Exports', link: exportItems[0].link })
+    } else {
+      items.push({ text: 'Exports', collapsed: true, items: exportItems })
+    }
+  }
+
+  if (pages.functions?.client || pages.functions?.server) {
+    const fnItems: SidebarItem[] = []
+    if (pages.functions.client) fnItems.push({ text: 'Client', link: `${base}/functions/client` })
+    if (pages.functions.server) fnItems.push({ text: 'Server', link: `${base}/functions/server` })
+    if (fnItems.length === 1) {
+      items.push({ text: 'Functions', link: fnItems[0].link })
+    } else {
+      items.push({ text: 'Functions', collapsed: true, items: fnItems })
+    }
+  }
+
+  if (pages.integrations) {
+    items.push({ text: 'Integrations', link: `${base}/integrations` })
+  }
+
+  if (pages.commonErrors) {
+    items.push({ text: 'Common Errors', link: `${base}/common-errors` })
+  }
+
+  if (pages.questions) {
+    items.push({ text: 'Questions', link: `${base}/questions` })
   }
 
   return {
     text: resource.name,
-    collapsed: true,
+    collapsed,
     items
   }
 }

@@ -1,27 +1,33 @@
 ---
 title: Icebox Overview | FWB Studio Docs
-description: Icebox overview for FiveM servers — features, frameworks, and documentation links. FiveM icebox jewelry script.
+description: Icebox features and setup overview for FiveM. FiveM icebox jewelry script.
 ---
 
-# Icebox — Overview
-
-Official FWB Studio documentation for **Icebox**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426486" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Icebox
 
-- **Package:** `fs_icebox`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Icebox** (`fs_icebox`) — FS Clothing As Item
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_icebox` |
+| **Version** | `v2.4` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Functions](./functions/client)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

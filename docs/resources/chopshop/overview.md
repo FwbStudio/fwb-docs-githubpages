@@ -1,27 +1,33 @@
 ---
 title: ChopShop Overview | FWB Studio Docs
-description: ChopShop overview for FiveM servers — features, frameworks, and documentation links. FiveM chop shop script ESX QBCore.
+description: ChopShop features and setup overview for FiveM. FiveM chop shop script ESX QBCore.
 ---
 
-# ChopShop — Overview
-
-Official FWB Studio documentation for **ChopShop**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426482" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# ChopShop
 
-- **Package:** `fs_chopshop`
-- **Frameworks:** ESX, QBCore, and Qbox
+**ChopShop** (`fs_chopshop`) — fs_chopshop
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_chopshop` |
+| **Version** | `v1.5` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Exports](./exports/client) / [Server](./exports/server)
+- [Functions](./functions/client) / [Server](./functions/server)
+- [Common Errors](./common-errors)

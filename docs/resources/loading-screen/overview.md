@@ -1,27 +1,30 @@
 ---
 title: Loading Screen v1 Overview | FWB Studio Docs
-description: Loading Screen v1 overview for FiveM servers — features, frameworks, and documentation links. FiveM loading screen FWB Studio.
+description: Loading Screen v1 features and setup overview for FiveM. FiveM loading screen FWB Studio.
 ---
 
-# Loading Screen v1 — Overview
-
-Official FWB Studio documentation for **Loading Screen v1**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426475" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Loading Screen v1
 
-- **Package:** `fs_loadingscreen`
-- **Frameworks:** ESX, QBCore, and Qbox
 
-## Pages
+A clean, immersive loading screen designed to keep players engaged while the world loads in the background. Smooth progress animations, subtle visuals, and optimized performance ensure a seamless transition into gameplay without unnecessary delays. Built with stability in mind, it syncs perfectly with player spawn events to avoid glitches or stuck states, delivering a professional first impression every time players join the server.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_loadingscreen` |
+| **Version** | `v1.2` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Common Errors](./common-errors)

@@ -1,37 +1,37 @@
 ---
 title: Nails Saloon Installation | FWB Studio Docs
-description: Install Nails Saloon on ESX, QBCore, or Qbox FiveM servers. Dependencies, server.cfg, and fs_nailssaloon setup. FiveM nails saloon script ESX QBCore.
+description: Install Nails Saloon on FiveM — dependencies and server.cfg. FiveM nails saloon script ESX QBCore.
 ---
 
-# Nails Saloon — Installation
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426489" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Requirements
+# Nails Saloon — Installation
 
-- FiveM server (latest artifacts recommended)
-- **ESX**, **QBCore**, or **Qbox**
-- Dependencies listed in `fs_nailssaloon/fxmanifest.lua` (commonly `ox_lib`, `fs_bridge`, etc.)
+## Dependencies
+
+| Resource | Required | Notes |
+| --- | --- | --- |
+| `fs_bridge` | Yes | FWB Bridge — required for framework integration |
+| `ox_lib` | Yes | Shared UI / callbacks |
+| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+
+
+
 
 ## Install steps
 
 1. Place `fs_nailssaloon` in `resources/[fs]/`.
-2. Run SQL / add items from `[INSTALL_ME_FIRST]` if included.
-3. Configure shared config files before first start.
-4. Add to `server.cfg`:
+2. Import SQL and add items from `[INSTALL_ME_FIRST]` when provided.
+3. Configure `config/` files before first start.
+4. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
 ```cfg
 ensure fs_bridge
 ensure fs_nailssaloon
 ```
 
-5. Restart the server and check F8 / server console for errors.
-
-## Next
-
-- [Preview](./)
-- [Overview](./overview)
-
+5. Restart the server and check the console for errors.

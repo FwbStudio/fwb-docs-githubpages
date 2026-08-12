@@ -1,27 +1,31 @@
 ---
 title: Items Placeables Overview | FWB Studio Docs
-description: Items Placeables overview for FiveM servers — features, frameworks, and documentation links. FiveM placeable items script.
+description: Items Placeables features and setup overview for FiveM. FiveM placeable items script.
 ---
 
-# Items Placeables — Overview
-
-Official FWB Studio documentation for **Items Placeables**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426487" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Items Placeables
 
-- **Package:** `fs_placeables`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Items Placeables** (`fs_placeables`) is a FWB Studio script for ESX, QBCore, and Qbox. It uses FS Bridge for framework and inventory compatibility where noted in the manifest. Install dependencies first, then configure `config/` before going live.
 
-## Pages
+## Package
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+| | |
+| --- | --- |
+| **Resource folder** | `fs_placeables` |
+| **Version** | `v1.2` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-## Status
+## Documentation
 
-Content is being ported from the org repo and legacy GitBook docs.
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Functions](./functions/client)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

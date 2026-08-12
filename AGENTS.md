@@ -7,9 +7,14 @@ When adding or updating script documentation in this repo, follow:
 
 ## Current structure
 
-- Get Started: general FiveM + FWB install
-- Bridge: Overview, Supported, nested Script Overrides, nested Configuration
-- Resources: per-script docs (add new products here)
+- Get Started: general FiveM + FWB install (sidebar expanded)
+- Bridge: Overview, Supported, Script Overrides, Configuration (sidebar expanded)
+- Scripts: per-script docs — Preview, Overview, Installation, then optional Configuration / Exports / Functions / Integrations / Common Errors or Questions
+- Weapons: weapon pack docs (same page model)
+
+Sidebar: **Scripts** and **Weapons** are top-level groups (like Bridge), expanded by default. No “All Scripts” index page.
+
+Regenerate resource pages: `node scripts/sync-resources-from-github.mjs` (needs `GITHUB_TOKEN`). Page flags: `docs/.vitepress/resource-pages.mts`.
 
 ## Rules
 
@@ -38,11 +43,7 @@ Resource catalog (names, repos, sidebar): [`docs/.vitepress/resources-catalog.mt
 
 Bridge sidebar: one **Bridge** group → Overview, Supported, **Script Overrides** (collapsed), **Configuration** (collapsed).
 
-Resources: versioned products use `family` + `familyLabel` (e.g. Fraud → v1 + v2). Simple scripts (Bodybag) expand straight to Preview / Overview / Installation.
-
-Sidebar layout under **Resources**: **Scripts** then **Weapons**. Click names to expand. First tab: **Preview** (videos + Tebex). Extra docs nest under **Documentation** (collapsed) when applicable.
-
-Preview page fields in catalog: `tagline`, `tebexUrl`, `videos: [{ title, youtubeId }]`.
+Resources sidebar is auto-built from `resources-catalog.mts` + `resource-pages.mts`. Versioned products use `family` + `familyLabel` (Fraud v1/v2, Trap Phone v1/v2). Preview = `index.md` with Tebex + YouTube.
 
 SEO: every page needs `title` + `description` frontmatter with product name and "FiveM / ESX / QBCore" keywords.
 

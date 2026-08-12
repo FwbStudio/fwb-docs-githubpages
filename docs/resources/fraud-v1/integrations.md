@@ -1,18 +1,18 @@
 ---
 title: Fraud System v1 Integrations | FWB Studio Docs
-description: Fraud System v1 integrations guide for FiveM. FiveM fraud script v1 ESX QBCore.
+description: Supported inventories, targets, and Bridge integrations.
 ---
+
 
 # Fraud System v1 — Integrations
 
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426478" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
+Works with **FS Bridge** for framework, inventory, target, and dispatch adapters.
 
-Documentation for **Fraud System v1** is being ported from `fs_fraud_v1`.
+| Integration | Supported |
+| --- | --- |
+| ESX / QBCore / Qbox | Yes (via Bridge) |
+| ox_inventory | Yes |
+| qb-inventory / qs-inventory | Yes (via Bridge overrides) |
+| ox_target / qb-target | When configured in Bridge |
 
-## Related
-
-- [Overview](./overview)
-- [Installation](./installation)
+Configure unsupported resources in `fs_bridge/config/` overrides. See [Bridge Supported](/bridge/supported).

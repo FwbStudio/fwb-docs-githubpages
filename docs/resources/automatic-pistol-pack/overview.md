@@ -1,27 +1,30 @@
 ---
 title: Automatic Pistol Pack Overview | FWB Studio Docs
-description: Automatic Pistol Pack overview for FiveM servers — features, frameworks, and documentation links. FiveM automatic pistol weapon pack install.
+description: Automatic Pistol Pack features and setup overview for FiveM. FiveM automatic pistol weapon pack install.
 ---
 
-# Automatic Pistol Pack — Overview
-
-Official FWB Studio documentation for **Automatic Pistol Pack**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/6835149" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Automatic Pistol Pack
 
-- **Package:** `fs_weapons_gangautopistol_v1`
-- **Frameworks:** weapon meta / stream files
+**Automatic Pistol Pack** (`fs_weapons_gangautopistol_v1`) — fs_weapons_gangautopistol_v1
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_weapons_gangautopistol_v1` |
+| **Version** | `v1.3` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | Weapon Pack |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Common Errors](./common-errors)

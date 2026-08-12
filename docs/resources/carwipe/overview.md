@@ -1,27 +1,32 @@
 ---
 title: Carwipe Overview | FWB Studio Docs
-description: Carwipe overview for FiveM servers — features, frameworks, and documentation links. FiveM car wipe admin script.
+description: Carwipe features and setup overview for FiveM. FiveM car wipe admin script.
 ---
 
-# Carwipe — Overview
-
-Official FWB Studio documentation for **Carwipe**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426481" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Carwipe
 
-- **Package:** `fs_carwipe`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Carwipe** (`fs_carwipe`) is a FWB Studio script for ESX, QBCore, and Qbox. It uses FS Bridge for framework and inventory compatibility where noted in the manifest. Install dependencies first, then configure `config/` before going live.
 
-## Pages
+## Package
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+| | |
+| --- | --- |
+| **Resource folder** | `fs_carwipe` |
+| **Version** | `v1.5` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-## Status
+## Documentation
 
-Content is being ported from the org repo and legacy GitBook docs.
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Exports](./exports/client) / [Server](./exports/server)
+- [Functions](./functions/server)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

@@ -1,27 +1,34 @@
 ---
 title: Safezone Creator Overview | FWB Studio Docs
-description: Safezone Creator overview for FiveM servers — features, frameworks, and documentation links. FiveM safezone creator script.
+description: Safezone Creator features and setup overview for FiveM. FiveM safezone creator script.
 ---
 
-# Safezone Creator — Overview
-
-Official FWB Studio documentation for **Safezone Creator**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426491" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Safezone Creator
 
-- **Package:** `fs_safezonecreator`
-- **Frameworks:** ESX, QBCore, and Qbox
 
-## Pages
+Safezone Creator is an in-game safezone management tool for FiveM servers.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+Use the pages below to check supported resources, understand the in-game config flow, and complete installation.
 
-## Status
+## Package
 
-Content is being ported from the org repo and legacy GitBook docs.
+| | |
+| --- | --- |
+| **Resource folder** | `fs_safezonecreator` |
+| **Version** | `v2.1` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
+
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Functions](./functions/client)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

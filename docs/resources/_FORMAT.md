@@ -2,100 +2,92 @@
 
 Use this format whenever a new FWB script is added under `docs/resources/`.
 
-Keep pages short, practical, and matching the Bridge section style.
+Run `node scripts/sync-resources-from-github.mjs` (requires `GITHUB_TOKEN`) to regenerate pages from GitHub + legacy GitBook content.
 
 ## Folder layout
 
 ```text
 docs/resources/<script-slug>/
-  index.md                 # Overview (required)
-  installation.md          # Install steps (required)
-  configuration.md         # Config overview OR split files below
-  esx-config.md            # Optional: ESX config reference
-  qbcore-config.md         # Optional: QBCore / Qbox config reference
-  integrations.md          # Optional: supported resources
-  exports.md               # Optional: exports / functions
-  common-issues.md         # Optional: FAQ / fixes
+  index.md                 # Preview (hero + videos)
+  overview.md              # Features and package info
+  installation.md          # Dependencies table + install steps
+  configuration.md         # When config/ exists (optional)
+  exports/
+    client.md              # Optional
+    server.md              # Optional
+  functions/
+    client.md              # Optional
+    server.md              # Optional
+  integrations.md          # Optional — Bridge / inventory support
+  common-errors.md         # Optional — symptom → fix tables
+  questions.md             # Optional — FAQ (e.g. Notify)
 ```
 
-Slug rules:
+Slug rules: lowercase kebab-case (`safezone-creator`, `trap-phone-v2`).
 
-- lowercase
-- kebab-case
-- match product name when possible (`safezone-creator`, `trap-phone`, `white-widow`)
+## Sidebar
 
-## Sidebar entry
+Top-level groups in `docs/.vitepress/config.mts`:
 
-Add under `Resources` in `docs/.vitepress/config.mts`:
+- **Get Started** — expanded
+- **Bridge** — expanded
+- **Scripts** — expanded, all script products listed
+- **Weapons** — expanded, all weapon packs listed
 
-```ts
-{
-  text: 'Script Display Name',
-  collapsed: true,
-  items: [
-    { text: 'Overview', link: '/resources/<script-slug>/' },
-    { text: 'Installation', link: '/resources/<script-slug>/installation' },
-    { text: 'Configuration', link: '/resources/<script-slug>/configuration' },
-    { text: 'Integrations', link: '/resources/<script-slug>/integrations' },
-    { text: 'Exports', link: '/resources/<script-slug>/exports' },
-    { text: 'Common Issues', link: '/resources/<script-slug>/common-issues' }
-  ]
-}
-```
+Per-product sidebar (auto-built from `resource-pages.mts`):
 
-Only include links for pages that exist.
+1. Preview
+2. Overview
+3. Installation
+4. Configuration *(if applicable)*
+5. Exports → Client / Server *(if applicable)*
+6. Functions → Client / Server *(if applicable)*
+7. Integrations *(if applicable)*
+8. Common Errors **or** Questions *(one or the other, not both)*
+
+Only include links for pages that exist for that product.
 
 ## Page checklist
 
-### `index.md` (Overview)
+### Preview (`index.md`)
 
-- What the script does (2–4 sentences)
-- Frameworks: ESX / QBCore / Qbox
-- Dependencies (Bridge, ox_lib, MLO, etc.)
-- Links to Installation / Config / Issues
+- Hero, Tebex buy button, YouTube embeds
+- Links to Overview / Installation
 
-### `installation.md`
+### Overview
 
-- Requirements
-- Folder placement (`[fs]`)
-- `server.cfg` notes
-- Items / SQL / images from `[INSTALL_ME_FIRST]`
-- Restart notes
+- What the script does (port from legacy GitBook README when available)
+- Package table: folder name, version, frameworks
+- Links to other doc pages
 
-### Configuration pages
+### Installation
 
-- Show the real editable config keys users need
-- Prefer exact file names from the resource
-- Split ESX vs QB only when configs differ a lot
+- **Dependencies table** with Required vs Optional columns
+- `[INSTALL_ME_FIRST]` file list when present
+- Numbered install steps + `server.cfg`
 
-### `integrations.md`
+### Configuration
 
-- Table of supported inventories, targets, appearance, dispatch, etc.
-- Say what to do if unsupported (override / contact support)
+- Real config file paths and excerpt from `config/config.lua`
 
-### `exports.md`
+### Exports / Functions
 
-- Client / server exports
-- Short examples
-- Use expandable `<details>` sections for each export when the list is long
+- One page per side (client / server) when exports or unlocked hooks exist
+- Use `<details>` per export name
 
-### `common-issues.md`
+### Common Errors / Questions
 
-- Symptom → cause → fix
-- Keep console errors in fenced code blocks
+- Tables or FAQ sections ported from old docs when possible
 
 ## Writing rules
 
-- No “Legacy” labels unless the product is actually discontinued
-- Prefer tables for compatibility lists
-- Prefer expandable sections for long override/export lists
-- Do not invent features that are not in the script
-- If source docs exist in the old GitBook repo, port and clean them instead of rewriting from memory
+- No “Legacy” labels unless the product is discontinued
+- Prefer tables for dependencies and compatibility
+- Do not invent features — use repo source + old GitBook docs
+- Versioned products (Fraud, Trap Phone) always get separate folders
 
 ## Source of truth order
 
-1. Local script package (`fxmanifest`, `config`, `[INSTALL_ME_FIRST]`)
-2. Old GitBook docs in the `docs` repo
-3. Store page text (for marketing wording only)
-
-When the user says “add docs for X”, follow this format and create the folder + sidebar entry first.
+1. GitHub repo (`fxmanifest`, `config`, `[INSTALL_ME_FIRST]`, unlocked files)
+2. Old GitBook docs in `../docs/scripts/` (legacy)
+3. Tebex store text (marketing only)

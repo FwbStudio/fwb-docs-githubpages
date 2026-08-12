@@ -1,27 +1,34 @@
 ---
 title: Tranquilizer Overview | FWB Studio Docs
-description: Tranquilizer overview for FiveM servers — features, frameworks, and documentation links. FiveM tranquilizer script.
+description: Tranquilizer features and setup overview for FiveM. FiveM tranquilizer script.
 ---
 
-# Tranquilizer — Overview
-
-Official FWB Studio documentation for **Tranquilizer**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7444827" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Tranquilizer
 
-- **Package:** `fs_tranquilizer`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Tranquilizer** (`fs_tranquilizer`) — Dead-player tranquilizer flow with ambulance compatibility, hospital scenes, and persisted paralysis timers.
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_tranquilizer` |
+| **Version** | `v1.1` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Exports](./exports/client) / [Server](./exports/server)
+- [Functions](./functions/client) / [Server](./functions/server)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

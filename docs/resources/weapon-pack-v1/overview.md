@@ -1,27 +1,30 @@
 ---
 title: Weapon Pack v1 Overview | FWB Studio Docs
-description: Weapon Pack v1 overview for FiveM servers — features, frameworks, and documentation links. FiveM weapon pack v1 install ESX QBCore.
+description: Weapon Pack v1 features and setup overview for FiveM. FiveM weapon pack v1 install ESX QBCore.
 ---
 
-# Weapon Pack v1 — Overview
-
-Official FWB Studio documentation for **Weapon Pack v1**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7005106" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Weapon Pack v1
 
-- **Package:** `fs_weapons_v1`
-- **Frameworks:** weapon meta / stream files
+**Weapon Pack v1** (`fs_weapons_v1`) — fs_weapons_v1 @ https://discord.gg/sPqkfQHPAa
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_weapons_v1` |
+| **Version** | `v1.2` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | Weapon Pack |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Common Errors](./common-errors)

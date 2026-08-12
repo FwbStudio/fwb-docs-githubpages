@@ -1,18 +1,50 @@
 ---
 title: Trap Phone v1 Configuration | FWB Studio Docs
-description: Trap Phone v1 configuration guide for FiveM. FiveM trap phone v1 drug script.
+description: Configure Trap Phone v1 — config files and key options.
 ---
+
 
 # Trap Phone v1 — Configuration
 
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview &amp; videos</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7490289" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
+Edit the config files inside `fs_trapphone_v1/config/`. Exact keys depend on your package version.
 
-Documentation for **Trap Phone v1** is being ported from `fs_trapphone_v1`.
+## Config excerpt
 
-## Related
+```lua
+Config = Config or {}
 
-- [Overview](./overview)
-- [Installation](./installation)
+local seconds = 1000
+
+-- Options: 'auto', 'esx', 'qbcore', 'qbox'. Missing Config.framework also falls back to auto.
+Config.framework = 'auto'
+
+-- Set true if you want debug prints in console.
+Config.debug = false
+
+-- Language file from locales/translations.
+-- Available locales right now: 'en', 'es', 'fr', 'de', 'pt', 'tr', 'ar'
+-- Example: Config.locale = 'en'
+Config.locale = 'en'
+
+Config.DefaultDrugProp = {
+    model = 'prop_weed_bottle',
+    pos = vec3(0.13, 0.02, 0.0),
+    rot = vec3(-90.0, 0.0, 0.0),
+}
+
+Config.Drugs = {
+    -- quantity can be a number or { min = 1, max = 5 }
+    -- price can be a number or { min = 50, max = 100 }
+    -- prop is optional. If prop is missing, Config.DefaultDrugProp will be used.
+
+    { -- quantity and price both random
+        name = 'water',
+        quantity = { min = 10, max = 15 },
+        price = { min = 10, max = 15 },
+    },
+
+    { -- fixed quantity and fixed price
+        name = 'wood',
+        quantity = 2,
+```
+

@@ -1,27 +1,32 @@
 ---
 title: Portable Parking Overview | FWB Studio Docs
-description: Portable Parking overview for FiveM servers — features, frameworks, and documentation links. FiveM portable parking script.
+description: Portable Parking features and setup overview for FiveM. FiveM portable parking script.
 ---
 
-# Portable Parking — Overview
-
-Official FWB Studio documentation for **Portable Parking**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7431940" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Portable Parking
 
-- **Package:** `fs_portableparking`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Portable Parking** (`fs_portableparking`) — FwB Studio@https://discord.gg/sPqkfQHPAa
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_portableparking` |
+| **Version** | `v1.2` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)

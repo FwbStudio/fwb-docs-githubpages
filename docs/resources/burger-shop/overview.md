@@ -1,27 +1,33 @@
 ---
 title: Burger Shop Overview | FWB Studio Docs
-description: Burger Shop overview for FiveM servers — features, frameworks, and documentation links. FiveM burger shop job script.
+description: Burger Shop features and setup overview for FiveM. FiveM burger shop job script.
 ---
 
-# Burger Shop — Overview
-
-Official FWB Studio documentation for **Burger Shop**.
 
 <div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">← Preview &amp; videos</a>
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426480" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-## Supported
+# Burger Shop
 
-- **Package:** `fs_burgershop_V1`
-- **Frameworks:** ESX, QBCore, and Qbox
+**Burger Shop** (`fs_burgershop_V1`) — fs_burgershop
 
-## Pages
+Supports ESX, QBCore, and Qbox via FS Bridge where required. See Installation for dependencies and `[INSTALL_ME_FIRST]` steps.
 
-- [Preview](./) — videos and purchase link
-- [Installation](./installation)
+## Package
 
-## Status
+| | |
+| --- | --- |
+| **Resource folder** | `fs_burgershop_V1` |
+| **Version** | `v1.5` |
+| **Frameworks** | ESX, QBCore, Qbox |
+| **Category** | FiveM Script |
 
-Content is being ported from the org repo and legacy GitBook docs.
+## Documentation
+
+- [Installation](./installation) — dependencies and setup
+- [Configuration](./configuration)
+- [Functions](./functions/client) / [Server](./functions/server)
+- [Integrations](./integrations)
+- [Common Errors](./common-errors)
