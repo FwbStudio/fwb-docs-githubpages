@@ -361,15 +361,23 @@ export function buildDocsSidebar(): SidebarItem[] {
         }
       ]
     },
-    { text: 'Scripts', link: '#fwb-section-scripts' },
-    ...buildScriptsSidebar(),
-    { text: 'Weapons', link: '#fwb-section-weapons' },
-    ...buildWeaponsSidebar()
+    {
+      text: 'Scripts',
+      link: '#fwb-section-scripts',
+      collapsed: false,
+      items: buildScriptsSidebar()
+    },
+    {
+      text: 'Weapons',
+      link: '#fwb-section-weapons',
+      collapsed: false,
+      items: buildWeaponsSidebar()
+    }
   ]
 }
 
 type SidebarItem =
-  | { text: string; link: string }
+  | { text: string; link: string; collapsed?: boolean; items?: SidebarItem[] }
   | { text: string; collapsed: boolean; items: SidebarItem[] }
 
 /** Versioned families (Fraud, Trap Phone) nest under a parent; others show pages directly */
