@@ -173,7 +173,10 @@ onMounted(() => {
     </template>
 
     <template #nav-bar-title-after>
-      <span class="fwb-center-title">Docs</span>
+      <span class="fwb-center-title">
+        <span class="fwb-title-desktop">FWB Studio Documentation</span>
+        <span class="fwb-title-mobile">Docs</span>
+      </span>
     </template>
 
     <template #nav-bar-content-after>

@@ -34,7 +34,8 @@ export default defineConfig({
     ],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'FWB Studio Docs' }],
-    ['link', { rel: 'icon', href: '/fwb-docs-githubpages/logo.png', type: 'image/png' }]
+    ['link', { rel: 'icon', href: '/logo.png', type: 'image/png' }],
+    ['link', { rel: 'shortcut icon', href: '/favicon.ico' }]
   ],
   themeConfig: {
     logo: '/logo.png',

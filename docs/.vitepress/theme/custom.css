@@ -384,22 +384,47 @@ html {
   box-shadow: 0 6px 16px rgba(88, 101, 242, 0.4);
 }
 
-/* Centered 'Docs' Title in navbar */
+/* Desktop: 'FWB Studio Documentation' Title next to logo with proper spacing */
 .fwb-center-title {
-  display: block !important;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: inline-block !important;
+  margin-left: 10px;
   font-family: var(--vp-font-family-heading);
   font-size: 1.05rem;
-  font-weight: 800;
+  font-weight: 700;
   color: var(--fwb-white);
   pointer-events: none;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
+.fwb-title-desktop {
+  display: inline-block !important;
+}
+
+.fwb-title-mobile {
+  display: none !important;
+}
+
 @media (max-width: 959px) {
+  /* Mobile: 'Docs' Title centered in single navbar */
+  .fwb-center-title {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin-left: 0 !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+  }
+
+  .fwb-title-desktop {
+    display: none !important;
+  }
+
+  .fwb-title-mobile {
+    display: inline-block !important;
+  }
+
   /* 1. Hide second sub-navbar completely (Menu & Return to Top) */
   .VPLocalNav,
   .VPLocalNav-mobile {
