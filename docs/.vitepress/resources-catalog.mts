@@ -204,6 +204,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     seoKeywords: 'FiveM smoking script ESX QBCore'
   },
+  /*
   {
     slug: 'starter-pack',
     name: 'Starter Pack',
@@ -211,6 +212,7 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     seoKeywords: 'FiveM starter pack script'
   },
+  */
   {
     slug: 'switch',
     name: 'Switch',
@@ -243,13 +245,7 @@ export const RESOURCES: ResourceEntry[] = [
     familyLabel: 'Trap Phone',
     seoKeywords: 'FiveM trap phone v2 drug script'
   },
-  {
-    slug: 'useable-foods',
-    name: 'Useable Foods',
-    repo: 'fs_useablefoods',
-    category: 'scripts',
-    seoKeywords: 'FiveM useable food items script'
-  },
+
   {
     slug: 'weave-wear',
     name: 'Wigs Craft & Sell',

@@ -33,7 +33,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
 
 ---
 
-## 🧩 Scripts Catalog (31)
+## 🧩 Scripts Catalog (29)
 
 <div class="fwb-catalog-grid">
 
@@ -367,17 +367,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
     </div>
   </div>
 
-  <div class="fwb-cat-card">
-    <a href="./resources/starter-pack/" class="fwb-cat-card__header-link">
-      <h3>Starter Pack</h3>
-    </a>
-    <p>New player welcome kit, starter money & item rewards.</p>
-    <div class="fwb-cat-card__links">
-      <a href="./resources/starter-pack/">Preview</a>
-      <a href="./resources/starter-pack/overview">Overview</a>
-      <a href="./resources/starter-pack/installation">Install</a>
-    </div>
-  </div>
+
 
   <div class="fwb-cat-card">
     <a href="./resources/switch/" class="fwb-cat-card__header-link">
@@ -439,17 +429,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
     </div>
   </div>
 
-  <div class="fwb-cat-card">
-    <a href="./resources/useable-foods/" class="fwb-cat-card__header-link">
-      <h3>Useable Foods</h3>
-    </a>
-    <p>Custom consumable food & drink item effects script.</p>
-    <div class="fwb-cat-card__links">
-      <a href="./resources/useable-foods/">Preview</a>
-      <a href="./resources/useable-foods/overview">Overview</a>
-      <a href="./resources/useable-foods/installation">Install</a>
-    </div>
-  </div>
+
 
   <div class="fwb-cat-card">
     <a href="./resources/weave-wear/" class="fwb-cat-card__header-link">

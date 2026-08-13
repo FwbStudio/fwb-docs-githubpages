@@ -135,10 +135,12 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     },
     "commonErrors": true
   },
+  /*
   "starter-pack": {
     "configuration": true,
     "commonErrors": true
   },
+  */
   "switch": {
     "configuration": true,
     "commonErrors": true
@@ -162,14 +164,7 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     },
     "commonErrors": true
   },
-  "useable-foods": {
-    "configuration": true,
-    "exports": {
-      "client": true,
-      "server": true
-    },
-    "commonErrors": true
-  },
+
   "weave-wear": {
     "configuration": true,
     "exports": {

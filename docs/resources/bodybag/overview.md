@@ -10,7 +10,7 @@ description: Bodybag features and setup overview for FiveM. FiveM bodybag script
 
 # Bodybag
 
-### 🪦 Bodybag Script – Bury the Evidence, Shape the Fate
+### Bodybag Script – Bury the Evidence, Shape the Fate
 
 Take your roleplay server to the next level with this immersive **Bodybag Script**, perfect for criminal, emergency, or dark RP servers. Whether you're cleaning up after a gang war or running a funeral business, this system adds emotion, realism, and consequences.
 
@@ -63,11 +63,13 @@ Take your roleplay server to the next level with this immersive **Bodybag Script
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_bodybag` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+*You get this while purchasing this resource.*
+
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_bodybag` | ESX, QBCore, Qbox | FiveM Script |
+| **MLO Package** | `fs_mlo_lastworld` | All Frameworks (Standalone) | FiveM MLO |
+| **Bridge Package** | `fs_bridge` | ESX, QBCore, Qbox | FiveM Bridge |
 
 ## Documentation
 

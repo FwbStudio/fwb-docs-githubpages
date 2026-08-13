@@ -13,7 +13,8 @@ export default defineConfig({
   // and restore docs/public/CNAME.
   base: '/fwb-docs-githubpages/',
   head: [
-    ['style', {}, 'html, body { background-color: #07070f !important; color: #e2e8f0; }'],
+    ['script', {}, `(function(){document.documentElement.classList.add('dark');})()`],
+    ['style', {}, `:root, html, body, #app, .VPApp, .VPNav, .VPSidebar, .VPContent { background-color: #05070d !important; color: #e2e8f0 !important; }`],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
     ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
     [

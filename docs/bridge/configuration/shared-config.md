@@ -10,18 +10,16 @@ sh_config = {        -- don't touch it
     debug = {
         show_detected_resources = true, -- recommended to keep it true else if you want open ticket with us you need it
         show_stopped_resources = true,  -- this will show on server side of list of all reosurce that should stopped due to restart of bridge
-        show_info_prints = true,        -- this will show all prints related to framework functions like when player load, job update, vehicle fetch etc
-        show_important_prints = true,   -- this will show all important prints like error, warning etc
     },
 
     framework = {
-        ['ESX'] = { -- for fivem only
+        ['ESX'] = {
             core_script = "es_extended",
             update_player_job = "esx:setJob",
             load_player = "esx:playerLoaded",
             unload_player = "esx:onPlayerLogout",
         },
-        ['QBCore'] = { -- for fivem only
+        ['QBCore'] = {
             core_script = "qb-core",
             update_player_job = "QBCore:Client:OnJobUpdate",
             load_player = "QBCore:Client:OnPlayerLoaded",
@@ -39,25 +37,7 @@ sh_config = {        -- don't touch it
                 societymoney_in_bank = true,
             },
         },
-        ['VORP'] = { -- for redm only
-            core_script = "vorp_core",
-            update_player_job = "vorp:playerJobChange",
-            load_player = "vorp_core:Client:OnPlayerSpawned",
-            unload_player = "playerDropped", -- using native
-        }
 
-    },
-    
-    Vehicle = {
-        -- create_vehicle_serverside = true means all vehicles will be created on server side
-        -- create_vehicle_serverside = false means all vehicles will be created on client side
-        create_vehicle_serverside = false,
-    },
-
-    Ped = {
-        -- create_ped_serverside = true means all peds will be created on server side
-        -- create_ped_serverside = false means all peds will be created on client side
-        create_ped_serverside = false,
     },
 
     Ambulance = {
@@ -70,6 +50,8 @@ sh_config = {        -- don't touch it
             { key = 5, resource = "ak47_ambulancejob" },
             { key = 6, resource = "tk_ambulancejob" },
             { key = 7, resource = "p_ambulancejob" },
+            { key = 8, resource = "wasabi_ambulance_v2" },
+            { key = 9, resource = "qbx_ambulancejob" },
         },
         -- don't add anything here use docs override functions to add your script
     },
@@ -116,7 +98,7 @@ sh_config = {        -- don't touch it
             { key = 6, resource = "rcore_dispatch" },
             { key = 7, resource = "core_dispatch" },
             { key = 8, resource = "wasabi_mdt" },
-            { key = 9, resource = "lb-tablet",     awake = false }, -- make awake = true only if u really using dispatch functions for lb-tablet oterwise keep it false
+            --{ key = 9, resource = "lb-tablet" },
         }
         -- don't add anything here use docs override functions to add your script
     },
@@ -153,18 +135,18 @@ sh_config = {        -- don't touch it
 
 
     VehicleKeys = {
-        selected_key = 1,                    -- 1 = auto detect {if you want manual selection then change key from bottom keys}
+        selected_key = 1,                   -- 1 = auto detect {if you want manual selection then change key from bottom keys}
         supported_keys = {
-            { key = 1,  resource = 'auto' }, -- don't touch this
-            { key = 2,  resource = "wasabi_carlock" },
-            { key = 3,  resource = "ak47_vehiclekeys" },
-            { key = 4,  resource = "qs-vehiclekeys" },
-            { key = 5,  resource = "vehicles_keys" },
-            { key = 6,  resource = "msk_vehiclekeys" },
-            { key = 7,  resource = "Renewed-Vehiclekeys" },
-            { key = 8,  resource = "qbx_vehiclekeys" },
-            { key = 9,  resource = "qb-vehiclekeys" },
-            { key = 10, resource = "cd_garage",          awake = false }, -- make awake = true only if u really using keys fro cd garage oterwise keep it false
+            { key = 1, resource = 'auto' }, -- don't touch this
+            { key = 2, resource = "wasabi_carlock" },
+            { key = 3, resource = "ak47_vehiclekeys" },
+            { key = 4, resource = "qs-vehiclekeys" },
+            { key = 5, resource = "vehicles_keys" },
+            { key = 6, resource = "msk_vehiclekeys" },
+            { key = 7, resource = "Renewed-Vehiclekeys" },
+            { key = 8, resource = "qbx_vehiclekeys" },
+            { key = 9, resource = "qb-vehiclekeys" },
+            --    { key = 10, resource = "cd_garage", },
         }
         -- don't add anything here use docs override functions to add your script
     },
@@ -205,44 +187,6 @@ sh_config = {        -- don't touch it
             { key = 7, resource = "gksphone" }, -- support both version v1 and v2
         },
         -- don't add anything here use docs override functions to add your script
-    },
-
-    Notification = {
-        selected_key = 1,
-        supported_keys = {
-            { key = 1, resource = 'auto' },                      -- don't touch this
-            { key = 2, resource = "fs_bridge",  awake = false }, -- don't touch it cause bridge don't has its own notify yet
-            { key = 3, resource = "ox_lib", },                   -- will use ox_lib notify
-            { key = 4, resource = "esx_notify" },                -- for esx_notify itself not as esx framework
-            { key = 5, resource = "es_extended" },               -- for esx framework notify function
-            { key = 6, resource = "qb-core" },                   -- for qbcore framework notify function
-            { key = 7, resource = "vorp_core" },                 --  for vorp framework notify function
-
-        }
-    },
-
-    TextUi = {
-        selected_key = 1,
-        supported_keys = {
-            { key = 1, resource = 'auto' },                      -- don't touch this
-            { key = 2, resource = "fs_bridge",  awake = false }, -- don't touch it cause bridge don't has its own notify yet
-            { key = 3, resource = "ox_lib", },                   -- will use ox_lib textui
-            { key = 4, resource = "esx_textui" },                -- for esx_textui itself not as esx framework
-            { key = 5, resource = "es_extended" },               -- for esx framework textui function
-            { key = 6, resource = "qb-core" },                   -- for qbcore framework DrawText function
-            { key = 7, resource = "vorp_core" },                 --  for vorp framework textui function
-        }
-    },
-
-    Progressbar = {
-        selected_key = 1,
-        supported_keys = {
-            { key = 1, resource = 'auto' }, -- don't touch this
-            { key = 2, resource = "ox_lib" },
-            { key = 3, resource = "esx_progressbar" },
-            { key = 4, resource = "qb-core" },
-            { key = 5, resource = "mythic_progbar" },
-        }
     },
 
 }

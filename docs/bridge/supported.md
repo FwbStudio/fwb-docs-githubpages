@@ -2,14 +2,6 @@
 
 This page shows the frameworks and integrations that currently have public Bridge support.
 
-| Officially Supported | Supported | Check Carefully |
-| --- | --- | --- |
-| Verified compatibility and public Bridge support are available for this resource. | Bridge includes support for this resource in normal public setup. | Compatibility may exist in code, but it should be checked carefully before relying on it. |
-
-| Not Supported | Coming Soon |
-| --- | --- |
-| Resource is not supported in the normal public setup flow. Use overrides instead. | We may add public support in a future update. |
-
 ## Supported Frameworks
 
 | Framework | Status | Resource Name |
@@ -34,7 +26,9 @@ Used for downed-state and ambulance compatibility.
 | --- | --- |
 | `esx_ambulancejob` | Supported |
 | `wasabi_ambulance` | Supported |
+| `wasabi_ambulance_v2` | Supported |
 | `qb-ambulancejob` | Supported |
+| `qbx_ambulancejob` | Supported |
 | `ak47_ambulancejob` | Supported |
 | `tk_ambulancejob` | Supported |
 | `p_ambulancejob` | Supported |
@@ -168,11 +162,8 @@ Used for notify helpers.
 
 | Resource | Status |
 | --- | --- |
-| `fs_bridge` | Supported |
+| `fs_notify` | Supported |
 | `ox_lib` | Supported |
-| `esx_notify` | Supported |
-| `es_extended` | Supported |
-| `qb-core` | Supported |
 
 ### Text UI
 
@@ -180,11 +171,7 @@ Used for text UI helpers.
 
 | Resource | Status |
 | --- | --- |
-| `fs_bridge` | Supported |
 | `ox_lib` | Supported |
-| `esx_textui` | Supported |
-| `es_extended` | Supported |
-| `qb-core` | Supported |
 
 ### Progressbar
 
@@ -193,9 +180,6 @@ Used for progress helper support.
 | Resource | Status |
 | --- | --- |
 | `ox_lib` | Supported |
-| `esx_progressbar` | Supported |
-| `qb-core` | Supported |
-| `mythic_progbar` | Supported |
 
 ## Need A Custom Integration?
 
