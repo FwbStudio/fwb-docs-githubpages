@@ -1,8 +1,7 @@
 ---
 title: Trap Phone v2 Preview | FWB Studio Docs
-description: Trap Phone v2 preview and Tebex purchase. FiveM trap phone v2 drug script.
+description: Trap Phone v2 preview and Tebex purchase. FiveM complete criminal smartphone, burner messaging, corner selling, and trap house script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

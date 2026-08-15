@@ -158,7 +158,7 @@ export const TEBEX_MEDIA: Record<string, TebexMediaEntry> = {
   'wigs-bundle': {
     packageId: 7426494,
     image: 'https://dunb17ur4ymx4.cloudfront.net/packages/images/b0ec2ed853be91d030e7c49c90d0e091299d6df4.jpg',
-    videos: [{ title: 'Showcase', youtubeId: '107jI4LZB4Q' }]
+    videos: [{ title: 'Showcase', youtubeId: 'CBItKoHiZCc' }]
   },
   'automatic-pistol-pack': {
     packageId: 6835149,

@@ -276,7 +276,8 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'trap-phone',
     familyLabel: 'Trap Phone',
-    seoKeywords: 'FiveM trap phone v2 drug script'
+    seoKeywords: 'FiveM trap phone v2 burner phone drug dealing corner selling trap house ESX QBCore Qbox',
+    audited: true
   },
 
   {

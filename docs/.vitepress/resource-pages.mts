@@ -181,8 +181,11 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "commonErrors": true
   },
   "trap-phone-v2": {
+    "audited": true,
+    "configuration": true,
+    "commands": true,
     "exports": {
-      "client": false,
+      "client": true,
       "server": true
     },
     "commonErrors": true
