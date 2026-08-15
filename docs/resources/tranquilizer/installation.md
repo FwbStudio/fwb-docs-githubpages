@@ -14,46 +14,15 @@ description: Install Tranquilizer on FiveM — items setup, ACE permissions, and
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `oxmysql` | Yes | Database persistence for paralysis timers |
-| `ESX, QBCore, or Qbox` | Yes | Framework core |
+| `oxmysql` | Yes | MySQL async library for database queries |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 | `fs_bridge` | **No** | `fs_tranquilizer` includes its own internal modular bridge |
 
 ---
 
-## 1. Inventory Items Setup
+## 1. Items & Inventory Setup
 
-Add the tranquilizer syringe/dart item to your inventory system:
-
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-['tranquilizer'] = {
-    label = 'Tranquilizer Dart',
-    weight = 100,
-    stack = true,
-    close = true,
-    description = 'A high-potency medical tranquilizer syringe.',
-},
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add to your shared/items.lua
-['tranquilizer'] = {
-    ['name'] = 'tranquilizer',
-    ['label'] = 'Tranquilizer Dart',
-    ['weight'] = 100,
-    ['type'] = 'item',
-    ['image'] = 'tranquilizer.png',
-    ['unique'] = false,
-    ['useable'] = true,
-    ['shouldClose'] = true,
-    ['combinable'] = nil,
-    ['description'] = 'A high-potency medical tranquilizer syringe.'
-},
-```
-
-:::
+Open `fs_tranquilizer/[INSTALL_ME_FIRST]/items/` and use the file corresponding to **your** inventory system to add the tranquilizer dart item and image.
 
 ---
 
@@ -71,15 +40,20 @@ add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "fs_tranquil
 
 ---
 
-## 3. Server Configuration (`server.cfg`)
+## 3. Install Steps
 
-1. Place `fs_tranquilizer` into your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place `fs_tranquilizer` into `resources/[fs]/fs_tranquilizer`.
+3. Complete **Items & Inventory Setup** from `[INSTALL_ME_FIRST]`.
+4. Add the ACE permission to your `server.cfg`.
+5. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure oxmysql
-ensure fs_tranquilizer
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
-4. Run `/fs_tranquilizer` in-game to configure sedation durations and hospital beds.
+6. Restart your FiveM server. Database tables will automatically initialize on first startup.
+7. Run `/fs_tranquilizer` in-game to configure sedation durations and hospital beds.

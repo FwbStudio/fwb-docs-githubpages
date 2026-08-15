@@ -14,72 +14,36 @@ description: Install Skitz Shoes Store on FiveM — items setup, dependencies, a
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | Framework abstraction & inventory integration |
-| `ox_lib` | Yes | Progress bars, text UI, and notifications |
-| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
+| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add crafting materials, tools, and designer sneaker items to your inventory system:
+Open `fs_skitz/INSTALL_ME_FIRST/` and add the materials, tools, and sneaker item definitions corresponding to **your** inventory system.
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-
--- Raw Materials & Tools
-['fs_leather_materials'] = { label = 'Leather Materials', weight = 100, stack = true, close = true },
-['fs_shoe_foam']         = { label = 'Shoe Foam',         weight = 100, stack = true, close = true },
-['fs_clothe_materials']  = { label = 'Raw Cloth',         weight = 100, stack = true, close = true },
-['fs_shoes_table']       = { label = 'Work Table',        weight = 5000, stack = false, close = true },
-['fs_shoesphone']        = { label = 'Skitz Phone',       weight = 200, stack = false, close = true },
-
--- Crafted Sneakers
-['fs_sky_gliders_plus']  = { label = 'Sky Gliders Plus',  weight = 500, stack = true, close = true },
-['fs_breeze_bangs']      = { label = 'Breeze Bangs',      weight = 500, stack = true, close = true },
-['fs_tiger_mediums']     = { label = 'Tiger Mediums',     weight = 500, stack = true, close = true },
-['fs_galaxy_x']          = { label = 'Galaxy X',          weight = 500, stack = true, close = true },
-['fs_sky_walkers']       = { label = 'Sky Walkers',       weight = 500, stack = true, close = true },
-['fs_sky_pilots']        = { label = 'Sky Pilots',        weight = 500, stack = true, close = true },
-['fs_sky_flyers']        = { label = 'Sky Flyers',        weight = 500, stack = true, close = true },
-['fs_sky_gliders']       = { label = 'Sky Gliders',       weight = 500, stack = true, close = true },
-['fs_fastrunner_2000']   = { label = 'Fast Runner 2000',  weight = 500, stack = true, close = true },
-['fs_speedster_300']     = { label = 'Speedster 300',     weight = 500, stack = true, close = true },
-['fs_runner_prime']      = { label = 'Runner Prime',      weight = 500, stack = true, close = true },
-['fs_breeze_95s']        = { label = 'Breeze 95s',        weight = 500, stack = true, close = true },
-['fs_breeze_100s']       = { label = 'Breeze 100s',       weight = 500, stack = true, close = true },
-['fs_breeze_90s']        = { label = 'Breeze 90s',        weight = 500, stack = true, close = true },
-['fs_sky_walkers_red']   = { label = 'Sky Walkers Red',   weight = 500, stack = true, close = true },
-['fs_shadow_yellows']    = { label = 'Shadow Yellows',    weight = 500, stack = true, close = true },
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add items into your shared/items.lua
-['fs_leather_materials'] = { ['name'] = 'fs_leather_materials', ['label'] = 'Leather Materials', ['weight'] = 100, ['type'] = 'item', ['image'] = 'fs_leather_materials.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Leather fabric for sneaker manufacturing' },
-['fs_shoe_foam']         = { ['name'] = 'fs_shoe_foam',         ['label'] = 'Shoe Foam',         ['weight'] = 100, ['type'] = 'item', ['image'] = 'fs_shoe_foam.png',         ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'High density shoe foam' },
-['fs_clothe_materials']  = { ['name'] = 'fs_clothe_materials',  ['label'] = 'Raw Cloth',         ['weight'] = 100, ['type'] = 'item', ['image'] = 'fs_clothe_materials.png',  ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Raw fabric materials' },
-['fs_shoes_table']       = { ['name'] = 'fs_shoes_table',       ['label'] = 'Work Table',        ['weight'] = 5000, ['type'] = 'item', ['image'] = 'fs_shoes_table.png',       ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Deployable sneaker crafting table' },
-['fs_shoesphone']        = { ['name'] = 'fs_shoesphone',        ['label'] = 'Skitz Phone',       ['weight'] = 200, ['type'] = 'item', ['image'] = 'fs_shoesphone.png',        ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Skitz sneaker distribution smartphone' },
-```
-
-:::
-
-### Item Images
-Copy the item PNG files from `fs_skitz/INSTALL_ME_FIRST/Images/` into your inventory's web/images directory.
+Copy the item images from `INSTALL_ME_FIRST/Images/` into your inventory resource's web/images folder.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_skitz` in your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg` **after** `fs_bridge`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place the resources into `resources/[fs]/`:
+   - `fs_bridge`
+   - `fs_skitz`
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `INSTALL_ME_FIRST`.
+5. Configure `fs_skitz/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_bridge
-ensure fs_skitz
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

@@ -14,67 +14,36 @@ description: Install Wig Craft & Sell (Weave & Wear) on FiveM — items setup, d
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | Framework abstraction & inventory integration |
-| `ox_lib` | Yes | Progress bars, text UI, and notifications |
-| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
+| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add crafting supplies and wig items into your inventory system:
+Open `fs_weavewear/INSTALL_ME_FIRST/` and add the materials, tools, and wig item definitions corresponding to **your** inventory system.
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-
--- Raw Materials & Tools
-['fs_ww_wigcap']          = { label = 'Wig Cap',            weight = 50,  stack = true,  close = true },
-['fs_ww_wigbundle']       = { label = 'Hair Bundle',        weight = 100, stack = true,  close = true },
-['fs_ww_sewingkit']       = { label = 'Sewing Kit',         weight = 100, stack = true,  close = true },
-['fs_ww_table']           = { label = 'Wig Craft Table',    weight = 5000, stack = false, close = true },
-['fs_ww_phone']           = { label = 'Weave & Wear Phone', weight = 200, stack = false, close = true },
-
--- Crafted Wigs
-['fs_ww_long_curly']       = { label = 'Long Curly Wig',     weight = 300, stack = true,  close = true },
-['fs_ww_short_hair_wig']   = { label = 'Short Hair Wig',     weight = 300, stack = true,  close = true },
-['fs_ww_short_curled_wig'] = { label = 'Short Curled Wig',   weight = 300, stack = true,  close = true },
-['fs_ww_long_blonde_wig']  = { label = 'Long Blonde Wig',    weight = 300, stack = true,  close = true },
-['fs_ww_40inchwigs']       = { label = '40 Inch Wigs',       weight = 300, stack = true,  close = true },
-['fs_ww_braidwigs']        = { label = 'Braid Wigs',         weight = 300, stack = true,  close = true },
-['fs_ww_bodywavewigs']     = { label = 'Body Wave Wigs',     weight = 300, stack = true,  close = true },
-['fs_ww_bangwigs']         = { label = 'Bang Wigs',          weight = 300, stack = true,  close = true },
-['fs_ww_straightwigs']     = { label = 'Straight Wigs',      weight = 300, stack = true,  close = true },
-['fs_ww_naturalwavewigs']  = { label = 'Natural Wave Wigs',  weight = 300, stack = true,  close = true },
-['fs_ww_deepwavewigs']     = { label = 'Deep Wave Wigs',     weight = 300, stack = true,  close = true },
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add items into your shared/items.lua
-['fs_ww_wigcap']          = { ['name'] = 'fs_ww_wigcap',          ['label'] = 'Wig Cap',            ['weight'] = 50,   ['type'] = 'item', ['image'] = 'fs_ww_wigcap.png',          ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Nylon wig cap' },
-['fs_ww_wigbundle']       = { ['name'] = 'fs_ww_wigbundle',       ['label'] = 'Hair Bundle',        ['weight'] = 100,  ['type'] = 'item', ['image'] = 'fs_ww_wigbundle.png',       ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Human hair weave bundle' },
-['fs_ww_sewingkit']       = { ['name'] = 'fs_ww_sewingkit',       ['label'] = 'Sewing Kit',         ['weight'] = 100,  ['type'] = 'item', ['image'] = 'fs_ww_sewingkit.png',       ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Needles and thread' },
-['fs_ww_table']           = { ['name'] = 'fs_ww_table',           ['label'] = 'Wig Craft Table',    ['weight'] = 5000, ['type'] = 'item', ['image'] = 'fs_ww_table.png',           ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Deployable wig table' },
-['fs_ww_phone']           = { ['name'] = 'fs_ww_phone',           ['label'] = 'Weave & Wear Phone', ['weight'] = 200,  ['type'] = 'item', ['image'] = 'fs_ww_phone.png',           ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Weave & Wear smartphone' },
-```
-
-:::
-
-### Item Images
-Copy the PNG icons from `fs_weavewear/INSTALL_ME_FIRST/Images/` into your inventory's web/images directory.
+Copy the item images from `INSTALL_ME_FIRST/Images/` into your inventory resource's web/images folder.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_weavewear` in your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg` **after** `fs_bridge`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place the resources into `resources/[fs]/`:
+   - `fs_bridge`
+   - `fs_weavewear`
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `INSTALL_ME_FIRST`.
+5. Configure `fs_weavewear/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_bridge
-ensure fs_weavewear
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

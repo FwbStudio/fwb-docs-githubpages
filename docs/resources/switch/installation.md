@@ -14,100 +14,34 @@ description: Install Switch on FiveM — inventory items setup, dependencies, an
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `ox_lib` | Yes | Progress bars and notifications |
-| `ESX, QBCore, or Qbox` | Yes | Framework support |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 | `fs_bridge` | **No** | `fs_switch` includes its own internal multi-framework bridge |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add the switch items to your inventory system:
+Open `fs_switch/install_me_first/item/` and use the file corresponding to **your** inventory system (`ox_inventory.lua`, `qs_inventory.lua`, `qb_inventory.lua`, `ak47_inventory.lua`).
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-['fs_switch'] = {
-    label = 'Glock Switch',
-    weight = 50,
-    stack = true,
-    close = true,
-    description = 'An auto-switch conversion kit for semi-automatic pistols.',
-},
-['fs_redswitch'] = {
-    label = 'Red Glock Switch',
-    weight = 50,
-    stack = true,
-    close = true,
-    description = 'A heavy-duty red auto-switch conversion kit.',
-},
-['fs_blueswitch'] = {
-    label = 'Blue Glock Switch',
-    weight = 50,
-    stack = true,
-    close = true,
-    description = 'A precision blue auto-switch conversion kit.',
-},
-['fs_greenswitch'] = {
-    label = 'Green Glock Switch',
-    weight = 50,
-    stack = true,
-    close = true,
-    description = 'A lightweight green auto-switch conversion kit.',
-},
-```
-
-```lua [📦 qs-inventory]
--- Add to qs-inventory/shared/items.lua
-['fs_switch'] = {
-    ['name'] = 'fs_switch',
-    ['label'] = 'Glock Switch',
-    ['weight'] = 50,
-    ['type'] = 'item',
-    ['image'] = 'fs_switch.png',
-    ['unique'] = false,
-    ['useable'] = true,
-    ['shouldClose'] = true,
-    ['combinable'] = nil,
-    ['description'] = 'An auto-switch conversion kit for semi-automatic pistols.'
-},
-```
-
-```lua [📦 qb-inventory]
--- Add to qb-core/shared/items.lua
-['fs_switch'] = {
-    name = 'fs_switch',
-    label = 'Glock Switch',
-    weight = 50,
-    type = 'item',
-    image = 'fs_switch.png',
-    unique = false,
-    useable = true,
-    shouldClose = true,
-    combinable = nil,
-    description = 'An auto-switch conversion kit for semi-automatic pistols.'
-},
-```
-
-:::
-
-### Item Images
-Copy the PNG icons from `fs_switch/install_me_first/images/` into your inventory's web/images folder:
-- **ox_inventory**: `ox_inventory/web/images/`
-- **qs-inventory**: `qs-inventory/html/images/`
-- **qb-inventory**: `qb-inventory/html/images/`
+Copy the switch item images from `fs_switch/install_me_first/images/` into your inventory resource's web/images folder.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_switch` into your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place `fs_switch` into `resources/[fs]/fs_switch`.
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `install_me_first`.
+5. Configure `fs_switch/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_switch
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

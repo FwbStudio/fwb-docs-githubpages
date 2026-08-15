@@ -14,62 +14,36 @@ description: Install Shoes Robbery on FiveM — items setup, dependencies, and s
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | Framework abstraction, target, and dispatch integration |
-| `ox_lib` | Yes | Progress bars, notifications, and context menus |
-| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
+| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add the stolen sneaker items into your inventory system:
+Open `fs_shoesrobbery/INSTALL_ME_FIRST/` and add the sneaker item definitions corresponding to **your** inventory system.
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-['fs_rob_sky_gliders_plus'] = { label = 'Sky Gliders Plus (R)', weight = 500, stack = true, close = true },
-['fs_rob_breeze_bangs']     = { label = 'Breeze Bangs (R)',     weight = 500, stack = true, close = true },
-['fs_rob_tiger_mediums']    = { label = 'Tiger Mediums (R)',    weight = 500, stack = true, close = true },
-['fs_rob_galaxy_x']         = { label = 'Galaxy X (R)',         weight = 500, stack = true, close = true },
-['fs_rob_sky_walkers']      = { label = 'Sky Walkers (R)',      weight = 500, stack = true, close = true },
-['fs_rob_sky_pilots']       = { label = 'Sky Pilots (R)',       weight = 500, stack = true, close = true },
-['fs_rob_sky_flyers']       = { label = 'Sky Flyers (R)',       weight = 500, stack = true, close = true },
-['fs_rob_sky_gliders']      = { label = 'Sky Gliders (R)',      weight = 500, stack = true, close = true },
-['fs_rob_fastrunner_2000']  = { label = 'Fastrunner 2000 (R)',  weight = 500, stack = true, close = true },
-['fs_rob_speedster_300']    = { label = 'Speedster 300 (R)',    weight = 500, stack = true, close = true },
-['fs_rob_runner_prime']     = { label = 'Runner Prime (R)',     weight = 500, stack = true, close = true },
-['fs_rob_breeze_95s']       = { label = 'Breeze 95s (R)',       weight = 500, stack = true, close = true },
-['fs_rob_breeze_100s']      = { label = 'Breeze 100s (R)',      weight = 500, stack = true, close = true },
-['fs_rob_breeze_90s']       = { label = 'Breeze 90s (R)',       weight = 500, stack = true, close = true },
-['fs_rob_sky_walkers_red']  = { label = 'Sky Walkers Red (R)',  weight = 500, stack = true, close = true },
-['fs_rob_shadow_yellows']   = { label = 'Shadow Yellows (R)',   weight = 500, stack = true, close = true },
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add items to your shared/items.lua
-['fs_rob_sky_gliders_plus'] = { ['name'] = 'fs_rob_sky_gliders_plus', ['label'] = 'Sky Gliders Plus (R)', ['weight'] = 500, ['type'] = 'item', ['image'] = 'fs_rob_sky_gliders_plus.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Stolen designer sneakers' },
-['fs_rob_breeze_bangs']     = { ['name'] = 'fs_rob_breeze_bangs',     ['label'] = 'Breeze Bangs (R)',     ['weight'] = 500, ['type'] = 'item', ['image'] = 'fs_rob_breeze_bangs.png',     ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Stolen designer sneakers' },
-['fs_rob_tiger_mediums']    = { ['name'] = 'fs_rob_tiger_mediums',    ['label'] = 'Tiger Mediums (R)',    ['weight'] = 500, ['type'] = 'item', ['image'] = 'fs_rob_tiger_mediums.png',    ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Stolen designer sneakers' },
-['fs_rob_galaxy_x']         = { ['name'] = 'fs_rob_galaxy_x',         ['label'] = 'Galaxy X (R)',         ['weight'] = 500, ['type'] = 'item', ['image'] = 'fs_rob_galaxy_x.png',         ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Stolen designer sneakers' },
-```
-
-:::
-
-### Item Images
-Copy sneaker icons from `fs_shoesrobbery/INSTALL_ME_FIRST/Images/` into your inventory's web/images directory.
+Copy the shoe item images from `INSTALL_ME_FIRST/Images/` into your inventory resource's web/images directory.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_shoesrobbery` in your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg` **after** `fs_bridge`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place the resources into `resources/[fs]/`:
+   - `fs_bridge`
+   - `fs_shoesrobbery`
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `INSTALL_ME_FIRST`.
+5. Configure `fs_shoesrobbery/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_bridge
-ensure fs_shoesrobbery
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

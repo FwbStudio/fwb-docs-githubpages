@@ -14,50 +14,37 @@ description: Install White Widow on FiveM — items setup, dependencies, and ser
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | Framework abstraction & society accounts |
-| `ox_lib` | Yes | UI components and progress bars |
-| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
+| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 | `fs_smoking` | Optional | For joint rolling and vaping |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add cannabis items and dispensary supplies to your inventory:
+Open `fs_whitewidow/INSTALL_ME_FIRST/` and add the seeds, pots, fertilizer, spray, and weed item definitions corresponding to **your** inventory system.
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-['seed_weed']        = { label = 'Cannabis Seed',        weight = 10,  stack = true, close = true },
-['weed_pot']         = { label = 'Plant Pot',            weight = 500, stack = true, close = true },
-['weed_fertilizer']  = { label = 'Plant Fertilizer',     weight = 200, stack = true, close = true },
-['weed_spray']       = { label = 'Pesticide Spray',      weight = 200, stack = true, close = true },
-['weed_leaf']        = { label = 'Fresh Cannabis Leaf',  weight = 50,  stack = true, close = true },
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add to your shared/items.lua
-['seed_weed']       = { ['name'] = 'seed_weed',       ['label'] = 'Cannabis Seed',       ['weight'] = 10,  ['type'] = 'item', ['image'] = 'seed_weed.png',       ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Cannabis cultivation seed' },
-['weed_pot']        = { ['name'] = 'weed_pot',        ['label'] = 'Plant Pot',           ['weight'] = 500, ['type'] = 'item', ['image'] = 'weed_pot.png',        ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Soil pot for growing' },
-['weed_fertilizer'] = { ['name'] = 'weed_fertilizer', ['label'] = 'Plant Fertilizer',    ['weight'] = 200, ['type'] = 'item', ['image'] = 'weed_fertilizer.png', ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Plant nutrition formula' },
-['weed_spray']      = { ['name'] = 'weed_spray',      ['label'] = 'Pesticide Spray',     ['weight'] = 200, ['type'] = 'item', ['image'] = 'weed_spray.png',      ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Pest control spray' },
-['weed_leaf']       = { ['name'] = 'weed_leaf',       ['label'] = 'Fresh Cannabis Leaf', ['weight'] = 50,  ['type'] = 'item', ['image'] = 'weed_leaf.png',       ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Harvested cannabis buds' },
-```
-
-:::
+Copy the item images from `INSTALL_ME_FIRST/` into your inventory resource's web/images directory.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_whitewidow` in your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg` **after** `fs_bridge`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place the resources into `resources/[fs]/`:
+   - `fs_bridge`
+   - `fs_whitewidow`
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `INSTALL_ME_FIRST`.
+5. Configure `fs_whitewidow/config/config.lua` and `config/farming.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_bridge
-ensure fs_whitewidow
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

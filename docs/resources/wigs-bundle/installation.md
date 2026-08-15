@@ -14,65 +14,36 @@ description: Install WigsBundle Business on FiveM — inventory items, dependenc
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | Framework abstraction, society accounts, and inventory bridge |
-| `ox_lib` | Yes | UI components, notifications, and progress bars |
-| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
+| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 
 ---
 
-## 1. Inventory Items Setup
+## Items & Inventory Setup
 
-Add the raw materials and wearable wig items to your inventory system:
+Open `fs_wigsbundles/INSTALL_ME_FIRST/` and add the materials, tools, and wearable wig item definitions corresponding to **your** inventory system.
 
-::: code-group
-
-```lua [📦 ox_inventory]
--- Add to ox_inventory/data/items.lua
-
--- Raw Materials & Tools
-['wigcap']          = { label = 'Wig Cap',            weight = 50,  stack = true,  close = true },
-['hairbundles']     = { label = 'Hair Bundle',        weight = 100, stack = true,  close = true },
-['sewinkit']        = { label = 'Sewing Kit',         weight = 100, stack = true,  close = true },
-['wigtable']        = { label = 'Queen Wig Table',    weight = 5000, stack = false, close = true },
-
--- Wearable Wigs (Female)
-['spotlight_wig']   = { label = 'Spotlight Wig',      weight = 200, stack = false, close = true },
-['chulita_wig']     = { label = 'Chulita Wig',        weight = 200, stack = false, close = true },
-['classy_wig']      = { label = 'Classy Wig',         weight = 200, stack = false, close = true },
-['fiesta_wig']      = { label = 'Fiesta Wig',         weight = 200, stack = false, close = true },
-['diva_wig']        = { label = 'Diva Wig',           weight = 200, stack = false, close = true },
-['sweetheart_wig']  = { label = 'Sweetheart Wig',     weight = 200, stack = false, close = true },
-
--- Wearable Wigs (Male)
-['m_backstage_wig'] = { label = 'Backstage Wig (M)',  weight = 200, stack = false, close = true },
-['m_blake_wig']     = { label = 'Blake Wig (M)',      weight = 200, stack = false, close = true },
-['m_boss_wig']      = { label = 'Boss Wig (M)',       weight = 200, stack = false, close = true },
-```
-
-```lua [📦 qs-inventory / qb-core]
--- Add items into your shared/items.lua
-['wigcap']        = { ['name'] = 'wigcap',        ['label'] = 'Wig Cap',         ['weight'] = 50,   ['type'] = 'item', ['image'] = 'wigcap.png',        ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Nylon wig cap' },
-['hairbundles']   = { ['name'] = 'hairbundles',   ['label'] = 'Hair Bundle',     ['weight'] = 100,  ['type'] = 'item', ['image'] = 'hairbundles.png',   ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Human hair bundle' },
-['sewinkit']      = { ['name'] = 'sewinkit',      ['label'] = 'Sewing Kit',      ['weight'] = 100,  ['type'] = 'item', ['image'] = 'sewinkit.png',      ['unique'] = false, ['useable'] = false, ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Salon sewing kit' },
-['spotlight_wig'] = { ['name'] = 'spotlight_wig', ['label'] = 'Spotlight Wig',   ['weight'] = 200,  ['type'] = 'item', ['image'] = 'spotlight_wig.png', ['unique'] = false, ['useable'] = true,  ['shouldClose'] = true, ['combinable'] = nil, ['description'] = 'Wearable designer wig' },
-```
-
-:::
-
-### Item Images
-Copy the PNG icons from `fs_wigsbundles/INSTALL_ME_FIRST/Images/` into your inventory's web/images folder.
+Copy the item images from `INSTALL_ME_FIRST/Images/` into your inventory resource's web/images folder.
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## Install Steps
 
-1. Place `fs_wigsbundles` in your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg` **after** `fs_bridge`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place the resources into `resources/[fs]/`:
+   - `fs_bridge`
+   - `fs_wigsbundles`
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Complete **Items & Inventory Setup** from `INSTALL_ME_FIRST`.
+5. Configure `fs_wigsbundles/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure ox_lib
-ensure fs_bridge
-ensure fs_wigsbundles
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.

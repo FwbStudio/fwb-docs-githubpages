@@ -38,12 +38,13 @@ Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
 | Package | Resource Folder | Frameworks | Category |
 | :--- | :--- | :--- | :--- |
 | **Script Package** | `fs_outfitbag` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ---
 
 ## Documentation
 
-- [Installation](./installation) — database SQL, inventory items, and server.cfg
+- [Installation](./installation) — dependencies, database SQL, and server.cfg
 - [Configuration](./configuration) — complete `config.lua` and parameter guide
 - [Commands](./commands) — player commands and developer outfit copy tool
 - [Common Errors](./common-errors) — troubleshooting and common fixes

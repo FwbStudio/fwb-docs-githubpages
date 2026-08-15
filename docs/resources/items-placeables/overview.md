@@ -38,12 +38,13 @@ Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
 | Package | Resource Folder | Frameworks | Category |
 | :--- | :--- | :--- | :--- |
 | **Script Package** | `fs_placeables` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ---
 
 ## Documentation
 
-- [Installation](./installation) — setup and server.cfg
+- [Installation](./installation) — dependencies and server.cfg
 - [Configuration](./configuration) — complete `config.lua` and items table reference
 - [Commands](./commands) — placement menu commands and keybinds
 - [Exports — Client](./exports/client) / [Server](./exports/server) — dynamic runtime item registration

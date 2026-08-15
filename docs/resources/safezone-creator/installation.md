@@ -14,8 +14,8 @@ description: Install Safezone Creator on FiveM — dependencies, permissions, an
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `oxmysql` | Yes | Database persistence for created zones |
-| `ESX, QBCore, or Qbox` | Yes | Framework support |
+| `oxmysql` | Yes | MySQL async library for database queries |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 | `fs_bridge` | **No** | `fs_safezonecreator` features its own built-in modular bridge |
 
 ---
@@ -34,15 +34,19 @@ add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "safezone.ad
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## 2. Install Steps
 
-1. Place `fs_safezonecreator` into your `resources/[fs]/` directory.
-2. Add the resource to your `server.cfg`:
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place `fs_safezonecreator` into `resources/[fs]/fs_safezonecreator`.
+3. Add the ACE permission to your `server.cfg`.
+4. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure oxmysql
-ensure fs_safezonecreator
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-3. Restart your FiveM server. Database tables will auto-initialize on first start.
-4. Run `/safezonemenu` in-game to start creating and managing safezones.
+5. Restart your FiveM server. Database tables will automatically initialize on first startup.
+6. Run `/safezonemenu` in-game to start creating and managing safezones live.

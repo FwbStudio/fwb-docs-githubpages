@@ -33,6 +33,7 @@ Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
 | Package | Resource Folder | Frameworks | Category |
 | :--- | :--- | :--- | :--- |
 | **Script Package** | `fs_whitewidow` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ---
 

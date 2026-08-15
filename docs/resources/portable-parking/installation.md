@@ -1,6 +1,6 @@
 ---
 title: Portable Parking Installation | FWB Studio Docs
-description: Install Portable Parking on FiveM — database migration and server.cfg setup.
+description: Install Portable Parking on FiveM — database migration, dependencies, and server.cfg setup.
 ---
 
 <div class="fwb-inline-cta">
@@ -14,48 +14,44 @@ description: Install Portable Parking on FiveM — database migration and server
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `ox_lib` | Yes | Menu rendering, notifications, and points |
-| `oxmysql` | Yes | Vehicle database queries |
-| `ESX, QBCore, or Qbox` | Yes | Framework core for vehicle ownership |
-| `fs_bridge` | **No** | `fs_portableparking` includes its own open `bridge/` folder |
+| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
+| `oxmysql` | Yes | MySQL async library for database queries |
+| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
+| `fs_bridge` | **No** | `fs_portableparking` includes its own self-contained bridge folder |
 
 ---
 
 ## 1. Database Setup
 
-Execute the appropriate SQL query for your framework to add the `vin` tracking column to your vehicle database:
-
-::: code-group
-
-```sql [📦 ESX]
-ALTER TABLE owned_vehicles DROP COLUMN IF EXISTS vin;
-ALTER TABLE owned_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
-```
-
-```sql [📦 QBCore / Qbox]
-ALTER TABLE player_vehicles DROP COLUMN IF EXISTS vin;
-ALTER TABLE player_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
-```
-
-:::
+Open `fs_portableparking/[INSTALL_ME_FIRST]` and execute the `.sql` file corresponding to **your** framework (`esx_database.sql` or `qb_database.sql`) in your database manager (HeidiSQL, phpMyAdmin).
 
 ---
 
-## 2. Server Configuration (`server.cfg`)
+## 2. Admin Permissions Setup (Optional)
 
-1. Place `fs_portableparking` in your `resources/[fs]/` directory.
-2. If you want staff to access `/vadmin`, add the ACE permission in your `server.cfg`:
-   ```lua
-   add_ace group.admin "fs_portableparkingadmin" allow
-   # Or for specific player license:
-   add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "fs_portableparkingadmin" allow
-   ```
-3. Add the resource to your `server.cfg`:
+If you want administrators to access `/vadmin`, add the ACE permission in your `server.cfg`:
+
+```lua
+add_ace group.admin "fs_portableparkingadmin" allow
+```
+
+---
+
+## 3. Install Steps
+
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place `fs_portableparking` into `resources/[fs]/fs_portableparking`.
+3. Download and install `ox_lib` into your `resources/` directory.
+4. Execute the database migration from `[INSTALL_ME_FIRST]`.
+5. Configure `fs_portableparking/config/config.lua` before starting.
+6. Add the resources to your `server.cfg` at the end of your ensured resources:
 
 ```lua
 ensure oxmysql
 ensure ox_lib
-ensure fs_portableparking
+
+-- make sure to ensure all resources above this to make it work properly
+ensure [fs] -- ensure it as last resource
 ```
 
-4. Restart your FiveM server.
+7. Restart your FiveM server and check the server console for clean startup prints.
