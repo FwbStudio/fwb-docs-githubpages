@@ -43,7 +43,6 @@ Standalone — works on any FiveM framework (ESX, QBCore, Qbox, or Standalone).
 
 ## Documentation
 
-- [Video Converter](./video-converter) — free browser tool to convert MP4 videos to WebM
 - [Installation](./installation) — setup and server.cfg
 - [Configuration](./configuration) — media modes (image, slideshow, video, audio links) & server options
 - [Common Errors](./common-errors)

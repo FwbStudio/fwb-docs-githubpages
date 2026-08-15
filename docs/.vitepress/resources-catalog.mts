@@ -10,7 +10,6 @@ export interface ResourceVideo {
 }
 
 export interface ResourcePages {
-  videoConverter?: boolean
   configuration?: boolean
   commands?: boolean
   exports?: { client?: boolean; server?: boolean }
@@ -441,14 +440,9 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
   const pages = getPages(resource)
   const items: SidebarItem[] = [
     { text: 'Preview', link: `${base}/` },
-    { text: 'Overview', link: `${base}/overview` }
+    { text: 'Overview', link: `${base}/overview` },
+    { text: 'Installation', link: `${base}/installation` }
   ]
-
-  if (pages.videoConverter) {
-    items.push({ text: 'Video Converter', link: `${base}/video-converter` })
-  }
-
-  items.push({ text: 'Installation', link: `${base}/installation` })
 
   if (pages.configuration) {
     items.push({ text: 'Configuration', link: `${base}/configuration` })

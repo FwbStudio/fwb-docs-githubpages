@@ -367,22 +367,33 @@ function convertVideoNative(file: File): Promise<Blob> {
 
       recorder.onerror = (e) => reject(e)
 
-      video.ontimeupdate = () => {
-        const cur = video.currentTime || 0
-        const pct = Math.min(Math.round((cur / duration) * 100), 99)
-        progressPercent.value = pct
-        stageDetail.value = `Processed: ${formatTimer(Math.round(cur))} / ${formatTimer(Math.round(duration))} (${pct}%)`
+      let lastUpdate = 0
+      let animationFrameId: number | null = null
 
-        // Accurate live ETA calculation
-        const elapsedSec = (Date.now() - conversionStartTime) / 1000
-        if (pct > 2 && elapsedSec > 1) {
-          const totalEstimatedSec = elapsedSec / (pct / 100)
-          const remainingSec = Math.max(1, Math.round(totalEstimatedSec - elapsedSec))
-          etaTime.value = formatTimer(remainingSec)
-        }
+      video.ontimeupdate = () => {
+        const now = Date.now()
+        if (now - lastUpdate < 250) return // Throttle UI updates to 4 times a sec max
+        lastUpdate = now
+
+        if (animationFrameId) cancelAnimationFrame(animationFrameId)
+        animationFrameId = requestAnimationFrame(() => {
+          const cur = video.currentTime || 0
+          const pct = Math.min(Math.round((cur / duration) * 100), 99)
+          progressPercent.value = pct
+          stageDetail.value = `Processed: ${formatTimer(Math.round(cur))} / ${formatTimer(Math.round(duration))} (${pct}%)`
+
+          // Accurate live ETA calculation
+          const elapsedSec = (Date.now() - conversionStartTime) / 1000
+          if (pct > 2 && elapsedSec > 1) {
+            const totalEstimatedSec = elapsedSec / (pct / 100)
+            const remainingSec = Math.max(1, Math.round(totalEstimatedSec - elapsedSec))
+            etaTime.value = formatTimer(remainingSec)
+          }
+        })
       }
 
       video.onended = () => {
+        if (animationFrameId) cancelAnimationFrame(animationFrameId)
         progressPercent.value = 100
         stageTitle.value = 'Finalizing .webm Download...'
         stageDetail.value = 'Encoding complete.'
@@ -392,12 +403,8 @@ function convertVideoNative(file: File): Promise<Blob> {
         }
       }
 
-      // Fast forward playback for faster-than-realtime encoding if supported
-      try {
-        video.playbackRate = 2.0 // 2x speed for faster transcoding
-      } catch {}
-
-      recorder.start(100)
+      // 1000ms chunk interval for low CPU overhead & 60fps UI smoothness
+      recorder.start(1000)
       video.play().catch((err) => reject(err))
     }
 

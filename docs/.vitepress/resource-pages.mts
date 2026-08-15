@@ -87,7 +87,6 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   },
   "loading-screen": {
     "audited": true,
-    "videoConverter": true,
     "configuration": true,
     "commonErrors": true
   },

@@ -190,8 +190,8 @@ config.BackGround = {
 ```
 
 ::: tip Convert MP4 to WEBM
-FiveM NUI **only supports local `.webm` format video files** due to FiveM browser engine limitations. If your video is in `.mp4` format, you can convert it right here in your browser using our built-in tool:
-👉 **[Built-in Video Converter](./video-converter)**
+FiveM NUI **only supports local `.webm` format video files** due to FiveM browser engine limitations. If your video is in `.mp4` format, you can convert it online for free using:
+👉 **[Clideo MP4 to WEBM Online Converter](https://clideo.com/editor/?convertTo=WEBM)**
 :::
 
 ```lua [Hosted Video Link + Audio]

@@ -31,7 +31,7 @@ FiveM browser runtime only supports `.webm` format for local video assets. `.mp4
 :::
 
 ::: tip Solution
-1. Convert your local video from `.mp4` to `.webm` format using our built-in [Video Converter](./video-converter).
+1. Convert your local video from `.mp4` to `.webm` format. You can convert your video online for free using [Clideo MP4 to WEBM Converter](https://clideo.com/editor/?convertTo=WEBM).
 2. Place the `.webm` file inside `fs_loadingscreen/web/videos/`.
 3. Set `LocalVideo = true` and update `File = "web/videos/yourvideo.webm"` in `config.lua`.
 :::

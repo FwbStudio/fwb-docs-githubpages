@@ -21,7 +21,7 @@ description: Install Loading Screen on FiveM — standalone setup and server.cfg
 
 1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
 2. Download and place `fs_loadingscreen` into `resources/[fs]/fs_loadingscreen`.
-3. If you plan to use a local video background, convert your video to `.webm` using our built-in [Video Converter](./video-converter) tool and place it in `fs_loadingscreen/web/videos/`.
+3. If you plan to use a local video background, convert your video to `.webm` format using [Clideo MP4 to WEBM Converter](https://clideo.com/editor/?convertTo=WEBM) and place the `.webm` file in `fs_loadingscreen/web/videos/`.
 4. Configure your media, audio, staff, and patch notes in `fs_loadingscreen/config/config.lua` (see [Configuration](./configuration)).
 5. Add the resource to your `server.cfg`:
 
