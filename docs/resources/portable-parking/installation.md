@@ -1,8 +1,7 @@
 ---
 title: Portable Parking Installation | FWB Studio Docs
-description: Install Portable Parking on FiveM — dependencies and server.cfg. FiveM portable parking script.
+description: Install Portable Parking on FiveM — database migration and server.cfg setup.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
@@ -14,67 +13,49 @@ description: Install Portable Parking on FiveM — dependencies and server.cfg. 
 ## Dependencies
 
 | Resource | Required | Notes |
-| --- | --- | --- |
-| `ox_lib` | Yes | Shared UI / callbacks |
-| `oxmysql` | Yes | MySQL database |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+| :--- | :--- | :--- |
+| `ox_lib` | Yes | Menu rendering, notifications, and points |
+| `oxmysql` | Yes | Vehicle database queries |
+| `ESX, QBCore, or Qbox` | Yes | Framework core for vehicle ownership |
+| `fs_bridge` | **No** | `fs_portableparking` includes its own open `bridge/` folder |
 
+---
 
-## Dispatch / alert jobs
+## 1. Database Setup
 
-| Job name | Notes |
-| --- | --- |
-| `police` | Must match your framework job name exactly |
-| `sheriff` | Must match your framework job name exactly |
+Execute the appropriate SQL query for your framework to add the `vin` tracking column to your vehicle database:
 
+::: code-group
 
-## Items & inventory setup
-
-Open `fs_portableparking/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
-
-<div class="fwb-inv-tabs">
-<details>
-<summary>ESX</summary>
-
-Copy item/weapon images into `es_extended or your inventory images folder`.
-
-**`esx_database.sql`**
-
-```sql
+```sql [📦 ESX]
 ALTER TABLE owned_vehicles DROP COLUMN IF EXISTS vin;
 ALTER TABLE owned_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
 ```
 
-</details>
-
-<details>
-<summary>SQL</summary>
-
-**`qb_database.sql`**
-
-```sql
+```sql [📦 QBCore / Qbox]
 ALTER TABLE player_vehicles DROP COLUMN IF EXISTS vin;
 ALTER TABLE player_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
 ```
 
-</details>
+:::
 
-</div>
+---
 
+## 2. Server Configuration (`server.cfg`)
 
-
-
-## Install steps
-
-1. Place `fs_portableparking` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_portableparking/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+1. Place `fs_portableparking` in your `resources/[fs]/` directory.
+2. If you want staff to access `/vadmin`, add the ACE permission in your `server.cfg`:
+   ```lua
+   add_ace group.admin "fs_portableparkingadmin" allow
+   # Or for specific player license:
+   add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "fs_portableparkingadmin" allow
+   ```
+3. Add the resource to your `server.cfg`:
 
 ```lua
-ensure fs_bridge
+ensure oxmysql
+ensure ox_lib
 ensure fs_portableparking
 ```
 
-6. Restart the server and check the console for errors.
+4. Restart your FiveM server.

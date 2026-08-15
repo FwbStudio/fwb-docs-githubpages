@@ -1,6 +1,6 @@
 ---
 title: Portable Parking Overview | FWB Studio Docs
-description: Portable Parking features and setup overview for FiveM. FiveM portable parking script.
+description: Portable Parking features and setup overview for FiveM. Park and retrieve vehicles anywhere on the map for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,42 +10,36 @@ description: Portable Parking features and setup overview for FiveM. FiveM porta
 
 # Portable Parking
 
-### 🅿️ Portable Parking – Your Lot, Anywhere
+### 🚗 Portable Parking – Park & Retrieve Vehicles Anywhere
 
-Let players buy personal parking slots, store vehicles, and manage impounds without a full garage script. Portable Parking adds portable lots, vehicle lists, admin tools, and police impound commands in one package.
+Free your players from rigid static garage locations. With `fs_portableparking`, players can park their vehicles on the spot (`/vpark`) for free, purchase on-demand retrieve spots (`/vbuy`) to spawn owned vehicles anywhere (`/vlist`), and access comprehensive police impounds and admin recovery tools.
 
-Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
+Includes its own **unlocked `bridge/` folder** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+
+---
 
 #### ⚙️ Key Features
 
-* **Portable Parking Spots** — Players purchase and use personal parking anywhere it is allowed.
-* **Vehicle List Menu** — Retrieve stored vehicles or pay to release impounded cars.
-* **Impound System** — Police jobs can impound vehicles; owners pay to get them back.
-* **Permanent Lots** — Configure fixed parking and impound lots with blips and zones.
-* **Admin Menu** — Staff tools for managing player parking data and overrides.
+* **Park Anywhere (`/vpark`)** — Instantly store your current vehicle into the garage database from any location on the map, free of charge.
+* **On-Demand Parking Spots (`/vbuy` & `/vlist`)** — Purchase a temporary vehicle retrieve spot for a configurable fee (`vbuyprice`), allowing players to summon their stored or impounded vehicles right to their feet.
+* **Police & Sheriff Impound System (`/vimpound`)** — Law enforcement can impound vehicles on-scene with customizable unimpound fees (`vimpoundprice`).
+* **Admin Management Panel (`/vadmin`)** — Staff can view all currently impounded server vehicles and release them with a single click without paying fees.
+* **Permanent Public Lots & Blips** — Support for permanent world parking lots and impound yards with custom map blips and 3D radius markers.
+* **Seamless Notification Support** — Natively styled with `fs_notify` or automatically falls back to `ox_lib` notifications.
 
-#### 💼 Perfect For:
-
-* Servers without a full garage system
-* Roleplay cities needing flexible parking
-* Police RP with impound workflows
-* Economy servers with parking fees
-* Players who want personal vehicle storage
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_portableparking` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_portableparking` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — database SQL, dependencies, and server.cfg
+- [Configuration](./configuration) — complete `config.lua` parameter guide
+- [Commands](./commands) — player, police, and admin command references
+- [Common Errors](./common-errors) — troubleshooting and common fixes

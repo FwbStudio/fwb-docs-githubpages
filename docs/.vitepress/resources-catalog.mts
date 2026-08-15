@@ -12,6 +12,7 @@ export interface ResourceVideo {
 export interface ResourcePages {
   configuration?: boolean
   commands?: boolean
+  specialFeature?: boolean
   exports?: { client?: boolean; server?: boolean }
   editableFiles?: { client?: boolean; server?: boolean }
   functions?: { client?: boolean; server?: boolean }
@@ -164,24 +165,27 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'npc-medic',
-    name: 'Npc Medic',
+    name: 'NPC Medic',
     repo: 'fs_npcmedic',
     category: 'scripts',
-    seoKeywords: 'FiveM NPC medic script'
+    seoKeywords: 'FiveM NPC medic script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'notify',
     name: 'Notify',
     repo: 'fs_notify',
     category: 'scripts',
-    seoKeywords: 'FiveM notify system FWB Studio'
+    seoKeywords: 'FiveM notification system custom notify ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'outfitbag',
     name: 'Outfit Bag',
     repo: 'fs_outfitbag',
     category: 'scripts',
-    seoKeywords: 'FiveM outfit bag portable wardrobe script'
+    seoKeywords: 'FiveM outfit bag portable wardrobe clothing script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'pizza-shop',
@@ -196,42 +200,40 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Items Placeables',
     repo: 'fs_placeables',
     category: 'scripts',
-    seoKeywords: 'FiveM placeable items script'
+    seoKeywords: 'FiveM placeable items physical prop placement script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'portable-parking',
     name: 'Portable Parking',
     repo: 'fs_portableparking',
     category: 'scripts',
-    seoKeywords: 'FiveM portable parking script'
+    seoKeywords: 'FiveM portable parking garage anywhere impound script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'safezone-creator',
     name: 'Safezone Creator',
     repo: 'fs_safezonecreator',
     category: 'scripts',
-    seoKeywords: 'FiveM safezone creator script'
+    seoKeywords: 'FiveM safezone creator in-game zone editor script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'shoes-robbery',
     name: 'Shoes Robbery',
     repo: 'fs_shoesrobbery',
     category: 'scripts',
-    seoKeywords: 'FiveM shoes robbery script'
+    seoKeywords: 'FiveM shoes robbery sneaker store heist script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'skitz-shoes-store',
     name: 'Skitz Shoes Store',
-    repo: 'fs_skitz_V1',
+    repo: 'fs_skitz',
     category: 'scripts',
-    seoKeywords: 'FiveM Skitz shoes store script'
-  },
-  {
-    slug: 'smoking',
-    name: 'Smoking',
-    repo: 'fs_smoking',
-    category: 'scripts',
-    seoKeywords: 'FiveM smoking script ESX QBCore'
+    seoKeywords: 'FiveM Skitz shoes store sneaker crafting business script ESX QBCore Qbox',
+    audited: true
   },
   /*
   {
@@ -247,14 +249,16 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Switch',
     repo: 'fs_switch',
     category: 'scripts',
-    seoKeywords: 'FiveM gun switch script'
+    seoKeywords: 'FiveM weapon switch glock full auto script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'tranquilizer',
     name: 'Tranquilizer',
     repo: 'fs_tranquilizer',
     category: 'scripts',
-    seoKeywords: 'FiveM tranquilizer script'
+    seoKeywords: 'FiveM tranquilizer dart dead player medical script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'trap-phone-v1',
@@ -277,24 +281,39 @@ export const RESOURCES: ResourceEntry[] = [
 
   {
     slug: 'weave-wear',
-    name: 'Wigs Craft & Sell',
-    repo: 'fs_weavewear_V1',
+    name: 'Wig Craft & Sell',
+    repo: 'fs_weavewear',
     category: 'scripts',
-    seoKeywords: 'FiveM wigs craft and sell wig script'
+    seoKeywords: 'FiveM wigs craft and sell weave wear salon hair business script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'white-widow',
     name: 'White Widow',
     repo: 'fs_whitewidow',
     category: 'scripts',
-    seoKeywords: 'FiveM White Widow weed shop script'
+    family: 'white-widow',
+    familyLabel: 'White Widow',
+    seoKeywords: 'FiveM White Widow weed shop dispensary farming script ESX QBCore Qbox',
+    audited: true
+  },
+  {
+    slug: 'smoking',
+    name: 'Smoking',
+    repo: 'fs_smoking',
+    category: 'scripts',
+    family: 'white-widow',
+    familyLabel: 'White Widow',
+    seoKeywords: 'FiveM smoking weed joints vape script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'wigs-bundle',
     name: 'WigsBundle Business',
     repo: 'fs_wigsbundles',
     category: 'scripts',
-    seoKeywords: 'FiveM wigs bundle business script'
+    seoKeywords: 'FiveM wigs bundle salon business enterprise script ESX QBCore Qbox',
+    audited: true
   },
   {
     slug: 'automatic-pistol-pack',
@@ -450,6 +469,10 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
 
   if (pages.commands) {
     items.push({ text: 'Commands', link: `${base}/commands` })
+  }
+
+  if (pages.specialFeature) {
+    items.push({ text: 'Special Feature', link: `${base}/special-feature` })
   }
 
   if (pages.exports?.client || pages.exports?.server) {

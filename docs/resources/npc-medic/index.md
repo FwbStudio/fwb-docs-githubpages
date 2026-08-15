@@ -1,13 +1,12 @@
 ---
-title: Npc Medic Preview | FWB Studio Docs
-description: Npc Medic preview and Tebex purchase. FiveM NPC medic script.
+title: NPC Medic Preview | FWB Studio Docs
+description: NPC Medic preview and Tebex purchase. FiveM NPC medic script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
-  <h1 class="fwb-product-hero__title">Npc Medic</h1>
-  <p class="fwb-product-hero__tagline">Official Npc Medic for FiveM — ESX, QBCore, and Qbox.</p>
+  <h1 class="fwb-product-hero__title">NPC Medic</h1>
+  <p class="fwb-product-hero__tagline">Official NPC Medic for FiveM — ESX, QBCore, and Qbox.</p>
   <div class="fwb-product-hero__actions">
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7459663" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>

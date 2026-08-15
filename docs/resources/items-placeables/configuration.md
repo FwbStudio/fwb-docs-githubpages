@@ -1,43 +1,45 @@
 ---
 title: Items Placeables Configuration | FWB Studio Docs
-description: Configure Items Placeables — config files and key options.
+description: Complete configuration reference for FiveM Items Placeables script (fs_placeables) — controls, items mapping, and prop models.
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426487" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
 # Items Placeables — Configuration
 
-Edit `fs_placeables/config/config.lua` in your download.
+Edit `fs_placeables/config/config.lua` to define placeable item names, corresponding 3D prop models, placement keybinds, rotation speeds, and interaction distances.
 
-<div class="fwb-config-block">
+---
+
+## Complete `config/config.lua` Reference
 
 ```lua
 Config = {}
 
-Config.target = true -- incase of false you will see 3dtext when go near to prop
+-- Set to true to use target (ox_target / qb-target), or false to use floating 3D text
+Config.target = true 
 
-Config.Menu = {      -- use menu to place inventory item as prop /
-    -- if you enable true or false in both cause you can use export to place prop from inventory or from any other script
-    enable = true,
-    command = 'placeprop',
-    key = 'F9',
+Config.Menu = {
+    enable = true,          -- Enable the inventory placement menu
+    command = 'placeprop',  -- Chat command to open placement menu
+    key = 'F9',             -- Default keybind to open menu
 }
 
--- Font used for the 3d text
+-- 3D Text settings (used when Config.target = false)
 Config.textFont = 4
-
--- Scale used for the 3d text
 Config.textScale = 1.0
 
 Config.Controls = {
-    up = 172,
-    down = 173,
-    left = 15,
-    right = 14,
-
-    place = 38,   -- E
-    cancel = 177, -- H
+    up = 172,     -- Arrow Up: Move prop away
+    down = 173,   -- Arrow Down: Move prop closer
+    left = 15,    -- Scroll Up / Key: Rotate Left
+    right = 14,   -- Scroll Down / Key: Rotate Right
+    place = 38,   -- E: Place object down
+    cancel = 177, -- Backspace / H: Cancel placement
     pickup = { key = 47, text = 'Press ~g~G~w~ to pickup', size = 0.03 },
-
 }
 
 Config.Context = {
@@ -47,62 +49,22 @@ Config.Context = {
 }
 
 Config.Speed = {
-    rotate = 1.5, -- rotate left right
-    move = 0.01,  -- move up down
+    rotate = 1.5, -- Rotation sensitivity
+    move = 0.01,  -- Movement sensitivity
 }
 
-Config.MaxFar = 5.0           -- max far can be a player place object from its current location at the time of placeable
+Config.MaxFar = 5.0           -- Maximum distance (in meters) a prop can be placed from the player
+Config.ContinuePlacing = true -- If true, player can place multiple items consecutively if they carry more
+Config.defaultprop = `hei_prop_heist_box` -- Fallback box prop if an item model fails to load
+Config.PropAplha = 100        -- Alpha transparency (0-255) of the prop during preview positioning
+Config.disallowItemStacking = false -- Set to true to prevent placing items on top of other props
 
-Config.ContinuePlacing = true -- continue placing items if player has more quanitty
-
--- incase any food using more then 1 prop then script will place top first prop as placeable prop
-
-Config.defaultprop = `hei_prop_heist_box` -- if u want to change this please rename prop name to avoid errors
-
-Config.PropAplha = 100                    -- make it 0 if u want don't want color round prop
-
--- Whether or not to disable item stacking (placing items on top of other items)
-Config.disallowItemStacking = false
-
--- for any fs food bussiness you don't have to make anything placeable support is added by default
+--[[
+    ITEMS MAPPING
+    Define which inventory item spawns which prop model.
+    You can specify multiple quantity thresholds (e.g. for money piles).
+]]
 Config.Items = {
-    -- if you want to run these default items then make sure u add these items into your server items list and images too or keep them commented like they are now
-
-    --[[
-
-    ['water_bottle'] = {
-        [1] = `prop_ecola_can`,
-    },
-
-    ['burger'] = {
-        [1] = `prop_cs_burger_01`,
-    },
-
-    ['cola'] = {
-        [1] = `prop_ecola_can`,
-    },
-
-    ['weed_block'] = {
-        [1] = `prop_weed_block_01`,
-    },
-
-
-    ['cone'] = {
-        [1] = `prop_roadcone01b`,
-    },
-
-    ['cylinder'] = {
-        [1] = `prop_gascyl_01a`,
-    },
-    ['case_1'] = {
-        [1] = `prop_idol_case`,
-    },
-
-    ['barrier'] = {
-        [1] = `prop_barrier_work01b`,
-    },
-    ]]
-
     ['money'] = {
         [1000] = `prop_cash_pile_01`,
         [10000] = `prop_money_bag_01`,
@@ -123,10 +85,26 @@ Config.Items = {
         [10000] = `prop_money_bag_01`,
         [1000000] = `prop_cash_case_01`,
     },
-    --add items here if you want any item placeable
 
-
+    -- Examples of Custom Items:
+    -- ['water_bottle'] = { [1] = `prop_ecola_can` },
+    -- ['burger']       = { [1] = `prop_cs_burger_01` },
+    -- ['weed_block']   = { [1] = `prop_weed_block_01` },
+    -- ['cone']         = { [1] = `prop_roadcone01b` },
+    -- ['barrier']      = { [1] = `prop_barrier_work01b` },
 }
 ```
 
-</div>
+---
+
+## Adding Custom Placeable Items
+
+To make any new item placeable:
+1. Open `config/config.lua`.
+2. Add your item's spawn name under `Config.Items`:
+   ```lua
+   ['repairkit'] = {
+       [1] = `prop_tool_box_04`,
+   },
+   ```
+3. Restart `fs_placeables`. Any player with `repairkit` in their inventory can now place a toolbox on the ground.

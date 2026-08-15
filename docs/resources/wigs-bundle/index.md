@@ -1,8 +1,7 @@
 ---
 title: WigsBundle Business Preview | FWB Studio Docs
-description: WigsBundle Business preview and Tebex purchase. FiveM wigs bundle business script.
+description: WigsBundle Business preview and Tebex purchase. FiveM complete hair salon and wig enterprise business script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
@@ -17,4 +16,4 @@ description: WigsBundle Business preview and Tebex purchase. FiveM wigs bundle b
 
 ## Preview videos
 
-<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/107jI4LZB4Q" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/33Rf9b7dZVk" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>

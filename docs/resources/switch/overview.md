@@ -1,6 +1,6 @@
 ---
 title: Switch Overview | FWB Studio Docs
-description: Switch features and setup overview for FiveM. FiveM gun switch script.
+description: Glock auto-switch weapon conversion features and setup overview for FiveM. Transform semi-auto pistols and rifles into full-auto for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,42 +10,36 @@ description: Switch features and setup overview for FiveM. FiveM gun switch scri
 
 # Switch
 
-### 🔀 Switch – Conceal and Swap Your Heat
+### 🔫 Switch – Glock Auto-Switch & Full-Auto Weapon Conversions
 
-Add realistic gun-switching RP where players hide a compact weapon and swap to a larger one — or the reverse — using switch items. Configure per-weapon pairs, limited uses, and swap animations for gang and street combat.
+Bring gritty street weapon modifications to your server with realistic Glock auto-switches. Players can use full-auto switch items (`fs_switch`, `fs_redswitch`, `fs_blueswitch`, `fs_greenswitch`) on semi-automatic pistols (`WEAPON_COMBATPISTOL`) and rifles (`WEAPON_CARBINERIFLE`) to convert them into rapid-firing automatic variants (`WEAPON_APPISTOL`, `WEAPON_SPECIALCARBINE`).
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+
+---
 
 #### ⚙️ Key Features
 
-* **Weapon Pair Swapping** — Map a concealed weapon to its switched variant and back.
-* **Custom Switch Items** — Global or per-weapon switches with limited-use counts.
-* **Swap Animation** — Timed swap animation so changes are not instant combat cheats.
-* **Inventory Auto-Detect** — Bridge autodetects ox_inventory, qb-inventory, and other supported inventories.
-* **Remove Command** — Admin or player command to clear an active switch state.
+* **Instant Full-Auto Conversion** — Use a switch item from inventory to convert semi-automatic handguns into automatic machine pistols.
+* **Realistic Assembly Animation** — Plays custom weapon tinkering animations (`michael_tux_fidget`) with configurable progress duration.
+* **Limited-Use & Durability Counter** — Configure how many times a switch can be installed before it degrades or breaks (`limitedUse = { enable = true, count = 2 }`).
+* **Switch Removal Command (`/r_switch`)** — Detach the switch at any time to recover the base weapon.
+* **Global & Weapon-Specific Switches** — Support for universal switches as well as exclusive custom switches tailored to specific firearm models.
+* **Wide Inventory Support** — Built-in support for `ox_inventory`, `qs-inventory`, `qb-inventory`, `ak47_inventory`, `ps-inventory`, and `ij-inventory`.
 
-#### 💼 Perfect For:
-
-* Gang and street RP with concealed carry
-* Servers banning instant weapon swaps
-* Gun-switch item economies
-* Realistic police vs criminal loadout stories
-* Combat servers wanting extra risk and timing
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_switch` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_switch` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items setup and server.cfg
+- [Configuration](./configuration) — complete `config.lua` and weapon mapping guide
+- [Commands](./commands) — switch detachment command reference
+- [Common Errors](./common-errors) — troubleshooting and common fixes

@@ -1,8 +1,7 @@
 ---
 title: Safezone Creator Installation | FWB Studio Docs
-description: Install Safezone Creator on FiveM — dependencies and server.cfg. FiveM safezone creator script.
+description: Install Safezone Creator on FiveM — dependencies, permissions, and server.cfg setup.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
@@ -14,28 +13,36 @@ description: Install Safezone Creator on FiveM — dependencies and server.cfg. 
 ## Dependencies
 
 | Resource | Required | Notes |
-| --- | --- | --- |
-| `oxmysql` | Yes | MySQL database |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+| :--- | :--- | :--- |
+| `oxmysql` | Yes | Database persistence for created zones |
+| `ESX, QBCore, or Qbox` | Yes | Framework support |
+| `fs_bridge` | **No** | `fs_safezonecreator` features its own built-in modular bridge |
 
+---
 
+## 1. Admin Permissions Setup
 
-
-
-
-
-
-## Install steps
-
-1. Place `fs_safezonecreator` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_safezonecreator/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+Grant access to the `/safezonemenu` command to your server administrators in `server.cfg`:
 
 ```lua
-ensure fs_bridge
+# Grant permission to your admin group:
+add_ace group.admin "safezone.admin" allow
+
+# Or grant directly to a specific player license:
+add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "safezone.admin" allow
+```
+
+---
+
+## 2. Server Configuration (`server.cfg`)
+
+1. Place `fs_safezonecreator` into your `resources/[fs]/` directory.
+2. Add the resource to your `server.cfg`:
+
+```lua
+ensure oxmysql
 ensure fs_safezonecreator
 ```
 
-6. Restart the server and check the console for errors.
+3. Restart your FiveM server. Database tables will auto-initialize on first start.
+4. Run `/safezonemenu` in-game to start creating and managing safezones.

@@ -1,8 +1,7 @@
 ---
 title: Shoes Robbery Preview | FWB Studio Docs
-description: Shoes Robbery preview and Tebex purchase. FiveM shoes robbery script.
+description: Shoes Robbery preview and Tebex purchase. FiveM sneaker store heist and player shoe robbery script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

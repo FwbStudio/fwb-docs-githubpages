@@ -1,6 +1,6 @@
 ---
 title: Safezone Creator Overview | FWB Studio Docs
-description: Safezone Creator features and setup overview for FiveM. FiveM safezone creator script.
+description: Safezone Creator features and setup overview for FiveM. Advanced in-game safezone creator tool for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,44 +10,45 @@ description: Safezone Creator features and setup overview for FiveM. FiveM safez
 
 # Safezone Creator
 
-### 🛡️ Safezone Creator – Protect What Matters
+### 🛡️ Safezone Creator – Complete In-Game Safezone Management Suite
 
-Create and manage safezones entirely in-game — no coordinate hunting in config files. Safezone Creator lets admins draw zones, set rules, assign permissions, and hook into other resources through exports and functions.
+Design, place, and customize protected zones anywhere on your server without touching a single line of code. Using an interactive 3D in-game visual editor (`/safezonemenu`), server administrators can draw Sphere, Box, or PolyZone boundaries, enforce combat and driving restrictions, configure speed limits, and broadcast custom entry/exit alerts.
 
-Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
+Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+
+---
 
 #### ⚙️ Key Features
 
-* **In-Game Admin Panel** — Open `/safezonemenu` to create, edit, and delete zones live.
-* **Zone Rules** — Control PvP, weapon use, vehicle damage, and more per zone.
-* **Bridge Providers** — Connects with supported zone engines and framework bridges automatically.
-* **Client & Server Hooks** — Exports and functions for scripts that need to react inside safezones.
-* **Blips, Icons & Logs** — Customize map blips, UI icons, and admin logging from the menu.
+* **Visual In-Game Creator Gizmo (`/safezonemenu`)** — Draw and scale safezones live in the world with real-time 3D gizmos, wireframe previews, and point-and-click vertex editing.
+* **3 Flexible Zone Types**:
+  * **Sphere Zones**: Quick radial protection around hospitals, spawns, or car meets.
+  * **Box Zones**: Defined rectangular boundaries with length, width, height, and heading.
+  * **PolyZone**: Freeform multi-point polygon shapes matching any custom MLO, building interior, or gang territory perimeter.
+* **Granular Safety & Protection Rules**:
+  * **Disable Weapon Shooting & Aiming**
+  * **Player & Vehicle Invincibility (Godmode)**
+  * **Disable Vehicle Damage & Ghosting / Anti-Ram**
+  * **Enforce Speed Limits Inside Zone**
+  * **Disable Melee Combat / Punching**
+  * **Disable Stealing, Looting, & Robbery Interactions**
+* **Custom Entry & Exit Notifications** — Set tailored title, description, and sound effects whenever players cross the safezone boundary.
+* **Dynamic Map Blips & Radiuses** — Create custom radar blips, change blip icons, colors, alpha transparencies, and labels directly in-game.
+* **Persistent MySQL Sync** — All created safezones save instantly to the database and sync live to all online players without restarting the server.
 
-#### 💼 Perfect For:
-
-* Spawn and hospital protection
-* Event venues and race start lines
-* Admin teams that hate editing zone coords by hand
-* Servers with mixed PvP and safe RP areas
-* Developers integrating custom zone logic
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_safezonecreator` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_safezonecreator` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports — Client](./exports/client) / [Server](./exports/server)
-- [Functions — Client](./functions/client) / [Server](./functions/server)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — dependencies and server.cfg setup
+- [Configuration](./configuration) — in-game management panel guide
+- [Commands](./commands) — admin command and permission setup
+- [Common Errors](./common-errors) — troubleshooting and common fixes

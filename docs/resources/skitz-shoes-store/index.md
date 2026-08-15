@@ -1,8 +1,7 @@
 ---
 title: Skitz Shoes Store Preview | FWB Studio Docs
-description: Skitz Shoes Store preview and Tebex purchase. FiveM Skitz shoes store script.
+description: Skitz Shoes Store preview and Tebex purchase. FiveM sneaker crafting and distribution business script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

@@ -1,6 +1,6 @@
 ---
 title: Skitz Shoes Store Overview | FWB Studio Docs
-description: Skitz Shoes Store features and setup overview for FiveM. FiveM Skitz shoes store script.
+description: Skitz Shoes Store features and setup overview for FiveM. Full-fledged sneaker crafting, workbench manufacturing, and mobile distribution business for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,43 +10,37 @@ description: Skitz Shoes Store features and setup overview for FiveM. FiveM Skit
 
 # Skitz Shoes Store
 
-### 👟 Skitz Shoes Store – Custom Kicks, Custom Grind
+### 👟 Skitz Shoes Store – Sneaker Manufacturing & Street Distribution Business
 
-Run a shoe crafting business where players buy materials, build custom sneakers at work tables, and sell through a business phone. Skitz Shoes Store brings streetwear economy RP to your server.
+Turn your players into underground sneaker moguls! From purchasing raw leathers, foam, and fabric to manufacturing 16+ pairs of custom designer kicks on a 3D physical workbench, Skitz delivers an end-to-end craft-and-sell economy with a dedicated in-game smartphone.
 
-Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Shoe Crafting** — Work tables, materials, and recipes for custom sneaker items.
-* **Supply Shops** — Buy leather, foam, cloth, tables, and business phones from NPC vendors.
-* **Business Phone** — Manage orders and workflow from a dedicated phone item.
-* **Ped Restrictions** — Limit crafting to specific character models when desired.
-* **Target or Marker Mode** — Choose ox_target or marker interaction for all stations.
+* **Complete Material & Hardware Store** — Buy leather materials (`fs_leather_materials`), shoe foam (`fs_shoe_foam`), raw cloth (`fs_clothe_materials`), work tables, and Skitz phones from NPC suppliers.
+* **3D Physical Workbench (`fs_shoes_table`)** — Place a physical craft table (`fs_prop_table_shoes`) anywhere to assemble 16+ designer sneaker models with custom repair animations.
+* **Dedicated Skitz Smartphone (`fs_shoesphone`)**:
+  * **Buyers App (Street Hustle)**: Attract dynamic NPC foot traffic who walk directly to the player to buy individual shoes in exchange for cash.
+  * **Delivery App (Wholesale Logistics)**: Accept bulk delivery contracts to transport shoe packages to 23+ randomized drop-off zones across Los Santos.
+* **Interactive Handoff Animations** — Realistic shoe backpack props (`fs_skid_backsack_shoe`), shoebox props (`fs_skid_box_shoe`), and cash pile exchange animations.
+* **Job & Ped Model Whitelisting** — Restrict crafting or selling to specific jobs (`config.jobsonly`) or specific character ped models (`config.restriction`).
 
-#### 💼 Perfect For:
-
-* Streetwear and fashion RP
-* Male-focused civilian businesses
-* Servers wanting custom shoe items
-* Lifestyle economy servers
-* Cities with multiple FWB fashion scripts
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_skitz_V1` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_skitz` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items, prop streams, and server.cfg
+- [Configuration](./configuration) — complete `config.lua` crafting recipes and apps guide
+- [Commands](./commands) — smartphone command reference
+- [Common Errors](./common-errors) — troubleshooting and common fixes

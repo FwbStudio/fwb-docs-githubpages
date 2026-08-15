@@ -1,8 +1,7 @@
 ---
 title: Items Placeables Installation | FWB Studio Docs
-description: Install Items Placeables on FiveM — dependencies and server.cfg. FiveM placeable items script.
+description: Install Items Placeables on FiveM — dependencies and server.cfg setup.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
@@ -14,28 +13,25 @@ description: Install Items Placeables on FiveM — dependencies and server.cfg. 
 ## Dependencies
 
 | Resource | Required | Notes |
-| --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — framework, inventory, target, dispatch |
-| `ox_lib` | Yes | Shared UI / callbacks |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+| :--- | :--- | :--- |
+| `fs_bridge` | Yes | Framework and targeting bridge |
+| `ox_lib` | Yes | UI components and keybind handlers |
+| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
 
+---
 
+## Install Steps
 
-
-
-
-
-## Install steps
-
-1. Place `fs_placeables` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_placeables/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+1. Create a category folder named `[fs]` inside your server's `resources/` directory if you haven't already (`resources/[fs]/`).
+2. Download and place the `fs_placeables` folder into `resources/[fs]/fs_placeables`.
+3. Open `fs_placeables/config/config.lua` and add any custom items and prop models you want players to place.
+4. Add the resource to your `server.cfg` **after** `fs_bridge`:
 
 ```lua
+ensure ox_lib
 ensure fs_bridge
 ensure fs_placeables
 ```
 
-6. Restart the server and check the console for errors.
+5. Restart your FiveM server.
+6. Press `F9` or run `/placeprop` in-game with placeable items in your inventory to test.

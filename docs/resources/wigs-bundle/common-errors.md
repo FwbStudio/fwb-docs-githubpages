@@ -1,6 +1,6 @@
 ---
 title: WigsBundle Business Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM WigsBundle Business script.
+description: Frequently asked questions and troubleshooting for FiveM WigsBundle Business (fs_wigsbundles).
 ---
 
 # WigsBundle Business — Common Errors & FAQ
@@ -9,59 +9,36 @@ Have a question or encounter an issue while running **fs_wigsbundles**? Check th
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: "Attempt to index a nil value (field 'FWB')" on server start?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_wigsbundles** initializes.
+`fs_bridge` is missing, stopped, or started **after** `fs_wigsbundles` in your `server.cfg`.
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
-   ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-3. Update `fs_bridge` to the latest version.
+Ensure `fs_bridge` starts before `fs_wigsbundles` in `server.cfg`:
+```lua
+ensure fs_bridge
+ensure fs_wigsbundles
+```
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
+### ❓ Q: Player hairstyles do not reset back to normal when un-equipping a wig?
 
 ::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
+The fallback hair ID in `config.NonWig` is not configured for your character's clothing model.
 :::
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_wigsbundles/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
-:::
-
----
-
-### ❓ Q: Error saying item or database entry is missing in framework items?
-
-::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
-:::
-
-::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
+Open `fs_wigsbundles/config/config.lua` and adjust `config.NonWig`:
+```lua
+config.NonWig = {
+    male = { hair_id = 0, hair_texture = 0, hair_color = 0, hair_highlight = 0 },
+    female = { hair_id = 83, hair_texture = 0, hair_color = 0, hair_highlight = 0 }
+}
+```
 :::
 
 ---

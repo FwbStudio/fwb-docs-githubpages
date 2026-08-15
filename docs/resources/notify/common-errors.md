@@ -1,6 +1,6 @@
 ---
 title: Notify Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Notify script.
+description: Frequently asked questions and troubleshooting for FiveM Notify script (fs_notify).
 ---
 
 # Notify — Common Errors & FAQ
@@ -9,59 +9,75 @@ Have a question or encounter an issue while running **fs_notify**? Check the com
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: Why does `/fs_notify` display a "Permission Required" screen?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_notify** initializes.
+This occurs when `AllowPlayerEdit = false` is set in `config/config.lua` and the player executing the command lacks the required ACE admin permission (`fs_notify.admin`).
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
+1. **To allow admins only**: Add the ACE permission to your `server.cfg`:
    ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
+   add_ace group.admin fs_notify.admin allow
+   # Or for your specific license:
+   add_ace identifier.license:your_license_here fs_notify.admin allow
    ```
-3. Update `fs_bridge` to the latest version.
+2. **To allow all players to customize their own styles**: Open `fs_notify/config/config.lua` and set:
+   ```lua
+   config.AllowPlayerEdit = true
+   ```
+3. Restart your server.
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
+### ❓ Q: Why are notifications not playing any audio sound?
 
 ::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
+The selected sound is set to `none`, sound volume is muted in GTA V audio settings, or a custom audio URL is not a direct audio link.
 :::
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_notify/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
+1. Run `/fs_notify` in-game and select an active sound profile (e.g. `esx`, `okok`, `soft_chime`).
+2. If using a **Custom Sound URL**, ensure the link is a direct, publicly accessible URL ending in `.mp3` or `.ogg` (e.g. hosted on Discord or a CDN).
+3. Check `soundMode`: If set to `first_only`, subsequent notifications in a rapid burst will not play sounds to avoid spam. Set to `every_notify` if you prefer audio on every single alert.
 :::
 
 ---
 
-### ❓ Q: Error saying item or database entry is missing in framework items?
+### ❓ Q: Does `fs_notify` require `fs_bridge`?
 
 ::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
+`fs_notify` is **100% standalone** and does **not** require `fs_bridge` to operate.
 :::
 
 ::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
+In your `server.cfg`, simply ensure:
+```lua
+ensure fs_notify
+```
+:::
 
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
+---
+
+### ❓ Q: How can I replace my framework's default notification with `fs_notify`?
+
+::: tip Solution
+You can replace your framework's notification function in your core files or bridge scripts:
+
+**For ESX (`es_extended`):**
+```lua
+function ESX.ShowNotification(message, type, duration)
+    exports.fs_notify:show(message, type or 'info', duration or 5000)
+end
+```
+
+**For QBCore (`qb-core`):**
+```lua
+function QBCore.Functions.Notify(text, texttype, length)
+    exports.fs_notify:show(text, texttype or 'info', length or 5000)
+end
+```
 :::
 
 ---

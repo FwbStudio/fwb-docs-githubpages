@@ -1,6 +1,6 @@
 ---
 title: Items Placeables Overview | FWB Studio Docs
-description: Items Placeables features and setup overview for FiveM. FiveM placeable items script.
+description: Items Placeables features and setup overview for FiveM. Physical 3D item prop placement for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,43 +10,41 @@ description: Items Placeables features and setup overview for FiveM. FiveM place
 
 # Items Placeables
 
-### 📦 Items Placeables – Drop Props from Inventory
+### 📦 Items Placeables – Drop & Position Physical Props Anywhere
 
-Turn inventory items into world props players can place, rotate, and pick back up. Items Placeables is the foundation for decor, food displays, fraud gear, and any script that needs physical objects in the world.
+Transform standard inventory items into physical 3D world props that players can position, stack, and interact with in real time. Perfect for drug drops, cash handoffs, police roadblocks, construction scenes, food roleplay, and player housing decorations.
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Item-to-Prop Mapping** — Assign GTA props to any inventory item in config.
-* **Placement Controls** — Move, rotate, place, cancel, and pickup with in-world keybinds.
-* **Placement Menu** — Optional command and keybind to open a place-prop menu from inventory.
-* **Target or 3D Text** — Use ox_target interaction or floating 3D text near placed props.
-* **FWB Food Support** — Food business scripts can place props automatically without extra setup.
+* **Interactive Free-Placement Gizmo** — Precise controls to rotate left/right, raise/lower, move forward/backward, and snap items onto tables, vehicle hoods, or floors.
+* **Tiered Dynamic Cash Props** — Automatic model switching based on currency quantity:
+  * Small amounts ($1,000) = `prop_cash_pile_01` (Cash Stacks)
+  * Medium amounts ($10,000) = `prop_money_bag_01` (Duffel Bag)
+  * Large amounts ($1,000,000) = `prop_cash_case_01` (Briefcase)
+* **Target & 3D Text Interactions** — Seamless integration with `ox_target`, `qb-target`, or floating 3D text prompts (`G`) to pick up placed items.
+* **Placement Menu & Keybind (`F9` / `/placeprop`)** — Open a visual menu listing all placeable items currently carried in the player's inventory.
+* **Dynamic Developer Export (`additem`)** — Easily register new items and their corresponding 3D props from any external resource at runtime.
+* **Continuous Placement Mode** — Place multiple copies of an item sequentially without reopening the menu each time.
+* **Anti-Stacking & Distance Limits** — Configurable maximum placement radius (`Config.MaxFar`) and item collision rules.
 
-#### 💼 Perfect For:
-
-* Decor and housing RP
-* Food businesses showing meals on counters
-* Fraud, trap, and criminal scripts using placeables
-* Event setup and scene building
-* Servers wanting props tied to real items
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_placeables` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_placeables` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — setup and server.cfg
+- [Configuration](./configuration) — complete `config.lua` and items table reference
+- [Commands](./commands) — placement menu commands and keybinds
+- [Exports — Client](./exports/client) / [Server](./exports/server) — dynamic runtime item registration
+- [Common Errors](./common-errors) — troubleshooting and common fixes

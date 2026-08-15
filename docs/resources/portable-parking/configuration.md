@@ -1,14 +1,20 @@
 ---
 title: Portable Parking Configuration | FWB Studio Docs
-description: Configure Portable Parking — config files and key options.
+description: Complete configuration reference for FiveM Portable Parking script (fs_portableparking).
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7431940" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
 # Portable Parking — Configuration
 
-Edit `fs_portableparking/config/config.lua` in your download.
+Edit `fs_portableparking/config/config.lua` to customize command names, parking spot purchase fees, impound fees, staff permissions, permanent lots, and markers.
 
-<div class="fwb-config-block">
+---
+
+## Complete `config/config.lua` Reference
 
 ```lua
 --[[
@@ -17,29 +23,27 @@ Edit `fs_portableparking/config/config.lua` in your download.
 
 ]]
 
-config.language = 'en' -- make sure this exist in locales file else 'en' will be used automatically
+config.language = 'en'
 
 config.portableparking = {
     commands = {
-        buypark = "vbuy",      -- command to buy portable parking
-        vehiclelist = "vlist", -- command to see your parked vehicles
-        parkvehicle = "vpark",
-
-        admin = 'vadmin', -- admin command to access admin menu
+        buypark = "vbuy",      -- Command to purchase an on-demand parking/retrieve spot
+        vehiclelist = "vlist", -- Command to open the vehicle retrieve menu at a spot
+        parkvehicle = "vpark", -- Command to park the vehicle at current location
+        admin = 'vadmin',      -- Admin command to manage impounds
     },
-    vbuyprice = 500,      -- price of portable parking
-    vimpoundprice = 2000, -- price to uimpound vehicle from impound
-    buy_cooldown = 0,     -- 10 second cooldown
+    vbuyprice = 500,           -- Cost to purchase a temporary parking spot
+    vimpoundprice = 2000,      -- Fee charged to players to release impounded vehicles
+    buy_cooldown = 0,          -- Purchase cooldown in seconds
 
-    -- if impount_anywhere = true then player will see a impound in vlist menu
+    -- If true, players can unimpound vehicles directly from the /vlist menu
     impound_anywhere = true,
 
-    -- auto_unimpound = false means player have to unimpound
-    -- auto_unimpound = true means vehicle will be unimpounded automatically on server restart / resource restart
+    -- If true, impounded vehicles automatically reset on server restart
     auto_unimpound = false,
 
     Impound = {
-        command = 'vimpound',
+        command = 'vimpound',  -- Command for law enforcement to impound vehicles
         jobs = {
             ['police'] = true,
             ['sheriff'] = true,
@@ -47,24 +51,18 @@ config.portableparking = {
     }
 }
 
--- for qbcore u have to make sure to add this line in server.cfg
-
-config.admins = { -- for admin access using menu
+-- Framework admin group permissions for /vadmin
+config.admins = {
     ['admin'] = true,
     ['mod'] = true,
 }
 
--- can write in server cfg
--- add_ace license:1c17a180cdad995771fea75248f0ed95569b9e6a "fs_portableparkingadmin" allow
-
--- support player identifier means player character id for both esx and qb
+-- Specific character identifiers granted admin access
 config.identifier = {
-    ['char1:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
-    ['AOZ29226'] = true,
-
+    -- ['char1:license_here'] = true,
 }
 
--- if u don't want to use impounds u can comment all impound in config.impounds
+-- Optional permanent impound lots
 config.impounds = {
     [1] = {
         blip = { enable = true, id = 524, color = 1, scale = 0.7, name = "Impound Lot" },
@@ -73,35 +71,21 @@ config.impounds = {
     }
 }
 
--- on config.parking player will be able to use Press [E] to open menu
-config.parking = { -- incase u wanted to setup some permanent parking too
+-- Optional permanent parking garages
+config.parking = {
     [1] = {
-        -- if u don't want blip just make enable = false
         blip = { enable = true, id = 357, color = 3, scale = 0.7, name = "Parking Lot" },
         coords = vector4(150.9730, -1082.3186, 28.1924, 359.4603),
         radius = 10.0,
     }
 }
 
-Notify = function(text)
-    if GetResourceState('fs_notify') ~= 'missing' then
-        return exports.fs_notify:show(text, 'info', 5000, 'Portable Parking')
-    end
-    exports.ox_lib:notify({
-        title = 'Portable Parking',
-        description = text,
-        type = 'info',
-        duration = 5000,
-        position = 'top',
-    })
-end
-
-
+-- Marker visuals for permanent parking and impound zones
 config.marker = {
     Garage = {
         type = 1,
         scale = vector3(2.0, 2.0, 0.2),
-        color = { r = 202, g = 17, b = 272, a = 200 },
+        color = { r = 45, g = 212, b = 191, a = 200 },
     },
     Impound = {
         type = 1,
@@ -111,4 +95,11 @@ config.marker = {
 }
 ```
 
-</div>
+---
+
+## Configuration Parameter Details
+
+* **`vbuyprice`**: Cash or bank amount deducted when a player creates a temporary parking spot with `/vbuy`.
+* **`vimpoundprice`**: Fee charged to unimpound a seized vehicle.
+* **`impound_anywhere`**: When set to `true`, players can unimpound vehicles on-demand through their purchased `/vlist` spot. When set to `false`, players must visit a physical impound yard.
+* **`config.portableparking.Impound.jobs`**: Table of whitelisted jobs authorized to execute `/vimpound`.

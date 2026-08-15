@@ -1,13 +1,12 @@
 ---
 title: Smoking Preview | FWB Studio Docs
-description: Smoking preview and Tebex purchase. FiveM smoking script ESX QBCore.
+description: Smoking preview and Tebex purchase. FiveM joint rolling, blunt smoking, and vaping script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
   <h1 class="fwb-product-hero__title">Smoking</h1>
-  <p class="fwb-product-hero__tagline">Official Smoking for FiveM — ESX, QBCore, and Qbox.</p>
+  <p class="fwb-product-hero__tagline">Official Smoking System for FiveM — ESX, QBCore, and Qbox.</p>
   <div class="fwb-product-hero__actions">
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426496" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>

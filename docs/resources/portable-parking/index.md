@@ -1,8 +1,7 @@
 ---
 title: Portable Parking Preview | FWB Studio Docs
-description: Portable Parking preview and Tebex purchase. FiveM portable parking script.
+description: Portable Parking preview and Tebex purchase. FiveM portable parking garage anywhere script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

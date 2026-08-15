@@ -1,66 +1,62 @@
 ---
-title: Wigs Craft & Sell Configuration | FWB Studio Docs
-description: Configure Wigs Craft & Sell — config files and key options.
+title: Wig Craft & Sell Configuration | FWB Studio Docs
+description: Complete configuration reference for FiveM Wig Craft & Sell (fs_weavewear) — shops, crafting recipes, buyer app, and delivery routes.
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426495" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
-# Wigs Craft & Sell — Configuration
+# Wig Craft & Sell — Configuration
 
-Edit `fs_weavewear_V1/config/config.lua` in your download.
+Edit `fs_weavewear/config/config.lua` to define raw material store locations, wig crafting recipes, buyer app rates, delivery drop-offs, and custom workbench props.
 
-<div class="fwb-config-block">
+---
+
+## Complete `config/config.lua` Reference
 
 ```lua
-config.target = false
+config.target = false -- true for ox_target / qb-target; false for text UI prompts
 
+-- Restrict script to specific ped models (e.g. mp_f_freemode_01)
 config.restriction = {
-    enable = false, -- if enable = true then script will be female only if enable = false then script will work for all kind of ped
+    enable = false,
     allowedpeds = {
-
-        -- only keep that peds which you wnat to allow to use this script
-        --  [`mp_m_freemode_01`] = true, -- default rp Male ped
-        [`mp_f_freemode_01`] = true, -- default rp female ped
-        -- add your cusotm peds
-        --    [`s_f_y_hooker_01`] = true,
-
+        [`mp_f_freemode_01`] = true,
     }
 }
 
+-- Job restriction toggle
 config.jobsonly = {
-    enable = false, -- if enable = true then script will work only for bottom jobs enable = false then script will work for all jobs in server
+    enable = false,
     allowedjobs = {
         ['police'] = true,
-
     }
 }
 
---config.textui = true : script will use textui ui when target is false
---config.textui = false: script will use 2d textuiwhen target is false
-
 config.textui = true
+config.range = 2.3
 
-config.range = 2.3 --range for marker or target {from how far u can press E to apply target to ped}
-
+-- Material Supply Store Items
 config.shopitems = {
     { label = "Wig Cap",    name = "fs_ww_wigcap",    price = 75 },
     { label = "Wig bundle", name = "fs_ww_wigbundle", price = 75 },
     { label = "Sewing kit", name = "fs_ww_sewingkit", price = 100 },
-    { label = "Wig table",  name = "fs_ww_table",  price = 40 },
+    { label = "Wig table",  name = "fs_ww_table",     price = 40 },
     { label = "WW Phone",   name = "fs_ww_phone",     price = 1500 }
-
 }
 
+-- Shop Locations
 config.shops = {
-    -- shops / you can even use exports to open or close anymenu according to ur need
     {
         blip = { enable = true, sprite = 489, color = 1, name = "Weave & Wear", scale = 0.7 },
         ped = 'a_m_m_soucent_01',
         coords = vector4(-506.7363, 292.4022, 82.3882, 169.4869),
-        
     },
-    -- make more shops under this you can copy upper shop to make more shop
 }
 
+-- Wig Crafting Recipes on Workbench
 config.crafting = {
     ["fs_ww_long_curly"] = {
         label = 'Long Curly Wig',
@@ -72,291 +68,44 @@ config.crafting = {
             { item = "fs_ww_sewingkit", quantity = 3 }
         }
     },
-    ["fs_ww_short_hair_wig"] = {
-        label = "Short Hair Wig",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_short_curled_wig"] = {
-        label = "Short Curled Wig",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_long_blonde_wig"] = {
-        label = "Long Blonde Wig",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_40inchwigs"] = {
-        label = "40 Inch Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_braidwigs"] = {
-        label = "Braid Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_bodywavewigs"] = {
-        label = "Body Wave Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_bangwigs"] = {
-        label = "Bang Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_straightwigs"] = {
-        label = "Straight Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_naturalwavewigs"] = {
-        label = "Natural Wave Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
-    ["fs_ww_deepwavewigs"] = {
-        label = "Deep Wave Wigs",
-        time = 5000,
-        reward_count = { min = 1, max = 1 },
-        required = {
-            { item = "fs_ww_wigcap",    quantity = 1 },
-            { item = "fs_ww_wigbundle", quantity = 1 },
-            { item = "fs_ww_sewingkit", quantity = 3 }
-        }
-    },
+    -- additional wig models...
 }
 
+--[[
+    SELLING APPS CONFIGURATION
+]]
 config.selling = {
     phone = {
-        item = {
-            enable = true, --- make it enable = false to use disable item to open phone
-            item = 'fs_ww_phone',
-        },
-        command = {
-            enable = false, --- make it enable = true to use command to open phone
-            command = 'wwphone',
-        }
+        item = { enable = true, item = 'fs_ww_phone' },
+        command = { enable = false, command = 'wwphone' }
     },
-    peds = {                     -- for buyers app only
-        max_activepeds = 5,      -- max active peds at a time
+    peds = {
+        max_activepeds = 5,
         generateped = {
-            time = 4000,         -- generate a new ped after every 4000 = 4seconds
-            count = 1,           -- count = 1 means create 1 ped after every 4000 = 4 seconds only if active peds are less then max_activepeds
-            ped_timeout = 30000, -- if ped is not near player after 30 seconds then delete that ped
+            time = 4000,         -- Spawn customer every 4 seconds
+            count = 1,
+            ped_timeout = 30000, -- Despawn if buyer cannot reach player in 30s
         }
     },
-    buyersitems = { -- use only for buyers app
-
-        { item = "fs_ww_long_curly",       price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_short_hair_wig",   price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_short_curled_wig", price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_long_blonde_wig",  price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_40inchwigs",       price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_braidwigs",        price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_bodywavewigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_bangwigs",         price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_straightwigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_naturalwavewigs",  price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-        { item = "fs_ww_deepwavewigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
+    -- Street Customer Orders
+    buyersitems = {
+        { item = "fs_ww_long_curly", price = { min = 300, max = 500 }, quantity = { min = 1, max = 2 } },
     },
-    delivery = {           -- use only for delivery app
-        product_count = 2, -- 2 different product needed to start delivery
+    -- Wholesale Delivery Contracts
+    delivery = {
+        product_count = 2,
         items = {
-            { item = "fs_ww_long_curly",       price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_short_hair_wig",   price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_short_curled_wig", price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_long_blonde_wig",  price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_40inchwigs",       price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_braidwigs",        price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_bodywavewigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_bangwigs",         price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_straightwigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_naturalwavewigs",  price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
-            { item = "fs_ww_deepwavewigs",     price = { min = 1, max = 1000 }, quantity = { min = 1, max = 10 } },
+            { item = "fs_ww_long_curly", price = { min = 600, max = 1000 }, quantity = { min = 2, max = 5 } },
         }
     }
 }
 
+-- Workbench Settings
 config.table = {
     prop = `fs_prop_table_wigs`,
     item = 'fs_ww_table',
-    nearby_distance = 2.0, --if using bigger table then increase it basically it is distance from where center of table to player distance is less then this value then u will able to access that table
-    -- crafting animaton of items
+    nearby_distance = 2.0,
     animtion = { dict = 'mini@repair', clip = 'fixing_a_ped' },
-    progress_circle = {
-        -- enable = true, -- if you want to show ox_lib circle progressbar then make it true
-        -- enable = false, -- if you you wnat to use ox_lib simple progressbar then do falsea
-        enable = false,
-        position = 'bottom', -- 'bottom' or 'middle' {only needed if enable = true}
-    }
+    create_serverside = false,
 }
-
-
-
-config.disablecontrols = {
-    onPhoneUse = { 44, 1, 2, 25, 36, 63, 64, 71, 72, 75, 106, 200 },
-
-}
-
-config.deliverylocations = {
-    vec3(373.8328, 427.9720, 144.6843),
-    vec3(315.6384, 501.9844, 152.1798),
-    vec3(128.2986, 566.0015, 182.9800),
-    vec3(-516.7256, 433.3788, 96.8078),
-    vec3(-968.6490, 436.8183, 79.5717),
-    vec3(-1052.1809, 432.2358, 76.0639),
-    vec3(-1122.7089, 485.7752, 81.1607),
-    vec3(-728.7547, -879.7343, 21.7109),
-    vec3(443.2751, -1707.2467, 28.7086),
-    vec3(1229.2198, -725.3958, 59.7989),
-    vec3(1251.2645, -621.3680, 68.4132),
-    vec3(952.6441, -252.3502, 66.9664),
-    vec3(-448.8238, -132.6289, 38.0829),
-    vec3(-534.3204, -166.3404, 37.3248),
-    vec3(-1098.2153, -346.1143, 36.8035),
-    vec3(-716.3690, -864.7014, 22.1834),
-    vec3(-668.2289, -971.5549, 21.3408),
-    vec3(-706.1187, -1036.4200, 15.4240),
-    vec3(-986.5771, -1199.3740, 5.0735),
-    vec3(-1126.1855, -1171.8801, 1.3576),
-    vec3(-1122.2983, -1046.33421, 1.1504),
-    vec3(-1351.0392, -1128.5168, 3.1545),
-    vec3(-1269.7740, -1296.4608, 3.0042),
-}
-
-config.peds = {
-    'ig_abigail',
-    'csb_abigail',
-    'u_m_y_abner',
-    'a_m_m_afriamer_01',
-    'ig_mp_agent14',
-    'csb_mp_agent14',
-    'csb_agent',
-    's_f_y_airhostess_01',
-    's_m_y_airworker',
-    'u_m_m_aldinapoli',
-    'ig_amandatownley',
-    'cs_amandatownley',
-    's_m_y_ammucity_01',
-}
-
-config.offset = {
-    { x = 0.0,   y = 15.0 },
-    { x = 0.0,   y = -15.0 },
-    { x = 15.0,  y = 0.0 },
-    { x = -15.0, y = 0.0 },
-    { x = 15.0,  y = 15.0 },
-    { x = -15.0, y = 15.0 },
-    { x = 15.0,  y = -15.0 },
-    { x = -15.0, y = -15.0 },
-    { x = 0.0,   y = 25.0 },
-    { x = 0.0,   y = -25.0 },
-    { x = 25.0,  y = 0.0 },
-    { x = -25.0, y = 0.0 },
-    { x = 25.0,  y = 25.0 },
-    { x = -25.0, y = 25.0 },
-    { x = 25.0,  y = -25.0 },
-    { x = -25.0, y = -25.0 },
-    { x = 0.0,   y = 20.0 },
-    { x = 0.0,   y = -20.0 },
-    { x = 20.0,  y = 0.0 },
-    { x = -20.0, y = 0.0 },
-    { x = 20.0,  y = 20.0 },
-    { x = -20.0, y = 20.0 },
-    { x = 20.0,  y = -20.0 },
-    { x = -20.0, y = -20.0 }
-}
-
-config.animation = {
-    OpenPhone = {
-        label = 'Dealing',
-        anim = { dict = 'cellphone@', clip = 'cellphone_text_read_base' },
-        prop = { model = `prop_npc_phone_02`, bone = 28422, pos = vec3(0, 0, 0), rot = vec3(0, 0, 0) },
-    },
-    UseBuyerApp = {
-        label = 'Dealing',
-        anim = { dict = 'cellphone@', clip = 'cellphone_text_read_base' },
-        prop = { model = `prop_npc_phone_02`, bone = 28422, pos = vec3(0, 0, 0), rot = vec3(0, 0, 0) },
-    },
-    UseDeliveryApp = {
-        label = 'Dealing',
-        anim = { dict = 'cellphone@', clip = 'cellphone_text_read_base' },
-        prop = { model = `prop_npc_phone_02`, bone = 28422, pos = vec3(0, 0, 0), rot = vec3(0, 0, 0) },
-    },
-    MakingDeal = {
-        time = 2000,
-        anim = { dict = 'mp_common', clip = 'givetake1_a' },
-        prop = { model = `fs_wave_model_wig`, bone = 57005, pos = vec3(0.17, 0.01, -0.01), rot = vec3(0.0, 0.0, -140.0) },
-        anim2 = { dict = 'mp_common', clip = 'givetake1_a' },
-        prop2 = { model = `hei_prop_heist_cash_pile`, bone = 57005, pos = vec3(0.13, 0.02, 0.0), rot = vec3(-90.0, 0, 0) },
-    }
-}
-
-config.deliveryblip = { title = 'Delivery Client', sprite = 286, color = 5, scale = 1.0 }
-
-config.Notification = {
-    title = "Weave & Wear",
-    icon = "fa-solid fa-bag-shopping",
-    time = 5000,
-    position = "top",
-}
-
-config.Textui = {
-    icon = "fa-solid fa-bag-shopping",
-    iconAnimation = 'bounce',
-}
-
----- !!!! DO NOT TOUCH BELOW THIS LINE !!!! ----
-
-config.statebag = true -- recommened to keep it true untill we don't let u disable it in discord ticket
 ```
-
-</div>

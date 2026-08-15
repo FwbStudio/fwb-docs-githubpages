@@ -1,8 +1,7 @@
 ---
 title: Safezone Creator Preview | FWB Studio Docs
-description: Safezone Creator preview and Tebex purchase. FiveM safezone creator script.
+description: Safezone Creator preview and Tebex purchase. FiveM in-game safezone editor script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

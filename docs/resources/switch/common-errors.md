@@ -1,6 +1,6 @@
 ---
 title: Switch Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Switch script.
+description: Frequently asked questions and troubleshooting for FiveM Switch (fs_switch).
 ---
 
 # Switch — Common Errors & FAQ
@@ -9,59 +9,31 @@ Have a question or encounter an issue while running **fs_switch**? Check the com
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: Does `fs_switch` require `fs_bridge`?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_switch** initializes.
+`fs_switch` is **completely self-contained** and includes its own multi-framework and multi-inventory bridge modules.
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
-   ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-3. Update `fs_bridge` to the latest version.
+In your `server.cfg`, start the resource directly:
+```lua
+ensure ox_lib
+ensure fs_switch
+```
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
+### ❓ Q: Why does nothing happen when using a switch item?
 
 ::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
+The player is either not holding a valid weapon specified in `Config.weapons`, or the inventory item name does not match `Config.switches`.
 :::
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_switch/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
-:::
-
----
-
-### ❓ Q: Error saying item or database entry is missing in framework items?
-
-::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
-:::
-
-::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
+1. Ensure the player has the base weapon (e.g. `WEAPON_COMBATPISTOL`) equipped in their hands.
+2. Verify that the item name in your inventory matches `fs_switch` in `config/config.lua`.
 :::
 
 ---

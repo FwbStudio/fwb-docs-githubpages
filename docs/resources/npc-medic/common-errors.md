@@ -1,67 +1,77 @@
 ---
-title: Npc Medic Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Npc Medic script.
+title: NPC Medic Common Errors & FAQ | FWB Studio Docs
+description: Frequently asked questions and troubleshooting for FiveM NPC Medic script (fs_npcmedic).
 ---
 
-# Npc Medic — Common Errors & FAQ
+# NPC Medic — Common Errors & FAQ
 
 Have a question or encounter an issue while running **fs_npcmedic**? Check the common questions and error solutions below.
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: Why does `/help` say the service is currently unavailable?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_npcmedic** initializes.
+This occurs when real player EMS/medics are online and on duty, and their count meets or exceeds the threshold configured in `config.mediccommands.restriction.stop_command_if_active_ems_more_then`.
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
+1. Open `fs_npcmedic/config/config.lua`.
+2. Check `config.mediccommands.restriction`:
    ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
+   restriction = {
+       enable = true,
+       ems_jobs = { 'ambulance', 'doctor' },
+       stop_command_if_active_ems_more_then = 2, -- Increase this number or set enable = false for testing
+   }
    ```
-3. Update `fs_bridge` to the latest version.
+3. If you want players to always be able to call NPC medics regardless of online EMS, set `enable = false`.
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
+### ❓ Q: Why does `/help` say "You are not dead" even though the player is downed?
 
 ::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
+The death state from your custom or updated ambulance script is not recognized by `IsPlayerDead()` in the `bridge/` folder.
 :::
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_npcmedic/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
+1. Open `fs_npcmedic/bridge/` and find `IsPlayerDead()`.
+2. Ensure your ambulance resource name matches the condition check:
+   - For **wasabi_ambulance v2+**: ensure `LocalPlayer.state['wasabi:deathState'] == 2`.
+   - For **qbx_medical**: ensure `exports.qbx_medical:IsDead()`.
+   - For custom scripts: add an `elseif` block calling your script's death export.
 :::
 
 ---
 
-### ❓ Q: Error saying item or database entry is missing in framework items?
+### ❓ Q: Why is the revive fee not depositing into the society account?
 
 ::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
+The society name does not match your framework's banking configuration.
 :::
 
 ::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
+1. Open `fs_npcmedic/config/config.lua` and verify `money_job_name = 'ambulance'`.
+2. For ESX, the script automatically prefixes `society_` (resulting in `society_ambulance`). Ensure `society_ambulance` exists in your `addon_account` database table or banking system.
+3. For QBCore/Qbox, ensure management account `ambulance` exists in your banking resource (e.g. `qb-management`, `qb-banking`, or `renewed-banking`).
+:::
 
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
+---
+
+### ❓ Q: Does `fs_npcmedic` require `fs_bridge`?
+
+::: danger Cause
+`fs_npcmedic` does **not** require `fs_bridge`. It has its own self-contained open `bridge/` folder that directly communicates with ESX, QBCore, and Qbox.
+:::
+
+::: tip Solution
+You only need `ox_lib` and your framework installed. In your `server.cfg`, simply ensure:
+```lua
+ensure ox_lib
+ensure fs_npcmedic
+```
 :::
 
 ---

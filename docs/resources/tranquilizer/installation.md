@@ -1,8 +1,7 @@
 ---
 title: Tranquilizer Installation | FWB Studio Docs
-description: Install Tranquilizer on FiveM — dependencies and server.cfg. FiveM tranquilizer script.
+description: Install Tranquilizer on FiveM — items setup, ACE permissions, and server.cfg.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
@@ -14,120 +13,73 @@ description: Install Tranquilizer on FiveM — dependencies and server.cfg. Five
 ## Dependencies
 
 | Resource | Required | Notes |
-| --- | --- | --- |
-| `oxmysql` | Yes | MySQL database |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+| :--- | :--- | :--- |
+| `oxmysql` | Yes | Database persistence for paralysis timers |
+| `ESX, QBCore, or Qbox` | Yes | Framework core |
+| `fs_bridge` | **No** | `fs_tranquilizer` includes its own internal modular bridge |
 
+---
 
+## 1. Inventory Items Setup
 
+Add the tranquilizer syringe/dart item to your inventory system:
 
-## Items & inventory setup
+::: code-group
 
-Open `fs_tranquilizer/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
-
-<div class="fwb-inv-tabs">
-<details>
-<summary>ox_inventory</summary>
-
-Copy item/weapon images into `ox_inventory/web/images/`.
-
-**`ox_inventory.lua`**
-
-```lua
---[[
-
-    -- Add this item in ox_inventory/data/items.lua
-
-]]
-
-
-
-    ['tranquilizer_kit'] = {
-        label = 'Tranquilizer Kit',
-        weight = 250,
-        stack = true,
-        close = true,
-        description = 'Used to move a dead player into a tracked paralysis scene.'
-    }
-```
-
-</details>
-
-<details>
-<summary>QBCore / qb-inventory</summary>
-
-Copy item/weapon images into `qb-inventory/html/images/items/`.
-
-**`qb-core.lua`**
-
-```lua
---[[
-
-    -- Add this item in qb-core/shared/items.lua 
-
-]]
-
-
-
-['tranquilizer_kit'] = {
-    ['name'] = 'tranquilizer_kit',
-    ['label'] = 'Tranquilizer Kit',
-    ['weight'] = 250,
-    ['type'] = 'item',
-    ['image'] = 'fs_tranquilizer_syringe.svg',
-    ['unique'] = false,
-    ['useable'] = true,
-    ['shouldClose'] = true,
-    ['description'] = 'Used to move a dead player into a tracked paralysis scene.'
+```lua [📦 ox_inventory]
+-- Add to ox_inventory/data/items.lua
+['tranquilizer'] = {
+    label = 'Tranquilizer Dart',
+    weight = 100,
+    stack = true,
+    close = true,
+    description = 'A high-potency medical tranquilizer syringe.',
 },
 ```
 
-</details>
-
-<details>
-<summary>ESX</summary>
-
-Copy item/weapon images into `es_extended or your inventory images folder`.
-
-**`esx_items.sql`**
-
-```sql
-INSERT INTO `items` (`name`, `label`, `weight`) VALUES
-('tranquilizer_kit', 'Tranquilizer Kit', 1);
+```lua [📦 qs-inventory / qb-core]
+-- Add to your shared/items.lua
+['tranquilizer'] = {
+    ['name'] = 'tranquilizer',
+    ['label'] = 'Tranquilizer Dart',
+    ['weight'] = 100,
+    ['type'] = 'item',
+    ['image'] = 'tranquilizer.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A high-potency medical tranquilizer syringe.'
+},
 ```
 
-</details>
+:::
 
-<details>
-<summary>Item images</summary>
+---
 
-**Image:** `tranquilizer_kit.png` — place in the path above.
+## 2. Admin Permissions Setup
 
-</details>
-
-<details>
-<summary>Other install files</summary>
-
-- `ak47_inventory.lua`
-
-</details>
-
-</div>
-
-
-
-
-## Install steps
-
-1. Place `fs_tranquilizer` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_tranquilizer/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+Grant access to `/fs_tranquilizer` in your `server.cfg`:
 
 ```lua
-ensure fs_bridge
+# Admin group permission
+add_ace group.admin "fs_tranquilizer.admin" allow
+
+# Or specific player license
+add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx "fs_tranquilizer.admin" allow
+```
+
+---
+
+## 3. Server Configuration (`server.cfg`)
+
+1. Place `fs_tranquilizer` into your `resources/[fs]/` directory.
+2. Add the resource to your `server.cfg`:
+
+```lua
+ensure oxmysql
 ensure fs_tranquilizer
 ```
 
-6. Restart the server and check the console for errors.
+3. Restart your FiveM server.
+4. Run `/fs_tranquilizer` in-game to configure sedation durations and hospital beds.

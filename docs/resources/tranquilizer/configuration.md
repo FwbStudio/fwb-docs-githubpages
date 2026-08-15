@@ -1,43 +1,29 @@
 ---
 title: Tranquilizer Configuration | FWB Studio Docs
-description: Configure Tranquilizer — config files and key options.
+description: In-game configuration guide for FiveM Tranquilizer script (fs_tranquilizer).
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7444827" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
 # Tranquilizer — Configuration
 
-Edit `fs_tranquilizer/config/config.lua` in your download.
+`fs_tranquilizer` uses a **100% In-Game NUI Dashboard**. Do not manually edit Lua config files.
 
-<div class="fwb-config-block">
+Open the admin menu in-game with:
 
-```lua
---[[
-    ======================================================================
-    ||                                                                  ||
-    ||                           WARNING                                ||
-    ||                                                                  ||
-    ||            DO NOT WRITE ANYTHING IN THIS FILE!                   ||
-    ||            THIS CAN BREAK THE SCRIPT!                            ||
-    ||                                                                  ||
-    ======================================================================
-
-    This script uses a modern IN-GAME configuration system.
-    There is no need to manually edit Lua configuration files.
-
-    HOW TO CONFIGURE:
-    1. Ensure you have the appropriate admin permissions in your server.
-    2. Type the command `/fs_tranquilizer` in the game chat.
-    3. The configuration UI will open on your screen.
-    4. If it don't found admin permission then please copy that line from Ui and paste it in your server.cfg file
-    5. You can edit all settings, timers, and hospital coordinates directly from there!
-
-    Any changes made in the in-game UI are automatically saved and synced
-    live to all players without needing to restart the server or the script.
-
-    ======================================================================
-]]
-
-Config = {}
+```
+/fs_tranquilizer
 ```
 
-</div>
+---
+
+## In-Game UI Capabilities
+
+* **Sedation Duration & Timers**: Set base paralysis duration (in seconds/minutes) applied when a player is injected.
+* **Relog & Combat-Logging Protection**: Enable or disable database persistence of remaining sedation time across disconnects.
+* **Hospital Recovery Beds**: Add, edit, or remove hospital recovery beds, coordinates, and waking orientation angles.
+* **Ambulance Framework Detection**: Automatically auto-detects or manually locks to `wasabi_ambulance`, `qbx_medical`, `esx_ambulancejob`, or `qb-ambulancejob`.
+* **Notifications & Screen Effects**: Toggle screen blur, camera wobble, and custom notify alerts during sedation.

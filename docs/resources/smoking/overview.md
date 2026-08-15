@@ -1,6 +1,6 @@
 ---
 title: Smoking Overview | FWB Studio Docs
-description: Smoking features and setup overview for FiveM. FiveM smoking script ESX QBCore.
+description: Smoking features and setup overview for FiveM. Realistic joint rolling, blunt passes, vape refills, and synchronized smoke particle effects for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,43 +10,37 @@ description: Smoking features and setup overview for FiveM. FiveM smoking script
 
 # Smoking
 
-### 🚬 Smoking – Light Up the City
+### 🚬 Smoking – Realistic Joint Rolling, Blunts & Interactive Vaping
 
-Give your server a polished smoking experience with joints, vapes, crafting, and realistic animations. Smoking supports multiple item types, flavour refills, keybind controls, and exports for other FWB scripts like White Widow.
+The ultimate immersive smoking experience for FiveM roleplay. Roll real weed strains into handcrafted joints using authentic wraps and rolling papers, light up with synchronized smoke particle FX, pass joints smoothly to nearby friends, or refill reusable electronic vapes with flavored e-liquids.
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Joints & Vapes** — Separate configs for joints, cheap vapes, and premium vapes with unique props.
-* **Crafting & Lighters** — Require lighters, set craft delays, and define which strains are smokeable.
-* **Vape Flavours** — Refill liquids with named flavours and configurable tank sizes.
-* **Keybind Controls** — Smoke, throw, give, and refill with remappable keys.
-* **Cross-Script Support** — Other FWB resources can call smoking exports for shared item use.
+* **Authentic Joint Rolling System** — Combine raw flower strains (30+ preset strains including *Gelatti*, *Runtz OG*, *Cereal Milk*, *Sour Diesel*) with authentic wraps (`backwoods_honey`, `grabba_leaf`, `raw_cone_king`, `paxton_pearl_cigars`).
+* **Interactive In-Hand Controls**:
+  * **Inhale / Smoke**: Take smooth hits with mouth and tip particle FX.
+  * **Pass Joint (`Give`)**: Hand the lit joint directly to a nearby player.
+  * **Toss Joint (`Throw`)**: Discard the butt onto the ground.
+* **Electronic Vapes & E-Liquids** — Refillable vapes (`ba_prop_battle_vape_01`, cheap vapes, and premium vapes) with 12+ flavored e-liquids (*Blueberry Jam*, *Cookie Craze*, *Key Lime*, *Strawberry Jam*).
+* **Lighter Requirements & Durability** — Realistic ignition requiring a lighter or cheap lighter to spark up.
+* **Dead Opp Blunts Integration** — Compatible with **fs_bodybag** (`fs_deadopp`) to smoke defeated rivals in true street culture style.
 
-#### 💼 Perfect For:
-
-* Weed shop and dispensary RP
-* Nightlife and lounge scenes
-* Servers running White Widow or custom drug items
-* Lifestyle and social RP servers
-* Owners who want visual smoking without custom NUI work
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_smoking` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_smoking` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items and server.cfg
+- [Configuration](./configuration) — complete `config.lua` keybinds, vape flavors, and rolling recipes
+- [Common Errors](./common-errors) — troubleshooting and common fixes

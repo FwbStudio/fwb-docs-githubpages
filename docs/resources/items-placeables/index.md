@@ -1,8 +1,7 @@
 ---
 title: Items Placeables Preview | FWB Studio Docs
-description: Items Placeables preview and Tebex purchase. FiveM placeable items script.
+description: Items Placeables preview and Tebex purchase. FiveM placeable items physical prop script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

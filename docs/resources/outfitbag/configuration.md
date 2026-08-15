@@ -1,14 +1,20 @@
 ---
-title: Outfitbag Configuration | FWB Studio Docs
-description: Configure Outfitbag — config files and key options.
+title: Outfit Bag Configuration | FWB Studio Docs
+description: Complete configuration reference for FiveM Outfit Bag script (fs_outfitbag) — items, commands, job lockers, and clothing exclusions.
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426474" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
-# Outfitbag — Configuration
+# Outfit Bag — Configuration
 
-Edit `fs_outfitbag/config/config.lua` in your download.
+Edit `fs_outfitbag/config/config.lua` to configure bag modes, slots, job whitelist lockers, character naked fallback clothes, animations, and clothing exclusion rules.
 
-<div class="fwb-config-block">
+---
+
+## Complete `config/config.lua` Reference
 
 ```lua
 --[[
@@ -17,187 +23,130 @@ Edit `fs_outfitbag/config/config.lua` in your download.
 
 ]]
 
--- unique_bags = true then if player saved outfit in small bag will not gonna get old stored outfits in new small bag
--- unique_bags = false then if player saved outfit in small bag will get old stored outfits in new small bag
-config.unique_bags = false -- {if using command or non_item then this setting will be ignored}
+-- unique_bags = true: If a player saves outfits in a small bag, they will not see those outfits in a newly purchased small bag
+-- unique_bags = false: Saved outfits are linked to the player account across bags of the same type
+config.unique_bags = false
 
--- {clothing item compatiblity will be avilable in next update}
-config.clotingitem = false --  make it true if your using fs_clothingitem script to avoid saving outifts that are items in clothingitem script
+-- Set to true if using fs_clothingitem to avoid duplicate saving of itemized clothing
+config.clotingitem = false 
 
-config.onlyonebag = true   -- if true player can only place 1 bag on ground at a time {not effected on unique bags enabled}
+-- If true, a player can only place 1 bag on the ground at a time
+config.onlyonebag = true
 
 --[[
-
-    NAKED CHARACTER CONFIG
-
+    NAKED CHARACTER DEFAULTS
 ]]
-
 config.character = {
     models = {
-        [`mp_m_freemode_01`] = 'M', -- change only if you know what you are doing
-        [`mp_f_freemode_01`] = 'F'  -- change only if you know what you are doing
+        [`mp_m_freemode_01`] = 'M',
+        [`mp_f_freemode_01`] = 'F'
     },
     naked = {
-        ----------------------------<Naked Male>----------------------------
         [`mp_m_freemode_01`] = {
-
-            mask_1 = { drawable = 0, texture = 0, palette = 0 },       -- mask
-            helmet_1 = { drawable = -1, texture = 0, palette = 0 },    -- helmet
-            glasses_1 = { drawable = -1, texture = 0, palette = 0 },   -- gl
-            ears_1 = { drawable = -1, texture = 0, palette = 0 },      -- ears_1
-            tshirt_1 = { drawable = 15, texture = 0, palette = 0 },    -- t shirt
-            torso_1 = { drawable = 15, texture = 0, palette = 0 },     -- torso
-            decals_1 = { drawable = 0, texture = 0, palette = 0 },     -- decals
-            bproof_1 = { drawable = 0, texture = 0, palette = 0 },     -- bulletproof vest
-            arms = { drawable = 15, texture = 0, palette = 0 },        -- arms
-            watches_1 = { drawable = -1, texture = 0, palette = 0 },   -- watches
-            bracelets_1 = { drawable = -1, texture = 0, palette = 0 }, -- bracelets
-            bags_1 = { drawable = 0, texture = 0, palette = 0 },       -- bag
-            pants_1 = { drawable = 61, texture = 0, palette = 0 },     -- pants
-            shoes_1 = { drawable = 34, texture = 0, palette = 0 },     -- shoes
+            mask_1 = { drawable = 0, texture = 0, palette = 0 },
+            helmet_1 = { drawable = -1, texture = 0, palette = 0 },
+            glasses_1 = { drawable = -1, texture = 0, palette = 0 },
+            ears_1 = { drawable = -1, texture = 0, palette = 0 },
+            tshirt_1 = { drawable = 15, texture = 0, palette = 0 },
+            torso_1 = { drawable = 15, texture = 0, palette = 0 },
+            decals_1 = { drawable = 0, texture = 0, palette = 0 },
+            bproof_1 = { drawable = 0, texture = 0, palette = 0 },
+            arms = { drawable = 15, texture = 0, palette = 0 },
+            watches_1 = { drawable = -1, texture = 0, palette = 0 },
+            bracelets_1 = { drawable = -1, texture = 0, palette = 0 },
+            bags_1 = { drawable = 0, texture = 0, palette = 0 },
+            pants_1 = { drawable = 61, texture = 0, palette = 0 },
+            shoes_1 = { drawable = 34, texture = 0, palette = 0 },
         },
-        ----------------------------<Naked Female>----------------------------
         [`mp_f_freemode_01`] = {
-
-            mask_1 = { drawable = 0, texture = 0, palette = 0 },       -- mask
-            helmet_1 = { drawable = -1, texture = 0, palette = 0 },    -- helmet
-            glasses_1 = { drawable = -1, texture = 0, palette = 0 },   -- gl
-            ears_1 = { drawable = -1, texture = 0, palette = 0 },      -- ears_1
-            tshirt_1 = { drawable = 15, texture = 0, palette = 0 },    -- t shirt
-            torso_1 = { drawable = 15, texture = 0, palette = 0 },     -- torso
-            decals_1 = { drawable = 0, texture = 0, palette = 0 },     -- decals
-            bproof_1 = { drawable = 0, texture = 0, palette = 0 },     -- bulletproof vest
-            arms = { drawable = 15, texture = 0, palette = 0 },        -- arms
-            watches_1 = { drawable = -1, texture = 0, palette = 0 },   -- watches
-            bracelets_1 = { drawable = -1, texture = 0, palette = 0 }, -- bracelets
-            bags_1 = { drawable = 0, texture = 0, palette = 0 },       -- bag
-            pants_1 = { drawable = 61, texture = 0, palette = 0 },     -- pants
-            shoes_1 = { drawable = 34, texture = 0, palette = 0 },     -- shoes
+            mask_1 = { drawable = 0, texture = 0, palette = 0 },
+            helmet_1 = { drawable = -1, texture = 0, palette = 0 },
+            glasses_1 = { drawable = -1, texture = 0, palette = 0 },
+            ears_1 = { drawable = -1, texture = 0, palette = 0 },
+            tshirt_1 = { drawable = 15, texture = 0, palette = 0 },
+            torso_1 = { drawable = 15, texture = 0, palette = 0 },
+            decals_1 = { drawable = 0, texture = 0, palette = 0 },
+            bproof_1 = { drawable = 0, texture = 0, palette = 0 },
+            arms = { drawable = 15, texture = 0, palette = 0 },
+            watches_1 = { drawable = -1, texture = 0, palette = 0 },
+            bracelets_1 = { drawable = -1, texture = 0, palette = 0 },
+            bags_1 = { drawable = 0, texture = 0, palette = 0 },
+            pants_1 = { drawable = 61, texture = 0, palette = 0 },
+            shoes_1 = { drawable = 34, texture = 0, palette = 0 },
         }
-        ----------------------------<Naked Config Ended>----------------------------
     }
 }
 
 --[[
-
-    PUBLIC BAGS CONFIG {COMMANDS}
-
+    PUBLIC BAGS VIA COMMANDS (NON-ITEM MODE)
 ]]
-
-config.non_item = { -- if u wanna use bag as command
-    enable = true,  -- enable or disable commands
+config.non_item = {
+    enable = true,  -- Enable or disable opening bags via commands
     commands = {
-        [1] = {
-            command = 'outfitbag', -- command to open outfit bag
-            bag = 'fs_small_bag'   -- copy bag name from config.public_bags
-        },
-        [2] = {
-            command = 'ob',      -- command to open outfit bag
-            bag = 'fs_small_bag' -- copy bag name from config.public_bags
-        },
-        -- you can add more command here
-        --[[
-        [3] = {
-            command = 'largebag',
-            bag = 'fs_large_bag'
-        },
-        ]]
-
-
-
+        [1] = { command = 'outfitbag', bag = 'fs_small_bag' },
+        [2] = { command = 'ob', bag = 'fs_small_bag' },
     }
 }
 
+-- Timeout in minutes before unattended bags on the ground are deleted
+config.bag_timeout = 10 
+
 --[[
-
-    PUBLIC BAGS CONFIG {ITEMS/BAGS Types}
-
+    PUBLIC BAGS AS INVENTORY ITEMS
 ]]
---{don't touch if you don't know what your are doing}
-config.bag_timeout = 10 -- in minutes if bag is public and not picked up after placing it will get deleted after this time
-
-
 config.public_bags = {
-    enable = false, -- if enable then item useable will work else u can use these bags into command also without enable item
+    enable = true, -- Enable usable item logic
     items = {
         ['fs_small_bag'] = {
             label = 'Small Outfit Bag',
-            slots = 5,                         -- outfit slots
-            model = 'fs_prop_outfitbag_small', -- optional custom model
+            slots = 5,                         -- Maximum outfit slots
+            model = 'fs_prop_outfitbag_small', -- Custom 3D ground prop
         },
-
         ['fs_medium_bag'] = {
             label = 'Medium Outfit Bag',
-            slots = 10,                      -- outfit slots
-            model = 'fs_prop_outfitbag_med', -- optional custom model
+            slots = 10,
+            model = 'fs_prop_outfitbag_med',
         },
         ['fs_large_bag'] = {
             label = 'Large Outfit Bag',
-            slots = 15,                        -- outfit slots
-            model = 'fs_prop_outfitbag_large', -- optional custom model
+            slots = 15,
+            model = 'fs_prop_outfitbag_large',
         },
-
-        -- you can add your custom bag under here
     }
 }
 
-
 --[[
-
-    WHITELIST BAGS CONFIG / JOB BAGS CONFIG
-
+    DEVELOPER / ADMIN OUTFIT COPY TOOL
 ]]
-
-config.command = { -- get outfit code for config file
-    -- enable it only when are making bags for jobs this will help you to copy outfit code
-    enable = false,
-    -- command to get outift code on your mouse curose and paste it anywhere you want can be used to get outfit code for ur currently weared clothes
-    -- once you get code you can paste into bottom outfits part
-    command = 'getoutfit',
+config.command = {
+    enable = false,        -- Enable only when setting up job uniforms
+    command = 'getoutfit', -- Command to copy current worn clothes to clipboard
 }
 
-
+--[[
+    JOB & WHITELIST LOCKER BAGS
+]]
 config.whitelist_bags = {
     enable = true,
     Bags = {
-
-
-        ----------------------------<Police Outfit Bag Start>----------------------------
-        ['police_bag'] = {                                       -- bag name
+        ['police_bag'] = {
             label = 'Police Outfit Bag',
-            model = 'fs_prop_outfitbag_pol',                     -- make sure don't copy public bags models
-            points = {                                           -- points where you want bags to be placed for jobs locations
-                --
-                vector4(450.9824, -992.9879, 30.6896, 356.1895), -- example point for police station
+            model = 'fs_prop_outfitbag_pol',
+            points = {
+                vector4(450.9824, -992.9879, 30.6896, 356.1895), -- Police station coordinates
             },
-            whitelist = {                                        -- who can open bag
-                enable = false,                                  -- no whitelist mean anyone can open bag
+            whitelist = {
+                enable = false, -- If true, only matching permissions can open
                 permissions = {
-                    admingroups = {
-                        --        ['admin'] = true,
-                    },
-                    jobgroups = {
-                        ['police'] = 0,
-                    },
-                    aces = {
-                        --         ['whitewidow'] = true,
-                    },
-                    identifiers = {
-                        --         ['license:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
-                        --
-                    },
-                    characters = {
-                        --         ['char1:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
-
-                    }
+                    jobgroups = { ['police'] = 0 },
                 },
             },
             outfits = {
                 [1] = {
                     title = 'Duty Outfit',
-                    playermodel = `mp_m_freemode_01`, -- male = `mp_m_freemode_01`, female = `mp_f_freemode_01`
-                    whitelist = {                     -- only these job or grade will able to see this
-                        ['police'] = { 0, 1, 2, 3 },  -- who ever will see this outfit in bag
+                    playermodel = `mp_m_freemode_01`,
+                    whitelist = {
+                        ['police'] = { 0, 1, 2, 3 }, -- Grade restrictions
                     },
                     outfit = {
                         mask_1 = { drawable = 0, texture = 0, palette = 0 },
@@ -218,45 +167,23 @@ config.whitelist_bags = {
                 },
             }
         },
-
-        ----------------------------<Police Outfit Bag END>----------------------------
-
-        ----------------------------<EMS Outfit Bag Start>----------------------------
-        ['ems_bag'] = {                                          -- bag name
+        ['ems_bag'] = {
             label = 'EMS Outfit Bag',
-            model = 'fs_prop_outfitbag_doc',                     -- make sure don't copy public bags models
-            points = {                                           -- points where you want bags to be placed for jobs locations
-                --
-                vector4(307.1971, -597.6035, 43.2840, 343.3831), -- example point for police station
+            model = 'fs_prop_outfitbag_doc',
+            points = {
+                vector4(307.1971, -597.6035, 43.2840, 343.3831), -- Hospital coordinates
             },
-            whitelist = {                                        -- who can open bag
+            whitelist = {
                 enable = false,
                 permissions = {
-                    admingroups = {
-                        --        ['admin'] = true
-                    },
-                    jobgroups = {
-                        ['ambulance'] = 0
-                    },
-                    aces = {
-                        --         ['whitewidow'] = true,
-                    },
-                    identifiers = {
-                        --         ['license:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
-                        --
-                    },
-                    characters = {
-                        --         ['char1:1c17a180cdad995771fea75248f0ed95569b9e6a'] = true,
-
-                    }
+                    jobgroups = { ['ambulance'] = 0 }
                 },
             },
             outfits = {
                 [1] = {
                     title = 'Duty Outfit',
-                    playermodel = `mp_m_freemode_01`, -- male = `mp_m_freemode_01`, female = `mp_f_freemode_01`
-                    whitelist = {                     -- only these job or grade will able to see this
-                        --['police'] = { 0, 1, 2, 3 },
+                    playermodel = `mp_m_freemode_01`,
+                    whitelist = {
                         ['ambulance'] = { 0, 1, 2, 3 },
                     },
                     outfit = {
@@ -278,41 +205,16 @@ config.whitelist_bags = {
                 },
             }
         },
-        ----------------------------<EMS Outfit Bag END>----------------------------
     }
 }
 
 config.preview = true
 
-config.animations = {
-    onplace = { enable = true, dict = 'amb@medic@standing@tendtodead@idle_a', anim = 'idle_a' },
-    onopen = { enable = true, dict = 'amb@medic@standing@tendtodead@idle_a', anim = 'idle_a' },
-    onpickup = { enable = true, dict = 'amb@medic@standing@tendtodead@idle_a', anim = 'idle_a' },
-    onchange = {
-        mask = { duration = 2000, dict = 'mp_cp_stolen_tut', anim = 'b_think' },
-        shirt = { duration = 4000, dict = 'mp_safehouseshower@male@', anim = 'male_shower_towel_dry_to_get_dressed' },
-        pant = { duration = 4000, dict = 'mp_safehouseshower@male@', anim = 'male_shower_towel_dry_to_get_dressed' },
-        shoes = { duration = 4000, dict = 'clothingshoes', anim = 'try_shoes_positive_d' },
-    },
-    onpreview = {
-        enable = true,
-        animations = {
-            { dict = 'clothingshirt',        anim = 'check_out_c' },
-            { dict = 'clothingshirt',        anim = 'try_shirt_positive_a' },
-            { dict = 'random@getawaydriver', anim = 'gesture_nod_yes_soft' },
-            { dict = 'clothingshirt',        anim = 'try_shirt_neutral_a' },
-            { dict = 'clothingshoes',        anim = 'try_shoes_positive_d' },
-            { dict = 'clothingshirt',        anim = 'try_shirt_neutral_b' },
-        },
-    }
-}
-
-config.notification = {
-    title = 'Outfit Bag',
-    duration = 5000
-}
-
-config.supported = { -- if you want bag shouldn't save some specific clothing item then make it false
+--[[
+    CLOTHING EXCLUSIONS
+    Set any component to false if you do not want it saved inside outfit bags
+]]
+config.supported = {
     ["mask_1"] = true,
     ['helmet_1'] = true,
     ['glasses_1'] = true,
@@ -326,8 +228,15 @@ config.supported = { -- if you want bag shouldn't save some specific clothing it
     ["bracelets_1"] = true,
     ['bags_1'] = true,
     ["pants_1"] = true,
-    ["shoes_1"] = true,
+    ["shoes_1"] = false, -- Example: exclude shoes from being overwritten
 }
 ```
 
-</div>
+---
+
+## Configuration Parameter Details
+
+* **`config.unique_bags`**: When `true`, each bag item tracks its own unique outfit inventory via item metadata. When `false`, saved outfits persist across all bags of the same tier for that player.
+* **`config.public_bags.items`**: Defines bag tiers (`fs_small_bag`, `fs_medium_bag`, `fs_large_bag`), their slot limits, and 3D prop models.
+* **`config.whitelist_bags`**: Defines static job/faction locker bags at specific `vector4` coordinates with job permissions (`jobgroups`, `admingroups`, `aces`, `identifiers`) and pre-set uniform templates.
+* **`config.supported`**: Toggle individual clothing components (torso, mask, shoes, accessories) on or off to control what gets saved into outfits.

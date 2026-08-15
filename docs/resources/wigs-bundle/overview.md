@@ -1,6 +1,6 @@
 ---
 title: WigsBundle Business Overview | FWB Studio Docs
-description: WigsBundle Business features and setup overview for FiveM. FiveM wigs bundle business script.
+description: WigsBundle Business features and setup overview for FiveM. Complete hair salon enterprise, multi-station wig manufacturing, and wearable hairpieces for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,42 +10,36 @@ description: WigsBundle Business features and setup overview for FiveM. FiveM wi
 
 # WigsBundle Business
 
-### 💇 Wigs Bundle – Build a Wig Empire
+### 💇‍♀️ WigsBundle Business – Commercial Hair Salon Enterprise & Wearable Wigs
 
-Open a full wig shop business with crafting, stock management, boss actions, and wearable hair items. Wigs Bundle lets players buy, craft, and equip wigs with realistic hair swaps and society payouts.
+The ultimate full-scale commercial beauty enterprise script for FiveM. Manage a physical salon storefront with employee management, society fund deposits, automated raw supply storage, interactive multi-step salon crafting stations, and wearable wig items that dynamically re-style player character hairstyles in real time!
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Wig Shop Job** — Complete business loop with boss menu, management, and crafting stations.
-* **Wearable Wig Items** — Equip wigs from inventory with fallback hair when none is worn.
-* **Stock & Auto Refill** — Set prices, stock levels, and optional automatic restocking.
-* **Phone & Table Access** — Restrict business tools to specific ped models when needed.
-* **Society Payouts** — Route business earnings to your framework society account.
+* **Full Salon Enterprise & Boss Management** — Society account integration, employee hiring, salary management, price adjusting, and stock purchasing.
+* **Auto-Refilling Salon Supply Storage** — Automated material storage (`wigcap`, `sewinkit`, `hairbundles`, `wigtable`) that refills on a configurable cycle.
+* **Multi-Step Salon Workstations** — Immersive crafting stations with progressive stage coordinates (`steps`) and interactive animations.
+* **Direct Wearable Wig Items** — Equipping any crafted wig item instantly updates the player's ped hairstyle (`hair_id`, `hair_texture`, `hair_color`, `hair_highlight`), with automatic restoration back to natural hair (`config.NonWig`) when unequipped.
+* **Male & Female Hairstyle Support** — Includes expansive support for 40+ female and male designer hairpieces.
+* **Custom Props & Accessories** — Streamed 3D Queen's work tables (`fs_prop_table_queens`), custom wig phones (`fs_wigs_phone_prop`), and designer bags (`fs_wig_backsack_wave_bb`).
 
-#### 💼 Perfect For:
-
-* Beauty industry RP servers
-* Female-focused civilian jobs
-* Pairs well with Lashes and Nails Saloon
-* Fashion districts and mall businesses
-* Servers wanting item-based hair customization
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_wigsbundles` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_wigsbundles` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items, prop streams, and server.cfg
+- [Configuration](./configuration) — complete `config.lua` salon and hairpiece guide
+- [Commands](./commands) — business commands reference
+- [Common Errors](./common-errors) — troubleshooting and common fixes

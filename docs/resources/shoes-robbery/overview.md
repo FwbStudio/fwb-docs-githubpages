@@ -1,6 +1,6 @@
 ---
 title: Shoes Robbery Overview | FWB Studio Docs
-description: Shoes Robbery features and setup overview for FiveM. FiveM shoes robbery script.
+description: Shoes Robbery features and setup overview for FiveM. Rob sneaker stores and steal shoes from other players for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,43 +10,37 @@ description: Shoes Robbery features and setup overview for FiveM. FiveM shoes ro
 
 # Shoes Robbery
 
-### 👟 Shoes Robbery – Hit the Stores, Flip the Kicks
+### 👟 Shoes Robbery – Sneaker Heists & Player Shoe Theft
 
-Rob shoe stores, dodge police, and sell stolen pairs or bundles for profit. Shoes Robbery adds a full robbery loop with configurable stores, timers, alerts, and selling points for economy and criminal RP servers.
+Bring modern streetwear culture into criminal roleplay. Raid premium sneaker boutiques to loot designer shoeboxes and backpacks, or sneak up on rival players to literally steal the shoes off their feet! Sell your stolen pairs individually or combine them into curated collector bundles at the Black Market fence for massive cash payouts.
 
-Supports **ESX**, **QBCore**, and **Qbox**.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Multiple Shoe Stores** — Rob configured locations with custom timers and loot.
-* **Police Alerts** — Configurable dispatch when robberies are in progress.
-* **Selling Points** — Sell stolen shoes as pairs or bundles for extra cash.
-* **Player Robberies** — Rob other players and sell their shoes through the system.
-* **Fully Editable Config** — Add stores, rob points, timers, and payouts without touching core code.
+* **Interactive Sneaker Store Heists** — Rob store display shelves with custom 3D shoebox models (`fs_sr_box_shoe.ytyp`, `fs_sr_backsack_shoe.ytyp`) and realistic looting animations.
+* **Player-to-Player Shoe Theft (`config.robshoes`)** — Target real players to rob their kicks. On success, the victim's shoes are stripped down to barefoot models and the thief receives a stolen designer shoe item.
+* **Black Market Sneaker Fence (`config.shoessell`)**:
+  * **Individual Pair Sells**: Turn in 2 matching shoes for instant cash.
+  * **Sneaker Set Bundles**: Combine full sets (e.g. *Premium Shoes Bundle*, *Air Bundle*, *Sports Bundle*) for huge bonus cash payouts.
+* **Police Alerts & Cooldowns** — Configurable required active police count (`active_cop`), alert dispatch chances (`policealert.chance`), store cooldowns, and global cooldowns.
+* **Reset Command (`/resetshoesrobbery`)** — Police rank 3+ or administrators can reset robbed stores back to full stock immediately.
 
-#### 💼 Perfect For:
-
-* Robbery and heist RP
-* Economy and black-market servers
-* Police vs criminal gameplay
-* Streetwear and sneaker culture scenes
-* Servers wanting unique illegal side jobs
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_shoesrobbery` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_shoesrobbery` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items, prop streams, and server.cfg
+- [Configuration](./configuration) — complete `config.lua`, store zones, and bundle rewards
+- [Commands](./commands) — robbery reset command reference
+- [Common Errors](./common-errors) — troubleshooting and common fixes

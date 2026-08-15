@@ -1,177 +1,29 @@
 ---
-title: Outfitbag Installation | FWB Studio Docs
-description: Install Outfitbag on FiveM — dependencies and server.cfg. FiveM outfit bag wardrobe script.
+title: Outfit Bag Installation | FWB Studio Docs
+description: Install Outfit Bag on FiveM — database table SQL, inventory items setup, and server.cfg.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426474" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Outfitbag — Installation
+# Outfit Bag — Installation
 
 ## Dependencies
 
 | Resource | Required | Notes |
-| --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — framework, inventory, target, dispatch |
-| `oxmysql` | Yes | MySQL database |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
+| :--- | :--- | :--- |
+| `fs_bridge` | Yes | Framework abstraction & inventory integration |
+| `ox_lib` | Yes | UI components and point interactions |
+| `oxmysql` | Yes | Persistent database storage for saved outfits |
+| `ESX, QBCore, or Qbox` | Yes | Supported frameworks |
 
+---
 
+## 1. Database Setup
 
-
-## Items & inventory setup
-
-Open `fs_outfitbag/[INSTALL_ME_FIRST]` and use the block for **your** inventory system.
-
-<div class="fwb-inv-tabs">
-<details>
-<summary>ox_inventory</summary>
-
-Copy item/weapon images into `ox_inventory/web/images/`.
-
-**`ox_inventory.lua`**
-
-```lua
---[[
-
-    -- Ox Invetory Item Template
-    -- ox_inventory/web/images
-
- ]]
-
- 
-
-
-    ['fs_small_bag'] = {
-        label = 'Small Bag',
-		weight = 10,
-		stack = false,
-		close = true,
-		description = 'A small bag that can hold a few outfitbag.',
-	},
-    ['fs_medium_bag'] = {
-        label = 'Medium Bag',
-		weight = 10,
-		stack = false,
-		close = true,
-		description = 'A medium bag that can hold a few outfitbag.',
-	},
-    ['fs_large_bag'] = {
-        label = 'Large Bag',
-		weight = 10,
-		stack = false,
-		close = true,
-		description = 'A large bag that can hold a few outfitbag.',
-	},
-```
-
-</details>
-
-<details>
-<summary>QBCore / qb-inventory</summary>
-
-Copy item/weapon images into `qb-inventory/html/images/items/`.
-
-**`qb-core_items.lua`**
-
-```lua
------ ADD this code into qb-core/shared/items.lua
-
-
-
-        fs_small_bag = {
-            name = 'fs_small_bag', 
-            label = 'Small Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_small_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A small bag that can hold a few outfitbag.' 
-        },
-        fs_medium_bag = {
-            name = 'fs_medium_bag', 
-            label = 'Medium Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_medium_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A medium bag that can hold a few outfitbag.' 
-        },
-        fs_large_bag = {
-            name = 'fs_large_bag', 
-            label = 'Large Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_large_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A large bag that can hold a few outfitbag.' 
-        },
-```
-
-</details>
-
-<details>
-<summary>qs-inventory</summary>
-
-Copy item/weapon images into `qs-inventory/html/images/`.
-
-**`qs_inventory.lua`**
-
-```lua
------ ADD this code into qs-inventory/shared/items.lua
-
-
-
-        fs_small_bag = {
-            name = 'fs_small_bag', 
-            label = 'Small Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_small_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A small bag that can hold a few outfitbag.' 
-        },
-        fs_medium_bag = {
-            name = 'fs_medium_bag', 
-            label = 'Medium Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_medium_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A medium bag that can hold a few outfitbag.' 
-        },
-        fs_large_bag = {
-            name = 'fs_large_bag', 
-            label = 'Large Bag', 
-            weight = 10, 
-            type = 'item', 
-            image = 'fs_large_bag.png', 
-            unique = false, 
-            useable = true, 
-            shouldClose = false, 
-            description = 'A large bag that can hold a few outfitbag.' 
-        },
-```
-
-</details>
-
-<details>
-<summary>SQL</summary>
-
-**`sql.sql`**
+Execute the following SQL query in your database manager (HeidiSQL, phpMyAdmin) to create the required table:
 
 ```sql
 CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
@@ -180,44 +32,166 @@ CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
   `bagname` varchar(50) DEFAULT NULL,
   `data` longtext DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 ```
 
-</details>
+---
 
-<details>
-<summary>Item images</summary>
+## 2. Items & Inventory Setup
 
-**Image:** `fs_large_bag.png` — place in the path above.
+If you want players to use outfit bags as usable inventory items, add the bag items to your inventory system:
 
-**Image:** `fs_medium_bag.png` — place in the path above.
+::: code-group
 
-**Image:** `fs_small_bag.png` — place in the path above.
+```lua [📦 ox_inventory]
+-- Add to ox_inventory/data/items.lua
+['fs_small_bag'] = {
+    label = 'Small Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A small bag that holds up to 5 saved outfits.',
+},
+['fs_medium_bag'] = {
+    label = 'Medium Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A medium bag that holds up to 10 saved outfits.',
+},
+['fs_large_bag'] = {
+    label = 'Large Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A large bag that holds up to 15 saved outfits.',
+},
+```
 
-</details>
+```lua [📦 qs-inventory]
+-- Add to qs-inventory/shared/items.lua
+['fs_small_bag'] = {
+    ['name'] = 'fs_small_bag',
+    ['label'] = 'Small Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_small_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A small bag that holds up to 5 saved outfits.'
+},
+['fs_medium_bag'] = {
+    ['name'] = 'fs_medium_bag',
+    ['label'] = 'Medium Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_medium_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A medium bag that holds up to 10 saved outfits.'
+},
+['fs_large_bag'] = {
+    ['name'] = 'fs_large_bag',
+    ['label'] = 'Large Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_large_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A large bag that holds up to 15 saved outfits.'
+},
+```
 
-<details>
-<summary>Other install files</summary>
+```lua [📦 qb-core items]
+-- Add to qb-core/shared/items.lua
+['fs_small_bag'] = {
+    ['name'] = 'fs_small_bag',
+    ['label'] = 'Small Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_small_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A small bag that holds up to 5 saved outfits.'
+},
+['fs_medium_bag'] = {
+    ['name'] = 'fs_medium_bag',
+    ['label'] = 'Medium Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_medium_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A medium bag that holds up to 10 saved outfits.'
+},
+['fs_large_bag'] = {
+    ['name'] = 'fs_large_bag',
+    ['label'] = 'Large Bag',
+    ['weight'] = 10,
+    ['type'] = 'item',
+    ['image'] = 'fs_large_bag.png',
+    ['unique'] = false,
+    ['useable'] = true,
+    ['shouldClose'] = true,
+    ['combinable'] = nil,
+    ['description'] = 'A large bag that holds up to 15 saved outfits.'
+},
+```
 
-- `ak_inventory.lua`
+```lua [📦 ak_inventory]
+-- Add to ak_inventory config items
+['fs_small_bag'] = {
+    label = 'Small Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A small bag that holds up to 5 saved outfits.',
+},
+['fs_medium_bag'] = {
+    label = 'Medium Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A medium bag that holds up to 10 saved outfits.',
+},
+['fs_large_bag'] = {
+    label = 'Large Bag',
+    weight = 10,
+    stack = false,
+    close = true,
+    description = 'A large bag that holds up to 15 saved outfits.',
+},
+```
 
-</details>
+:::
 
-</div>
+### Item Images
+Copy all PNG image files from `fs_outfitbag/[INSTALL_ME_FIRST]/[Images]/` into your inventory's web/images folder:
+- **ox_inventory**: `ox_inventory/web/images/`
+- **qs-inventory**: `qs-inventory/html/images/`
+- **qb-inventory**: `qb-inventory/html/images/`
 
+---
 
+## 3. Server Configuration (`server.cfg`)
 
-## Install steps
-
-1. Place `fs_outfitbag` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_outfitbag/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+Place `fs_outfitbag` inside your `resources/[fs]/` folder and add to your `server.cfg` **after** `fs_bridge`:
 
 ```lua
+ensure oxmysql
+ensure ox_lib
 ensure fs_bridge
 ensure fs_outfitbag
 ```
 
-6. Restart the server and check the console for errors.
+Restart your FiveM server and verify console startup output.

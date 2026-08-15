@@ -1,8 +1,7 @@
 ---
 title: Tranquilizer Preview | FWB Studio Docs
-description: Tranquilizer preview and Tebex purchase. FiveM tranquilizer script.
+description: Tranquilizer preview and Tebex purchase. FiveM tranquilizer dart dead player medical script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>

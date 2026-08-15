@@ -1,67 +1,98 @@
 ---
-title: Clothing As Item Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Clothing As Item script.
+title: Outfit Bag Common Errors & FAQ | FWB Studio Docs
+description: Frequently asked questions and troubleshooting for FiveM Outfit Bag script (fs_outfitbag).
 ---
 
-# Clothing As Item — Common Errors & FAQ
+# Outfit Bag — Common Errors & FAQ
 
 Have a question or encounter an issue while running **fs_outfitbag**? Check the common questions and error solutions below.
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: "Attempt to index a nil value (field 'FWB')" on server start?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_outfitbag** initializes.
+This occurs when `fs_bridge` is missing, stopped, or started **after** `fs_outfitbag` in your `server.cfg`.
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
+1. Ensure `fs_bridge` is present inside your `resources/[fs]/` directory.
+2. In your `server.cfg`, ensure `fs_bridge` is started before `fs_outfitbag`:
    ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
+   ensure fs_bridge
+   ensure fs_outfitbag
    ```
-3. Update `fs_bridge` to the latest version.
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
+### ❓ Q: Database error: `Table 'fs_outfitbag' doesn't exist`?
 
 ::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
+The MySQL database table for storing outfits has not been imported.
 :::
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_outfitbag/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
+1. Open `fs_outfitbag/[INSTALL_ME_FIRST]/sql.sql`.
+2. Run the SQL script in your database manager (HeidiSQL, phpMyAdmin):
+   ```sql
+   CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
+     `id` int(11) NOT NULL AUTO_INCREMENT,
+     `owner` varchar(100) NOT NULL DEFAULT '0',
+     `bagname` varchar(50) DEFAULT NULL,
+     `data` longtext DEFAULT NULL,
+     PRIMARY KEY (`id`)
+   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+   ```
+3. Restart your server.
 :::
 
 ---
 
-### ❓ Q: Error saying item or database entry is missing in framework items?
+### ❓ Q: Why are certain clothing parts (e.g. shoes, hats) not saving into outfits?
 
 ::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
+Those specific clothing components are disabled in `config.supported`.
 :::
 
 ::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
+1. Open `fs_outfitbag/config/config.lua`.
+2. Check `config.supported`:
    ```lua
-   ensure ox_inventory
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
+   config.supported = {
+       ["mask_1"] = true,
+       ['helmet_1'] = true,
+       ['glasses_1'] = true,
+       ['ears_1'] = true,
+       ["tshirt_1"] = true,
+       ["torso_1"] = true,
+       ["decals_1"] = true,
+       ["bproof_1"] = true,
+       ["arms"] = true,
+       ["watches_1"] = true,
+       ["bracelets_1"] = true,
+       ['bags_1'] = true,
+       ["pants_1"] = true,
+       ["shoes_1"] = true, -- Set to true if you want shoes saved
+   }
    ```
-5. Restart your server.
+3. Restart the resource.
+:::
+
+---
+
+### ❓ Q: 3D Bag prop models are invisible when placed on the ground?
+
+::: danger Cause
+The `.ytyp` stream definition is missing or blocked.
+:::
+
+::: tip Solution
+Ensure line 9 in `fs_outfitbag/fxmanifest.lua` is intact:
+```lua
+data_file 'DLC_ITYP_REQUEST' 'stream/fs_outfitbag.ytyp'
+```
+Do not rename the `stream` directory or remove the `.ytyp` file.
 :::
 
 ---

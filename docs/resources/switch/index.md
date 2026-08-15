@@ -1,13 +1,12 @@
 ---
 title: Switch Preview | FWB Studio Docs
-description: Switch preview and Tebex purchase. FiveM gun switch script.
+description: Switch preview and Tebex purchase. FiveM weapon glock switch full-auto script ESX QBCore Qbox.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
   <h1 class="fwb-product-hero__title">Switch</h1>
-  <p class="fwb-product-hero__tagline">Official Switch for FiveM — ESX, QBCore, and Qbox.</p>
+  <p class="fwb-product-hero__tagline">Official Glock Auto-Switch for FiveM — ESX, QBCore, and Qbox.</p>
   <div class="fwb-product-hero__actions">
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426485" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>

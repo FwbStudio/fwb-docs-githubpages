@@ -1,6 +1,6 @@
 ---
 title: White Widow Overview | FWB Studio Docs
-description: White Widow features and setup overview for FiveM. FiveM White Widow weed shop script.
+description: White Widow features and setup overview for FiveM. Dispensary storefront, hydroponic weed plant growth, and strain processing for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,43 +10,34 @@ description: White Widow features and setup overview for FiveM. FiveM White Wido
 
 # White Widow
 
-### 🌿 White Widow – Premium Weed Shop RP
+### 🌿 White Widow – Weed Dispensary & Hydroponic Cultivation Business
 
-Operate a full dispensary with growing, processing, selling, and smoking integration. White Widow is FWB's flagship weed business script — complete with shop markers, boss menus, and optional fs_smoking support.
+Run the premier legal cannabis dispensary and cultivation enterprise in Los Santos. Plant pots with seeds, monitor plant nutrition and water levels, apply pest sprays, harvest fresh buds, and process them into smoking accessories and joint strains behind the counter.
 
-Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Dispensary Business** — Stock shelves, process product, and sell to walk-in customers.
-* **Growing & Crafting** — Configurable grow and craft stations for end-to-end weed RP.
-* **Boss & Management** — Price, stock, and employee tools for shop owners.
-* **Smoking Integration** — Toggle fs_smoking support so strains are usable in-world.
-* **Client Exports** — Hook external scripts into shop state and interactions.
+* **Interactive Hydroponic Cultivation** — Plant seeds (`seed_weed`) in pots (`weed_pot`), nourish with fertilizer (`weed_fertilizer`), spray against bugs (`weed_spray`), and harvest ripe leaves (`weed_leaf`).
+* **Commercial Dispensary Counter** — Register sales points, employee billing terminals, customer display cabinets, and society fund deposits.
+* **Cannabis Supplies Hardware Store** — Sell lighters, Backwoods (Honey, Grape, Russian Cream, Banana), Paxton Pearl cigars, Grabba leaf, and Raw Cone King papers.
+* **Direct Integration with FS Smoking** — All strains grown and harvested at White Widow can be rolled into joints and smoked using **FS Smoking**.
+* **Target & Marker Support** — Seamlessly works with `ox_target`, `qb-target`, or traditional 3D ground markers.
 
-#### 💼 Perfect For:
-
-* Legal or semi-legal dispensary RP
-* Weed shop businesses and franchises
-* Servers running FWB Smoking together
-* Economy servers with lifestyle jobs
-* Cities wanting a flagship cannabis brand
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_whitewidow` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_whitewidow` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items and server.cfg
+- [Configuration](./configuration) — complete `config.lua` and farming settings
+- [Common Errors](./common-errors) — troubleshooting and common fixes

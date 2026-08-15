@@ -96,20 +96,25 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "commonErrors": true
   },
   "npc-medic": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
   "notify": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
+    "specialFeature": true,
     "exports": {
       "client": true,
       "server": true
     },
-    "questions": true,
-    "commonErrors": false
+    "commonErrors": true
   },
   "outfitbag": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "pizza-shop": {
@@ -119,53 +124,40 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "commonErrors": true
   },
   "items-placeables": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "exports": {
       "client": true,
-      "server": false
+      "server": true
     },
     "commonErrors": true
   },
   "portable-parking": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "safezone-creator": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": true
-    },
-    "functions": {
-      "client": true,
-      "server": true
-    },
+    "commands": true,
     "commonErrors": true
   },
   "shoes-robbery": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": false
-    },
+    "commands": true,
     "commonErrors": true
   },
   "skitz-shoes-store": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": false
-    },
+    "commands": true,
     "commonErrors": true
   },
-  "smoking": {
-    "configuration": true,
-    "exports": {
-      "client": true,
-      "server": false
-    },
-    "commonErrors": true
-  },
+
   /*
   "starter-pack": {
     "configuration": true,
@@ -173,15 +165,15 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   },
   */
   "switch": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "tranquilizer": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": true
-    },
+    "commands": true,
     "commonErrors": true
   },
   "trap-phone-v1": {
@@ -197,23 +189,25 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   },
 
   "weave-wear": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": false
-    },
+    "commands": true,
     "commonErrors": true
   },
   "white-widow": {
+    "audited": true,
     "configuration": true,
-    "exports": {
-      "client": true,
-      "server": false
-    },
+    "commonErrors": true
+  },
+  "smoking": {
+    "audited": true,
+    "configuration": true,
     "commonErrors": true
   },
   "wigs-bundle": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "automatic-pistol-pack": {

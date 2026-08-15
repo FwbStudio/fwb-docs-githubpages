@@ -1,67 +1,50 @@
 ---
 title: Skitz Shoes Store Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Skitz Shoes Store script.
+description: Frequently asked questions and troubleshooting for FiveM Skitz Shoes Store (fs_skitz).
 ---
 
 # Skitz Shoes Store — Common Errors & FAQ
 
-Have a question or encounter an issue while running **fs_skitz_V1**? Check the common questions and error solutions below.
+Have a question or encounter an issue while running **fs_skitz**? Check the common questions and error solutions below.
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+### ❓ Q: "Attempt to index a nil value (field 'FWB')" on server start?
 
 ::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before **fs_skitz_V1** initializes.
+`fs_bridge` is missing, stopped, or started **after** `fs_skitz` in your `server.cfg`.
 :::
 
 ::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
-   ```lua
-   ensure ox_lib
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-3. Update `fs_bridge` to the latest version.
+In your `server.cfg`, start `fs_bridge` before `fs_skitz`:
+```lua
+ensure fs_bridge
+ensure fs_skitz
+```
 :::
 
 ---
 
-### ❓ Q: Resource items or UI are not working or missing in inventory?
-
-::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
-:::
+### ❓ Q: Workbench prop is invisible or missing collision?
 
 ::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_skitz_V1/[INSTALL_ME_FIRST]` and use the item/sql blocks for your inventory system.
-4. Restart your server cleanly.
+Ensure `stream/fs_prop_table_shoes.ytyp` is properly registered in `fxmanifest.lua`:
+```lua
+data_file 'DLC_ITYP_REQUEST' 'stream/fs_prop_table_shoes.ytyp'
+```
 :::
 
 ---
 
-### ❓ Q: Error saying item or database entry is missing in framework items?
+### ❓ Q: Why don't NPC buyers spawn when using the Buyers App?
 
 ::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
+The player's character ped model might not be in `config.restriction.allowedpeds` or the character is inside a vehicle or non-navigable zone.
 :::
 
 ::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
+1. Ensure your ped model (e.g. `mp_m_freemode_01`, `mp_f_freemode_01`) is enabled in `config.restriction.allowedpeds`.
+2. Stand on a public sidewalk or open area.
 :::
 
 ---

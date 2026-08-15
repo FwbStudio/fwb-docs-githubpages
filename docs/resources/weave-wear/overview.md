@@ -1,6 +1,6 @@
 ---
-title: Wigs Craft & Sell Overview | FWB Studio Docs
-description: Wigs Craft & Sell features and setup overview for FiveM. FiveM wigs craft and sell wig script.
+title: Wig Craft & Sell Overview | FWB Studio Docs
+description: Wig Craft & Sell (Weave & Wear) features and setup overview for FiveM. Craft custom lace wigs and manage mobile distribution for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,45 +8,39 @@ description: Wigs Craft & Sell features and setup overview for FiveM. FiveM wigs
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426495" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Wigs Craft & Sell
+# Wig Craft & Sell (Weave & Wear)
 
-### 💇 Wigs Craft & Sell – Mobile Wig Business
+### 💇‍♀️ Wig Craft & Sell – Hair Salon Manufacturing & Mobile Distribution
 
-Run a mobile wig business with crafting tables, supply shops, a business phone, and carting mechanics. Wigs Craft & Sell lets players buy materials, craft wigs, and serve clients across the city.
+Empower your beauty salon and street hustle roleplay with a complete wig-crafting enterprise! Purchase raw hair bundles, caps, and sewing tools, assemble 11+ custom hairpiece styles on a 3D physical workbench, and distribute them across Los Santos using the dedicated Weave & Wear smartphone.
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+
+---
 
 #### ⚙️ Key Features
 
-* **Wig Crafting Table** — Place tables, craft bundles, and sell finished wigs.
-* **Supply Shops** — Configurable NPC shops for caps, bundles, sewing kits, and phones.
-* **Business Phone** — Dedicated phone item for managing orders and business flow.
-* **Ped & Job Restrictions** — Limit the script to specific ped models or jobs if desired.
-* **Target or Marker Mode** — Switch between ox_target and marker interaction styles.
+* **Raw Materials & Supplies Store** — Buy wig caps (`fs_ww_wigcap`), hair bundles (`fs_ww_wigbundle`), sewing kits (`fs_ww_sewingkit`), work tables, and WW phones from suppliers.
+* **3D Physical Hair Table Prop (`fs_prop_table_wigs`)** — Deploy a physical wig station anywhere to stitch 11+ custom wig variations (Curly, Blonde, 40 Inch, Braids, Body Wave, Straight, Deep Wave).
+* **Dedicated Weave & Wear Smartphone (`fs_ww_phone`)**:
+  * **Buyers App (Street Customers)**: Direct nearby NPC shoppers to walk up and purchase finished wigs for quick cash.
+  * **Delivery App (Wholesale Logistics)**: Fulfill multi-wig delivery contracts with GPS routes and client drop-offs across 23+ map coordinates.
+* **Realistic Handoff Animations & Props** — Custom wig handoff props (`fs_wig_backsack_wave`, `fs_wave_model_wig`) and cash exchange sequences.
+* **Target & TextUI Modes** — Compatible with `ox_target`, `qb-target`, or floating text UI prompts.
 
-#### 💼 Perfect For:
-
-* Beauty and salon RP servers
-* Female-focused civilian businesses
-* Mobile vendor and cart RP
-* Servers alongside Wigs Bundle or Lashes Saloon
-* Lifestyle economy servers
-
-💬 **All configs and locales included**.
-📦 Easy to install. Drag, drop, and configure.
-🧠 Built for immersive FiveM servers.
+---
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_weavewear_V1` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| :--- | :--- | :--- | :--- |
+| **Script Package** | `fs_weavewear` | ESX, QBCore, Qbox | FiveM Script |
+
+---
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
-- [Exports](./exports/client)
-- [Common Errors](./common-errors)
+- [Installation](./installation) — inventory items, prop streams, and server.cfg
+- [Configuration](./configuration) — complete `config.lua` crafting recipes and apps guide
+- [Commands](./commands) — smartphone command reference
+- [Common Errors](./common-errors) — troubleshooting and common fixes
