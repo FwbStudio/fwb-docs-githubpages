@@ -103,7 +103,7 @@ Copy item/weapon images into `qs-inventory/html/images/`.
 4. Configure `fs_trapphone_v1/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_trapphone_v1
 ```

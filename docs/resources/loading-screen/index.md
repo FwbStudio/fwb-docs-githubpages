@@ -1,13 +1,12 @@
 ---
-title: Loading Screen v1 Preview | FWB Studio Docs
-description: Loading Screen v1 preview and Tebex purchase. FiveM loading screen FWB Studio.
+title: Loading Screen Preview | FWB Studio Docs
+description: Loading Screen preview and Tebex purchase. FiveM loading screen FWB Studio.
 ---
-
 
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
-  <h1 class="fwb-product-hero__title">Loading Screen v1</h1>
-  <p class="fwb-product-hero__tagline">Official Loading Screen v1 for FiveM — ESX, QBCore, and Qbox.</p>
+  <h1 class="fwb-product-hero__title">Loading Screen</h1>
+  <p class="fwb-product-hero__tagline">Official Loading Screen for FiveM — ESX, QBCore, and Qbox.</p>
   <div class="fwb-product-hero__actions">
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426475" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>

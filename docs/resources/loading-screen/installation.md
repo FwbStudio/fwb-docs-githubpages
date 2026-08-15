@@ -1,40 +1,32 @@
 ---
-title: Loading Screen v1 Installation | FWB Studio Docs
-description: Install Loading Screen v1 on FiveM — dependencies and server.cfg. FiveM loading screen FWB Studio.
+title: Loading Screen Installation | FWB Studio Docs
+description: Install Loading Screen on FiveM — standalone setup and server.cfg. FiveM loading screen FWB Studio.
 ---
-
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426475" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Loading Screen v1 — Installation
+# Loading Screen — Installation
 
 ## Dependencies
 
 | Resource | Required | Notes |
 | --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — framework, inventory, target, dispatch |
-| `ESX, QBCore, or Qbox` | Yes | One framework per server |
-
-
-
-
-
+| `None` | No | Loading Screen is 100% standalone — works with any framework or standalone server |
 
 
 ## Install steps
 
-1. Place `fs_loadingscreen` in `resources/[fs]/`.
-2. Install dependencies listed below (Bridge, `ox_lib`, etc.).
-3. Complete **Items & inventory setup** from `[INSTALL_ME_FIRST]`.
-4. Configure `fs_loadingscreen/config/` before first start.
-5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
+1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
+2. Download and place `fs_loadingscreen` into `resources/[fs]/fs_loadingscreen`.
+3. If you plan to use a local video background, convert your video to `.webm` using our built-in [Video Converter](./video-converter) tool and place it in `fs_loadingscreen/web/videos/`.
+4. Configure your media, audio, staff, and patch notes in `fs_loadingscreen/config/config.lua` (see [Configuration](./configuration)).
+5. Add the resource to your `server.cfg`:
 
-```cfg
-ensure fs_bridge
+```lua
 ensure fs_loadingscreen
 ```
 
-6. Restart the server and check the console for errors.
+6. Restart your FiveM server and reconnect to view your new loading screen.

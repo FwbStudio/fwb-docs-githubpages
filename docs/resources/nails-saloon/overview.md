@@ -10,27 +10,27 @@ description: Nails Saloon features and setup overview for FiveM. FiveM nails sal
 
 # Nails Saloon
 
-### 💅 Nails Saloon – Manicures That Last
+### 💅 Nails Saloon – Nail Art & Manicures in RP
 
-Add a full nails salon experience with style menus, animations, shop markers, and business payouts. Nails Saloon applies nail designs through clothing components so players keep their look across sessions.
+Give players a dedicated nails menu to select colors, lengths, and custom nail art designs at beauty salons. Nails Saloon applies nail textures directly to character hands without requiring inventory items.
 
-Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
+Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 #### ⚙️ Key Features
 
-* **Nail Style Menu** — Command or keybind access with multiple nail IDs and texture counts.
-* **Salon Animations** — Configurable manicure animation while styles are applied.
-* **Shop Locations** — Marker-based salons with blips, prices, and business markers.
-* **Society Earnings** — Route service payments to your framework job society.
-* **Component Slot Control** — Nails use the decals component slot by default and are easy to extend.
+* **Nail Design Menu** — Open via command or salon location marker to browse colors, lengths, and textures.
+* **Component Texture Application** — Manicures apply directly to character hand textures for clean persistence.
+* **Salon Locations & Blips** — Set up multiple nail salons across San Andreas with customizable blips and pricing.
+* **Society Payment System** — Seamlessly deposit client service payments directly into salon business accounts.
+* **Fully Configurable** — Easily add new nail texture variations to the configuration.
 
 #### 💼 Perfect For:
 
-* Beauty industry and salon RP
-* Female-focused civilian jobs
-* Lifestyle and social servers
-* Pairs with Lashes Saloon and Wigs Bundle
-* Boutique districts needing more service jobs
+* Beauty salons and nail bar RP
+* Female-focused civilian business operations
+* Fashion districts and shopping malls
+* Servers paired with Lashes Saloon or Wigs Bundle
+* Lifestyle servers with appearance-focused jobs
 
 💬 **All configs and locales included**.
 📦 Easy to install. Drag, drop, and configure.
@@ -38,14 +38,13 @@ Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_nailssaloon` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_nailssaloon` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
+- [Installation](./installation) — dependencies and server.cfg setup
+- [Configuration](./configuration) — shop markers, pricing, and nail textures
 - [Common Errors](./common-errors)

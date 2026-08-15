@@ -72,7 +72,7 @@ ALTER TABLE player_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
 4. Configure `fs_portableparking/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_portableparking
 ```

@@ -1,46 +1,53 @@
 ---
 title: Carwipe Client Exports | FWB Studio Docs
-description: client exports for Carwipe.
+description: Client exports for FiveM Carwipe script.
 ---
 
+# Client Exports
 
-# Client exports
+Each export below is expandable. Open one to view description, arguments, return value, and usage examples.
 
-Each export below is expandable. Open one to see description, arguments, return value, and example code.
+::: details whitelistvehicle
 
-::: details whitelistvehicle()
-this export can be used to whitelist plate from wipe. This export can be added into same function where you add vehicle keys function. only use this if you want to whitelist plate on runtime
+Whitelists a vehicle license plate from being wiped. Useful for integrating with vehicle keys or custom vehicle systems to protect specific plates on runtime.
 
 **Arguments**
 
 | Name | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `plate` | `any` | Yes | string |
-| `singlewipe` | `any` | Yes | true = means only whitelist for upcoming 1 wipe |
-| `singlewipe` | `any` | Yes | false = means whitelist for all wipes untill server restart |
+| `plate` | `string` | Yes | The vehicle license plate text to whitelist. |
+| `singlewipe` | `boolean` | Yes | `true`: Whitelist for the next upcoming wipe only.<br>`false`: Whitelist for all wipes until server restart. |
 
 **Example**
 
 ```lua
-exports['fs_carwipe']:whitelistvehicle(plate, singlewipe)
-exports['fs_carwipe']:whitelistvehicle('Dealer', false)
+-- Whitelist plate 'DEALER' permanently until server restart
+exports['fs_carwipe']:whitelistvehicle('DEALER', false)
+
+-- Whitelist plate 'TEMP123' for the next single wipe only
+exports['fs_carwipe']:whitelistvehicle('TEMP123', true)
 ```
+
 :::
 
-::: details WipeCars()
-this export can be used in your any other admin to trigger carwipe keep in mind it don't check any kind of admin permissions this will simply trigger carwipe.
+::: details WipeCars
+
+Triggers a vehicle wipe. Can be called from custom admin menus or external scripts to initiate a car cleanup. Note: This export executes the wipe immediately without checking admin permissions.
 
 **Arguments**
 
 | Name | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `notifypeople` | `any` | Yes | true - means if you want should notify people |
-| `notifypeople` | `any` | Yes | false - means instant wipe of cars without notify to anyone |
+| `notifypeople` | `boolean` | Yes | `true`: Send countdown warnings to players before wiping.<br>`false`: Instantly wipe vehicles without sending notifications. |
 
 **Example**
 
 ```lua
-exports['fs_carwipe']:WipeCars(notifypeople)
+-- Trigger carwipe with countdown notifications
+exports['fs_carwipe']:WipeCars(true)
+
+-- Trigger instant carwipe with no notifications
 exports['fs_carwipe']:WipeCars(false)
 ```
+
 :::

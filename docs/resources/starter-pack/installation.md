@@ -33,7 +33,7 @@ description: Install Starter Pack on FiveM — dependencies and server.cfg. Five
 4. Configure `fs_starterpack/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_starterpack
 ```

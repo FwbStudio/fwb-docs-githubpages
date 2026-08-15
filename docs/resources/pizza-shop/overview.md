@@ -38,14 +38,18 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_pizzashop_V1` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+*You get this while purchasing this resource.*
+
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_pizzashop` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge Package** | `fs_bridge` | ESX, QBCore, Qbox | FiveM Bridge |
+| **Food Items Package** | `fs_useablefoods` | ESX, QBCore, Qbox | FiveM Script |
+| **MLO Package** | *(Purchased Separately)* | All Frameworks (Standalone) | FiveM MLO |
 
 ## Documentation
 
 - [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
+- [Commands](./commands)
 - [Common Errors](./common-errors)

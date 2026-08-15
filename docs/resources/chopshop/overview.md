@@ -38,15 +38,14 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_chopshop` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_chopshop` | ESX, QBCore, Qbox | FiveM Script |
 
 ## Documentation
 
 - [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
 - [Exports — Client](./exports/client) / [Server](./exports/server)
+- [Editable Files — Server](./editable-files/server)
 - [Common Errors](./common-errors)

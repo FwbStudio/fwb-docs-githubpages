@@ -38,11 +38,10 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_outfitbag` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_outfitbag` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 

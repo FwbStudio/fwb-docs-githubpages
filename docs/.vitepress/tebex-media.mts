@@ -118,7 +118,7 @@ export const TEBEX_MEDIA: Record<string, TebexMediaEntry> = {
   },
   smoking: {
     packageId: 7426496,
-    image: 'https://i.ibb.co/v4SWwH7k/jbjbj.webp',
+    image: 'https://i.ibb.co/d0HtK0d5/jbjbj.jpg',
     videos: [{ title: 'Smoking showcase', youtubeId: '2iYqOx_Pka8' }]
   },
   switch: {

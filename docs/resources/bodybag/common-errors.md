@@ -18,7 +18,7 @@ This error occurs because `fs_bridge` is missing, not started, or not running on
 ::: tip Solution
 1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
 2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
-   ```cfg
+   ```lua
    ensure ox_lib
 
    -- make sure to ensure all resources above this to make it work properly
@@ -83,7 +83,7 @@ This happens because `fs_bridge` was started **before** your inventory resource 
 2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
 3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
 4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```cfg
+   ```lua
    ensure ox_inventory
 
    -- make sure to ensure all resources above this to make it work properly

@@ -31,7 +31,11 @@ Override code:
 
 ```lua
 function Override.IsPlayerDowned(source)
-    return exports['your_ambulance']:isPlayerDowned(source)
+    if source then
+        return exports['your_ambulance']:isPlayerDowned(source)
+    else
+        return exports['your_ambulance']:isPlayerDowned()
+    end
 end
 ```
 
@@ -53,7 +57,7 @@ Arguments:
 
 | Name | Type | Required | Notes |
 |---|---|---|---|
-| `source` | `number` | No | Optional player source if your ambulance system supports it |
+| `source` | `number` | No | Optional player server ID / ped if checking another player, or nil for local player |
 
 Returns:
 
@@ -63,7 +67,11 @@ Override code:
 
 ```lua
 function Override.IsPlayerDead(source)
-    return exports['your_ambulance']:isPlayerDead(source)
+    if source then
+        return exports['your_ambulance']:isPlayerDead(source)
+    else
+        return exports['your_ambulance']:isPlayerDead()
+    end
 end
 ```
 

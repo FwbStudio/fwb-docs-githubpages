@@ -125,7 +125,7 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 4. Configure `fs_tranquilizer/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_tranquilizer
 ```

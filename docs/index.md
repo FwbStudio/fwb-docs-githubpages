@@ -355,7 +355,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
   <div class="fwb-cat-card">
     <a href="./resources/smoking/" class="fwb-cat-card__header-link">
       <div class="fwb-cat-card__media">
-        <img src="https://i.ibb.co/v4SWwH7k/jbjbj.webp" alt="Smoking" loading="lazy" />
+        <img src="https://i.ibb.co/d0HtK0d5/jbjbj.jpg" alt="Smoking" loading="lazy" />
       </div>
       <h3>Smoking</h3>
     </a>

@@ -3,31 +3,45 @@ import type { ResourcePages } from './resources-catalog.mts'
 
 export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   "bodybag": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
   "burger-shop": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "carwipe": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "exports": {
       "client": true,
+      "server": true
+    },
+    "editableFiles": {
       "server": true
     },
     "commonErrors": true
   },
   "chopshop": {
+    "audited": true,
     "configuration": true,
     "exports": {
       "client": true,
       "server": true
     },
+    "editableFiles": {
+      "server": true
+    },
     "commonErrors": true
   },
   "duty-system": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "exports": {
       "client": true,
       "server": true
@@ -35,34 +49,50 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "commonErrors": true
   },
   "fraud-v1": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
   "fraud-v2": {
+    "audited": true,
     "configuration": true,
-    "exports": {
+    "editableFiles": {
       "client": true,
-      "server": false
+      "server": true
     },
     "commonErrors": true
   },
   "gun-jamming": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
   "icebox": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
+  "clothing-as-item": {
+    "audited": true,
+    "configuration": true,
+    "editableFiles": {
+      "client": true
+    },
+    "commonErrors": true
+  },
   "lashes-saloon": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
   "loading-screen": {
+    "audited": true,
+    "videoConverter": true,
     "configuration": true,
     "commonErrors": true
   },
   "nails-saloon": {
+    "audited": true,
     "configuration": true,
     "commonErrors": true
   },
@@ -84,7 +114,9 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "commonErrors": true
   },
   "pizza-shop": {
+    "audited": true,
     "configuration": true,
+    "commands": true,
     "commonErrors": true
   },
   "items-placeables": {

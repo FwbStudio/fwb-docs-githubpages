@@ -1,6 +1,6 @@
 ---
-title: Loading Screen v1 Overview | FWB Studio Docs
-description: Loading Screen v1 features and setup overview for FiveM. FiveM loading screen FWB Studio.
+title: Loading Screen Overview | FWB Studio Docs
+description: Loading Screen features and setup overview for FiveM. FiveM loading screen FWB Studio.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,21 +8,21 @@ description: Loading Screen v1 features and setup overview for FiveM. FiveM load
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426475" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# Loading Screen v1
+# Loading Screen
 
 ### 🖥️ Loading Screen – First Impressions Matter
 
-Replace the default FiveM load screen with a branded FWB experience — video backgrounds, slideshows, music, social links, and a fully themeable UI. Loading Screen v1 is lightweight and easy to customize without touching NUI code.
+Replace the default FiveM load screen with a branded FWB experience — video backgrounds, image slideshows, background music, social links, server rules, patch notes, and staff member cards. Loading Screen is lightweight and easy to customize without touching NUI code.
 
-Standalone — works on any FiveM server.
+Standalone — works on any FiveM framework (ESX, QBCore, Qbox, or Standalone).
 
 #### ⚙️ Key Features
 
-* **Video, Image, or Slideshow** — Pick a background type including local webm or hosted video links.
-* **Background Music** — Multiple audio tracks with artist labels, shuffled on each connect.
-* **Theme Editor** — Set colors, fonts, and accent styles from a single config file.
-* **Social & Server Info** — Show Discord, Tebex, rules, and staff messages on the load screen.
-* **No Framework Required** — Pure client NUI resource; no Bridge or database needed.
+* **Multiple Background Modes** — Choose between Single Image, Image Slideshow, Local WebM Video, or Hosted Video URLs (`fivemanage` / `streamable`).
+* **Audio Track Playlist** — Configure multiple audio tracks with song titles and artist names.
+* **Season Effects** — Built-in snow, rain, and falling leaves particle effects.
+* **Server Info & Patch Notes** — Display staff cards, server rules, keyboard keybind guides, patch notes, and social links.
+* **No Framework Required** — Pure standalone client NUI resource; no bridge or database needed.
 
 #### 💼 Perfect For:
 
@@ -30,7 +30,6 @@ Standalone — works on any FiveM server.
 * New launches and relaunches
 * Servers promoting Discord and Tebex on connect
 * Owners who want video backgrounds without custom dev work
-* Communities that care about first impressions
 
 💬 **All configs and locales included**.
 📦 Easy to install. Drag, drop, and configure.
@@ -38,14 +37,13 @@ Standalone — works on any FiveM server.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_loadingscreen` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_loadingscreen` | ESX, QBCore, Qbox, Standalone | FiveM Script |
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
+- [Video Converter](./video-converter) — free browser tool to convert MP4 videos to WebM
+- [Installation](./installation) — setup and server.cfg
+- [Configuration](./configuration) — media modes (image, slideshow, video, audio links) & server options
 - [Common Errors](./common-errors)

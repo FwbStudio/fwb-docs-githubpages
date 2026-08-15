@@ -19,7 +19,7 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 #### ⚙️ Key Features
 
 * **Lash Style Menu** — Open via command or keybind with configurable lash IDs and textures.
-* **Component-Based** — Lashes apply through GTA clothing components for reliable persistence.
+* **Component-Based** — Lashes apply through GTA clothing components for reliable persistence without inventory items.
 * **Shop Markers** — Set salon locations with markers, blips, and pricing.
 * **Business Payouts** — Optionally deposit service fees into a society account.
 * **Easy Expansion** — Add new lash styles by editing the config number list.
@@ -38,14 +38,13 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_lashessaloon` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_lashessaloon` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
+- [Installation](./installation) — dependencies and server.cfg setup
+- [Configuration](./configuration) — shop markers, pricing, and lash textures
 - [Common Errors](./common-errors)

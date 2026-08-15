@@ -215,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
 4. Configure `fs_outfitbag/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_outfitbag
 ```

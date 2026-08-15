@@ -1593,4 +1593,335 @@ html {
   color: var(--fwb-teal) !important;
 }
 
+/* ============================================================
+   WEBM Converter Tool
+   ============================================================ */
 
+.fwb-converter-subtitle {
+  color: var(--fwb-text);
+  font-size: 0.97rem;
+  line-height: 1.65;
+  margin: -0.25rem 0 1.75rem;
+}
+
+.fwb-converter-wrap {
+  background: var(--fwb-bg1);
+  border: 1px solid var(--fwb-border);
+  border-radius: 14px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Drop Zone */
+.fwb-drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  border: 2px dashed var(--fwb-border);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  cursor: pointer;
+  transition: border-color var(--fwb-ease), background var(--fwb-ease);
+  text-align: center;
+}
+
+.fwb-drop-zone:hover,
+.fwb-drop-zone--over {
+  border-color: var(--fwb-teal);
+  background: rgba(45, 212, 191, 0.04);
+}
+
+.fwb-drop-zone__icon {
+  width: 48px;
+  height: 48px;
+  color: var(--fwb-teal);
+  opacity: 0.8;
+}
+
+.fwb-drop-zone__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fwb-drop-zone__label {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--fwb-white);
+  margin: 0;
+}
+
+.fwb-drop-zone__sub {
+  font-size: 0.85rem;
+  color: var(--fwb-muted);
+  margin: 0;
+}
+
+/* File Panel */
+.fwb-file-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.fwb-file-panel__info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--fwb-bg2);
+  border: 1px solid var(--fwb-border);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+}
+
+.fwb-file-panel__icon {
+  width: 32px;
+  height: 32px;
+  color: var(--fwb-teal);
+  flex-shrink: 0;
+}
+
+.fwb-file-panel__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fwb-file-panel__meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.fwb-file-panel__name {
+  font-weight: 600;
+  color: var(--fwb-white);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fwb-file-panel__size {
+  font-size: 0.8rem;
+  color: var(--fwb-muted);
+}
+
+.fwb-file-panel__remove {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--fwb-border);
+  background: transparent;
+  color: var(--fwb-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: color var(--fwb-ease), border-color var(--fwb-ease), background var(--fwb-ease);
+}
+
+.fwb-file-panel__remove:hover {
+  color: #f87171;
+  border-color: rgba(248, 113, 113, 0.4);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+.fwb-file-panel__remove svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Progress */
+.fwb-progress-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.fwb-progress-bar {
+  position: relative;
+  height: 6px;
+  background: var(--fwb-bg2);
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--fwb-border);
+}
+
+.fwb-progress-bar__fill {
+  height: 100%;
+  background: var(--fwb-teal);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.fwb-progress-bar__indeterminate {
+  position: absolute;
+  top: 0;
+  left: -40%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--fwb-teal), transparent);
+  animation: fwb-indeterminate 1.4s ease-in-out infinite;
+}
+
+@keyframes fwb-indeterminate {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+.fwb-progress-label {
+  font-size: 0.83rem;
+  color: var(--fwb-muted);
+  text-align: center;
+  margin: 0;
+}
+
+/* Error */
+.fwb-converter-error {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: rgba(248, 113, 113, 0.07);
+  border: 1px solid rgba(248, 113, 113, 0.25);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #fca5a5;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.fwb-converter-error__icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Buttons */
+.fwb-converter-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.fwb-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.3rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--fwb-ease), opacity var(--fwb-ease), transform 0.12s;
+}
+
+.fwb-btn:active {
+  transform: scale(0.97);
+}
+
+.fwb-btn--primary {
+  background: var(--fwb-teal);
+  color: #041016;
+}
+
+.fwb-btn--primary:hover {
+  background: #5eead4;
+  color: #041016 !important;
+  text-decoration: none;
+}
+
+.fwb-btn--secondary {
+  background: var(--fwb-bg2);
+  color: var(--fwb-text);
+  border: 1px solid var(--fwb-border);
+}
+
+.fwb-btn--secondary:hover {
+  border-color: var(--fwb-teal);
+  color: var(--fwb-white);
+}
+
+.fwb-btn--disabled {
+  background: rgba(45, 212, 191, 0.15);
+  color: var(--fwb-teal);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.fwb-btn__spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(45, 212, 191, 0.3);
+  border-top-color: var(--fwb-teal);
+  border-radius: 50%;
+  animation: fwb-spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes fwb-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Done Panel */
+.fwb-done-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.fwb-done-panel__icon {
+  width: 56px;
+  height: 56px;
+  color: var(--fwb-teal);
+}
+
+.fwb-done-panel__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fwb-done-panel__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--fwb-white);
+  margin: 0;
+}
+
+.fwb-done-panel__filename {
+  font-size: 0.85rem;
+  color: var(--fwb-muted);
+  margin: 0;
+}
+
+.fwb-done-panel__actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.fwb-converter-note {
+  margin-top: 0;
+}
+
+@media (max-width: 640px) {
+  .fwb-converter-wrap {
+    padding: 1.25rem;
+  }
+  .fwb-drop-zone {
+    padding: 2rem 1rem;
+  }
+  .fwb-converter-actions,
+  .fwb-done-panel__actions {
+    flex-direction: column;
+  }
+}

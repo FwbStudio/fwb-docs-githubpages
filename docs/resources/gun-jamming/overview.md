@@ -38,11 +38,10 @@ Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_gunjamming` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_gunjamming` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 

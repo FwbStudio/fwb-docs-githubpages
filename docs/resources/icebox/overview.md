@@ -1,6 +1,6 @@
 ---
 title: Icebox Overview | FWB Studio Docs
-description: Icebox features and setup overview for FiveM. FiveM icebox jewelry script.
+description: Icebox features and setup overview for FiveM. FiveM icebox jewelry store script.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,27 +10,26 @@ description: Icebox features and setup overview for FiveM. FiveM icebox jewelry 
 
 # Icebox
 
-### 💎 Icebox – Jewelry as Inventory Items
+### 💎 Icebox – Crafting, Management & Sales Jewelry Store Script
 
-Turn chains, watches, and iced-out pieces into real inventory items players can equip, trade, and lose. Icebox is FWB's clothing-as-item system with an in-game admin tablet — no more digging through Lua files to add new jewelry.
+Icebox is a full jewelry store business script for FiveM. Players and business employees can craft custom iced-out jewelry (chains, necklaces, earrings, watches, and bracelets), manage business inventory & stock regeneration, set custom pricing, and sell jewelry to customers.
 
-Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
+Works with **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 #### ⚙️ Key Features
 
-* **Clothing as Items** — Sell, drop, steal, and equip jewelry like any other inventory item.
-* **In-Game Admin Tablet** — Manage items, robbery rules, naked-body settings, and backups from `/fs_icebox`.
-* **Robbery Support** — Configure what happens when players are robbed while wearing ice.
-* **Preset Import** — Bring in starter items from preset folders and expand your catalog live.
-* **Bridge Ready** — Integrates with FWB Bridge for framework and inventory compatibility.
+* **Multi-Category Jewelry Crafting** — Multi-step crafting system for Chains, Necklaces, Earrings, Watches, and Bracelets with custom animations and required materials.
+* **Store Management & Boss Action** — Employee rank management for setting prices, controlling stock, and managing society funds.
+* **Material Storage & Auto-Regeneration** — In-store storage container supporting materials like Gold Bars, Platinum Bars, Diamonds, Pearl, and Gemstones with configurable auto-replenishment timers.
+* **Market Items & Pagination** — 5 categorized store pages (Chains, Necklace, Earrings, Watches, Breshlet) for selling custom jewelry.
+* **Billing System** — Built-in F6 keybind billing for charging customers on the spot.
 
 #### 💼 Perfect For:
 
-* Jewelry store and icebox businesses
-* Gang RP with chain-snatching
-* Fashion and lifestyle servers
-* Economy servers with wearable valuables
-* Owners who want item-based clothing without framework lock-in
+* High-end jewelry and icebox store businesses
+* Crafting economies requiring rare metals and gemstones
+* Society and employee management roleplay
+* Custom jewelry retailers on ESX, QBCore, and Qbox
 
 💬 **All configs and locales included**.
 📦 Easy to install. Drag, drop, and configure.
@@ -38,14 +37,13 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_icebox` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_icebox` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 
-- [Installation](./installation) — dependencies, items, and setup
-- [Configuration](./configuration)
+- [Installation](./installation) — dependencies, items, and server.cfg setup
+- [Configuration](./configuration) — store coords, crafting recipes, materials, and pagination
 - [Common Errors](./common-errors)

@@ -17,4 +17,4 @@ description: Icebox preview and Tebex purchase. FiveM icebox jewelry script.
 
 ## Preview videos
 
-<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/Yis97PjU9L8" title="Icebox showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Icebox showcase</p></div><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/5FuORpsor6M" title="Icebox preview 2" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Icebox preview 2</p></div><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/ZsqB3cCNkys" title="Icebox preview 3" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Icebox preview 3</p></div></div>
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/Yis97PjU9L8" title="Icebox showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Icebox showcase</p></div></div>

@@ -39,15 +39,16 @@ Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_carwipe` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_carwipe` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 
 - [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
+- [Commands](./commands)
 - [Exports — Client](./exports/client) / [Server](./exports/server)
+- [Editable Files — Server](./editable-files/server)
 - [Common Errors](./common-errors)

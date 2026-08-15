@@ -33,7 +33,7 @@ description: Install Smoking on FiveM — dependencies and server.cfg. FiveM smo
 4. Configure `fs_smoking/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_smoking
 ```

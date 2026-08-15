@@ -33,7 +33,7 @@ description: Install White Widow on FiveM — dependencies and server.cfg. FiveM
 4. Configure `fs_whitewidow/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_whitewidow
 ```

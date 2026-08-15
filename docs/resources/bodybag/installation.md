@@ -47,7 +47,7 @@ Open `fs_bodybag/[INSTALL_ME_FIRST]` and use the block for **your** inventory sy
 5. Configure `fs_bodybag/config/` settings before starting.
 6. Add the resources to your `server.cfg` at the end of your ensured resources (`fs_bridge` must start before `fs_bodybag`):
 
-```cfg
+```lua
 ensure ox_lib
 
 -- make sure to ensure all resources above this to make it work properly

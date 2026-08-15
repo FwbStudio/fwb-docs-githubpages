@@ -1,66 +1,64 @@
 ---
 title: Duty System Server Exports | FWB Studio Docs
-description: server exports for Duty System.
+description: Server exports for FiveM Duty System script (fs_dutysystem).
 ---
 
+# Server Exports
 
-# Server exports
+Each export below is expandable. Open one to view description, arguments, return values, and usage examples.
 
-If you want to just do onduty player to keep record duty from any of ur mdt or any script these exports will help you in all ways
+::: details IsOnDuty
 
-Each export below is expandable. Open one to see description, arguments, return value, and example code.
+Checks if a specific player is currently on duty.
 
-::: details GetJobName()
-job name as string player server id ex- source
+**Arguments**
+
+| Name | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `source` | `number` | Yes | Target player's server ID. |
+
+**Return Value**
+
+| Type | Description |
+| --- | --- |
+| `boolean` | `true` if the specified player is currently ON duty, `false` if OFF duty. |
 
 **Example**
 
 ```lua
-exports['fs_dutysystem']:GetJobName(source)
+local source = 1 -- Target player server ID
+local isOnDuty = exports['fs_dutysystem']:IsOnDuty(source)
+
+if isOnDuty then
+    print('Player ' .. source .. ' is ON duty')
+else
+    print('Player ' .. source .. ' is OFF duty')
+end
 ```
+
 :::
 
-::: details IsOnDuty()
-player server id ex- source
+::: details ToggleDutyStatus
 
-**Returns**
+Toggles the duty status of a specific target player between on-duty and off-duty.
 
-- true as boolean if player is on duty
-- false as boolean if player is off duty
+**Arguments**
 
-**Example**
+| Name | Type | Required | Notes |
+| --- | --- | --- | --- |
+| `source` | `number` | Yes | Target player's server ID. |
 
-```lua
-exports['fs_dutysystem']:IsOnDuty(source)
-```
-:::
+**Return Value**
 
-::: details ToggleDutyStatus()
-use to toggle duty status of player will make on duty if player is off duty currently will make off duty if playeris on duty currently player server id ex- source
+None (`void`).
 
 **Example**
 
 ```lua
+local source = 1 -- Target player server ID
+
+-- Toggle target player's duty status from server script
 exports['fs_dutysystem']:ToggleDutyStatus(source)
 ```
-:::
 
-::: details SetOnDuty()
-use to make set player job as on duty only if he is off duty will make player on duty if player is currently offduty will keep On duty if player is currently on duty player server id ex- source
-
-**Example**
-
-```lua
-exports['fs_dutysystem']:SetOnDuty(source)
-```
-:::
-
-::: details SetOffDuty()
-use to make set player job as on duty only if he is off duty will make player off duty if player is currently onduty will keep off duty if player is currently off duty player server id ex- source
-
-**Example**
-
-```lua
-exports['fs_dutysystem']:SetOffDuty(source)
-```
 :::

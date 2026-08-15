@@ -31,7 +31,7 @@ description: Install Automatic Pistol Pack on FiveM — dependencies and server.
 3. Run any SQL files if included in `[INSTALL_ME_FIRST]`.
 4. Add to `server.cfg`:
 
-```cfg
+```lua
 ensure fs_weapons_gangautopistol_v1
 ```
 

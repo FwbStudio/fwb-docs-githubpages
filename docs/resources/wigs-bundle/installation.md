@@ -33,7 +33,7 @@ description: Install WigsBundle Business on FiveM — dependencies and server.cf
 4. Configure `fs_wigsbundles/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_wigsbundles
 ```

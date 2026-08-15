@@ -33,7 +33,7 @@ description: Install Useable Foods on FiveM — dependencies and server.cfg. Fiv
 4. Configure `fs_useablefoods/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_useablefoods
 ```

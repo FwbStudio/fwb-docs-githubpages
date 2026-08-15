@@ -33,7 +33,7 @@ description: Install Switch on FiveM — dependencies and server.cfg. FiveM gun 
 4. Configure `fs_switch/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_switch
 ```

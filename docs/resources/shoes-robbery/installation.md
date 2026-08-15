@@ -33,7 +33,7 @@ description: Install Shoes Robbery on FiveM — dependencies and server.cfg. Fiv
 4. Configure `fs_shoesrobbery/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_shoesrobbery
 ```

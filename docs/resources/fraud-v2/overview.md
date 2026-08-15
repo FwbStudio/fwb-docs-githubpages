@@ -38,15 +38,14 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 
 ## Package
 
-| | |
-| --- | --- |
-| **Resource folder** | `fs_fraud_v2` |
-| **Frameworks** | ESX, QBCore, Qbox |
-| **Category** | FiveM Script |
+| Package | Resource Folder | Frameworks | Category |
+| --- | --- | --- | --- |
+| **Script Package** | `fs_fraud` | ESX, QBCore, Qbox | FiveM Script |
+| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
 
 ## Documentation
 
 - [Installation](./installation) — dependencies, items, and setup
 - [Configuration](./configuration)
-- [Exports](./exports/client)
+- [Editable Files — Client](./editable-files/client) / [Server](./editable-files/server)
 - [Common Errors](./common-errors)

@@ -38,7 +38,7 @@ description: Install Wigs Craft & Sell on FiveM — dependencies and server.cfg.
 4. Configure `fs_weavewear_V1/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_weavewear_V1
 ```

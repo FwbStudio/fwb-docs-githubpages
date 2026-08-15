@@ -32,7 +32,7 @@ description: Install Notify on FiveM — dependencies and server.cfg. FiveM noti
 4. Configure `fs_notify/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_notify
 ```

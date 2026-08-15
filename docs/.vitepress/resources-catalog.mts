@@ -10,8 +10,11 @@ export interface ResourceVideo {
 }
 
 export interface ResourcePages {
+  videoConverter?: boolean
   configuration?: boolean
+  commands?: boolean
   exports?: { client?: boolean; server?: boolean }
+  editableFiles?: { client?: boolean; server?: boolean }
   functions?: { client?: boolean; server?: boolean }
   integrations?: boolean
   commonErrors?: boolean
@@ -23,6 +26,8 @@ export interface ResourceEntry {
   name: string
   repo: string
   category: ResourceCategory
+  /** Internal tracking flag: marked true once documentation is fully audited */
+  audited?: boolean
   /** Short SEO keyword phrase */
   seoKeywords: string
   /** One-line product pitch for Preview page */
@@ -41,7 +46,7 @@ export interface ResourceEntry {
 export const DEFAULT_TEBEX_STORE = 'https://fwbstudio.tebex.io/'
 
 export const RESOURCE_CATEGORIES: Record<ResourceCategory, string> = {
-  scripts: 'Scripts',
+  scripts: 'Scripts Catalog',
   weapons: 'Weapons'
 }
 
@@ -51,20 +56,23 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Bodybag',
     repo: 'fs_bodybag',
     category: 'scripts',
-    seoKeywords: 'FiveM bodybag script ESX QBCore'
+    seoKeywords: 'FiveM bodybag script ESX QBCore',
+    audited: true
   },
   {
     slug: 'burger-shop',
     name: 'Burger Shop',
-    repo: 'fs_burgershop_V1',
+    repo: 'fs_burgershop',
     category: 'scripts',
-    seoKeywords: 'FiveM burger shop job script'
+    seoKeywords: 'FiveM burger shop job script',
+    audited: true
   },
   {
     slug: 'carwipe',
     name: 'Carwipe',
     repo: 'fs_carwipe',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM car wipe admin script'
   },
   {
@@ -72,6 +80,7 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'ChopShop',
     repo: 'fs_chopshop',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM chop shop script ESX QBCore'
   },
   {
@@ -79,6 +88,7 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Duty System',
     repo: 'fs_dutysystem',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM duty system ESX QBCore Qbox'
   },
   {
@@ -88,15 +98,17 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     family: 'fraud',
     familyLabel: 'Fraud',
+    audited: true,
     seoKeywords: 'FiveM fraud script v1 ESX QBCore'
   },
   {
     slug: 'fraud-v2',
     name: 'Fraud System v2',
-    repo: 'fs_fraud_v2',
+    repo: 'fs_fraud',
     category: 'scripts',
     family: 'fraud',
     familyLabel: 'Fraud',
+    audited: true,
     seoKeywords: 'FiveM fraud script v2 ESX QBCore Qbox'
   },
   {
@@ -104,6 +116,7 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Gun Jamming',
     repo: 'fs_gunjamming',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM gun jamming script'
   },
   {
@@ -111,20 +124,35 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Icebox',
     repo: 'fs_icebox',
     category: 'scripts',
+    family: 'icebox',
+    familyLabel: 'Icebox',
+    audited: true,
     seoKeywords: 'FiveM icebox jewelry script'
+  },
+  {
+    slug: 'clothing-as-item',
+    name: 'Clothing As Item',
+    repo: 'fs_clothingitem',
+    category: 'scripts',
+    family: 'icebox',
+    familyLabel: 'Icebox',
+    audited: true,
+    seoKeywords: 'FiveM clothing as item jewelry wardrobe script'
   },
   {
     slug: 'lashes-saloon',
     name: 'Lashes Saloon',
     repo: 'fs_lashessaloon',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM lashes saloon script'
   },
   {
     slug: 'loading-screen',
-    name: 'Loading Screen v1',
+    name: 'Loading Screen',
     repo: 'fs_loadingscreen',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM loading screen FWB Studio'
   },
   {
@@ -132,6 +160,7 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Nails Saloon',
     repo: 'fs_nailssaloon',
     category: 'scripts',
+    audited: true,
     seoKeywords: 'FiveM nails saloon script ESX QBCore'
   },
   {
@@ -150,17 +179,18 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'outfitbag',
-    name: 'Clothing As Item',
+    name: 'Outfit Bag',
     repo: 'fs_outfitbag',
     category: 'scripts',
-    seoKeywords: 'FiveM clothing as item outfit bag wardrobe script'
+    seoKeywords: 'FiveM outfit bag portable wardrobe script'
   },
   {
     slug: 'pizza-shop',
     name: 'Pizza Shop',
-    repo: 'fs_pizzashop_V1',
+    repo: 'fs_pizzashop',
     category: 'scripts',
-    seoKeywords: 'FiveM pizza shop job script'
+    seoKeywords: 'FiveM pizza shop job script',
+    audited: true
   },
   {
     slug: 'items-placeables',
@@ -411,12 +441,21 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
   const pages = getPages(resource)
   const items: SidebarItem[] = [
     { text: 'Preview', link: `${base}/` },
-    { text: 'Overview', link: `${base}/overview` },
-    { text: 'Installation', link: `${base}/installation` }
+    { text: 'Overview', link: `${base}/overview` }
   ]
+
+  if (pages.videoConverter) {
+    items.push({ text: 'Video Converter', link: `${base}/video-converter` })
+  }
+
+  items.push({ text: 'Installation', link: `${base}/installation` })
 
   if (pages.configuration) {
     items.push({ text: 'Configuration', link: `${base}/configuration` })
+  }
+
+  if (pages.commands) {
+    items.push({ text: 'Commands', link: `${base}/commands` })
   }
 
   if (pages.exports?.client || pages.exports?.server) {
@@ -427,6 +466,17 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
       items.push({ text: 'Exports', link: exportItems[0].link })
     } else {
       items.push({ text: 'Exports', collapsed: true, items: exportItems })
+    }
+  }
+
+  if (pages.editableFiles?.client || pages.editableFiles?.server) {
+    const editItems: SidebarItem[] = []
+    if (pages.editableFiles.client) editItems.push({ text: 'Client', link: `${base}/editable-files/client` })
+    if (pages.editableFiles.server) editItems.push({ text: 'Server', link: `${base}/editable-files/server` })
+    if (editItems.length === 1) {
+      items.push({ text: 'Editable Files', link: editItems[0].link })
+    } else {
+      items.push({ text: 'Editable Files', collapsed: true, items: editItems })
     }
   }
 

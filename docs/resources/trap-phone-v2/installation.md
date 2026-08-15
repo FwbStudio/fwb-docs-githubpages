@@ -33,7 +33,7 @@ description: Install Trap Phone v2 on FiveM — dependencies and server.cfg. Fiv
 4. Configure `fs_trapphone_v2/config/` before first start.
 5. Add to `server.cfg` (**after** `fs_bridge` when Bridge is required):
 
-```cfg
+```lua
 ensure fs_bridge
 ensure fs_trapphone_v2
 ```
