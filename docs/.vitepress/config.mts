@@ -9,9 +9,8 @@ export default defineConfig({
   cleanUrls: true,
   appearance: 'force-dark',
   srcExclude: ['**/resources/_FORMAT.md', '**/resources/_TEMPLATE/**'],
-  // Project Pages URL first. When you add doc.fwbstudio.com later, set base back to '/'
-  // and restore docs/public/CNAME.
-  base: '/fwb-docs-githubpages/',
+  // Custom domain base path for docs.fwbstudio.com
+  base: '/',
   head: [
     ['script', {}, `if ('serviceWorker' in navigator) { navigator.serviceWorker.getRegistrations().then(function(registrations) { for (let registration of registrations) { registration.unregister(); } }); }`],
     ['script', {}, `(function(){document.documentElement.classList.add('dark');})()`],
