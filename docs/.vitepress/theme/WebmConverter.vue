@@ -31,8 +31,9 @@
       />
     </div>
 
-    <!-- File Selected Panel -->
+    <!-- Active File & Conversion Panel -->
     <div v-if="inputFile && state !== 'done'" class="fwb-file-panel">
+      <!-- File Metadata Card -->
       <div class="fwb-file-panel__info">
         <div class="fwb-file-panel__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -43,28 +44,128 @@
           <span class="fwb-file-panel__name">{{ inputFile.name }}</span>
           <span class="fwb-file-panel__size">{{ formatSize(inputFile.size) }}</span>
         </div>
-        <button class="fwb-file-panel__remove" @click="resetConverter" title="Remove file">
+        <button
+          v-if="state === 'idle' || state === 'error'"
+          class="fwb-file-panel__remove"
+          @click="resetConverter"
+          title="Remove file"
+        >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
-      <!-- Progress Bar -->
-      <div v-if="state === 'loading-ffmpeg' || state === 'converting'" class="fwb-progress-wrap">
-        <div class="fwb-progress-bar">
-          <div class="fwb-progress-bar__fill" :style="{ width: (state === 'loading-ffmpeg' ? 0 : progress) + '%' }"></div>
-          <div v-if="state === 'loading-ffmpeg'" class="fwb-progress-bar__indeterminate"></div>
+      <!-- Large File Advisory Banner -->
+      <div v-if="isLargeFile && state === 'idle'" class="fwb-converter-warning">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fwb-converter-warning__icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+        </svg>
+        <div>
+          <strong>Large Video ({{ formatSize(inputFile.size) }}):</strong>
+          FiveM loading screens only need short 10–30s video loops (&lt; 50 MB) for fastest player loading. Conversion in the browser may take several minutes for large files.
         </div>
-        <p class="fwb-progress-label">{{ progressLabel }}</p>
       </div>
 
-      <!-- Error -->
+      <!-- 4-Stage Stepper -->
+      <div v-if="state !== 'idle'" class="fwb-stepper">
+        <div
+          class="fwb-step"
+          :class="{
+            'fwb-step--done': currentStep > 1,
+            'fwb-step--active': currentStep === 1
+          }"
+        >
+          <div class="fwb-step__circle">
+            <svg v-if="currentStep > 1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span v-else>1</span>
+          </div>
+          <span class="fwb-step__label">Engine</span>
+        </div>
+
+        <div class="fwb-step__line" :class="{ 'fwb-step__line--active': currentStep > 1 }"></div>
+
+        <div
+          class="fwb-step"
+          :class="{
+            'fwb-step--done': currentStep > 2,
+            'fwb-step--active': currentStep === 2
+          }"
+        >
+          <div class="fwb-step__circle">
+            <svg v-if="currentStep > 2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span v-else>2</span>
+          </div>
+          <span class="fwb-step__label">Read File</span>
+        </div>
+
+        <div class="fwb-step__line" :class="{ 'fwb-step__line--active': currentStep > 2 }"></div>
+
+        <div
+          class="fwb-step"
+          :class="{
+            'fwb-step--done': currentStep > 3,
+            'fwb-step--active': currentStep === 3
+          }"
+        >
+          <div class="fwb-step__circle">
+            <svg v-if="currentStep > 3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            <span v-else>3</span>
+          </div>
+          <span class="fwb-step__label">Transcode</span>
+        </div>
+
+        <div class="fwb-step__line" :class="{ 'fwb-step__line--active': currentStep > 3 }"></div>
+
+        <div
+          class="fwb-step"
+          :class="{
+            'fwb-step--done': state === 'done',
+            'fwb-step--active': currentStep === 4
+          }"
+        >
+          <div class="fwb-step__circle">
+            <span>4</span>
+          </div>
+          <span class="fwb-step__label">Ready</span>
+        </div>
+      </div>
+
+      <!-- Real-Time Progress Card -->
+      <div v-if="state !== 'idle' && state !== 'error'" class="fwb-progress-card">
+        <div class="fwb-progress-header">
+          <div class="fwb-progress-title">
+            <span class="fwb-progress-spinner"></span>
+            <strong>{{ progressStageTitle }}</strong>
+          </div>
+          <div class="fwb-progress-percent">{{ progress }}%</div>
+        </div>
+
+        <div class="fwb-progress-bar">
+          <div class="fwb-progress-bar__fill" :style="{ width: progress + '%' }"></div>
+        </div>
+
+        <div class="fwb-progress-meta">
+          <span class="fwb-progress-desc">{{ progressDetail }}</span>
+          <span v-if="liveStats" class="fwb-progress-live">{{ liveStats }}</span>
+        </div>
+      </div>
+
+      <!-- Error Card -->
       <div v-if="state === 'error'" class="fwb-converter-error">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="fwb-converter-error__icon">
           <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
         </svg>
-        <span>{{ errorMsg || 'Conversion failed. Try a smaller file or different format.' }}</span>
+        <div class="fwb-converter-error__content">
+          <strong>Conversion Error:</strong>
+          <p>{{ errorMsg || 'Conversion failed. Please try a smaller video file.' }}</p>
+        </div>
       </div>
 
       <!-- Action Buttons -->
@@ -79,13 +180,14 @@
           </svg>
           Convert to WEBM
         </button>
+
         <button
-          v-if="state === 'loading-ffmpeg' || state === 'converting'"
+          v-if="state !== 'idle' && state !== 'error'"
           class="fwb-btn fwb-btn--disabled"
           disabled
         >
           <span class="fwb-btn__spinner"></span>
-          {{ state === 'loading-ffmpeg' ? 'Loading engine...' : 'Converting...' }}
+          Converting in browser (Please keep tab open)...
         </button>
       </div>
     </div>
@@ -123,13 +225,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onUnmounted } from 'vue'
+import { ref, computed, onUnmounted } from 'vue'
 
-type ConvertState = 'idle' | 'loading-ffmpeg' | 'converting' | 'done' | 'error'
+type ConvertState = 'idle' | 'loading-engine' | 'reading-file' | 'converting' | 'packaging' | 'done' | 'error'
 
 const state = ref<ConvertState>('idle')
 const progress = ref(0)
-const progressLabel = ref('')
+const progressStageTitle = ref('')
+const progressDetail = ref('')
+const liveStats = ref('')
 const outputUrl = ref('')
 const outputName = ref('')
 const inputFile = ref<File | null>(null)
@@ -139,9 +243,31 @@ const fileInputRef = ref<HTMLInputElement | null>(null)
 
 let ffmpegInstance: any = null
 
+const isLargeFile = computed(() => {
+  return (inputFile.value?.size || 0) > 300 * 1024 * 1024
+})
+
+const currentStep = computed(() => {
+  switch (state.value) {
+    case 'loading-engine':
+      return 1
+    case 'reading-file':
+      return 2
+    case 'converting':
+      return 3
+    case 'packaging':
+    case 'done':
+      return 4
+    default:
+      return 1
+  }
+})
+
 function formatSize(bytes: number): string {
+  if (!bytes) return '0 B'
   if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB'
-  return (bytes / (1024 * 1024)).toFixed(2) + ' MB'
+  if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
+  return (bytes / (1024 * 1024 * 1024)).toFixed(2) + ' GB'
 }
 
 function triggerFileInput() {
@@ -160,7 +286,7 @@ function handleFileInput(e: Event) {
 }
 
 function selectFile(file: File) {
-  if (!file.type.startsWith('video/') && !file.name.match(/\.(mp4|mov|avi|mkv|webm|m4v)$/i)) {
+  if (!file.type.startsWith('video/') && !file.name.match(/\.(mp4|mov|avi|mkv|webm|m4v|wmv|flv)$/i)) {
     errorMsg.value = 'Please select a valid video file (MP4, MOV, AVI, MKV, etc.)'
     state.value = 'error'
     return
@@ -171,6 +297,7 @@ function selectFile(file: File) {
   errorMsg.value = ''
   state.value = 'idle'
   progress.value = 0
+  liveStats.value = ''
 }
 
 function resetConverter() {
@@ -181,21 +308,87 @@ function resetConverter() {
   errorMsg.value = ''
   state.value = 'idle'
   progress.value = 0
-  progressLabel.value = ''
+  progressStageTitle.value = ''
+  progressDetail.value = ''
+  liveStats.value = ''
   if (fileInputRef.value) fileInputRef.value.value = ''
+}
+
+// Stream download with live progress
+async function fetchWithProgress(
+  url: string,
+  mimeType: string,
+  onProgress: (percent: number, loaded: number, total: number) => void
+): Promise<string> {
+  const response = await fetch(url)
+  if (!response.ok) throw new Error(`Failed to load ${url}: ${response.statusText}`)
+  
+  const contentLength = response.headers.get('content-length')
+  const total = contentLength ? parseInt(contentLength, 10) : 0
+  let loaded = 0
+
+  const reader = response.body?.getReader()
+  if (!reader) {
+    const blob = await response.blob()
+    return URL.createObjectURL(blob)
+  }
+
+  const chunks: Uint8Array[] = []
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    if (value) {
+      chunks.push(value)
+      loaded += value.length
+      if (total > 0) {
+        onProgress(Math.min(Math.round((loaded / total) * 100), 99), loaded, total)
+      }
+    }
+  }
+
+  const blob = new Blob(chunks, { type: mimeType })
+  return URL.createObjectURL(blob)
+}
+
+// Read local file with progress
+function readFileWithProgress(
+  file: File,
+  onProgress: (percent: number, loaded: number, total: number) => void
+): Promise<Uint8Array> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader()
+    reader.onprogress = (e) => {
+      if (e.lengthComputable) {
+        onProgress(Math.min(Math.round((e.loaded / e.total) * 100), 99), e.loaded, e.total)
+      }
+    }
+    reader.onload = () => {
+      if (reader.result) {
+        resolve(new Uint8Array(reader.result as ArrayBuffer))
+      } else {
+        reject(new Error('Failed to read file'))
+      }
+    }
+    reader.onerror = () => reject(reader.error || new Error('File read error'))
+    reader.readAsArrayBuffer(file)
+  })
 }
 
 async function convert() {
   if (!inputFile.value) return
 
   try {
-    state.value = 'loading-ffmpeg'
+    // -------------------------------------------------------------
+    // STAGE 1: Download & Initialize FFmpeg Engine
+    // -------------------------------------------------------------
+    state.value = 'loading-engine'
     progress.value = 0
-    progressLabel.value = 'Loading FFmpeg engine...'
+    progressStageTitle.value = 'Stage 1 of 3: Loading WebAssembly Engine'
+    progressDetail.value = 'Connecting to CDN...'
+    liveStats.value = ''
     errorMsg.value = ''
 
     const { FFmpeg } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm/index.js' as any)
-    const { fetchFile, toBlobURL } = await import('https://cdn.jsdelivr.net/npm/@ffmpeg/util@0.12.1/dist/esm/index.js' as any)
 
     if (!ffmpegInstance) {
       ffmpegInstance = new FFmpeg()
@@ -203,32 +396,82 @@ async function convert() {
 
     const ffmpeg = ffmpegInstance
 
+    // Track live FFmpeg transcoding output
+    ffmpeg.on('log', ({ message }: { message: string }) => {
+      if (message.includes('frame=') || message.includes('fps=') || message.includes('time=')) {
+        const timeMatch = message.match(/time=([0-9:.]+)/)
+        const fpsMatch = message.match(/fps=\s*([0-9.]+)/)
+        if (timeMatch) {
+          liveStats.value = `Time: ${timeMatch[1]}${fpsMatch ? ` (${Math.round(parseFloat(fpsMatch[1]))} FPS)` : ''}`
+        }
+      }
+    })
+
     ffmpeg.on('progress', ({ progress: p }: { progress: number }) => {
-      progress.value = Math.min(Math.round(p * 100), 99)
-      progressLabel.value = `Converting... ${Math.min(Math.round(p * 100), 99)}%`
+      if (state.value === 'converting') {
+        const pct = Math.max(0, Math.min(Math.round(p * 100), 99))
+        progress.value = pct
+        progressDetail.value = `Encoding WebM video: ${pct}%`
+      }
     })
 
     if (!ffmpeg.loaded) {
       const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/esm'
       const ffmpegBaseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm'
+
+      progressDetail.value = 'Downloading FFmpeg WebAssembly core (approx 31 MB)...'
+
+      const [coreURL, wasmURL, classWorkerURL] = await Promise.all([
+        fetchWithProgress(`${baseURL}/ffmpeg-core.js`, 'text/javascript', () => {}),
+        fetchWithProgress(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm', (p, loaded, total) => {
+          progress.value = p
+          progressDetail.value = `Downloading WASM core: ${formatSize(loaded)} / ${formatSize(total)} (${p}%)`
+        }),
+        fetchWithProgress(`${ffmpegBaseURL}/worker.js`, 'text/javascript', () => {})
+      ])
+
+      progress.value = 100
+      progressDetail.value = 'Initializing engine...'
+
       await ffmpeg.load({
-        coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
-        wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
-        classWorkerURL: await toBlobURL(`${ffmpegBaseURL}/worker.js`, 'text/javascript'),
+        coreURL,
+        wasmURL,
+        classWorkerURL
       })
     }
 
-    state.value = 'converting'
-    progressLabel.value = 'Converting... 0%'
+    // -------------------------------------------------------------
+    // STAGE 2: Read Local Video File into Memory
+    // -------------------------------------------------------------
+    state.value = 'reading-file'
+    progress.value = 0
+    progressStageTitle.value = 'Stage 2 of 3: Loading Video into Memory'
+    progressDetail.value = 'Reading local file...'
 
-    const inputData = await fetchFile(inputFile.value)
+    const inputData = await readFileWithProgress(inputFile.value, (p, loaded, total) => {
+      progress.value = p
+      progressDetail.value = `Reading video: ${formatSize(loaded)} / ${formatSize(total)} (${p}%)`
+    })
+
     const inputExt = inputFile.value.name.split('.').pop() || 'mp4'
-    await ffmpeg.writeFile(`input.${inputExt}`, inputData)
+    const inputFileName = `input.${inputExt}`
+
+    progress.value = 99
+    progressDetail.value = 'Mounting virtual file system...'
+    await ffmpeg.writeFile(inputFileName, inputData)
+
+    // -------------------------------------------------------------
+    // STAGE 3: Transcode to WebM (VP9 + Opus)
+    // -------------------------------------------------------------
+    state.value = 'converting'
+    progress.value = 0
+    progressStageTitle.value = 'Stage 3 of 3: Transcoding to WebM'
+    progressDetail.value = 'Starting encoder (VP9 + Opus)...'
 
     await ffmpeg.exec([
-      '-i', `input.${inputExt}`,
+      '-i', inputFileName,
       '-c:v', 'libvpx-vp9',
-      '-crf', '30',
+      '-crf', '32',
       '-b:v', '0',
       '-c:a', 'libopus',
       '-b:a', '128k',
@@ -237,6 +480,14 @@ async function convert() {
       'output.webm'
     ])
 
+    // -------------------------------------------------------------
+    // STAGE 4: Package Output
+    // -------------------------------------------------------------
+    state.value = 'packaging'
+    progress.value = 100
+    progressStageTitle.value = 'Preparing Download...'
+    progressDetail.value = 'Extracting converted .webm file...'
+
     const data = await ffmpeg.readFile('output.webm')
     const blob = new Blob([data.buffer], { type: 'video/webm' })
 
@@ -244,15 +495,14 @@ async function convert() {
     outputUrl.value = URL.createObjectURL(blob)
     outputName.value = inputFile.value.name.replace(/\.[^.]+$/, '') + '.webm'
 
-    try { await ffmpeg.deleteFile(`input.${inputExt}`) } catch {}
+    try { await ffmpeg.deleteFile(inputFileName) } catch {}
+    try { await ffmpeg.deleteFile('output.webm') } catch {}
 
-    progress.value = 100
-    progressLabel.value = 'Conversion complete!'
     state.value = 'done'
 
   } catch (err: any) {
     console.error('Conversion error:', err)
-    errorMsg.value = err?.message || 'Conversion failed. Please try again with a smaller file.'
+    errorMsg.value = err?.message || 'Conversion failed. Browser memory may be exceeded for very large files.'
     state.value = 'error'
   }
 }
