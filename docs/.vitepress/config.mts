@@ -13,7 +13,7 @@ export default defineConfig({
   // and restore docs/public/CNAME.
   base: '/fwb-docs-githubpages/',
   head: [
-    ['script', { src: 'https://cdn.jsdelivr.net/npm/coi-serviceworker/coi-serviceworker.min.js' }],
+    ['script', { src: '/fwb-docs-githubpages/coi-serviceworker.js' }],
     ['script', {}, `(function(){document.documentElement.classList.add('dark');})()`],
     ['style', {}, `:root, html, body, #app, .VPApp, .VPNav, .VPSidebar, .VPContent { background-color: #05070d !important; color: #e2e8f0 !important; }`],
     ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
