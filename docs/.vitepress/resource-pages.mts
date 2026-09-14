@@ -48,6 +48,17 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     },
     "commonErrors": true
   },
+  "esx-society": {
+    "audited": true,
+    "configuration": true,
+    "commands": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
+    "integrations": true,
+    "commonErrors": true
+  },
   "fraud-v1": {
     "audited": true,
     "configuration": true,

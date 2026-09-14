@@ -92,6 +92,15 @@ export const RESOURCES: ResourceEntry[] = [
     seoKeywords: 'FiveM duty system ESX QBCore Qbox'
   },
   {
+    slug: 'esx-society',
+    name: 'ESX Society [ESX Only]',
+    repo: 'esx_society',
+    category: 'scripts',
+    audited: true,
+    seoKeywords: 'FiveM ESX society boss management script',
+    tagline: 'A modern ESX-only replacement for society accounts, employees, ranks, boss menus, and money washing.'
+  },
+  {
     slug: 'fraud-v1',
     name: 'Fraud System v1',
     repo: 'fs_fraud_v1',
@@ -507,6 +516,10 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
     } else {
       items.push({ text: 'Functions', collapsed: true, items: fnItems })
     }
+  }
+
+  if (pages.integrations) {
+    items.push({ text: 'Integrations', link: `${base}/integrations` })
   }
 
   if (pages.commonErrors) {
