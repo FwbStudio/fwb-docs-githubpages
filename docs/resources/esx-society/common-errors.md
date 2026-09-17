@@ -27,12 +27,6 @@ The running framework exposes neither a callable `ESX.RefreshJob()` nor `ESX.Ref
 
 Follow [Manual refresh compatibility](./installation#manual-refresh-compatibility) for older ESX versions. On current ESX, check framework startup errors and update ESX Society: its detector supports ordinary Lua functions and callable cross-resource references.
 
-## The old worker permission error still appears
-
-Automatic ESX patching is disabled. Errors mentioning `Legacy ESX worker unavailable`, `add_unsafe_worker_permission`, or `--allow-worker` come from older code still being loaded.
-
-Update the complete resource, run `refresh` and `restart esx_society`, and verify the active resource folder if a new error appears. Do not grant worker permissions. Use the [manual handler](./installation#manual-refresh-compatibility) if your framework lacks refresh APIs.
-
 ## No supported target provider is running
 
 ::: danger Cause

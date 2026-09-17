@@ -163,8 +163,8 @@ ESX Society creates jobs and their initial ranks using its own SQL transaction, 
 
 If neither API is available, install this handler manually. An already installed compatible handler can also be used.
 
-1. Back up the `es_extended` manifest.
-2. Create `es_extended/server/esx_society_refresh.lua` containing:
+1. Back up `es_extended/server/main.lua`.
+2. Open `es_extended/server/main.lua` and paste the following code at the **very end of the file**, after all existing code:
 
 ```lua
 -- Load inside es_extended, after ESX is initialized.
@@ -207,22 +207,12 @@ AddEventHandler('esx_society:esx:legacyRuntime', function(action, jobName, job, 
 end)
 ```
 
-3. Add this entry at the end of `server_scripts` in `es_extended/fxmanifest.lua` (or `__resource.lua` on older builds), after ESX initialization:
+The handler must stay **inside `es_extended`**, where it can update the actual `ESX.Jobs` table. Because `server/main.lua` is already loaded by ESX Extended, no new file or `fxmanifest.lua` entry is required.
 
-```lua
-'server/esx_society_refresh.lua',
-```
+3. Restart the full server, starting `es_extended` before `esx_society`.
+4. Create a test job with at least one rank and edit a rank to verify live updates.
 
-The handler must run **inside es_extended**, where it can update the actual `ESX.Jobs` table. If a wildcard already loads this file, do not load it twice and ensure it runs after ESX initialization. Install only one copy of this handler.
-
-4. Restart the full server, starting `es_extended` before `esx_society`.
-5. Create a test job with at least one rank and edit a rank to verify live updates.
-
-Keep the event server-local: never use `RegisterNetEvent`. The handler updates the framework cache; SQL writes and management permissions remain in ESX Society. Preserve the file and manifest entry when updating ESX.
-
-### Worker permissions are not required
-
-Automatic ESX patching is disabled. Do not add `add_unsafe_worker_permission esx_society` or `--allow-worker`. If an old worker error appears, update the complete resource, run `refresh` and `restart esx_society`, and verify the active resource folder.
+Keep the event server-local: never use `RegisterNetEvent`. The handler updates the framework cache; SQL writes and management permissions remain in ESX Society. Reapply this addition if an ESX Extended update replaces `server/main.lua`.
 
 Without a callable refresh API or this manual handler, job creation is blocked before SQL insertion.
 
