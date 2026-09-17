@@ -38,7 +38,8 @@ ensure es_extended
 ensure esx_addonaccount
 
 # Optional: required only when management access points are used
-ensure ox_target # or qb-target
+ensure ox_lib # required by ox_target
+ensure ox_target # or qb-target with its own dependencies
 
 ensure esx_society
 ```
@@ -156,19 +157,74 @@ Manual table installation does not install the player-state revision trigger. Th
 
 ## Older ESX versions
 
-Current ESX versions expose `ESX.RefreshJob()` or `ESX.RefreshJobs()` and need no additional permission.
+ESX Society creates jobs and their initial ranks using its own SQL transaction, then calls `ESX.RefreshJob()` or `ESX.RefreshJobs()` to update ESX's live job cache. It does not call `ESX.CreateJob()`. If either refresh API is available, no extra setup is required.
 
-Only when startup reports that neither API exists, temporarily add:
+### Manual refresh compatibility
 
-```cfg
-add_unsafe_worker_permission esx_society
+If neither API is available, install this handler manually. An already installed compatible handler can also be used.
+
+1. Back up the `es_extended` manifest.
+2. Create `es_extended/server/esx_society_refresh.lua` containing:
+
+```lua
+-- Load inside es_extended, after ESX is initialized.
+-- Server-local event only: do NOT use RegisterNetEvent.
+AddEventHandler('esx_society:esx:legacyRuntime', function(action, jobName, job, callback)
+    local callbackType = type(callback)
+    local meta = callbackType == 'table' and getmetatable(callback) or nil
+    local callable = callbackType == 'function'
+        or (type(meta) == 'table' and type(meta.__call) == 'function')
+    if not callable then return end
+
+    local function reply(success, reason)
+        callback(success, reason)
+    end
+
+    if type(ESX) ~= 'table' or type(ESX.Jobs) ~= 'table' then
+        reply(false, 'esx_jobs_unavailable')
+        return
+    end
+    if action == 'ping' then
+        reply(true, 'manual_include')
+        return
+    end
+    if type(jobName) ~= 'string' or jobName == '' then
+        reply(false, 'invalid_job_name')
+        return
+    end
+    if action == 'remove' then
+        ESX.Jobs[jobName] = nil
+        reply(true, 'removed')
+        return
+    end
+    if action ~= 'upsert' or type(job) ~= 'table'
+        or job.name ~= jobName or type(job.grades) ~= 'table' then
+        reply(false, 'invalid_job_payload')
+        return
+    end
+    ESX.Jobs[jobName] = job
+    reply(true, 'updated')
+end)
 ```
 
-Restart once to let the guarded installer add the legacy refresh handler, then remove that permission and restart again. The installer accepts only known `es_extended` server files, refuses symlinks and path escapes, and creates a non-overwriting `.esx_society_backup` before changing a file.
+3. Add this entry at the end of `server_scripts` in `es_extended/fxmanifest.lua` (or `__resource.lua` on older builds), after ESX initialization:
 
-::: danger Do not add the worker permission on current ESX
-If the resource detects a supported refresh API, the worker permission is unnecessary and the permission screen will not request it.
-:::
+```lua
+'server/esx_society_refresh.lua',
+```
+
+The handler must run **inside es_extended**, where it can update the actual `ESX.Jobs` table. If a wildcard already loads this file, do not load it twice and ensure it runs after ESX initialization. Install only one copy of this handler.
+
+4. Restart the full server, starting `es_extended` before `esx_society`.
+5. Create a test job with at least one rank and edit a rank to verify live updates.
+
+Keep the event server-local: never use `RegisterNetEvent`. The handler updates the framework cache; SQL writes and management permissions remain in ESX Society. Preserve the file and manifest entry when updating ESX.
+
+### Worker permissions are not required
+
+Automatic ESX patching is disabled. Do not add `add_unsafe_worker_permission esx_society` or `--allow-worker`. If an old worker error appears, update the complete resource, run `refresh` and `restart esx_society`, and verify the active resource folder.
+
+Without a callable refresh API or this manual handler, job creation is blocked before SQL insertion.
 
 ## Existing job resources
 

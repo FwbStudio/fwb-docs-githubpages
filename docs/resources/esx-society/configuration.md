@@ -21,11 +21,20 @@ Deleting a rank demotes assigned employees by one available rank. If no lower ra
 
 | Provider | Choices | Notes |
 | --- | --- | --- |
+| Language | English | Selects one of the ten bundled tablet, menu, target, placement, and notification translations |
 | Notifications | Auto, `fs_notify`, ESX, `ox_lib` | Auto prefers `fs_notify`, then ESX; `ox_lib` is optional |
 | Target | Auto, `ox_target`, `qb-target` | Needed only for in-world management points |
 | Zone engine | Auto, `ox_lib`, PolyZone | Optional area workflows; not a hard dependency |
 
 Restart `esx_society` after changing target or zone providers so connected clients rebuild their registrations consistently. Notification-provider changes apply immediately.
+
+### Languages
+
+English is the default language in the **Bridge** tab. The resource includes English, Arabic, Dutch, French, German, Polish, Brazilian Portuguese, Russian, Spanish, and Turkish.
+
+Changing the language applies immediately to open tablets and notifications. Existing management target handles are removed and registered again with translated labels on every connected client; a language change does not require a resource restart. This is a single small event initiated by an administrator, not a polling loop or per-player request.
+
+Additional translations can be added as unlocked files under `locales/`. Copy `locales/en.lua`, translate every value without changing its key, register a unique locale code, and restart `esx_society` once to load the new file. A valid registered locale automatically appears in the Bridge language selector. Missing entries safely fall back to English.
 
 ## Logs
 

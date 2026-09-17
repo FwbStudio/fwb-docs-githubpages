@@ -24,6 +24,7 @@ description: ESX Society features and compatibility overview for FiveM ESX serve
 - Current ESX `xLib.callback` and classic `ESX.TriggerServerCallback` compatibility.
 - Server-side validation for job, grade, permission, distance, money, and employee mutations.
 - Pagination, bounded caches, event-indexed online employees, targeted point refreshes, and no permanent proximity loop.
+- Ten bundled languages for the tablet, Lua notifications, compatibility menus, targets, and placement controls, with unlocked locale files and live switching.
 
 ## Package
 
@@ -32,6 +33,8 @@ description: ESX Society features and compatibility overview for FiveM ESX serve
 | **ESX Society** | `esx_society` |
 
 Only the `esx_society` resource is provided. It is built exclusively for ESX and uses the standard ESX society ecosystem rather than requiring an additional framework bridge.
+
+**Supported languages:** English, Arabic, Dutch, French, German, Polish, Brazilian Portuguese, Russian, Spanish, and Turkish. Server owners can add complete locale files under `locales/`; only registered translations are shown in the in-game selector.
 
 ::: warning Folder name matters
 The folder must be named exactly `esx_society`. Do not run the original `esx_society` resource at the same time.

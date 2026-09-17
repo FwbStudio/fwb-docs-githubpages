@@ -21,21 +21,17 @@ add_ace identifier.license:YOUR_LICENSE esx_society.admin allow
 ACE protects only the administrator tablet. Boss access comes from the player's live ESX job and boss grade.
 :::
 
-## The resource requests `add_unsafe_worker_permission`
+## ESX job refresh is unavailable
 
-::: danger Cause
-The running `es_extended` exposes neither `ESX.RefreshJob()` nor `ESX.RefreshJobs()`.
-:::
+The running framework exposes neither a callable `ESX.RefreshJob()` nor `ESX.RefreshJobs()`, and no working compatibility handler is installed.
 
-::: tip Solution
-Update ESX if possible. For a genuinely older build, temporarily add:
+Follow [Manual refresh compatibility](./installation#manual-refresh-compatibility) for older ESX versions. On current ESX, check framework startup errors and update ESX Society: its detector supports ordinary Lua functions and callable cross-resource references.
 
-```cfg
-add_unsafe_worker_permission esx_society
-```
+## The old worker permission error still appears
 
-Restart once, confirm successful installation, remove the permission, and restart again. Do not add this line unless the permission page requests it.
-:::
+Automatic ESX patching is disabled. Errors mentioning `Legacy ESX worker unavailable`, `add_unsafe_worker_permission`, or `--allow-worker` come from older code still being loaded.
+
+Update the complete resource, run `refresh` and `restart esx_society`, and verify the active resource folder if a new error appears. Do not grant worker permissions. Use the [manual handler](./installation#manual-refresh-compatibility) if your framework lacks refresh APIs.
 
 ## No supported target provider is running
 
@@ -44,7 +40,7 @@ Neither `ox_target` nor `qb-target` was started before `esx_society`, or the sel
 :::
 
 ::: tip Solution
-Start one target resource first, select **Auto** or the matching provider in **Bridge**, then restart `esx_society` so connected clients rebuild their targets.
+Install and start one target resource first; `ox_lib` and `ox_inventory` do not replace a target resource. Select **Auto** or the matching provider in **Bridge**, then restart `esx_society` so connected clients rebuild their targets.
 :::
 
 ## The society account is unavailable or remains at zero
