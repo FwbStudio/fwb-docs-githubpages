@@ -62,6 +62,8 @@ In **Naked defaults**, configure male and female replacements. Use **Edit on mod
 
 ## Global settings
 
+- **Persist outfit changes:** save clothes worn or removed through all bag types using your clothing system, so they remain after reconnecting. Off by default. QB Clothing may need the small hook described in [Integrations](./integrations#qb-clothing-only-old-and-new-versions).
+
 - **Public sharing:** allow or disable public bags for both item and command bags. When disabled, players do not see the public/private actions.
 - **Ground cleanup:** enable cleanup and choose how long ground bags remain.
 - **Admin access:** configure the admin command and permission.

@@ -27,7 +27,29 @@ Copy the supplied images into your inventory's image directory. The admin menu u
 
 Select the clothing resource your server uses. This integration captures, applies and saves outfit changes. Check male/female naked defaults against any custom clothing packs.
 
-## Targets
+## Saving clothes after reconnecting
+
+Enable **Settings → Persist outfit changes** in the admin menu. This is off by default and applies to item bags, command bags and Job Bags. Completed wear/remove actions save through the selected clothing system. Preview models and cancelled sequences do not trigger a save.
+
+### QB Clothing only — old and new versions
+
+Check whether your qb-clothing already has the `qb-clothing:getSkin` event or `GetSkinData` export. If either exists, no getter change is needed.
+
+Otherwise, add this at the bottom of the client file containing `local skinData`:
+
+```lua
+AddEventHandler('qb-clothing:getSkin', function(cb)
+    cb(skinData)
+end)
+```
+
+Use `qb-clothing/client.lua` or `qb-clothing/client/main.lua`, depending on your version. Keep the hook in the same file as `skinData`, not a separate file, and do not add duplicate handlers.
+
+This applies to both old and new QB Clothing versions using `skinData` and the normal `qb-clothing:saveSkin` server event. No inventory edits or replacement `loadOutfit` event are required. Restart qb-clothing and fs_outfitbag after adding the hook.
+
+Other supported clothing systems do not need this QB-specific modification. The bridges submit saves through their provider APIs, not direct database writes. Test your installed versions by wearing and removing clothes, then reconnecting.
+
+## Target providers
 
 Use **ox_target** or **qb-target**. Bag actions attach to the actual bag prop.
 

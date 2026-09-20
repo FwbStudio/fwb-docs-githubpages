@@ -134,7 +134,40 @@ Back up the database, stop `fs_outfitbag`, and run the contents of `server/schem
 Do not drop existing tables to reinstall. The bundled file uses `CREATE TABLE IF NOT EXISTS`; runtime checks are still needed for existing installations.
 :::
 
-## 6. Configure and test
+## 6. Necessary setup for QB Clothing
+
+::: warning QB Clothing only
+**If you do not use `qb-clothing`, skip this step.** This hook is needed for saving worn clothes after reconnecting when your QB Clothing version does not already provide it.
+:::
+
+### Check your version first
+
+Search your `qb-clothing` client files for `qb-clothing:getSkin` or the `GetSkinData` export. If either is already implemented, do not add another copy.
+
+### Add the missing hook
+
+Open **`qb-clothing/client.lua`**, scroll to the bottom, and paste this code:
+
+```lua
+AddEventHandler('qb-clothing:getSkin', function(cb)
+    cb(skinData)
+end)
+```
+
+Save the file.
+
+If your version has a different folder layout, search inside `qb-clothing` for `local skinData` and paste the code at the bottom of that file instead.
+
+### Enable saving and test
+
+1. Restart `qb-clothing`, then `fs_outfitbag`.
+2. Open `/fs_outfitbag` and select **qb-clothing** in **Bridge**.
+3. In **Settings**, enable **Persist outfit changes** and save. This setting is off by default.
+4. Wear an outfit from a bag, reconnect, and check that the clothes remain. Also test removing an outfit part.
+
+The setting applies to item bags, command bags and Job Bags. Preview models do not save clothing.
+
+## 7. Configure and test
 
 1. Open `/fs_outfitbag`.
 2. In **Bridge**, confirm framework, inventory, clothing, target and other providers.
