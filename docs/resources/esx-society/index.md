@@ -14,6 +14,12 @@ description: Preview the free ESX Society replacement for FiveM ESX servers, wit
   </div>
 </div>
 
+## Preview video
+
+::: info Coming soon
+The ESX Society preview video is coming soon.
+:::
+
 ## Built as a replacement
 
 This is a complete redesign of the standard `esx_society` experience, built as a drop-in replacement rather than a separate management resource. It keeps the established `esx_society:*` integration surface while giving administrators and business managers a modern, server-validated interface.

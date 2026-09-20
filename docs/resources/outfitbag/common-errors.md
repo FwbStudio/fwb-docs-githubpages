@@ -1,104 +1,34 @@
 ---
-title: Outfit Bag Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions and troubleshooting for FiveM Outfit Bag script (fs_outfitbag).
+title: Outfit Bag Common Errors | FWB Studio Docs
+description: Troubleshoot Outfit Bag v2.0 items, SQL, job access, previews and recovery on FiveM ESX and QBCore servers.
 ---
 
-# Outfit Bag — Common Errors & FAQ
+# Outfit Bag — Common Errors
 
-Have a question or encounter an issue while running **fs_outfitbag**? Check the common questions and error solutions below.
+Enable **Settings → Debug logging** while diagnosing a problem. Disable it again when you are finished.
 
----
+| Symptom | Check |
+| --- | --- |
+| Tablet access denied | Grant the dedicated `fs_outfitbag.admin` ACE to the correct group/license. General command permission is not enough. |
+| Repeated rename warning | Rename the resource folder to exactly `fs_outfitbag` and restart it. |
+| Storage starting/unavailable | Start oxmysql first, verify the connection and database privileges, then inspect debug output. SQL setup is automatic. |
+| Item does nothing | Confirm a single enabled Bag Item definition matches the item, the framework/inventory providers are active, and the callback supplies an exact slot. |
+| Item callback error after restart | Ensure the selected framework and inventory are fully started; restart Outfit Bag after its providers and retry. Capture debug output if it persists. |
+| Duplicate/stacked item rejected | Use non-stacking/unique bag items. Do not duplicate `fs_bag_uid` metadata manually. |
+| Missing admin item image | Install `itemname.png` into the active inventory's image directory. The installation folder is not a thumbnail fallback. |
+| Bag cannot be placed | Stand on foot with clear space nearby. Check collision, obstacles, surface slope and whether the chosen prop exists in your game build. |
+| Job Bag not visible | Check Enabled, saved placement, OneSync, prop model availability and the placement's routing bucket. |
+| Job outfit missing/inaccessible | Check the bag's selected job/ranks, the outfit's access subset and the player's model. A higher rank is not automatically included in an explicit rank selection. |
+| Outfit does not change a component | Check allowed parts, drawable/texture blacklist, model compatibility, selected clothing provider and naked defaults. |
+| Camera/animation problem | Check `bridge/default/animations.lua` and conflicts with other resources controlling the ped/camera. Include debug details in your report. |
+| Bag item operation pending | Free inventory space and run `/outfitbagrecover` once the inventory provider is available. |
+| Language missing | Confirm the locale registers its code/label correctly, then restart the resource. |
+| Some text remains English | Missing or empty translated keys fall back to `en.lua`. Keep keys unchanged when translating. |
+| Footer only shows Version | The online check was unavailable. Gameplay is unaffected; enable debug for the diagnostic reason. |
+| UI changes are not visible | FiveM loads `web/build`. Keep it synchronized with `web/source` and restart after deployment. |
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" on server start?
+## Before reporting an issue
 
-::: danger Cause
-This occurs when `fs_bridge` is missing, stopped, or started **after** `fs_outfitbag` in your `server.cfg`.
-:::
+Include your framework, inventory and clothing resource versions, relevant debug output, reproduction steps, and whether it affects inventory bags, Job Bags or both. Do not post database credentials or license secrets.
 
-::: tip Solution
-1. Ensure `fs_bridge` is present inside your `resources/[fs]/` directory.
-2. In your `server.cfg`, ensure `fs_bridge` is started before `fs_outfitbag`:
-   ```lua
-   ensure fs_bridge
-   ensure fs_outfitbag
-   ```
-:::
-
----
-
-### ❓ Q: Database error: `Table 'fs_outfitbag' doesn't exist`?
-
-::: danger Cause
-The MySQL database table for storing outfits has not been imported.
-:::
-
-::: tip Solution
-1. Open `fs_outfitbag/[INSTALL_ME_FIRST]/sql.sql`.
-2. Run the SQL script in your database manager (HeidiSQL, phpMyAdmin):
-   ```sql
-   CREATE TABLE IF NOT EXISTS `fs_outfitbag` (
-     `id` int(11) NOT NULL AUTO_INCREMENT,
-     `owner` varchar(100) NOT NULL DEFAULT '0',
-     `bagname` varchar(50) DEFAULT NULL,
-     `data` longtext DEFAULT NULL,
-     PRIMARY KEY (`id`)
-   ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-   ```
-3. Restart your server.
-:::
-
----
-
-### ❓ Q: Why are certain clothing parts (e.g. shoes, hats) not saving into outfits?
-
-::: danger Cause
-Those specific clothing components are disabled in `config.supported`.
-:::
-
-::: tip Solution
-1. Open `fs_outfitbag/config/config.lua`.
-2. Check `config.supported`:
-   ```lua
-   config.supported = {
-       ["mask_1"] = true,
-       ['helmet_1'] = true,
-       ['glasses_1'] = true,
-       ['ears_1'] = true,
-       ["tshirt_1"] = true,
-       ["torso_1"] = true,
-       ["decals_1"] = true,
-       ["bproof_1"] = true,
-       ["arms"] = true,
-       ["watches_1"] = true,
-       ["bracelets_1"] = true,
-       ['bags_1'] = true,
-       ["pants_1"] = true,
-       ["shoes_1"] = true, -- Set to true if you want shoes saved
-   }
-   ```
-3. Restart the resource.
-:::
-
----
-
-### ❓ Q: 3D Bag prop models are invisible when placed on the ground?
-
-::: danger Cause
-The `.ytyp` stream definition is missing or blocked.
-:::
-
-::: tip Solution
-Ensure line 9 in `fs_outfitbag/fxmanifest.lua` is intact:
-```lua
-data_file 'DLC_ITYP_REQUEST' 'stream/fs_outfitbag.ytyp'
-```
-Do not rename the `stream` directory or remove the `.ytyp` file.
-:::
-
----
-
-### 💬 Need More Help?
-
-If your issue or question isn't listed here, feel free to open a ticket in our official Discord community:
-
-👉 **[Join FWB Studio Discord](https://discord.gg/fwbstudio)**
+[FwB Studio support on Discord](https://discord.com/invite/sPqkfQHPAa).

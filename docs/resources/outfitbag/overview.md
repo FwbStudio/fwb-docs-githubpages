@@ -1,50 +1,60 @@
 ---
 title: Outfit Bag Overview | FWB Studio Docs
-description: Outfit Bag features and setup overview for FiveM. Portable placeable wardrobe and job locker bags for ESX, QBCore, and Qbox.
+description: Outfit Bag v2.0 portable wardrobes and static job uniforms for FiveM ESX, QBCore and Qbox servers.
 ---
 
 <div class="fwb-inline-cta">
   <a class="fwb-product-hero__buy" href="./">Preview</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426474" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+  <a class="fwb-product-hero__buy" href="./installation">Install</a>
 </div>
 
 # Outfit Bag
 
-### 🎒 Outfit Bag – Portable Wardrobe & Job Lockers On The Go
+A portable wardrobe and static job-uniform system, configured through an in-game admin tablet. Players place a physical bag, open it through an entity interaction, and wear full outfits or individual clothing groups.
 
-Give your players and job services the freedom to manage, preview, and change their outfits anywhere on the map without traveling to a static clothing store. Place custom 3D physical outfit bags on the ground, open a sleek UI with live camera views, dress with realistic animations, and configure job locker bags with grade-restricted duty uniforms.
+## Two kinds of bags
 
-Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
+| Inventory bags | Static Job Bags |
+| --- | --- |
+| Small, medium and large definitions are pre-created. | Administrators place a permanent wardrobe prop. |
+| Using an item places it nearby; it does not open the wardrobe. | No inventory item is required to use it. |
+| The player who places the item manages the ground bag. | Access is selected by job and individual rank. |
+| Public access lets other players wear outfits only. | Each outfit can inherit access or narrow it to selected bag ranks. |
+| Pickup returns the unique item with its identity. | Only administrators edit the bag and its presets. |
 
----
+## Player experience
 
-#### ⚙️ Key Features
+- Realistic fabric bag interface with configurable fabric color, searchable outfits and model compatibility.
+- Expandable rows with male/female indicators, actual worn-clothing matching and individual clothing-group controls.
+- Wear or remove a group; configured naked defaults supply the replacement components.
+- Small preview ped with animated outfit changes. Preview can be switched off while the bag camera remains active.
+- Owner-only outfit saving, renaming and deletion; new outfits use the next free slot.
+- Inline bag renaming and in-bag color selection when permitted by the administrator.
+- Browsing animation persists while the bag is open, pauses for clothing changes and resumes afterward.
+- Configurable robbery for inventory bags, with timed sessions and persistent cooldowns.
 
-* **3D Physical Placeable Props** — Place realistic custom bags on the ground (`fs_prop_outfitbag_small`, `fs_prop_outfitbag_med`, `fs_prop_outfitbag_large`, `fs_prop_outfitbag_pol`, `fs_prop_outfitbag_doc`).
-* **Interactive UI & 3D Dressing Camera** — Beautiful responsive NUI with dynamic camera focus that frames your character while previewing and changing clothes.
-* **Realistic Dressing Animations** — Custom animations for donning masks, changing shirts, pants, and changing shoes.
-* **Dual Operating Modes**:
-  * **Inventory Usable Items**: Small (5 slots), Medium (10 slots), and Large (15 slots) bags.
-  * **Quick Chat Commands**: `/outfitbag` or `/ob` for instant wardrobe access without inventory items.
-* **Job & Whitelist Locker Bags** — Place permanent job locker bags (e.g. Police Stations, Hospitals, Firehouses) at fixed coordinates with job, grade, or admin ACE restrictions and pre-set duty uniforms.
-* **Unique vs Shared Bags System** — Configure whether each physical bag has unique metadata storage or shares the player's cloud outfit library.
-* **Developer Outfit Extractor Tool (`/getoutfit`)** — Quick admin command to extract currently worn outfit codes straight into config format for effortless job uniform setup.
-* **Despawn Failsafe Timer** — Unattended bags placed in the world automatically despawn after a configurable timeout to keep server performance clean.
+## Administration
 
----
+The tablet contains **Bag Items**, **Active Bags**, **Job Bags**, **Bridge**, **Outfit Rules**, **Naked defaults**, and **Settings**.
+
+Global Outfit Rules cover 15 clothing/prop slots. Hair, face and skin appearance are excluded. Blacklists can restrict a drawable across all textures or only specific textures, optionally for a particular player model.
+
+## Performance and validation
+
+Catalogs are cached, searches are paginated, and outfit data is requested when needed rather than broadcast to all players. Gameplay checks revalidate ownership, job/rank, player model, distance and routing bucket on the server. Cache contents are not used as permission grants.
+
+The current safety limits include 2,000 active inventory-bag placements, 500 static Job Bags, and 100 outfits per static bag. These are safeguards, not a tested player-capacity guarantee. Test your actual framework, inventory and clothing versions before production; no 1,000-player load certification is claimed.
+
+## Next steps
+
+**Included languages:** Arabic, German, English, Spanish, French, Dutch, Polish, Brazilian Portuguese, Russian and Turkish. Language selection is in Bridge; Arabic uses right-to-left text. Locale files are unlocked, with English fallback for missing custom translations.
+
+[Installation](./installation) · [Configuration](./configuration) · [Integrations](./integrations) · [Common errors](./common-errors)
+
+Need assistance? [FwB Studio Discord](https://discord.com/invite/sPqkfQHPAa).
 
 ## Package
 
 | Package | Resource Folder | Frameworks | Category |
 | :--- | :--- | :--- | :--- |
 | **Script Package** | `fs_outfitbag` | ESX, QBCore, Qbox | FiveM Script |
-| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
-
----
-
-## Documentation
-
-- [Installation](./installation) — dependencies, database SQL, and server.cfg
-- [Configuration](./configuration) — complete `config.lua` and parameter guide
-- [Commands](./commands) — player commands and developer outfit copy tool
-- [Common Errors](./common-errors) — troubleshooting and common fixes

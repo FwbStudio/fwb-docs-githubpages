@@ -126,6 +126,8 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "audited": true,
     "configuration": true,
     "commands": true,
+    "exports": { "server": true },
+    "integrations": true,
     "commonErrors": true
   },
   "pizza-shop": {

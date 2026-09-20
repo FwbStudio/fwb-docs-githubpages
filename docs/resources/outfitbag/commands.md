@@ -1,46 +1,45 @@
 ---
 title: Outfit Bag Commands | FWB Studio Docs
-description: In-game chat commands reference for FiveM Outfit Bag script (fs_outfitbag) — wardrobe access and developer outfit tool.
+description: Admin and player commands for Outfit Bag.
 ---
 
 # Outfit Bag — Commands
 
-`fs_outfitbag` provides in-game commands for player wardrobe access and developer uniform configuration.
+## Admin menu
 
----
+| Command | Purpose |
+| --- | --- |
+| `/fs_outfitbag` | Open the admin menu. |
+| `/outfitbagadmin` | Alternative command for the same admin menu. |
 
-## Player Commands
+Admin permission is required. If access is denied, copy the permission line shown and paste it into `server.cfg`.
 
-::: details /outfitbag & /ob
-Opens the portable outfit bag menu directly without placing an inventory item on the ground.
+The main admin command can be changed in **Settings**.
 
-### Syntax
+## Player command bag
+
+| Command | Purpose |
+| --- | --- |
+| `/outfitbag` | Place your command bag without an inventory item. |
+| `/ob` | Short version of `/outfitbag`; uses the same bag. |
+
+Enable this feature in the admin menu's **Command bag** tab and set the outfit slots. Both commands work when it is enabled. If you configure another command name, it works alongside these two aliases.
+
+After placing the bag, use its target interaction to open it. Command bags cannot be robbed.
+
+## Item and Job Bags
+
+No player command is needed for these bags:
+
+- **Item bag:** use the inventory item to place it, then interact with the bag to open it.
+- **Job Bag:** interact with the placed prop. Your job and rank must have access.
+
+## Restart after file changes
+
+Run this in the **server console** after editing bridge or locale files:
+
+```text
+restart fs_outfitbag
 ```
-/outfitbag
-/ob
-```
 
-* **Requirement**: `config.non_item.enable = true` in `config/config.lua`.
-* **Behavior**: Opens the small outfit bag UI to change or manage saved outfits instantly.
-:::
-
----
-
-## Developer / Admin Tools
-
-::: details /getoutfit
-Developer tool to extract your character's currently worn clothing components directly into Lua table format.
-
-### Syntax
-```
-/getoutfit
-```
-
-### How to Use
-1. Set `config.command.enable = true` in `fs_outfitbag/config/config.lua`.
-2. Dress your character in the desired job uniform (e.g. Police Officer, Paramedic, SWAT).
-3. Run `/getoutfit` in-game.
-4. The script copies the complete clothing component table (`drawable`, `texture`, `palette` for mask, helmet, shirt, torso, pants, etc.) to your clipboard / chat.
-5. Paste the table directly into `config.whitelist_bags[bag_name].outfits` in `config/config.lua`.
-6. Set `config.command.enable = false` when done.
-:::
+Pending inventory operations are retried automatically; no recovery command is required.

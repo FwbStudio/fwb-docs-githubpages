@@ -55,7 +55,7 @@ export default defineConfig({
     outline: false,
     fwbLinks: {
       store: 'https://fwbstudio.tebex.io/',
-      discord: 'https://discord.gg/WH6uQ6uFvq'
+      discord: 'https://discord.com/invite/sPqkfQHPAa'
     }
   } as any
 })
