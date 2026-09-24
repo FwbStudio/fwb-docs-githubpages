@@ -16,9 +16,7 @@ description: Preview the free ESX Society replacement for FiveM ESX servers, wit
 
 ## Preview video
 
-::: info Coming soon
-The ESX Society preview video is coming soon.
-:::
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/mvuVCI2lAQI" title="ESX Society showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">ESX Society showcase</p></div></div>
 
 ## Built as a replacement
 

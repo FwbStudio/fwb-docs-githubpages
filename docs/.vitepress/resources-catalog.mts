@@ -98,7 +98,8 @@ export const RESOURCES: ResourceEntry[] = [
     category: 'scripts',
     audited: true,
     seoKeywords: 'FiveM ESX society boss management script',
-    tagline: 'A modern ESX-only replacement for society accounts, employees, ranks, boss menus, and money washing.'
+    tagline: 'A modern ESX-only replacement for society accounts, employees, ranks, boss menus, and money washing.',
+    videos: [{ title: 'ESX Society showcase', youtubeId: 'mvuVCI2lAQI' }]
   },
   {
     slug: 'fraud-v1',
