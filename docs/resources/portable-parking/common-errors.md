@@ -1,6 +1,6 @@
 ---
 title: Portable Parking Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions and troubleshooting for FiveM Portable Parking script (fs_portableparking).
+description: Troubleshoot FiveM Portable Parking on ESX, QBCore, and Qbox, including JG garage detection and database errors.
 ---
 
 # Portable Parking — Common Errors & FAQ
@@ -9,27 +9,25 @@ Have a question or encounter an issue while running **fs_portableparking**? Chec
 
 ---
 
-### ❓ Q: SQL Error: `Unknown column 'vin' in 'field list'`?
+### Does the current version need a `vin` SQL import?
 
-::: danger Cause
-The database migration adding the `vin` column to `owned_vehicles` (ESX) or `player_vehicles` (QBCore) has not been run.
-:::
+No. Native storage is prepared automatically on startup. If an older installation reports an unknown `vin` column, check that you installed the complete current resource and restarted it. Do not drop or recreate `vin` using old installation snippets. See [Database Setup](./installation#database-setup).
 
-::: tip Solution
-Execute the SQL snippet for your framework:
+### JG compatibility troubleshooting
 
-**For ESX:**
-```sql
-ALTER TABLE owned_vehicles DROP COLUMN IF EXISTS vin;
-ALTER TABLE owned_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
-```
+| Symptom | What to check |
+| :--- | :--- |
+| Console says `Garage compatibility: none` while using `auto` | Start `jg-advancedgarages` before Portable Parking, then restart Portable Parking. Alternatively set `config.garageCompatibility = 'jg-garage'`. |
+| Must JG start first with explicit `'jg-garage'`? | No. Manual selection ignores resource start order. JG's database columns must already be installed. |
+| `JG garage compatibility requires ...; finish JG installation first` | Complete JG's database installation for your framework. ESX uses `owned_vehicles`; QBCore/Qbox use `player_vehicles`. Confirm the correct database connection, then restart Portable Parking. |
+| `Unknown garage compatibility` | Use `auto`, `none`, or `jg-garage`. The resource folder name `jg-advancedgarages` is not the config value. |
+| Multiple compatible garages are running | Select the intended adapter explicitly instead of `auto`. |
+| JG-impounded car is missing from `/vlist` or `/vadmin` | Expected: release it through JG. Our recovery/admin tools do not bypass JG impounds. |
+| `/vimpound` says to use the garage system | Expected in JG mode. Use JG's impound action. |
+| `auto_unimpound` does not release JG vehicles | Expected: this option does not reset JG records. |
+| Vehicle appears after a spawn-failed notification | Garage compatibility changes storage handling, not spawn timeouts. Record the model and plate, F8 output, and server logs for support. |
 
-**For QBCore / Qbox:**
-```sql
-ALTER TABLE player_vehicles DROP COLUMN IF EXISTS vin;
-ALTER TABLE player_vehicles ADD COLUMN vin TINYINT(1) NOT NULL DEFAULT 1;
-```
-:::
+See [Garage Compatibility](./configuration#garage-compatibility) for supported behavior and limitations.
 
 ---
 

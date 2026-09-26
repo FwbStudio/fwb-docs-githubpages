@@ -1,12 +1,7 @@
 ---
 title: Portable Parking Installation | FWB Studio Docs
-description: Install Portable Parking on FiveM — database migration, dependencies, and server.cfg setup.
+description: Install FiveM Portable Parking for ESX, QBCore, and Qbox, with native storage or JG Advanced Garages compatibility.
 ---
-
-<div class="fwb-inline-cta">
-  <a class="fwb-product-hero__buy" href="./">Preview</a>
-  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7431940" target="_blank" rel="noreferrer">Purchase on Tebex</a>
-</div>
 
 # Portable Parking — Installation
 
@@ -14,44 +9,60 @@ description: Install Portable Parking on FiveM — database migration, dependenc
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
-| `oxmysql` | Yes | MySQL async library for database queries |
-| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
-| `fs_bridge` | **No** | `fs_portableparking` includes its own self-contained bridge folder |
+| `oxmysql` | Yes | Database queries |
+| ESX, QBCore, or Qbox | Yes | Start your selected framework before Portable Parking |
+| `ox_lib` | Framework-dependent | Used by Qbox and its interaction prompts; keep your framework dependencies installed |
+| `jg-advancedgarages` | Optional | JG v3 storage compatibility for all three frameworks |
+| `fs_bridge` | No | Portable Parking includes its own editable `bridge/` folder |
 
----
+## Database Setup
 
-## 1. Database Setup
+**Native mode:** no manual Portable Parking SQL import is required. Startup verifies the framework storage column (`stored` on ESX, `state` on QBCore/Qbox), adds required indexes, and records completed migrations. ESX and QBCore can migrate numeric storage data from older `vin` versions once.
 
-Open `fs_portableparking/[INSTALL_ME_FIRST]` and execute the `.sql` file corresponding to **your** framework (`esx_database.sql` or `qb_database.sql`) in your database manager (HeidiSQL, phpMyAdmin).
+**JG mode:** complete JG Advanced Garages' database installation first. Portable Parking validates JG's existing columns; it does not install JG's schema or run the native storage migration in this mode. Do not add or recreate a `vin` column for the current version.
 
----
+## Choose Garage Compatibility
 
-## 2. Admin Permissions Setup (Optional)
-
-If you want administrators to access `/vadmin`, add the ACE permission in your `server.cfg`:
+Edit `fs_portableparking/config/config.lua`:
 
 ```lua
+config.framework = 'auto' -- auto, esx, qb, qbox
+config.garageCompatibility = 'auto' -- auto, none, jg-garage
+```
+
+| Value | Behavior | JG start order |
+| :--- | :--- | :--- |
+| `'auto'` | Detects a supported garage that is started or starting; otherwise uses native storage | Start JG before Portable Parking |
+| `'jg-garage'` | Explicitly uses the JG adapter | Either order; JG's database columns must already exist |
+| `'none'` | Uses native framework storage | No JG integration |
+
+Restart Portable Parking after changing this setting. If JG starts later while using `auto`, restart Portable Parking to detect it. If multiple supported garages are detected, select one explicitly.
+
+## Install Steps
+
+1. Place `fs_portableparking` in `resources/[fs]/fs_portableparking`.
+2. Install `oxmysql`, your framework, and its dependencies.
+3. If using JG, finish its database installation and choose the compatibility setting above.
+4. Configure fees, permissions, locations, and integrations in `config/config.lua` and `bridge/`.
+5. Add the resources to `server.cfg`. This example uses Qbox and automatic JG detection:
+
+```cfg
+ensure oxmysql
+ensure ox_lib
+ensure qbx_core
+ensure jg-advancedgarages
+ensure fs_portableparking
+```
+
+For ESX or QBCore, use your framework resource (`es_extended` or `qb-core`) and its dependencies instead of `qbx_core`. Omit JG if you are not using it. With explicit `'jg-garage'`, JG can start before or after Portable Parking.
+
+6. Start the resource and check the console for `Garage compatibility: jg-garage` or `Garage compatibility: none`. Resolve any database preparation error before using it.
+7. Test storing a personal vehicle in JG and retrieving it through Portable Parking, then the reverse. Check its plate, model, modifications, fuel, and keys. JG impounds must remain releasable only through JG.
+
+## Admin Permissions (Optional)
+
+```cfg
 add_ace group.admin "fs_portableparkingadmin" allow
 ```
 
----
-
-## 3. Install Steps
-
-1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
-2. Download and place `fs_portableparking` into `resources/[fs]/fs_portableparking`.
-3. Download and install `ox_lib` into your `resources/` directory.
-4. Execute the database migration from `[INSTALL_ME_FIRST]`.
-5. Configure `fs_portableparking/config/config.lua` before starting.
-6. Add the resources to your `server.cfg` at the end of your ensured resources:
-
-```lua
-ensure oxmysql
-ensure ox_lib
-
--- make sure to ensure all resources above this to make it work properly
-ensure [fs] -- ensure it as last resource
-```
-
-7. Restart your FiveM server and check the server console for clean startup prints.
+In JG mode, `/vadmin` cannot release JG-impounded vehicles. See [JG compatibility](./configuration#garage-compatibility) for the behavior of each command.

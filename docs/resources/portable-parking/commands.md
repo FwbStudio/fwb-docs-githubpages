@@ -1,6 +1,6 @@
 ---
 title: Portable Parking Commands | FWB Studio Docs
-description: In-game chat commands reference for FiveM Portable Parking (fs_portableparking).
+description: FiveM Portable Parking commands for ESX, QBCore, and Qbox, including JG garage compatibility restrictions.
 ---
 
 # Portable Parking — Commands
@@ -8,6 +8,10 @@ description: In-game chat commands reference for FiveM Portable Parking (fs_port
 `fs_portableparking` provides commands for parking, purchasing retrieve spots, police impounding, and admin vehicle recovery.
 
 ---
+
+::: info JG compatibility
+When `jg-garage` is selected (manually or by `auto`), JG owns impounds. JG-impounded vehicles are excluded from `/vlist` and `/vadmin`; `/vimpound` directs authorized players to JG. Normal personal-vehicle parking and outside-vehicle recovery remain available. See [Garage Compatibility](./configuration#garage-compatibility).
+:::
 
 ## Player Commands
 
@@ -48,7 +52,7 @@ Opens the vehicle list menu showing your owned vehicles available to spawn or un
 ## Law Enforcement Commands
 
 ::: details /vimpound
-Seizes and impounds the targeted vehicle.
+In native mode, seizes and impounds the targeted vehicle. In JG mode, use JG to impound vehicles.
 
 ### Syntax
 ```
@@ -63,7 +67,7 @@ Seizes and impounds the targeted vehicle.
 ## Admin Commands
 
 ::: details /vadmin
-Opens the administrative vehicle manager to view and release any impounded vehicle server-wide for free.
+Opens the administrative vehicle manager to release eligible vehicles for free. In JG mode, it handles eligible outside personal vehicles and excludes JG impounds.
 
 ### Syntax
 ```

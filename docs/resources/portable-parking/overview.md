@@ -14,7 +14,7 @@ description: Portable Parking features and setup overview for FiveM. Park and re
 
 Free your players from rigid static garage locations. With `fs_portableparking`, players can park their vehicles on the spot (`/vpark`) for free, purchase on-demand retrieve spots (`/vbuy`) to spawn owned vehicles anywhere (`/vlist`), and access comprehensive police impounds and admin recovery tools.
 
-Includes its own **unlocked `bridge/` folder** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+Includes its own **unlocked `bridge/` folder** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`. Optional [JG Advanced Garages compatibility](./configuration#garage-compatibility) supports all three frameworks; in that mode, JG handles impounding and releases.
 
 ---
 
@@ -39,7 +39,7 @@ Includes its own **unlocked `bridge/` folder** for **ESX**, **QBCore**, and **Qb
 
 ## Documentation
 
-- [Installation](./installation) — database SQL, dependencies, and server.cfg
-- [Configuration](./configuration) — complete `config.lua` parameter guide
+- [Installation](./installation) — database setup, dependencies, and server.cfg
+- [Configuration](./configuration) — core settings and JG garage compatibility
 - [Commands](./commands) — player, police, and admin command references
 - [Common Errors](./common-errors) — troubleshooting and common fixes
