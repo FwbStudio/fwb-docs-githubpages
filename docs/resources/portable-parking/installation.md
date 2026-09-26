@@ -12,8 +12,6 @@ description: Install FiveM Portable Parking for ESX, QBCore, and Qbox, with nati
 | `oxmysql` | Yes | Database queries |
 | ESX, QBCore, or Qbox | Yes | Start your selected framework before Portable Parking |
 | `ox_lib` | Framework-dependent | Used by Qbox and its interaction prompts; keep your framework dependencies installed |
-| `jg-advancedgarages` | Optional | JG v3 storage compatibility for all three frameworks |
-| `fs_bridge` | No | Portable Parking includes its own editable `bridge/` folder |
 
 ## Database Setup
 
