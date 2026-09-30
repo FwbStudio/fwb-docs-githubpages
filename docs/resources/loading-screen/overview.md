@@ -22,7 +22,7 @@ Standalone — works on any FiveM framework (ESX, QBCore, Qbox, or Standalone).
 * **Audio Track Playlist** — Configure multiple audio tracks with song titles and artist names.
 * **Season Effects** — Built-in snow, rain, and falling leaves particle effects.
 * **Server Info & Patch Notes** — Display staff cards, server rules, keyboard keybind guides, patch notes, and social links.
-* **No Framework Required** — Pure standalone client NUI resource; no bridge or database needed.
+* **No Framework Required** — Pure standalone client NUI resource; no database needed.
 
 #### 💼 Perfect For:
 

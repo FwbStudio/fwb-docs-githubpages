@@ -14,7 +14,7 @@ description: Install Notify on FiveM — dependencies, server.cfg setup, and adm
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `None` | No | `fs_notify` is 100% standalone — works out of the box on ESX, QBCore, Qbox, and custom servers. Does not require `fs_bridge`. |
+| `None` | No | `fs_notify` is 100% standalone — works out of the box on ESX, QBCore, Qbox, and custom servers. |
 
 ---
 

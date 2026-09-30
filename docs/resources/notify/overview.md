@@ -14,7 +14,7 @@ description: High-performance customizable notification system for FiveM. In-gam
 
 Replace cluttered, mismatched notification styles across your server with a unified, high-performance UI alert system. `fs_notify` gives server owners a shared in-game panel (`/fs_notify`) to design and preview alerts in real time, allows players to personalize their own alert preferences, and provides developers with clean, unified client and server exports.
 
-Standalone — works on **ESX**, **QBCore**, **Qbox**, or any custom standalone framework. Does **not** require `fs_bridge`.
+Standalone — works on **ESX**, **QBCore**, **Qbox**, or any custom standalone framework.
 
 ---
 

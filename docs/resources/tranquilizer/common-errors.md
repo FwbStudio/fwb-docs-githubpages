@@ -24,21 +24,6 @@ add_ace group.admin "fs_tranquilizer.admin" allow
 
 ---
 
-### ❓ Q: Does `fs_tranquilizer` require `fs_bridge`?
-
-::: danger Cause
-`fs_tranquilizer` features its own self-contained modular bridge and does **not** depend on `fs_bridge`.
-:::
-
-::: tip Solution
-In your `server.cfg`, start the resource directly:
-```lua
-ensure oxmysql
-ensure fs_tranquilizer
-```
-:::
-
----
 
 ### 💬 Need More Help?
 

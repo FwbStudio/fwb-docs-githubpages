@@ -60,21 +60,6 @@ The society name does not match your framework's banking configuration.
 
 ---
 
-### ❓ Q: Does `fs_npcmedic` require `fs_bridge`?
-
-::: danger Cause
-`fs_npcmedic` does **not** require `fs_bridge`. It has its own self-contained open `bridge/` folder that directly communicates with ESX, QBCore, and Qbox.
-:::
-
-::: tip Solution
-You only need `ox_lib` and your framework installed. In your `server.cfg`, simply ensure:
-```lua
-ensure ox_lib
-ensure fs_npcmedic
-```
-:::
-
----
 
 ### 💬 Need More Help?
 

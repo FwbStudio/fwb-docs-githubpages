@@ -16,7 +16,6 @@ description: Install Safezone Creator on FiveM — dependencies, permissions, an
 | :--- | :--- | :--- |
 | `oxmysql` | Yes | MySQL async library for database queries |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
-| `fs_bridge` | **No** | `fs_safezonecreator` features its own built-in modular bridge |
 
 ---
 

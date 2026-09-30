@@ -9,21 +9,6 @@ Have a question or encounter an issue while running **fs_switch**? Check the com
 
 ---
 
-### ❓ Q: Does `fs_switch` require `fs_bridge`?
-
-::: danger Cause
-`fs_switch` is **completely self-contained** and includes its own multi-framework and multi-inventory bridge modules.
-:::
-
-::: tip Solution
-In your `server.cfg`, start the resource directly:
-```lua
-ensure ox_lib
-ensure fs_switch
-```
-:::
-
----
 
 ### ❓ Q: Why does nothing happen when using a switch item?
 

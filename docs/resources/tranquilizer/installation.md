@@ -16,7 +16,6 @@ description: Install Tranquilizer on FiveM — items setup, ACE permissions, and
 | :--- | :--- | :--- |
 | `oxmysql` | Yes | MySQL async library for database queries |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
-| `fs_bridge` | **No** | `fs_tranquilizer` includes its own internal modular bridge |
 
 ---
 

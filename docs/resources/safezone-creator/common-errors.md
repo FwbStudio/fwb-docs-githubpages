@@ -26,21 +26,6 @@ add_ace identifier.license:your_license_here "safezone.admin" allow
 
 ---
 
-### ❓ Q: Does `fs_safezonecreator` require `fs_bridge`?
-
-::: danger Cause
-`fs_safezonecreator` contains its own internal modular bridge system and does **not** depend on `fs_bridge`.
-:::
-
-::: tip Solution
-In your `server.cfg`, simply ensure:
-```lua
-ensure oxmysql
-ensure fs_safezonecreator
-```
-:::
-
----
 
 ### ❓ Q: Do created safezones survive server restarts?
 

@@ -18,7 +18,7 @@ description: Complete installation and media setup guide for FiveM Loading Scree
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `None` | No | Standalone client NUI resource — no framework, database, or Bridge required. |
+| `None` | No | Standalone client NUI resource — no framework or database required. |
 
 ---
 

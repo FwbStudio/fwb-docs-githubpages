@@ -16,7 +16,6 @@ description: Install Trap Phone v2 on FiveM — dependencies, database migration
 | :--- | :--- | :--- |
 | `oxmysql` | Yes | MySQL async library for database operations |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
-| `fs_bridge` | **No** | `fs_trapphone_v2` includes its own internal modular bridge and does not come with or require `fs_bridge` |
 
 ---
 

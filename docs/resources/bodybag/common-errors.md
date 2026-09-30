@@ -1,101 +1,74 @@
 ---
-title: Bodybag Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions, troubleshooting, and common error fixes for FiveM Bodybag script.
+title: Bodybag Common Errors | FWB Studio Docs
+description: Bodybag v2.0 common errors for FiveM, ESX, QBCore and Qbox servers.
 ---
 
-# Bodybag — Common Errors & FAQ
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426479" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
-Have a question or encounter an issue while running **fs_bodybag**? Check the common questions and error solutions below.
+# Bodybag — Common Errors
 
----
+## Installation and gameplay
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" error on server start?
+| Symptom | What to check |
+| --- | --- |
+| Repeating rename warning | Rename the resource folder to exactly `fs_bodybag` and restart it. |
+| Admin access denied | Grant `fs_bodybag.admin` using ACE permissions. Framework admin rank alone does not replace the ACE check. |
+| Settings database loading or unavailable | Check oxmysql, your SQL connection and database permissions. No manual SQL import is needed. |
+| Bodybag item does nothing | Install the correct item definition, start inventory first, and verify the item is enabled and its whitelist permits the player. |
+| No target option | Check the selected target system and resource startup. E/3D-text fallback is available nearby; static disposal requires the matching enabled location. |
+| Bury anywhere is unavailable | Enable it on the item and check soil-only settings, required tools and player/process state. |
+| Could not prepare the character outcome | Check Last World verification when deletion is off, or character-table/deletion compatibility when it is on. |
+| Skeleton body unavailable | Install/start `fs_mlo_lastworld` for the configured burned-body model. Disposal can finish without that display, but ashes cannot be collected from a missing prop. |
+| Cannot collect ashes or grave reward | Check the reward toggle, ready/expiry timer, required items, inventory capacity and reward item definition. |
+| Player still has a reuse cooldown | This survives bag removal, disposal and reconnects. Review or clear it in Active Players. |
+| Saved values differ from defaults | SQL settings override first-install defaults. Edit and save through the admin menu. |
 
-::: danger Cause
-This error occurs because `fs_bridge` is missing, not started, or not running on your server before `fs_bodybag` initializes.
-:::
+## Character deletion and recovery
 
-::: tip Solution
-1. Ensure `fs_bridge` is installed in your `resources/[fs]/` folder.
-2. In your `server.cfg`, ensure `ox_lib` and `[fs]` category folder in proper order:
-   ```lua
-   ensure ox_lib
+A **deletion queued** log is not confirmation that deletion completed. Check for **Character Deleted** and inspect Backups/Recovery when an operation fails.
 
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-3. Update `fs_bridge` to the latest version.
-:::
+| Situation | Action |
+| --- | --- |
+| Pending character disposal blocks reconnect | Review the pending job in Recovery. Retry after fixing the stated cause. Cancel is allowed only when the original record remains and deletion has not committed. |
+| Related table cannot be mapped | Unresolvable related groups are preserved. A dependency preventing deletion of the main character record must be resolved before disposal can complete. |
+| Backup cannot be restored | Check expiry, account offline status and schema compatibility. Do not disable keys or change column types to force restoration. |
+| Original character slot is occupied | Restore chooses an available database slot. Ensure the multicharacter selector allows that slot. |
+| Uncertain inventory or payment result | Verify actual inventory/balance before making a correction. Mark resolved records the decision; it does not grant an automatic refund. |
 
----
+## Frequently asked questions
 
-### ❓ Q: Bodybag items are not usable or missing in inventory?
+<details>
+<summary>Is ox_lib required?</summary>
 
-::: danger Cause
-This happens when the correct inventory is not detected because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or due to an incorrect inventory selection in `fs_bridge` configuration.
-:::
+ox_lib is optional for notification and progress integrations; oxmysql is required.
 
-::: tip Solution
-1. In your `server.cfg`, ensure your inventory resource (e.g., `ox_inventory`, `qb-inventory`, `qs-inventory`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and verify that the inventory setting matches your installed inventory system.
-3. Open `fs_bodybag/[INSTALL_ME_FIRST]` and use the block for your inventory system.
-4. Restart your server cleanly.
-:::
+</details>
 
----
+<details>
+<summary>Where are the old config files and SQL installer?</summary>
 
-### ❓ Q: Player is not permanently deleted when buried or cremated?
+Use /fs_bodybag to configure server settings. SQL tables are created by server-side Lua. Do not import old configuration over this version.
 
-::: danger Cause
-`Config.DeleteCharacter` is disabled in the configuration file.
-:::
+</details>
 
-::: tip Solution
-1. Open `fs_bodybag/config/sh_config.lua`.
-2. Set `Config.DeleteCharacter = true` for the bodybag item configuration.
-3. When set to `false`, the player will be transported to Heaven/Hell or respawned instead of permanently deleting their character.
-:::
+<details>
+<summary>Does restoring a backup restore every third-party script's data?</summary>
 
----
+Only data included in the compatible backup can be restored. Unmapped or excluded tables are not included. Review character-table selection before enabling deletion.
 
-### ❓ Q: Target interaction option does not appear near dead bodies?
+</details>
 
-::: danger Cause
-The target system is misconfigured in `fs_bridge`, or `fs_bridge` / `[fs]` was ensured **before** your target resource (`ox_target`, `qb-target`, etc.) in `server.cfg`.
-:::
+<details>
+<summary>What happens if a player brings another body to an occupied funeral location?</summary>
 
-::: tip Solution
-1. In your `server.cfg`, make sure your target resource (`ox_target`, `qb-target`, `qbx_target`) is ensured **before** `[fs]`.
-2. Check `fs_bridge/config/sh_config.lua` and set `sh_config.target` to match your active target system.
-3. Restart your server.
-:::
+The resource checks location/process availability before starting another disposal. Wait for the occupied funeral display or process to finish before reusing that spot.
 
----
+</details>
 
-### ❓ Q: Error saying item `fs_deadbodybag` is missing in `esx_items` (or ESX database) even though you use `ox_inventory`?
+## Support
 
-::: danger Cause
-This happens because `fs_bridge` was started **before** your inventory resource in `server.cfg`, or `fs_bridge` is ensured separately at the top of your `server.cfg`. As a result, `fs_bridge` fails to detect your inventory system and falls back to default framework item checks.
-:::
+Contact [FwB Studio on Discord](https://discord.gg/sPqkfQHPAa) with your framework, inventory, ambulance provider, resource version and relevant error text. Do not post database credentials or webhook URLs.
 
-::: tip Solution
-1. Place `fs_bridge` inside the `resources/[fs]/` category folder alongside your other FWB resources.
-2. Make sure `fs_bridge` is **not** ensured separately in your `server.cfg`.
-3. In your `server.cfg`, ensure your inventory resource (e.g. `ox_inventory`, `qs-inventory`) **before** `[fs]`.
-4. Ensure `[fs]` at the end of your ensured resources in `server.cfg`:
-   ```lua
-   ensure ox_inventory
-
-   -- make sure to ensure all resources above this to make it work properly
-   ensure [fs] -- ensure it as last resource
-   ```
-5. Restart your server.
-:::
-
----
-
-### 💬 Need More Help?
-
-If your issue or question isn't listed here, feel free to open a ticket in our official Discord community:
-
-👉 **[Join FWB Studio Discord](https://discord.gg/fwbstudio)**

@@ -31,22 +31,6 @@ See [Garage Compatibility](./configuration#garage-compatibility) for supported b
 
 ---
 
-### ❓ Q: Does `fs_portableparking` require `fs_bridge`?
-
-::: danger Cause
-`fs_portableparking` is **self-contained** and includes its own `bridge/` folder. It does not require `fs_bridge`.
-:::
-
-::: tip Solution
-In your `server.cfg`, simply ensure:
-```lua
-ensure oxmysql
-ensure ox_lib
-ensure fs_portableparking
-```
-:::
-
----
 
 ### ❓ Q: Why does `/vlist` say "No purchased spot found"?
 

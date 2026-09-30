@@ -45,20 +45,6 @@ The selected sound is set to `none`, sound volume is muted in GTA V audio settin
 
 ---
 
-### ❓ Q: Does `fs_notify` require `fs_bridge`?
-
-::: danger Cause
-`fs_notify` is **100% standalone** and does **not** require `fs_bridge` to operate.
-:::
-
-::: tip Solution
-In your `server.cfg`, simply ensure:
-```lua
-ensure fs_notify
-```
-:::
-
----
 
 ### ❓ Q: How can I replace my framework's default notification with `fs_notify`?
 

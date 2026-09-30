@@ -16,7 +16,6 @@ description: Install Switch on FiveM — inventory items setup, dependencies, an
 | :--- | :--- | :--- |
 | `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
-| `fs_bridge` | **No** | `fs_switch` includes its own internal multi-framework bridge |
 
 ---
 

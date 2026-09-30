@@ -14,7 +14,7 @@ description: Tranquilizer features and setup overview for FiveM. Medical tranqui
 
 Add tactical capture and advanced medical sedation to your server. Players and paramedics can administer tranquilizer injections to downed or unconscious players, subduing them into deep paralysis with persistent countdown timers that survive player combat logging, followed by realistic hospital bed recovery scenes.
 
-Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**.
 
 ---
 

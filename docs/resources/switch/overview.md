@@ -14,7 +14,7 @@ description: Glock auto-switch weapon conversion features and setup overview for
 
 Bring gritty street weapon modifications to your server with realistic Glock auto-switches. Players can use full-auto switch items (`fs_switch`, `fs_redswitch`, `fs_blueswitch`, `fs_greenswitch`) on semi-automatic pistols (`WEAPON_COMBATPISTOL`) and rifles (`WEAPON_CARBINERIFLE`) to convert them into rapid-firing automatic variants (`WEAPON_APPISTOL`, `WEAPON_SPECIALCARBINE`).
 
-Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**.
 
 ---
 

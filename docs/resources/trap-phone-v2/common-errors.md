@@ -24,13 +24,6 @@ add_ace group.admin "fs_trapphone_v2.admin" allow
 
 ---
 
-### ❓ Q: Does Trap Phone v2 require `fs_bridge`?
-
-::: tip Solution
-**No**. `fs_trapphone_v2` is completely self-contained with its own internal modular bridge folder (`fs_trapphone_v2/bridge/`). It does not come with, require, or use `fs_bridge`.
-:::
-
----
 
 ### ❓ Q: Changes made in the NUI editor are not saving?
 

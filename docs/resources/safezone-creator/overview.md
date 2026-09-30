@@ -14,7 +14,7 @@ description: Safezone Creator features and setup overview for FiveM. Advanced in
 
 Design, place, and customize protected zones anywhere on your server without touching a single line of code. Using an interactive 3D in-game visual editor (`/safezonemenu`), server administrators can draw Sphere, Box, or PolyZone boundaries, enforce combat and driving restrictions, configure speed limits, and broadcast custom entry/exit alerts.
 
-Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**. Does **not** require `fs_bridge`.
+Includes its own **built-in modular bridge** for **ESX**, **QBCore**, and **Qbox**.
 
 ---
 
