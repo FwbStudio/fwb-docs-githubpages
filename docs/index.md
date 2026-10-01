@@ -33,9 +33,19 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
 
 ---
 
-## 🧩 Scripts Catalog (29)
+## 🧩 Scripts Catalog (30)
 
 <div class="fwb-catalog-grid">
+
+  <div class="fwb-cat-card">
+    <a href="./resources/crafting-tables/" class="fwb-cat-card__header-link">
+      <div class="fwb-cat-card__media"><img src="/images/crafting-tables/weapon-table.png" alt="Advanced Crafting Tables" loading="lazy" /></div>
+      <h3>Advanced Crafting Tables</h3>
+    </a>
+    <p>Weapon, attachment and item workstations with personal progression.</p>
+    <div class="fwb-cat-card__links"><a href="./resources/crafting-tables/">Preview</a><a href="./resources/crafting-tables/overview">Overview</a><a href="./resources/crafting-tables/installation">Install</a></div>
+  </div>
+
 
   <div class="fwb-cat-card">
     <a href="./resources/bodybag/" class="fwb-cat-card__header-link">

@@ -52,6 +52,15 @@ export const RESOURCE_CATEGORIES: Record<ResourceCategory, string> = {
 
 export const RESOURCES: ResourceEntry[] = [
   {
+    slug: 'crafting-tables',
+    name: 'Advanced Crafting Tables',
+    repo: 'fs_craftingtables',
+    category: 'scripts',
+    seoKeywords: 'FiveM crafting tables weapons attachments items ESX QBCore Qbox',
+    tagline: 'Weapon, attachment and item workstations with personal progression.',
+    pages: { configuration: true, commands: true, exports: { client: true, server: true }, functions: { client: true, server: true }, integrations: true, commonErrors: true }
+  },
+  {
     slug: 'bodybag',
     name: 'Bodybag',
     repo: 'fs_bodybag',
