@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 110" role="img" aria-labelledby="title desc">
+  <title id="title">RedM logo</title><desc id="desc">RedM platform mark</desc>
+  <path fill="#d89155" d="M25 76V24h19c17 0 28 9 28 25 0 8-3 14-8 19l13 8H57l-9-7h-8v7H25Zm15-20h4c8 0 13-3 13-8s-5-8-13-8h-4v16Zm43 20 12-52h16l9 28 9-28h16l12 52h-16l-5-27-9 27h-14l-9-27-5 27H83Z"/>
+  <text x="112" y="101" text-anchor="middle" fill="#f1f5f9" font-family="Arial,sans-serif" font-size="25" font-weight="800" letter-spacing="2">RedM</text>
+</svg>

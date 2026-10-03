@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 110" role="img" aria-labelledby="title desc">
+  <title id="title">FiveM logo</title><desc id="desc">FiveM platform mark</desc>
+  <path fill="#41c4c3" d="M23 86 59 18h28L51 86H23Zm48 0 36-68h28l-36 68H71Zm48 0 26-49 22 22-14 27h-34Z"/>
+  <text x="112" y="101" text-anchor="middle" fill="#f1f5f9" font-family="Arial,sans-serif" font-size="25" font-weight="800" letter-spacing="2">FiveM</text>
+</svg>

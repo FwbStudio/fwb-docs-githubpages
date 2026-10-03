@@ -1,10 +1,11 @@
 import { defineConfig } from 'vitepress'
 import { buildDocsSidebar } from './resources-catalog.mts'
+import { redmSidebar } from './redm-sidebar.mts'
 
 export default defineConfig({
   title: 'FWB Studio Docs',
   description:
-    'Official FWB Studio FiveM documentation — install guides, Bridge setup, and script docs for ESX, QBCore, and Qbox servers.',
+    'Official FWB Studio FiveM and RedM documentation — resource setup guides, configuration, and support.',
   lang: 'en-US',
   cleanUrls: true,
   appearance: 'force-dark',
@@ -42,7 +43,7 @@ export default defineConfig({
     logo: '/logo.png',
     siteTitle: false,
     nav: [],
-    sidebar: buildDocsSidebar(),
+    sidebar: { '/redm/': redmSidebar, '/': buildDocsSidebar() },
     socialLinks: [],
     footer: {
       message: 'FWB Studio documentation.',

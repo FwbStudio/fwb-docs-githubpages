@@ -165,7 +165,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <Layout>
+  <Layout :class="{ 'fwb-platform-selection': route.path === '/' }">
     <template #layout-top>
       <div class="fwb-site-particles" aria-hidden="true">
         <span v-for="n in 18" :key="n" />
