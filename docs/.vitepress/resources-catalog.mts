@@ -393,8 +393,7 @@ export function buildDocsSidebar(): SidebarItem[] {
       text: '🚀 Get Started',
       collapsed: false,
       items: [
-        { text: 'Choose Platform', link: '/' },
-        { text: 'FiveM Docs Home', link: '/fivem/' },
+        { text: 'Docs Home', link: '/' },
         { text: 'Install FWB Scripts', link: '/install-fwb-scripts' },
         { text: 'Basic Server Knowledge', link: '/basic-server-knowledge' }
       ]

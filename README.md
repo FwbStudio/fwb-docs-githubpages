@@ -29,10 +29,9 @@ Pages source must be **GitHub Actions**.
 
 See [DEPLOY.md](./DEPLOY.md) for custom domain steps later.
 
-## Platform documentation
+## FiveM documentation
 
-- Home (/) selects FiveM or RedM.
-- FiveM catalog: /fivem/; existing resource and Bridge URLs remain valid.
-- RedM catalog: /redm/; starter pages: docs/redm/resources/notify/.
-- RedM sidebar: docs/.vitepress/redm-sidebar.mts. Add new resource groups here and cards to docs/redm/index.md.
-- The RedM Notify entry is deliberately a dummy. Replace its placeholder content with verified resource details before treating it as a released product.
+- Home (/) opens the FiveM documentation catalog directly.
+- Existing resource, installation, Bridge and weapon documentation URLs remain unchanged.
+- Sidebar groups come from docs/.vitepress/resources-catalog.mts.
+- This repository serves FiveM documentation only.
