@@ -1,15 +1,19 @@
 ---
 title: Safezone Creator Server Functions | FWB Studio Docs
-description: Server functions for Safezone Creator.
+description: Editable server hooks and events for FiveM Safezone Creator (fwb_safezonecreator) — run your own server code when players enter, leave or stay in a safezone on ESX, QBCore, and Qbox.
 ---
 
 
 # Server functions
 
+These hooks are in the unlocked file `bridge/functions/server.lua`. Put your own code inside them. They run after the script has updated the player's safezone state.
+
+The `zone` argument contains `id`, `name`, `settings` and `polyzone`.
+
 ## Server Functions
 
 <details>
-<summary><strong>4. OnPlayerEnterZone(playerId, safezone)</strong></summary>
+<summary><strong>1. OnPlayerEnterZone(playerId, zone)</strong></summary>
 
 Runs on the server when a player enters a safezone.
 
@@ -19,21 +23,21 @@ Source file:
 
 Arguments:
 
-* `playerId` - server id of the player
-* `safezone` - table containing the current safezone data
+* `playerId` - server ID of the player
+* `zone` - table containing the current safezone data
 
 Example:
 
 ```lua
-FSBridge.Functions.OnPlayerEnterZone = function(playerId, safezone)
-    print(('Player %s entered safezone %s'):format(playerId, safezone and safezone.name or 'unknown'))
+function FSBridge.Functions.OnPlayerEnterZone(playerId, zone)
+    print(('Player %s entered safezone %s'):format(playerId, zone and zone.name or 'unknown'))
 end
 ```
 
 </details>
 
 <details>
-<summary><strong>5. OnPlayerLeaveZone(playerId, safezone)</strong></summary>
+<summary><strong>2. OnPlayerLeaveZone(playerId, zone)</strong></summary>
 
 Runs on the server when a player leaves a safezone.
 
@@ -43,23 +47,23 @@ Source file:
 
 Arguments:
 
-* `playerId` - server id of the player
-* `safezone` - table containing the last safezone data
+* `playerId` - server ID of the player
+* `zone` - table containing the last safezone data
 
 Example:
 
 ```lua
-FSBridge.Functions.OnPlayerLeaveZone = function(playerId, safezone)
-    print(('Player %s left safezone %s'):format(playerId, safezone and safezone.name or 'unknown'))
+function FSBridge.Functions.OnPlayerLeaveZone(playerId, zone)
+    print(('Player %s left safezone %s'):format(playerId, zone and zone.name or 'unknown'))
 end
 ```
 
 </details>
 
 <details>
-<summary><strong>6. PlayerInsideZone(playerId, safezone)</strong></summary>
+<summary><strong>3. PlayerInsideZone(playerId, zone)</strong></summary>
 
-Runs on the server while a player remains inside a safezone.
+Runs on the server about **once per second** while a player remains inside a safezone. Keep it light.
 
 Source file:
 
@@ -67,77 +71,46 @@ Source file:
 
 Arguments:
 
-* `playerId` - server id of the player
-* `safezone` - table containing the current safezone data
+* `playerId` - server ID of the player
+* `zone` - table containing the current safezone data
 
 Example:
 
 ```lua
-FSBridge.Functions.PlayerInsideZone = function(playerId, safezone)
-    if safezone and safezone.id then
-        print(('Player %s is inside safezone #%s'):format(playerId, safezone.id))
+function FSBridge.Functions.PlayerInsideZone(playerId, zone)
+    if zone and zone.id then
+        print(('Player %s is inside safezone #%s'):format(playerId, zone.id))
     end
 end
 ```
 
 </details>
 
-## Related Events
+## Server Events
 
 <details>
-<summary><strong>7. Client Events</strong></summary>
+<summary><strong>4. Server Events</strong></summary>
 
-Safezone Creator triggers these client events internally:
+Safezone Creator triggers these server events. Each one also fires under the old `fs_safezonecreator:` prefix, so older scripts keep working.
 
-* `fs_safezonecreator:client:onEnterZone`
-* `fs_safezonecreator:client:onExitZone`
-* `fs_safezonecreator:client:insideZone`
+| Event | When |
+| :--- | :--- |
+| `fwb_safezonecreator:server:onEnterZone` | A player enters a zone |
+| `fwb_safezonecreator:server:onExitZone` | A player leaves a zone |
+| `fwb_safezonecreator:server:insideZone` | About once per second while a player is inside a zone |
 
 Example:
 
 ```lua
-AddEventHandler('fs_safezonecreator:client:onEnterZone', function(zone)
-    if zone then
-        print(('Client entered safezone: %s'):format(zone.name or 'unknown'))
-    end
-end)
-
-AddEventHandler('fs_safezonecreator:client:onExitZone', function(zone)
-    if zone then
-        print(('Client left safezone: %s'):format(zone.name or 'unknown'))
-    end
-end)
-
-AddEventHandler('fs_safezonecreator:client:insideZone', function(zone)
-    if zone and zone.id then
-        print(('Client is inside safezone #%s'):format(zone.id))
-    end
-end)
-```
-
-</details>
-
-<details>
-<summary><strong>8. Server Events</strong></summary>
-
-Safezone Creator triggers these server events internally:
-
-* `fs_safezonecreator:server:onEnterZone`
-* `fs_safezonecreator:server:onExitZone`
-* `fs_safezonecreator:server:insideZone`
-
-Example:
-
-```lua
-AddEventHandler('fs_safezonecreator:server:onEnterZone', function(playerId, zone)
+AddEventHandler('fwb_safezonecreator:server:onEnterZone', function(playerId, zone)
     print(('Player %s entered safezone %s'):format(playerId, zone and zone.name or 'unknown'))
 end)
 
-AddEventHandler('fs_safezonecreator:server:onExitZone', function(playerId, zone)
+AddEventHandler('fwb_safezonecreator:server:onExitZone', function(playerId, zone)
     print(('Player %s left safezone %s'):format(playerId, zone and zone.name or 'unknown'))
 end)
 
-AddEventHandler('fs_safezonecreator:server:insideZone', function(playerId, zone)
+AddEventHandler('fwb_safezonecreator:server:insideZone', function(playerId, zone)
     if zone and zone.id then
         print(('Player %s is inside safezone #%s'):format(playerId, zone.id))
     end

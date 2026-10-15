@@ -131,6 +131,14 @@ export const RESOURCES: ResourceEntry[] = [
     seoKeywords: 'FiveM fraud script v2 ESX QBCore Qbox'
   },
   {
+    slug: 'fwb-hud',
+    name: 'FWB HUD',
+    repo: 'fwb_hud',
+    category: 'scripts',
+    seoKeywords: 'FiveM HUD speedometer customizable themes minimap stress seatbelt ESX QBCore Qbox Standalone',
+    tagline: 'Customizable FiveM HUD & speedometer with 12 themes and an in-game admin panel.'
+  },
+  {
     slug: 'gun-jamming',
     name: 'Gun Jamming',
     repo: 'fs_gunjamming',

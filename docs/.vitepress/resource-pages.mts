@@ -73,6 +73,16 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     },
     "commonErrors": true
   },
+  "fwb-hud": {
+    "configuration": true,
+    "commands": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
+    "integrations": true,
+    "commonErrors": true
+  },
   "gun-jamming": {
     "audited": true,
     "configuration": true,
@@ -156,6 +166,14 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "audited": true,
     "configuration": true,
     "commands": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
+    "functions": {
+      "client": true,
+      "server": true
+    },
     "commonErrors": true
   },
   "shoes-robbery": {

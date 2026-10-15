@@ -33,7 +33,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
 
 ---
 
-## 🧩 Scripts Catalog (30)
+## 🧩 Scripts Catalog (31)
 
 <div class="fwb-catalog-grid">
 
@@ -149,6 +149,18 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
       <a href="/resources/fraud-v2/">Preview</a>
       <a href="/resources/fraud-v2/overview">Overview</a>
       <a href="/resources/fraud-v2/installation">Install</a>
+    </div>
+  </div>
+
+  <div class="fwb-cat-card">
+    <a href="/resources/fwb-hud/" class="fwb-cat-card__header-link">
+      <h3>FWB HUD</h3>
+    </a>
+    <p>Customizable FiveM HUD & speedometer with 12 themes and an in-game admin panel.</p>
+    <div class="fwb-cat-card__links">
+      <a href="/resources/fwb-hud/">Preview</a>
+      <a href="/resources/fwb-hud/overview">Overview</a>
+      <a href="/resources/fwb-hud/installation">Install</a>
     </div>
   </div>
 

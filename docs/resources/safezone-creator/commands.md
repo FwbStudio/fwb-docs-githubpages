@@ -1,32 +1,47 @@
 ---
 title: Safezone Creator Commands | FWB Studio Docs
-description: In-game chat commands reference for FiveM Safezone Creator (fs_safezonecreator).
+description: In-game admin command and ACE permission for FiveM Safezone Creator (fwb_safezonecreator) on ESX, QBCore, and Qbox.
 ---
+
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426491" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
 # Safezone Creator — Commands
 
-`fs_safezonecreator` provides an administrative chat command to open the live safezone management and creation suite.
+`fwb_safezonecreator` has one admin command that opens the in-game menu.
 
 ---
 
 ## Admin Commands
 
-::: details /safezonemenu
-Opens the complete in-game Safezone Creator and Manager dashboard.
+::: details /fwb_safezonecreator
+Opens the Safezone Creator menu.
 
 ### Syntax
 ```
-/safezonemenu
+/fwb_safezonecreator
 ```
 
 ### Requirements
-* The player must have administrative privileges or the configured ACE permission (`safezone.admin`).
+* The player needs the ACE permission set in the menu (default `fwb_safezonecreator`):
 
-### Features inside Menu:
-* View all active safezones server-wide.
-* Create new Sphere, Box, and PolyZone safezones with live 3D visual gizmos.
-* Edit existing safezone dimensions, position, and rules in real time.
-* Toggle godmode, shooting restrictions, speed limits, vehicle protection, and blips.
-* Teleport directly to any safezone location.
-* Delete or temporarily disable safezones.
+```lua
+add_ace group.admin fwb_safezonecreator allow
+```
+
+* Without it, the menu shows a **"You do not have permission for this menu"** page with the player's license and an `add_ace` line to copy.
+
+### Changing the command
+The command and ACE name are set in **General → Menu access**. Both apply after a resource restart. A leading `/` and spaces are removed from the command automatically.
+
+### Inside the menu
+* Create, edit, disable and delete zones.
+* Draw or redraw a zone's area with the creation tool.
+* Set combat, god mode, weapon whitelist, speed limit, no collision, blip and map rules per zone.
+* Show a zone's outline, teleport to it, or copy its rules to a new zone.
+* Manage Discord logs, bridge resources, the creation tool and debug options.
+
+See [Configuration](./configuration) for every option.
 :::

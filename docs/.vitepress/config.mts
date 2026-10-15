@@ -7,6 +7,13 @@ export default defineConfig({
     'Official FWB Studio FiveM documentation — resource setup guides, configuration, and support for ESX, QBCore, and Qbox.',
   lang: 'en-US',
   cleanUrls: true,
+  sitemap: {
+    hostname: 'https://docs.fwbstudio.com',
+    transformItems: (items) => items.filter((item) => {
+      const pathname = new URL(item.url, 'https://docs.fwbstudio.com/').pathname;
+      return pathname !== '/404.html';
+    })
+  },
   appearance: 'force-dark',
   srcExclude: ['**/resources/_FORMAT.md', '**/resources/_TEMPLATE/**'],
   // Custom domain base path for docs.fwbstudio.com

@@ -6,7 +6,7 @@ description: Safezone Creator preview and Tebex purchase. FiveM in-game safezone
 <div class="fwb-product-hero">
   <p class="fwb-product-hero__eyebrow">FiveM Script</p>
   <h1 class="fwb-product-hero__title">Safezone Creator</h1>
-  <p class="fwb-product-hero__tagline">Official Safezone Creator for FiveM — ESX, QBCore, and Qbox.</p>
+  <p class="fwb-product-hero__tagline">Draw safezones in-game and set combat, god mode, vehicle and map rules from one menu — ESX, QBCore, and Qbox.</p>
   <div class="fwb-product-hero__actions">
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426491" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>
