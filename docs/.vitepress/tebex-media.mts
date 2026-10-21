@@ -9,7 +9,7 @@ export interface TebexMediaEntry {
 export const TEBEX_MEDIA: Record<string, TebexMediaEntry> = {
   bodybag: {
     packageId: 7426479,
-    image: 'https://dunb17ur4ymx4.cloudfront.net/packages/images/727d65ed3cb705c1dc82fa7bded90ef1f0d328f5.png',
+    image: 'https://img.youtube.com/vi/Y5U4JeLOzuc/maxresdefault.jpg',
     videos: [{ title: 'Showcase', youtubeId: 'Y5U4JeLOzuc' }]
   },
   'burger-shop': {

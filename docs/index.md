@@ -50,7 +50,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
   <div class="fwb-cat-card">
     <a href="/resources/bodybag/" class="fwb-cat-card__header-link">
       <div class="fwb-cat-card__media">
-        <img src="https://dunb17ur4ymx4.cloudfront.net/packages/images/727d65ed3cb705c1dc82fa7bded90ef1f0d328f5.png" alt="Bodybag" loading="lazy" />
+        <img src="https://img.youtube.com/vi/Y5U4JeLOzuc/maxresdefault.jpg" alt="Bodybag" loading="lazy" />
       </div>
       <h3>Bodybag</h3>
     </a>
