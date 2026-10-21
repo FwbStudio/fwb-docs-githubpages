@@ -10,7 +10,7 @@ description: Bodybag v2.0 overview for FiveM, ESX, QBCore and Qbox servers.
 
 # Bodybag — Overview
 
-Bodybag v2.0 provides body transport, funerals, supply shops and character recovery through an in-game admin menu. Configure it with **/fs_bodybag**; players use inventory items, targets or nearby 3D-text interactions.
+Bodybag v2.0 provides body transport, funerals, supply shops and character outcomes through an in-game admin menu. Configure it with **/fs_bodybag**; players use inventory items, targets or nearby 3D-text interactions.
 
 ## Package
 
@@ -26,8 +26,8 @@ Bodybag v2.0 provides body transport, funerals, supply shops and character recov
 - Configure cemetery burial and furnace cremation locations, or allow burial and burning elsewhere per item. Optional soil-only burial uses a client terrain check.
 - Place supply-shop peds, set item prices and inventory images, and configure shop and location blips.
 - Send non-deleted characters to Hell or Heaven with a saved stay duration, radius enforcement, weapon disarming and hunger/thirst refills.
-- Back up selected character data before permanent deletion. Restore an eligible backup to an available character slot.
-- Manage active processes and saved bodybag cooldowns from Active Players. Review failed or uncertain operations in Recovery.
+- Optionally delete the character permanently, with a choice of which character tables are wiped.
+- Manage active processes and saved bodybag cooldowns from Active Players. Review uncertain inventory/payment operations in Recovery.
 - Configure funeral rewards, collection timers, scrolling announcements and announcement blips.
 - Select Discord, FiveManage or custom logging and choose which events to record.
 
@@ -35,9 +35,11 @@ Bodybag v2.0 provides body transport, funerals, supply shops and character recov
 
 With **Permanently delete character** disabled on the item, disposal sends the character to the configured Last World location. Configure and verify these destinations before use.
 
-With deletion enabled, the player is disconnected before the resource waits for framework unload/save and attempts a transactional backup and deletion. Only directly mapped, selected character data is processed. Related groups that cannot be safely mapped are preserved; a dependency that blocks removal of the main character record prevents deletion.
+With deletion enabled, the player is disconnected before the resource waits for framework unload/save and deletes the character in a single transaction. No backup is made. Only directly mapped, selected character data is processed. Related groups that cannot be safely mapped are preserved; a dependency that blocks removal of the main character record prevents deletion.
 
-Backups expire after seven days. Restoration requires the account to be offline and the current schema to be compatible. A successful restore removes the backup. An available database slot does not grant additional slots in a multicharacter selector.
+::: danger Deletion cannot be undone
+Deleted characters cannot be restored. Review the item's **Permanently delete character** toggle and the Character Deletion table selection before using it on live characters.
+:::
 
 ## Documentation
 

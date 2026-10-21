@@ -22,11 +22,10 @@ Most settings are managed through **/fs_bodybag** and stored in SQL. There is no
 | Shops | Ped model/position, items, prices, availability, blips and teleport |
 | Character Deletion | Character-table selection and supported identifier mappings |
 | Inventory | Tool/reward items and inventory removal policy |
-| Backups | Inspect saved data, check restore eligibility, restore or remove backups |
 | Last World | Hell/Heaven chance, separate centers/radii, stay duration, return position and map verification |
 | General | Gameplay limits, reuse cooldown, weapon-check timing and general behavior |
 | Funerals | Display/collection timers, rewards by disposal method, announcements and blips |
-| Recovery | Pending deletion and uncertain inventory/payment operations |
+| Recovery | Unresolved inventory/payment operations |
 | Logs | Provider, destinations and selected events |
 
 Use **Apply changes** in editors and **Save changes** where shown. Check the footer for save success before closing. Logging configuration has its own save flow. Saved SQL settings take precedence over first-install defaults.

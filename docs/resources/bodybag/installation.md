@@ -15,7 +15,7 @@ description: Bodybag v2.0 installation for FiveM, ESX, QBCore and Qbox servers.
 | Resource / feature | Required | Notes |
 | --- | --- | --- |
 | OneSync | Yes | Networked players, props and routing buckets |
-| `oxmysql` and a working SQL connection | Yes | Settings, cooldowns, stays, backups and recovery |
+| `oxmysql` and a working SQL connection | Yes | Settings, cooldowns, Last World stays and recovery records |
 | ESX, QBCore or Qbox | Yes | Start your chosen framework first |
 | Inventory and ambulance resources | Your server setup | Start them before Bodybag |
 | `fs_mlo_lastworld` | For the supplied Last World locations and custom burned-body model | Install the assets before using those locations/models |
@@ -51,7 +51,7 @@ ensure [fs]
 
 5. Open **/fs_bodybag**. If access is denied, copy the permission line shown on its access page, follow those instructions, then reopen the menu. Verify the configured tool and reward items.
 6. Configure burial/cremation locations, shops, and Hell, Heaven and Return destinations. Visit the destinations and confirm **Locations and required maps verified** before using non-deletion disposal.
-7. Review every item's **Permanently delete character** toggle before testing. Test with two clients and check the resulting inventory, character outcome and recovery state.
+7. Review every item's **Permanently delete character** toggle before testing. Test with two clients and check the resulting inventory and character outcome.
 
 ::: warning Character deletion
 The shipped item defaults can enable permanent deletion. Review the item and character-table selections before using a bodybag on a live character.
@@ -59,9 +59,9 @@ The shipped item defaults can enable permanent deletion. Review the item and cha
 
 ## Automatic database setup
 
-Server-side Lua creates the resource's six tables automatically. No SQL file or manual import is required. Initial settings are inserted on first start; subsequent starts retain saved settings.
+Server-side Lua creates the resource's table automatically. No SQL file or manual import is required. Initial settings are inserted on first start; subsequent starts retain saved settings.
 
-The resource creates `fs_bodybag_state`, `fs_bodybag_backups`, `fs_bodybag_backup_rows`, `fs_bodybag_backup_audit`, `fs_bodybag_deletion_jobs` and `fs_bodybag_completed_jobs`. It does not alter your framework's table definitions or disable foreign-key checks.
+The resource creates a single table, `fs_bodybag_state`. On start it drops the retired `fs_bodybag_backups`, `fs_bodybag_backup_rows`, `fs_bodybag_backup_audit`, `fs_bodybag_deletion_jobs` and `fs_bodybag_completed_jobs` tables from older versions, including their contents. It does not alter your framework's table definitions or disable foreign-key checks.
 
 ## Updating
 
