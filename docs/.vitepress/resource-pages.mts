@@ -5,7 +5,10 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   "bodybag": {
     "audited": true,
     "configuration": true,
-    "commonErrors": true
+    "commonErrors": true,
+    "exports": {
+      "client": true
+    }
   },
   "burger-shop": {
     "audited": true,
