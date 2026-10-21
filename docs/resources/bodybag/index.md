@@ -15,6 +15,6 @@ description: Bodybag preview and Tebex purchase. FiveM bodybag script ESX QBCore
   </div>
 </div>
 
-## Preview videos (New Video Coming Soon)
+## Preview videos
 
-<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/OIK9g4ycFME" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/Y5U4JeLOzuc" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>
