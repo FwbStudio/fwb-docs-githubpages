@@ -16,6 +16,22 @@ export default defineConfig({
   },
   appearance: 'force-dark',
   srcExclude: ['**/resources/_FORMAT.md', '**/resources/_TEMPLATE/**'],
+  // Most page titles already end with "| FWB Studio Docs"; don't append it twice
+  transformPageData(pageData) {
+    pageData.title = pageData.title.replace(/\s*\|\s*FWB Studio Docs\s*$/, '')
+  },
+  // Per-page canonical + Open Graph tags so search results and Discord embeds show the page, not the site
+  transformHead({ pageData, title, description }) {
+    const path = pageData.relativePath.replace(/(^|\/)index\.md$/, '$1').replace(/\.md$/, '')
+    const url = `https://docs.fwbstudio.com/${path}`
+    return [
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { name: 'twitter:card', content: 'summary' }]
+    ]
+  },
   // Custom domain base path for docs.fwbstudio.com
   base: '/',
   head: [
@@ -32,14 +48,7 @@ export default defineConfig({
       }
     ],
     ['meta', { name: 'theme-color', content: '#07070f' }],
-    [
-      'meta',
-      {
-        name: 'description',
-        content:
-          'FWB Studio docs for FiveM scripts — Bridge, Fraud, Trap Phone, jobs, weapons, and install guides for ESX, QBCore, and Qbox.'
-      }
-    ],
+    // No site-wide meta description here: it would replace every page's own frontmatter description
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:site_name', content: 'FWB Studio Docs' }],
     ['link', { rel: 'icon', href: '/logo.png', type: 'image/png' }],
