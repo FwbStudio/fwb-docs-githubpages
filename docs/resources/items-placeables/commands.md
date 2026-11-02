@@ -3,23 +3,26 @@ title: Items Placeables Commands | FWB Studio Docs
 description: In-game chat commands and keybinds for FiveM Items Placeables (fs_placeables).
 ---
 
-# Items Placeables — Commands & Keybinds
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426487" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
 
-`fs_placeables` provides commands and default keybinds for opening the item placement menu and controlling prop positioning in real time.
+# Items Placeables — Commands & Keybinds
 
 ---
 
 ## Commands
 
 ::: details /placeprop
-Opens the placeable items selection menu, displaying all items currently in your inventory that have registered 3D props.
+Opens the placement menu. It lists every item you carry that is in `Config.Items`, plus Money and Black Money. Choosing an item shows the amounts you can afford.
 
 ### Syntax
 ```
 /placeprop
 ```
 
-*(Command name is customizable in `config/config.lua` under `Config.Menu.command`)*
+The command name and key are set in `Config.Menu`. Set `Config.Menu.enable = false` to remove both.
 :::
 
 ---
@@ -28,9 +31,18 @@ Opens the placeable items selection menu, displaying all items currently in your
 
 | Key | Action | Description |
 | :--- | :--- | :--- |
-| **`F9`** | Open Menu | Opens the inventory placement menu |
-| **`Arrow Up / Down`** | Move Prop | Moves the preview prop closer or further away |
-| **`Mouse Scroll / Left / Right`** | Rotate Prop | Rotates the prop smoothly around its vertical axis |
-| **`E`** | Confirm Placement | Places the object firmly onto the ground/surface |
-| **`Backspace / H`** | Cancel | Aborts placement without consuming the item |
-| **`G` / Target** | Pick Up | Picks up the placed prop and returns the item to your inventory |
+| **`F9`** | Open Menu | Opens the placement menu. Players can rebind it in GTA Settings → Key Bindings → FiveM |
+| **Aim** | Move Prop | The prop follows where you look, up to about 10 m from you |
+| **`Mouse Wheel`** | Rotate Prop | Rotates the prop around its vertical axis |
+| **`Arrow Up / Down`** | Raise / Lower | Moves the prop up or down |
+| **`E`** | Place | Places the prop. Only works while the outline is green or cyan |
+| **`Backspace` / `Esc` / Right mouse** | Cancel | Stops placement. Nothing is taken from you |
+| **`G` / Target** | Pick Up | Picks up a placed prop within 2.5 m and gives the item or money back |
+
+### Outline colours
+
+| Colour | Meaning |
+| :--- | :--- |
+| Green | Ground — can place |
+| Cyan | On an object or vehicle that is big enough — can place |
+| Red | Object too small, or stacking is disabled — can't place |

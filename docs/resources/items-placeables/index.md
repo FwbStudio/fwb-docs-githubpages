@@ -1,6 +1,6 @@
 ---
 title: Items Placeables Preview | FWB Studio Docs
-description: Items Placeables preview and Tebex purchase. FiveM placeable items physical prop script ESX QBCore Qbox.
+description: Items Placeables preview and Tebex purchase. FiveM script to place items and drop money as 3D props with ox_inventory on ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-product-hero">
@@ -11,6 +11,7 @@ description: Items Placeables preview and Tebex purchase. FiveM placeable items 
     <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426487" target="_blank" rel="noreferrer">Purchase on Tebex</a>
     <a class="fwb-product-hero__docs" href="./overview">Overview</a>
     <a class="fwb-product-hero__docs" href="./installation">Installation</a>
+    <a class="fwb-product-hero__docs" href="./place-money-ox-inventory">Place Money Using ox_inventory</a>
   </div>
 </div>
 

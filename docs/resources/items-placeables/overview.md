@@ -12,7 +12,7 @@ description: Items Placeables features and setup overview for FiveM. Physical 3D
 
 ### 📦 Items Placeables – Drop & Position Physical Props Anywhere
 
-Transform standard inventory items into physical 3D world props that players can position, stack, and interact with in real time. Perfect for drug drops, cash handoffs, police roadblocks, construction scenes, food roleplay, and player housing decorations.
+Turn inventory items and money into physical 3D props that players place in the world and pick up again. Good for drug drops, cash handoffs, police roadblocks, construction scenes, food roleplay and housing decoration.
 
 Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
 
@@ -20,32 +20,39 @@ Works with **ESX**, **QBCore**, and **Qbox** through **FS Bridge**.
 
 #### ⚙️ Key Features
 
-* **Interactive Free-Placement Gizmo** — Precise controls to rotate left/right, raise/lower, move forward/backward, and snap items onto tables, vehicle hoods, or floors.
-* **Tiered Dynamic Cash Props** — Automatic model switching based on currency quantity:
-  * Small amounts ($1,000) = `prop_cash_pile_01` (Cash Stacks)
-  * Medium amounts ($10,000) = `prop_money_bag_01` (Duffel Bag)
-  * Large amounts ($1,000,000) = `prop_cash_case_01` (Briefcase)
-* **Target & 3D Text Interactions** — Seamless integration with `ox_target`, `qb-target`, or floating 3D text prompts (`G`) to pick up placed items.
-* **Placement Menu & Keybind (`F9` / `/placeprop`)** — Open a visual menu listing all placeable items currently carried in the player's inventory.
-* **Dynamic Developer Export (`additem`)** — Easily register new items and their corresponding 3D props from any external resource at runtime.
-* **Continuous Placement Mode** — Place multiple copies of an item sequentially without reopening the menu each time.
-* **Anti-Stacking & Distance Limits** — Configurable maximum placement radius (`Config.MaxFar`) and item collision rules.
+* **Free placement preview** — The prop follows where you aim. Rotate it with the mouse wheel, raise or lower it with the arrow keys, and place it with `E`. A green outline means it can be placed, red means it can't.
+* **Place on objects and vehicles** — Put props on tables, crates or vehicle hoods. Props placed on a vehicle attach to it and move with it.
+* **Money as props** — Cash and dirty money come straight from the framework accounts. Each configured amount has its own prop:
+  * $1,000 = `prop_cash_pile_01` (cash pile)
+  * $10,000 = `prop_money_bag_01` (money bag)
+  * $1,000,000 = `prop_cash_case_01` (briefcase)
+* **Target or 3D text pickup** — `ox_target` / `qb-target`, or floating `Press G to pickup` text.
+* **Placement menu (`F9` / `/placeprop`)** — Lists every placeable item the player carries, then the amounts they can afford.
+* **Continuous placement** — After placing, the next copy opens straight away while the player still has enough.
+* **Runtime registration** — The `additem` export makes items placeable from another resource, and the `fs_placeables:placeitemhook` event starts placement from usable items or inventory buttons.
+* **Stacking control** — `Config.disallowItemStacking` blocks placing props on top of other props.
+* **[Place money using ox_inventory](./place-money-ox-inventory)** — Drop cash piles, money bags and black money that sync with ox_inventory on ESX, QBCore and Qbox.
 
 ---
 
 ## Package
 
-| Package | Resource Folder | Frameworks | Category |
+| Package | Resource Folder | Version | Frameworks |
 | :--- | :--- | :--- | :--- |
-| **Script Package** | `fs_placeables` | ESX, QBCore, Qbox | FiveM Script |
-| **Bridge** | `fs_bridge` | ESX, QBCore, Qbox | Framework Bridge |
+| **Script Package** | `fs_placeables` | v1.2 | ESX, QBCore, Qbox |
+| **Bridge** | `fs_bridge` | v3.7 or newer | ESX, QBCore, Qbox |
+
+::: info Good to know
+Placed props are not saved. They are removed when the server or `fs_placeables` restarts, and the items or money in them are lost. Anyone within 2.5 m can pick up a placed prop.
+:::
 
 ---
 
 ## Documentation
 
 - [Installation](./installation) — dependencies and server.cfg
-- [Configuration](./configuration) — complete `config.lua` and items table reference
-- [Commands](./commands) — placement menu commands and keybinds
-- [Exports — Client](./exports/client) / [Server](./exports/server) — dynamic runtime item registration
-- [Common Errors](./common-errors) — troubleshooting and common fixes
+- [Configuration](./configuration) — `config.lua` and the items table
+- [Commands](./commands) — placement menu and controls
+- [Exports — Client](./exports/client) / [Server](./exports/server) — runtime item registration and the placement event
+- [Place Money Using ox_inventory](./place-money-ox-inventory) — drop cash, money bags and black money with ox_inventory
+- [Common Errors](./common-errors) — console messages and fixes

@@ -1,6 +1,6 @@
 ---
 title: Items Placeables Installation | FWB Studio Docs
-description: Install Items Placeables on FiveM — dependencies and server.cfg setup.
+description: Install Items Placeables on FiveM — dependencies and server.cfg setup for ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -14,27 +14,32 @@ description: Install Items Placeables on FiveM — dependencies and server.cfg s
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
-| `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
-| `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
+| `fs_bridge` | Yes | **v3.7 or newer.** Included with your Tebex / Keymaster download |
+| `ox_lib` | Yes | Free UI / callbacks library — [GitHub](https://github.com/overextended/ox_lib) |
+| `ESX`, `QBCore` or `Qbox` | Yes | One framework on your server |
+| `ox_target` or `qb-target` | Optional | Only when `Config.target = true`. With `false`, floating 3D text is used |
 
 ---
 
 ## Items & Inventory Setup
 
-If you want to use custom items, open `fs_placeables/INSTALL_ME_FIRST` and add the item definitions and images corresponding to **your** inventory system.
+`INSTALL_ME_FIRST/install.lua` only links to these docs. There are no item files to import.
+
+- **Money** (`money`, `cash`, `black_money`, `markedbills`) uses your framework accounts. See [Place Money Using ox_inventory](./place-money-ox-inventory) for which entries to keep.
+- **Any other item** in `Config.Items` must already exist in your inventory's item list, with an image. On start the server prints `Item <name> is not found in your server item list` for every missing one.
 
 ---
 
 ## Install Steps
 
 1. Create a category folder named `[fs]` inside your server's `resources/` directory (`resources/[fs]/`).
-2. Download and place the resources into `resources/[fs]/`:
+2. Place the resources into `resources/[fs]/`:
    - `fs_bridge`
    - `fs_placeables`
-3. Download and install `ox_lib` into your `resources/` directory.
-4. Configure item model mappings in `fs_placeables/config/config.lua` before starting.
-5. Add the resources to your `server.cfg` at the end of your ensured resources:
+3. Keep the folder name `fs_placeables`. A renamed folder prints `Change Script name back to fs_placeables` every second.
+4. Install `ox_lib` in your `resources/` directory.
+5. Set up `Config.Items` in `fs_placeables/config/config.lua` (see [Configuration](./configuration)).
+6. Add the resources to your `server.cfg` after your framework and inventory:
 
 ```lua
 ensure ox_lib
@@ -43,4 +48,4 @@ ensure ox_lib
 ensure [fs] -- ensure it as last resource
 ```
 
-6. Restart your FiveM server and check the server console for clean startup prints.
+7. Restart your server. The console should show `fs_bridge Found successfully` and no missing item warnings.

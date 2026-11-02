@@ -3,53 +3,55 @@ title: Items Placeables Common Errors & FAQ | FWB Studio Docs
 description: Frequently asked questions and troubleshooting for FiveM Items Placeables script (fs_placeables).
 ---
 
+<div class="fwb-inline-cta">
+  <a class="fwb-product-hero__buy" href="./">Preview</a>
+  <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/package/7426487" target="_blank" rel="noreferrer">Purchase on Tebex</a>
+</div>
+
 # Items Placeables — Common Errors & FAQ
 
-Have a question or encounter an issue while running **fs_placeables**? Check the common questions and error solutions below.
+---
+
+## Console messages
+
+| Message | Cause | Fix |
+| :--- | :--- | :--- |
+| `Waiting for fs_bridge to start` (repeating) | `fs_bridge` is missing or not started | Put `fs_bridge` in `resources/[fs]/` and ensure it before `fs_placeables` |
+| `You have vX of fs_bridge, please update it to atleast v3.7` | fs_bridge is too old | Download the latest fs_bridge from Keymaster |
+| `Change Script name back to fs_placeables` | The resource folder was renamed | Rename the folder back to `fs_placeables` |
+| `Item <name> is not found in your server item list` | A `Config.Items` entry isn't in your inventory items | Add the item to your inventory, or remove it from `Config.Items`. With ox_inventory see [Place Money Using ox_inventory](./place-money-ox-inventory#step-1-keep-the-right-money-entries-for-your-framework) |
+| `Model not found in cdimage for item : <name>` (F8) | The prop model doesn't exist or isn't streamed | Fix the model name, or make sure the addon prop resource starts before `fs_placeables` |
+| `Please use ("propname") or (`` `propname` ``) or (prophash) in config` | A model in `Config.Items` is the wrong type | Use a backtick hash, a quoted string or a number |
 
 ---
 
-### ❓ Q: "Attempt to index a nil value (field 'FWB')" on server start?
+### ❓ "Nothing Placeable in your inventory" when opening `/placeprop`
 
-::: danger Cause
-This occurs when `fs_bridge` is missing, stopped, or started **after** `fs_placeables` in your `server.cfg`.
-:::
-
-::: tip Solution
-1. Ensure `fs_bridge` is present inside your `resources/[fs]/` directory.
-2. In your `server.cfg`, ensure `fs_bridge` is started before `fs_placeables`:
-   ```lua
-   ensure fs_bridge
-   ensure fs_placeables
-   ```
-:::
+You carry nothing that is in `Config.Items`. Check the names match your inventory's item names exactly, then give yourself the item and try again.
 
 ---
 
-### ❓ Q: Why does `/placeprop` show an empty menu?
+### ❓ The amount submenu is empty
 
-::: danger Cause
-The player has no items in their inventory that match the names defined in `Config.Items` in `config/config.lua`.
-:::
-
-::: tip Solution
-1. Open `fs_placeables/config/config.lua`.
-2. Ensure the item names configured in `Config.Items` (e.g. `cash`, `money`, `burger`, `water_bottle`) match your framework/inventory item names exactly.
-3. Give your character that item in-game and try `/placeprop` again.
-:::
+You have less than the smallest amount configured for that item. With money, the default smallest amount is $1,000. Add a smaller amount (for example `[100]`) to `Config.Items` if you want one.
 
 ---
 
-### ❓ Q: Props spawn as a default cardboard box instead of the item model?
+### ❓ The prop is a cardboard box
 
-::: danger Cause
-The prop model name specified in `Config.Items` is invalid, misspelled, or failing to load in GTA V. The script automatically falls back to `Config.defaultprop` (`hei_prop_heist_box`) to prevent crashes.
-:::
+The amount being placed has no model, and the item has no `[1]` entry, so `Config.defaultprop` is used. This usually happens with the `fs_placeables:placeitemhook` event when the `count` isn't an amount listed in `Config.Items`.
 
-::: tip Solution
-1. Verify the model hash name in `Config.Items` (e.g. `prop_cash_pile_01`, `prop_ecola_can`).
-2. If using custom streamed addon props, ensure the prop's `.ydr` and `.ytyp` are loaded on the server before `fs_placeables`.
-:::
+---
+
+### ❓ The outline is red and I can't place
+
+You are aiming at an object smaller than the prop, or `Config.disallowItemStacking = true` and you are aiming at another object. Aim at the ground, a bigger surface or a vehicle.
+
+---
+
+### ❓ Placed items disappeared after a restart
+
+Placed props are not saved. Pick them up before restarting the server or `fs_placeables`.
 
 ---
 

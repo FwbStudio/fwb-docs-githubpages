@@ -157,6 +157,12 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
+    "guides": [
+      {
+        "text": "Place Money Using ox_inventory",
+        "slug": "place-money-ox-inventory"
+      }
+    ],
     "commonErrors": true
   },
   "portable-parking": {

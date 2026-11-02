@@ -17,6 +17,8 @@ export interface ResourcePages {
   editableFiles?: { client?: boolean; server?: boolean }
   functions?: { client?: boolean; server?: boolean }
   integrations?: boolean
+  /** How-to pages with their own sidebar name, shown after Installation (file: <slug>.md) */
+  guides?: { text: string; slug: string }[]
   commonErrors?: boolean
   questions?: boolean
 }
@@ -227,7 +229,7 @@ export const RESOURCES: ResourceEntry[] = [
     name: 'Items Placeables',
     repo: 'fs_placeables',
     category: 'scripts',
-    seoKeywords: 'FiveM placeable items physical prop placement script ESX QBCore Qbox',
+    seoKeywords: 'FiveM placeable items money prop drop cash ox_inventory physical prop placement script ESX QBCore Qbox',
     audited: true
   },
   {
@@ -490,6 +492,10 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
     { text: 'Overview', link: `${base}/overview` },
     { text: 'Installation', link: `${base}/installation` }
   ]
+
+  for (const guide of pages.guides ?? []) {
+    items.push({ text: guide.text, link: `${base}/${guide.slug}` })
+  }
 
   if (pages.configuration) {
     items.push({ text: 'Configuration', link: `${base}/configuration` })

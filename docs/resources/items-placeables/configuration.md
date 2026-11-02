@@ -10,83 +10,66 @@ description: Complete configuration reference for FiveM Items Placeables script 
 
 # Items Placeables — Configuration
 
-Edit `fs_placeables/config/config.lua` to define placeable item names, corresponding 3D prop models, placement keybinds, rotation speeds, and interaction distances.
+Edit `fs_placeables/config/config.lua`. Restart `fs_placeables` after every change.
 
 ---
 
-## Complete `config/config.lua` Reference
+## `config/config.lua` Reference
 
 ```lua
 Config = {}
 
--- Set to true to use target (ox_target / qb-target), or false to use floating 3D text
-Config.target = true 
+-- true = ox_target / qb-target, false = floating 3D text near placed props
+Config.target = true
 
 Config.Menu = {
-    enable = true,          -- Enable the inventory placement menu
-    command = 'placeprop',  -- Chat command to open placement menu
-    key = 'F9',             -- Default keybind to open menu
+    enable = true,          -- placement menu on/off (exports and events work either way)
+    command = 'placeprop',  -- chat command that opens the menu
+    key = 'F9',             -- default keybind (players can rebind it in GTA settings)
 }
 
--- 3D Text settings (used when Config.target = false)
+-- 3D text settings (used when Config.target = false)
 Config.textFont = 4
 Config.textScale = 1.0
 
 Config.Controls = {
-    up = 172,     -- Arrow Up: Move prop away
-    down = 173,   -- Arrow Down: Move prop closer
-    left = 15,    -- Scroll Up / Key: Rotate Left
-    right = 14,   -- Scroll Down / Key: Rotate Right
-    place = 38,   -- E: Place object down
-    cancel = 177, -- Backspace / H: Cancel placement
-    pickup = { key = 47, text = 'Press ~g~G~w~ to pickup', size = 0.03 },
+    up = 172,     -- Arrow Up: raise the prop
+    down = 173,   -- Arrow Down: lower the prop
+    left = 15,    -- Mouse wheel up: rotate
+    right = 14,   -- Mouse wheel down: rotate the other way
+    place = 38,   -- E: place the prop
+    cancel = 177, -- Backspace / Esc / Right mouse: cancel placement
+    pickup = { key = 47, text = 'Press ~g~G~w~ to pickup', size = 0.03 }, -- G, 3D text mode only
 }
 
-Config.Context = {
+Config.Context = {           -- target option on placed props
     label = 'Pickup',
     icon = 'fa-solid fa-hand-holding',
     targeticon = 'fa-solid fa-hand-holding',
 }
 
 Config.Speed = {
-    rotate = 1.5, -- Rotation sensitivity
-    move = 0.01,  -- Movement sensitivity
+    rotate = 1.5, -- degrees per frame while rotating
+    move = 0.01,  -- metres per frame while raising / lowering
 }
 
-Config.MaxFar = 5.0           -- Maximum distance (in meters) a prop can be placed from the player
-Config.ContinuePlacing = true -- If true, player can place multiple items consecutively if they carry more
-Config.defaultprop = `hei_prop_heist_box` -- Fallback box prop if an item model fails to load
-Config.PropAplha = 100        -- Alpha transparency (0-255) of the prop during preview positioning
-Config.disallowItemStacking = false -- Set to true to prevent placing items on top of other props
+Config.MaxFar = 5.0                        -- not used in v1.2: the preview follows your aim up to about 10 m
+Config.ContinuePlacing = true              -- open the next preview after placing, while the player has enough
+Config.defaultprop = `hei_prop_heist_box`  -- prop used when an amount has no model of its own
+Config.PropAplha = 100                     -- coloured outline in the preview, 0 = no outline
+Config.disallowItemStacking = false        -- true = props can't be placed on other props (vehicles still allowed)
 
---[[
-    ITEMS MAPPING
-    Define which inventory item spawns which prop model.
-    You can specify multiple quantity thresholds (e.g. for money piles).
-]]
 Config.Items = {
     ['money'] = {
         [1000] = `prop_cash_pile_01`,
         [10000] = `prop_money_bag_01`,
         [1000000] = `prop_cash_case_01`,
     },
-    ['cash'] = {
-        [1000] = `prop_cash_pile_01`,
-        [10000] = `prop_money_bag_01`,
-        [1000000] = `prop_cash_case_01`,
-    },
-    ['markedbills'] = {
-        [1000] = `prop_cash_pile_01`,
-        [10000] = `prop_money_bag_01`,
-        [1000000] = `prop_cash_case_01`,
-    },
-    ['black_money'] = {
-        [1000] = `prop_cash_pile_01`,
-        [10000] = `prop_money_bag_01`,
-        [1000000] = `prop_cash_case_01`,
-    },
+    ['cash'] = { ... },
+    ['markedbills'] = { ... },
+    ['black_money'] = { ... },
 
-    -- Examples of Custom Items:
+    -- commented examples in the file:
     -- ['water_bottle'] = { [1] = `prop_ecola_can` },
     -- ['burger']       = { [1] = `prop_cs_burger_01` },
     -- ['weed_block']   = { [1] = `prop_weed_block_01` },
@@ -97,14 +80,46 @@ Config.Items = {
 
 ---
 
+## How `Config.Items` works
+
+```lua
+['item_name'] = {
+    [amount] = `prop_model`,
+},
+```
+
+- **`item_name`** is the item's spawn name in your inventory. `money`, `cash`, `black_money` and `markedbills` are handled as framework money ([details](./place-money-ox-inventory#how-money-works-in-fs-placeables)).
+- **`amount`** is how many are placed in one prop. Placing removes exactly that many; pickup gives exactly that many back.
+- **`prop_model`** can be a backtick hash (`` `prop_name` ``), a string (`'prop_name'`) or a number hash.
+- The menu lists the amounts the player can afford.
+- When an amount has no entry, the `[1]` entry is used, and if there is none, `Config.defaultprop`.
+
+---
+
+## Target or 3D text
+
+| `Config.target` | Pickup method |
+| :--- | :--- |
+| `true` | `ox_target` / `qb-target` (through fs_bridge) on every model in `Config.Items` and on `Config.defaultprop` |
+| `false` | Floating text `Press G to pickup` when you look at a placed prop within 2.5 m |
+
+Anyone within 2.5 m can pick up a placed prop, not only the player who placed it. Notifications go through fs_bridge, menus use `ox_lib`, and texts are in `locales/en.lua`.
+
+---
+
 ## Adding Custom Placeable Items
 
-To make any new item placeable:
-1. Open `config/config.lua`.
-2. Add your item's spawn name under `Config.Items`:
+1. Make sure the item exists in your inventory with an image.
+2. Add it to `Config.Items`:
    ```lua
    ['repairkit'] = {
        [1] = `prop_tool_box_04`,
    },
    ```
-3. Restart `fs_placeables`. Any player with `repairkit` in their inventory can now place a toolbox on the ground.
+3. Restart `fs_placeables`. A player carrying `repairkit` can now place a toolbox from the menu.
+
+You can give one item several sizes, for example `[1] = small box, [10] = crate`.
+
+::: warning Model must exist
+If the model is not in the game files (or your streamed addon is not loaded), the client prints `Model not found in cdimage for item ...` and nothing is placed. The item is not taken.
+:::
