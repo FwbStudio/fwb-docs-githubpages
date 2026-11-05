@@ -220,6 +220,20 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
     "configuration": true,
     "commonErrors": true
   },
+  "vehicle-keys": {
+    "demo": true,
+    "configuration": true,
+    "commands": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
+    "editableFiles": {
+      "server": true
+    },
+    "integrations": true,
+    "commonErrors": true
+  },
   "trap-phone-v2": {
     "audited": true,
     "configuration": true,

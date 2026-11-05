@@ -13,6 +13,8 @@ export interface ResourcePages {
   configuration?: boolean
   commands?: boolean
   specialFeature?: boolean
+  /** A playable demo page (demo.md), e.g. the minigames */
+  demo?: boolean
   exports?: { client?: boolean; server?: boolean }
   editableFiles?: { client?: boolean; server?: boolean }
   functions?: { client?: boolean; server?: boolean }
@@ -308,6 +310,14 @@ export const RESOURCES: ResourceEntry[] = [
     seoKeywords: 'FiveM trap phone v2 burner phone drug dealing corner selling trap house ESX QBCore Qbox',
     audited: true
   },
+  {
+    slug: 'vehicle-keys',
+    name: 'FWB Vehicle Keys',
+    repo: 'fwb_vehiclekeys',
+    category: 'scripts',
+    seoKeywords: 'FiveM vehicle keys car keys key fob lockpick hotwire carjacking GPS tracker locksmith ESX QBCore Qbox',
+    tagline: 'Car keys, a key fob, lockpicks, hotwiring, carjacking, GPS trackers and locksmiths, all set up in game.'
+  },
 
   {
     slug: 'weave-wear',
@@ -495,6 +505,10 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
 
   for (const guide of pages.guides ?? []) {
     items.push({ text: guide.text, link: `${base}/${guide.slug}` })
+  }
+
+  if (pages.demo) {
+    items.push({ text: 'Minigame Demo', link: `${base}/demo` })
   }
 
   if (pages.configuration) {
