@@ -16,6 +16,4 @@ description: Outfit Bag preview and Tebex purchase. FiveM portable outfit bag wa
 
 ## Preview video
 
-::: info Coming soon
-The Outfit Bag v2.0 preview video is coming soon.
-:::
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/LIN93xSMsVo" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>
