@@ -1,4 +1,4 @@
-export type ResourceCategory = 'scripts' | 'weapons'
+export type ResourceCategory = 'scripts' | 'weapons' | 'dependencies'
 
 import { TEBEX_MEDIA, tebexPackageUrl } from './tebex-media.mts'
 import { RESOURCE_PAGES } from './resource-pages.mts'
@@ -51,10 +51,19 @@ export const DEFAULT_TEBEX_STORE = 'https://fwbstudio.tebex.io/'
 
 export const RESOURCE_CATEGORIES: Record<ResourceCategory, string> = {
   scripts: 'Scripts Catalog',
-  weapons: 'Weapons'
+  weapons: 'Weapons',
+  dependencies: 'Dependencies'
 }
 
 export const RESOURCES: ResourceEntry[] = [
+  {
+    slug: 'interact',
+    name: 'Interact (Free)',
+    repo: 'fwb_interact',
+    category: 'dependencies',
+    seoKeywords: 'FiveM interaction script press E draw3d ox_target qb-target qtarget exports ESX QBCore Qbox',
+    tagline: 'One interaction engine for every script: press E dots or your target, set up in game with /fwb_interact.'
+  },
   {
     slug: 'crafting-tables',
     name: 'Advanced Crafting Tables',
@@ -406,7 +415,12 @@ export function buildWeaponsSidebar() {
   return weapons.map((r) => buildResourceGroup(r))
 }
 
-/** Flat sidebar: Get Started + Bridge groups, then Scripts/Weapons section headings + products */
+export function buildDependenciesSidebar() {
+  const deps = RESOURCES_PUBLISHED.filter((r) => r.category === 'dependencies')
+  return deps.map((r) => buildResourceGroup(r))
+}
+
+/** Flat sidebar: Get Started + Dependencies (Bridge, Interact), then Scripts/Weapons section headings + products */
 export function buildDocsSidebar(): SidebarItem[] {
   return [
     {
@@ -419,30 +433,37 @@ export function buildDocsSidebar(): SidebarItem[] {
       ]
     },
     {
-      text: '🌉 Bridge',
+      text: '🧱 Dependencies',
       collapsed: false,
       items: [
-        { text: 'Overview', link: '/bridge/' },
-        { text: 'Supported', link: '/bridge/supported' },
         {
-          text: 'Script Overrides',
+          text: 'Bridge',
           collapsed: true,
           items: [
-            { text: 'Overview', link: '/bridge/script-overrides' },
-            { text: 'Client', link: '/bridge/overrides/client' },
-            { text: 'Server', link: '/bridge/overrides/server' }
+            { text: 'Overview', link: '/bridge/' },
+            { text: 'Supported', link: '/bridge/supported' },
+            {
+              text: 'Script Overrides',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/bridge/script-overrides' },
+                { text: 'Client', link: '/bridge/overrides/client' },
+                { text: 'Server', link: '/bridge/overrides/server' }
+              ]
+            },
+            {
+              text: 'Configuration',
+              collapsed: true,
+              items: [
+                { text: 'Overview', link: '/bridge/configuration/' },
+                { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
+                { text: 'Client Config', link: '/bridge/configuration/client-config' },
+                { text: 'Server Config', link: '/bridge/configuration/server-config' }
+              ]
+            }
           ]
         },
-        {
-          text: 'Configuration',
-          collapsed: true,
-          items: [
-            { text: 'Overview', link: '/bridge/configuration/' },
-            { text: 'Shared Config', link: '/bridge/configuration/shared-config' },
-            { text: 'Client Config', link: '/bridge/configuration/client-config' },
-            { text: 'Server Config', link: '/bridge/configuration/server-config' }
-          ]
-        }
+        ...buildDependenciesSidebar()
       ]
     },
     {

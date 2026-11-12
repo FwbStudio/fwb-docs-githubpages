@@ -2,6 +2,15 @@
 import type { ResourcePages } from './resources-catalog.mts'
 
 export const RESOURCE_PAGES: Record<string, ResourcePages> = {
+  "interact": {
+    "configuration": true,
+    "commands": true,
+    "exports": {
+      "client": true,
+      "server": true
+    },
+    "commonErrors": true
+  },
   "bodybag": {
     "audited": true,
     "configuration": true,

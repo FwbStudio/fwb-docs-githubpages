@@ -30,7 +30,7 @@ Slug rules: lowercase kebab-case (`safezone-creator`, `trap-phone-v2`).
 Top-level groups in `docs/.vitepress/config.mts`:
 
 - **Get Started** — expanded
-- **Bridge** — expanded
+- **Dependencies** — expanded: Bridge + resources with `category: 'dependencies'` (e.g. Interact)
 - **Scripts** — expanded, all script products listed
 - **Weapons** — expanded, all weapon packs listed
 

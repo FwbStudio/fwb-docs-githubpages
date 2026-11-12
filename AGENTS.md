@@ -8,11 +8,11 @@ When adding or updating script documentation in this repo, follow:
 ## Current structure
 
 - Get Started: general FiveM + FWB install (sidebar expanded)
-- Bridge: Overview, Supported, Script Overrides, Configuration (sidebar expanded)
+- Dependencies (sidebar expanded): **Bridge** (Overview, Supported, Script Overrides, Configuration) and dependency resources like **Interact** (`category: 'dependencies'` in the catalog)
 - Scripts: per-script docs — Preview, Overview, Installation, then optional Configuration / Exports / Functions / Integrations / Common Errors or Questions
 - Weapons: weapon pack docs (same page model)
 
-Sidebar: **Scripts** and **Weapons** are top-level groups (like Bridge), expanded by default. No “All Scripts” index page.
+Sidebar: **Dependencies**, **Scripts** and **Weapons** are top-level groups, expanded by default. No “All Scripts” index page.
 
 Regenerate resource pages: `node scripts/sync-resources-from-github.mjs` (needs `GITHUB_TOKEN`). Page flags: `docs/.vitepress/resource-pages.mts`.
 
