@@ -44,6 +44,7 @@ Every `Add…` export takes one table. These fields work on all of them; each ex
 | `distance` | number | Use distance setting | How close the player must be to use the options that don't set their own |
 | `range` | number | 3.0 (2.0 global) | How far away the dot shows (max 30) |
 | `dot` | boolean | `true` | `false` = no dot when the spot is on a target |
+| `targetIcon` | string | `'eye'` | On a target: the icon in the white box that shows when the player is close enough. `eye`, `lock`, `lock-open`, `hand`, `door`, `car`, `key` |
 | `color` | string / table | Key colour setting | The dot and key colour: `'#ff7a00'` or `{ 255, 122, 0 }` |
 | `shape` | string | Shape setting | `circle`, `square`, `diamond`, `hexagon`, `ring`, `solid`, `plus` |
 | `animation` | string | Animation setting | `none`, `pulse`, `spin`, `breathe`, `bounce` |
