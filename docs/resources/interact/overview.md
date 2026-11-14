@@ -38,7 +38,7 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 
 | Package | Resource Folder | Version | Frameworks | Category |
 | :--- | :--- | :--- | :--- | :--- |
-| **Dependency** | `fwb_interact` | v1.0 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
+| **Dependency** | `fwb_interact` | v1.1 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
 
 ---
 
