@@ -25,7 +25,7 @@ A dot from far away. Up close the spot you look at shows its key, and several op
 
 ### Target
 
-The same spots on ox_target, qb-target or qtarget: the dot still shows where they are, and the target eye opens the options.
+The same spots on ox_target, qb-target or qtarget: the dot still shows where they are, and the target eye opens the options. Close enough to use a spot, its dot becomes a small box in the dot's shape and colour with an eye in it (a script can show its own icon instead, for example a lock on a door).
 
 ![FWB Interact on a target: a dot with Use your target to interact from far away, the target eye on a shop door, and the target list with Open shop, Sell fish and Talk](/images/interact/target.png)
 

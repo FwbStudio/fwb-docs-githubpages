@@ -23,7 +23,7 @@ Opens the settings menu.
 ```
 
 ### Who sees what
-* **Every player** — the **Look** and **Keys** tabs, for their own settings.
+* **Every player** — the **Look** and **Keys** tabs, for their own settings, and an **Admin** tab with their own `add_ace` line to copy, for whoever should become an admin.
 * **Admins** (ACE `fwb_interact.admin`) — also the server tabs: General, Target, Default look, Default keys, Text and Developer.
 * With **Players can change their own** turned off, players without the ACE see a page with their own `add_ace` line to copy.
 
