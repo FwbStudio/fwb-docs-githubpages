@@ -1,11 +1,11 @@
 ---
-title: FWB HUD Commands | FWB Studio Docs
-description: FWB HUD chat commands for FiveM — /fwb_hud admin panel, /hud toggle and /hudsettings player menu, with ACE permission setup.
+title: HUD Commands | FWB Studio Docs
+description: HUD chat commands for FiveM — /fwb_hud admin panel, /hud toggle and /hudsettings player menu, with ACE permission setup.
 ---
 
-# FWB HUD — Commands
+# HUD — Commands
 
-FWB HUD has three chat commands. Their names can be changed in game under **/fwb_hud → Commands & keys**.
+HUD has three chat commands. Their names can be changed in game under **/fwb_hud → Commands & keys**.
 
 ---
 

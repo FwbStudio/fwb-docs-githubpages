@@ -1,6 +1,6 @@
 ---
-title: FWB HUD Overview | FWB Studio Docs
-description: FWB HUD features — FiveM HUD with speedometer, minimap, voice, money, stress, seatbelt, cruise control and nitro. 12 themes, ESX, QBCore, Qbox and Standalone.
+title: HUD Overview | FWB Studio Docs
+description: HUD features — FiveM HUD with speedometer, minimap, voice, money, stress, seatbelt, cruise control and nitro. 12 themes, ESX, QBCore, Qbox and Standalone.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,9 +8,9 @@ description: FWB HUD features — FiveM HUD with speedometer, minimap, voice, mo
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB HUD
+# HUD
 
-### 🎛️ FWB HUD – Customizable FiveM HUD & Speedometer
+### 🎛️ HUD – Customizable FiveM HUD & Speedometer
 
 A premium, fully customizable HUD for FiveM. Admins style the HUD once in game and save it as the default for everyone; players pick their own theme, drag and resize every piece, and choose what shows. No config file to edit — everything is set in game with `/fwb_hud` and saved in the server KVP (no database needed).
 

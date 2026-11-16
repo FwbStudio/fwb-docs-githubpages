@@ -14,7 +14,7 @@ description: Install Carwipe on FiveM — dependencies and server.cfg. FiveM car
 
 | Resource | Required | Notes |
 | --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `fs_bridge` | Yes | Bridge — included in package with Tebex/Keymaster download |
 | `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
 | `oxmysql` | Yes | MySQL database resource |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |

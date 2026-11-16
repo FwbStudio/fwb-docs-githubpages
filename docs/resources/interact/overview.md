@@ -1,6 +1,6 @@
 ---
 title: Interact Overview | FWB Studio Docs
-description: FWB Interact features for FiveM. Press E dots and prompts, ox_target / qb-target / qtarget support, hint cards, pick lists and in-game settings for ESX, QBCore, and Qbox.
+description: Interact features for FiveM. Press E dots and prompts, ox_target / qb-target / qtarget support, hint cards, pick lists and in-game settings for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

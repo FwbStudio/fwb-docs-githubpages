@@ -202,7 +202,7 @@ end
 
 ```lua
 function Dispatch(argument, item_name)
-    -- Default call to FWB Bridge custom dispatch function
+    -- Default call to Bridge custom dispatch function
     FWB.AddCustomDispatch(argument)
 end
 ```

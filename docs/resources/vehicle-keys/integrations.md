@@ -1,9 +1,9 @@
 ---
-title: FWB Vehicle Keys Integrations | FWB Studio Docs
-description: Connect FWB Vehicle Keys to FiveM garages, dealerships, inventories, target, dispatch and minigame scripts — and keep scripts made for qb-vehiclekeys, qs-vehiclekeys, wasabi_carlock and others working.
+title: Vehicle Keys Integrations | FWB Studio Docs
+description: Connect Vehicle Keys to FiveM garages, dealerships, inventories, target, dispatch and minigame scripts — and keep scripts made for qb-vehiclekeys, qs-vehiclekeys, wasabi_carlock and others working.
 ---
 
-# FWB Vehicle Keys — Integrations
+# Vehicle Keys — Integrations
 
 Everything that touches other resources lives in the open `bridge/` folder. Each kind is **auto-detected**, and you can pick one by hand on **/fwb_vehiclekeys → Bridges**.
 
@@ -32,12 +32,24 @@ To add another, copy a file in the same `bridge/` folder, rename it and change w
 Most garages and dealerships have a "vehicle keys" setting with a give function and a remove function. Set it to `"none"` (or "custom") and put these two lines in:
 
 ```lua
--- give keys (car taken out of the garage, test drive starts)
+-- give keys (car taken out of the garage)
 exports.fwb_vehiclekeys:GiveKeys(vehicleEntity)
 
--- remove keys (car stored, test drive over)
+-- remove keys (car stored)
 exports.fwb_vehiclekeys:RemoveKeys(plate)
 ```
+
+For a **test drive**, use the test drive exports on the server instead. The driver never gets a key item, with key items on or off, and the key is gone when the drive ends:
+
+```lua
+-- test drive starts (300 seconds at most)
+exports.fwb_vehiclekeys:StartTestDrive(source, vehicle, 300, 'Adder')
+
+-- test drive over (before you delete the car)
+exports.fwb_vehiclekeys:EndTestDrive(source, vehicle)
+```
+
+To give keys from your framework's own vehicle code (the admin `/car` command, the framework's spawn functions), see **Framework Integration**: [ESX](./framework-integration/esx), [QBCore](./framework-integration/qbcore), [Qbox](./framework-integration/qbox).
 
 ::: tip Key items are never touched
 `GiveKeys` gives a session key, and `RemoveKeys` only takes a session or temporary key back. In items mode, the owner's key item stays in the inventory when the car is stored, and fits the car again when it comes out.
@@ -52,14 +64,14 @@ Owners always have the key to their own cars: the script reads your framework's 
 | A player's own car out of the garage | Nothing (they own it), or client `GiveKeys(vehicle)` |
 | A rental, a job car, a mission car your script spawns | Server `GiveKeys(src, plate)`: it works **before** the car exists (keys are by plate), and the car is never locked by the NPC car roll |
 | Job cars, gang garages, keys for someone else | Server `GiveKey(src, vehicle, ...)` (the client export only works on a car the player owns or nobody owns) |
-| A test drive without a key | Server `SetNoKeyNeeded(vehicle, true)`, or `GiveTempKey(src, vehicle, seconds)` |
+| A test drive | Server `StartTestDrive(src, vehicle, seconds)` when it starts, `EndTestDrive(src, vehicle)` when it ends: never a key item |
 | Showroom and preview cars | Nothing: cars made with `CreateVehicle(..., false, false)` are left alone (no "[H] Hotwire" hint) |
 | A networked car a player only looks at | Client `IgnoreVehicle(vehicle, true)` |
 | A new plate for a bought car | Server `GeneratePlate()` |
 
-### FWB Dealership Creator
+### Dealership Creator
 
-`fwb_dealerships` finds FWB Vehicle Keys by itself. Buyers get the owner's key, test drives get a temporary key, and the delivery job gets a session key. Nothing to set up.
+`fwb_dealerships` finds Vehicle Keys by itself. Buyers get the owner's key, test drives get a temporary key, and the delivery job gets a session key. Nothing to set up.
 
 ---
 

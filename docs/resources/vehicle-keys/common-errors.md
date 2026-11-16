@@ -1,9 +1,9 @@
 ---
-title: FWB Vehicle Keys Common Errors & FAQ | FWB Studio Docs
-description: Troubleshooting FWB Vehicle Keys on FiveM — admin access, key items without a plate, garages not giving keys, hotwire hints in showrooms, lockpick and tracker items.
+title: Vehicle Keys Common Errors & FAQ | FWB Studio Docs
+description: Troubleshooting Vehicle Keys on FiveM — admin access, key items without a plate, garages not giving keys, hotwire hints in showrooms, lockpick and tracker items.
 ---
 
-# FWB Vehicle Keys — Common Errors & FAQ
+# Vehicle Keys — Common Errors & FAQ
 
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: FWB HUD Configuration | FWB Studio Docs
-description: Configure FWB HUD for FiveM — in-game admin panel (/fwb_hud), status sources, themes, defaults and integrations for ESX, QBCore and Qbox.
+title: HUD Configuration | FWB Studio Docs
+description: Configure HUD for FiveM — in-game admin panel (/fwb_hud), status sources, themes, defaults and integrations for ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,9 +8,9 @@ description: Configure FWB HUD for FiveM — in-game admin panel (/fwb_hud), sta
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB HUD — Configuration
+# HUD — Configuration
 
-FWB HUD has **no config file to edit**. Commands, language, keys, features and the default look are all set in game with `/fwb_hud` and saved in the server KVP. A few things that need code live in open Lua files under `bridge/`.
+HUD has **no config file to edit**. Commands, language, keys, features and the default look are all set in game with `/fwb_hud` and saved in the server KVP. A few things that need code live in open Lua files under `bridge/`.
 
 ---
 

@@ -1,6 +1,6 @@
 ---
-title: FWB Vehicle Keys Overview | FWB Studio Docs
-description: FWB Vehicle Keys features — FiveM car keys, key fob remote, spares, lockpicking, hotwiring, carjacking, NPC car locks, GPS trackers, locksmiths and police alerts for ESX, QBCore and Qbox.
+title: Vehicle Keys Overview | FWB Studio Docs
+description: Vehicle Keys features — FiveM car keys, key fob remote, spares, lockpicking, hotwiring, carjacking, NPC car locks, GPS trackers, locksmiths and police alerts for ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,9 +8,9 @@ description: FWB Vehicle Keys features — FiveM car keys, key fob remote, spare
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB Vehicle Keys
+# Vehicle Keys
 
-### 🔑 FWB Vehicle Keys – Car Keys, Key Fob, Car Theft & Trackers
+### 🔑 Vehicle Keys – Car Keys, Key Fob, Car Theft & Trackers
 
 A complete vehicle keys system for FiveM. Players lock and unlock their cars, use a key fob with a real remote, hand out spare keys and keep track of their car. Thieves lockpick, hotwire and carjack, and plant GPS trackers. Locksmiths cut new keys and change locks.
 
@@ -39,7 +39,7 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
   * hazard lights and the interior light;
   * changing seats;
   * the car's history ("last used").
-![FWB Vehicle Keys key fob: distance, signal, lock state and plate, with lock, unlock, trunk, engine, Summon and Track buttons](/images/vehicle-keys/player-key-fob.png)
+![Vehicle Keys key fob: distance, signal, lock state and plate, with lock, unlock, trunk, engine, Summon and Track buttons](/images/vehicle-keys/player-key-fob.png)
 
 * **Spares** — give a spare to a nearby player (limit per car, optional fee) and take spares back.
 * **Hand a car over** — a nearby player becomes the owner, with new locks.

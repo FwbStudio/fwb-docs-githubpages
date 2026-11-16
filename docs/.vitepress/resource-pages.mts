@@ -237,6 +237,11 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
+    "frameworkIntegration": {
+      "esx": true,
+      "qbcore": true,
+      "qbox": true
+    },
     "editableFiles": {
       "server": true
     },

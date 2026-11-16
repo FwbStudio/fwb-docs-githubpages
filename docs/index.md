@@ -24,7 +24,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
   <a class="fwb-quick-card" href="/bridge/">
     <div class="fwb-quick-card__icon">🌉</div>
     <div class="fwb-quick-card__content">
-      <h3>FWB Bridge Setup</h3>
+      <h3>Bridge Setup</h3>
       <p>Framework abstraction layer docs, supported scripts, and configuration overrides.</p>
     </div>
   </a>
@@ -154,7 +154,7 @@ Welcome to the official documentation portal for **FWB Studio** resources. Selec
 
   <div class="fwb-cat-card">
     <a href="/resources/fwb-hud/" class="fwb-cat-card__header-link">
-      <h3>FWB HUD</h3>
+      <h3>HUD</h3>
     </a>
     <p>Customizable FiveM HUD & speedometer with 12 themes and an in-game admin panel.</p>
     <div class="fwb-cat-card__links">

@@ -1,6 +1,6 @@
 ---
 title: Interact Server Exports | FWB Studio Docs
-description: Server side of FiveM FWB Interact (fwb_interact) — handling an option's serverEvent, the data it sends, and checking players on ESX, QBCore, and Qbox.
+description: Server side of FiveM Interact (fwb_interact) — handling an option's serverEvent, the data it sends, and checking players on ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

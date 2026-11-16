@@ -16,6 +16,8 @@ export interface ResourcePages {
   /** A playable demo page (demo.md), e.g. the minigames */
   demo?: boolean
   exports?: { client?: boolean; server?: boolean }
+  /** How to give keys etc. from the framework's own vehicle code (framework-integration/<fw>.md) */
+  frameworkIntegration?: { esx?: boolean; qbcore?: boolean; qbox?: boolean }
   editableFiles?: { client?: boolean; server?: boolean }
   functions?: { client?: boolean; server?: boolean }
   integrations?: boolean
@@ -145,7 +147,7 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'fwb-hud',
-    name: 'FWB HUD',
+    name: 'HUD',
     repo: 'fwb_hud',
     category: 'scripts',
     seoKeywords: 'FiveM HUD speedometer customizable themes minimap stress seatbelt ESX QBCore Qbox Standalone',
@@ -321,7 +323,7 @@ export const RESOURCES: ResourceEntry[] = [
   },
   {
     slug: 'vehicle-keys',
-    name: 'FWB Vehicle Keys',
+    name: 'Vehicle Keys',
     repo: 'fwb_vehiclekeys',
     category: 'scripts',
     seoKeywords: 'FiveM vehicle keys car keys key fob lockpick hotwire carjacking GPS tracker locksmith ESX QBCore Qbox',
@@ -553,6 +555,14 @@ function buildResourceGroup(resource: ResourceEntry): SidebarItem {
     } else {
       items.push({ text: 'Exports', collapsed: true, items: exportItems })
     }
+  }
+
+  if (pages.frameworkIntegration?.esx || pages.frameworkIntegration?.qbcore || pages.frameworkIntegration?.qbox) {
+    const fwItems: SidebarItem[] = []
+    if (pages.frameworkIntegration.esx) fwItems.push({ text: 'ESX', link: `${base}/framework-integration/esx` })
+    if (pages.frameworkIntegration.qbcore) fwItems.push({ text: 'QBCore', link: `${base}/framework-integration/qbcore` })
+    if (pages.frameworkIntegration.qbox) fwItems.push({ text: 'Qbox', link: `${base}/framework-integration/qbox` })
+    items.push({ text: 'Framework Integration', collapsed: true, items: fwItems })
   }
 
   if (pages.editableFiles?.client || pages.editableFiles?.server) {

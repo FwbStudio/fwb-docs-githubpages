@@ -1,6 +1,6 @@
 ---
-title: FWB Vehicle Keys Hooks & Events | FWB Studio Docs
-description: FWB Vehicle Keys hooks for FiveM — stop lockpicking, hotwiring, carjacking, keys and locksmith actions with your own rules (registerHook, like ox_inventory) and react with server events.
+title: Vehicle Keys Hooks & Events | FWB Studio Docs
+description: Vehicle Keys hooks for FiveM — stop lockpicking, hotwiring, carjacking, keys and locksmith actions with your own rules (registerHook, like ox_inventory) and react with server events.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,7 +8,7 @@ description: FWB Vehicle Keys hooks for FiveM — stop lockpicking, hotwiring, c
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB Vehicle Keys — Hooks & Events
+# Vehicle Keys — Hooks & Events
 
 Hooks let you add your own rules to the script, or react when something happens, without editing the escrowed code. They work like ox_inventory's `registerHook`.
 

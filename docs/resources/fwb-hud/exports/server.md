@@ -1,6 +1,6 @@
 ---
-title: FWB HUD Server Exports & Events | FWB Studio Docs
-description: Server-side exports and events for FWB HUD on FiveM — stress, statuses, HUD visibility, presets and admin checks.
+title: HUD Server Exports & Events | FWB Studio Docs
+description: Server-side exports and events for HUD on FiveM — stress, statuses, HUD visibility, presets and admin checks.
 ---
 
 # Server Exports & Events

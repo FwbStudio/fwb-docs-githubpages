@@ -1,6 +1,6 @@
 ---
 title: Interact Common Errors | FWB Studio Docs
-description: Fix common FWB Interact problems on FiveM — nothing shows, no [E] prompt, target not used, keys and the pick list, for ESX, QBCore, and Qbox.
+description: Fix common Interact problems on FiveM — nothing shows, no [E] prompt, target not used, keys and the pick list, for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

@@ -1,11 +1,11 @@
 ---
-title: FWB Vehicle Keys Commands | FWB Studio Docs
-description: FWB Vehicle Keys commands and keys for FiveM — the /fwb_vehiclekeys admin panel, ACE permission, lock key, key fob, engine, hotwire and search keys.
+title: Vehicle Keys Commands | FWB Studio Docs
+description: Vehicle Keys commands and keys for FiveM — the /fwb_vehiclekeys admin panel, ACE permission, lock key, key fob, engine, hotwire and search keys.
 ---
 
-# FWB Vehicle Keys — Commands
+# Vehicle Keys — Commands
 
-FWB Vehicle Keys has an admin command and a seat command. Everything else players do goes through keys, which they can rebind.
+Vehicle Keys has an admin command and a seat command. Everything else players do goes through keys, which they can rebind.
 
 ---
 

@@ -1,9 +1,9 @@
 ---
-title: FWB HUD Integrations | FWB Studio Docs
-description: Connect FWB HUD to your FiveM server — ESX, QBCore, Qbox, notifications, fuel scripts, electric vehicles, pma-voice and custom statuses.
+title: HUD Integrations | FWB Studio Docs
+description: Connect HUD to your FiveM server — ESX, QBCore, Qbox, notifications, fuel scripts, electric vehicles, pma-voice and custom statuses.
 ---
 
-# FWB HUD — Integrations
+# HUD — Integrations
 
 Everything that touches other resources lives in the open `bridge/` folder.
 

@@ -1,6 +1,6 @@
 ---
-title: FWB Vehicle Keys Minigame Demo | FWB Studio Docs
-description: Try the FWB Vehicle Keys minigames in your browser — lockpick, hotwire, wire cutting and wiring puzzles on easy, medium and hard, exactly as FiveM players see them.
+title: Vehicle Keys Minigame Demo | FWB Studio Docs
+description: Try the Vehicle Keys minigames in your browser — lockpick, hotwire, wire cutting and wiring puzzles on easy, medium and hard, exactly as FiveM players see them.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,11 +8,11 @@ description: Try the FWB Vehicle Keys minigames in your browser — lockpick, ho
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB Vehicle Keys — Minigame Demo
+# Vehicle Keys — Minigame Demo
 
 Play the four built-in puzzles right here. These are the same puzzles players get in game, with the default numbers of each difficulty. Pick a puzzle, pick a difficulty, and play.
 
-<iframe class="fwb-demo-frame" src="/demos/vehicle-keys/index.html" title="FWB Vehicle Keys minigames" loading="lazy"></iframe>
+<iframe class="fwb-demo-frame" src="/demos/vehicle-keys/index.html" title="Vehicle Keys minigames" loading="lazy"></iframe>
 
 <p class="fwb-demo-open"><a href="/demos/vehicle-keys/index.html" target="_blank" rel="noreferrer">Open the demo full screen ↗</a></p>
 

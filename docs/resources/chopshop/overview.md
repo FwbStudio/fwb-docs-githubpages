@@ -22,7 +22,7 @@ Supports **ESX**, **QBCore**, and **Qbox** via FS Bridge.
 * **Configurable Rewards** — Set which items or money players receive per vehicle type.
 * **Job & Zone Control** — Restrict chopping to specific jobs, areas, or gang territories.
 * **Inventory Ready** — Includes item setup guides for ox_inventory, qb-inventory, and more.
-* **Bridge Compatible** — Works with FWB Bridge for framework, inventory, and target integration.
+* **Bridge Compatible** — Works with Bridge for framework, inventory, and target integration.
 
 #### 💼 Perfect For:
 

@@ -1,6 +1,6 @@
 ---
-title: FWB Vehicle Keys Configuration | FWB Studio Docs
-description: Configure FWB Vehicle Keys for FiveM in game with /fwb_vehiclekeys — keys, locking, car theft, NPC car locks, trackers, police, locksmiths, minigames and bridges for ESX, QBCore and Qbox.
+title: Vehicle Keys Configuration | FWB Studio Docs
+description: Configure Vehicle Keys for FiveM in game with /fwb_vehiclekeys — keys, locking, car theft, NPC car locks, trackers, police, locksmiths, minigames and bridges for ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,9 +8,9 @@ description: Configure FWB Vehicle Keys for FiveM in game with /fwb_vehiclekeys 
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB Vehicle Keys — Configuration
+# Vehicle Keys — Configuration
 
-FWB Vehicle Keys has **no config file to edit**. Everything is set in game with `/fwb_vehiclekeys` and saved in the database. Changes apply as soon as you press **Save changes**; no restart is needed. A few things that need code live in open Lua files under `bridge/`.
+Vehicle Keys has **no config file to edit**. Everything is set in game with `/fwb_vehiclekeys` and saved in the database. Changes apply as soon as you press **Save changes**; no restart is needed. A few things that need code live in open Lua files under `bridge/`.
 
 ---
 
@@ -28,7 +28,7 @@ The first time an admin opens `/fwb_vehiclekeys`, a setup wizard asks five quest
 
 You don't need the wizard for the script to work: without it, every setting has its default (for example the police jobs `police` and `sheriff`).
 
-![FWB Vehicle Keys setup wizard, Controls step: hold the lock key for 1.5 seconds or a key of its own, with the lock, hold time and engine fields](/images/vehicle-keys/wizard-2-controls.png)
+![Vehicle Keys setup wizard, Controls step: hold the lock key for 1.5 seconds or a key of its own, with the lock, hold time and engine fields](/images/vehicle-keys/wizard-2-controls.png)
 
 ::: details Every step of the wizard
 ![Setup wizard step 1: key items in the inventory or saved keys with no item](/images/vehicle-keys/wizard-1-keys.png)
@@ -58,7 +58,7 @@ You don't need the wizard for the script to work: without it, every setting has 
 | **Logs** | Discord webhook, Fivemanage or custom, and which groups get logged (keys given, theft, admin actions). |
 | **Settings** | The tabs below. |
 
-![FWB Vehicle Keys admin Overview: key mode, counts and the ready-to-play checks, including Items in the inventory](/images/vehicle-keys/admin-overview.png)
+![Vehicle Keys admin Overview: key mode, counts and the ready-to-play checks, including Items in the inventory](/images/vehicle-keys/admin-overview.png)
 
 ### Settings tabs
 

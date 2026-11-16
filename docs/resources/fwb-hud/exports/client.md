@@ -1,6 +1,6 @@
 ---
-title: FWB HUD Client Exports & Events | FWB Studio Docs
-description: Client-side exports and events for FWB HUD on FiveM — HUD visibility, menus, statuses, stress, seatbelt and cruise control.
+title: HUD Client Exports & Events | FWB Studio Docs
+description: Client-side exports and events for HUD on FiveM — HUD visibility, menus, statuses, stress, seatbelt and cruise control.
 ---
 
 # Client Exports & Events
@@ -434,9 +434,9 @@ if exports.fwb_hud:HasHarness() then return end
 :::
 
 ::: details Progress
-Shows FWB HUD's progress bar (the same one used for fitting nitro and the harness) and waits until it ends. The bar follows the player's HUD theme and shows a countdown. The player can cancel with `X`.
+Shows HUD's progress bar (the same one used for fitting nitro and the harness) and waits until it ends. The bar follows the player's HUD theme and shows a countdown. The player can cancel with `X`.
 
-![FWB HUD progress bar](/images/fwb-hud/progress-bar.png)
+![HUD progress bar](/images/fwb-hud/progress-bar.png)
 
 ### Export
 ```lua
@@ -471,7 +471,7 @@ if ok then print('repaired') end
 :::
 
 ::: details IsProgressActive
-Returns whether an FWB HUD progress bar is running.
+Returns whether a HUD progress bar is running.
 
 ### Export
 ```lua

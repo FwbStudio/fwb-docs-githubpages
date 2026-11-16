@@ -14,7 +14,7 @@ description: Install White Widow on FiveM — items setup, dependencies, and ser
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `fs_bridge` | Yes | FWB Bridge — included in package with Tebex/Keymaster download |
+| `fs_bridge` | Yes | Bridge — included in package with Tebex/Keymaster download |
 | `ox_lib` | Yes | Free open-source UI/callbacks library — available on [GitHub](https://github.com/overextended/ox_lib) |
 | `ESX, QBCore, or Qbox` | Yes | Free open-source framework — requires one of them on your server |
 | `fs_smoking` | Optional | For joint rolling and vaping |

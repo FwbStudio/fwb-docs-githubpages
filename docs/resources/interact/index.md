@@ -1,6 +1,6 @@
 ---
 title: Interact Preview | FWB Studio Docs
-description: FWB Interact for FiveM — one interaction engine for every script. Press E dots or ox_target / qb-target / qtarget, set up in game, for ESX, QBCore and Qbox.
+description: Interact for FiveM — one interaction engine for every script. Press E dots or ox_target / qb-target / qtarget, set up in game, for ESX, QBCore and Qbox.
 ---
 
 <div class="fwb-product-hero">
@@ -21,19 +21,19 @@ description: FWB Interact for FiveM — one interaction engine for every script.
 
 A dot from far away. Up close the spot you look at shows its key, and several options become a list picked with the mouse wheel or arrow keys.
 
-![FWB Interact press E: a dot above a vending machine from far away, an E Open shop prompt on a shop door close by, and a list with Open shop and Sell fish over a counter](/images/interact/press-e.png)
+![Interact press E: a dot above a vending machine from far away, an E Open shop prompt on a shop door close by, and a list with Open shop and Sell fish over a counter](/images/interact/press-e.png)
 
 ### Target
 
 The same spots on ox_target, qb-target or qtarget: the dot still shows where they are, and the target eye opens the options. Close enough to use a spot, its dot becomes a small box in the dot's shape and colour with an eye in it (a script can show its own icon instead, for example a lock on a door).
 
-![FWB Interact on a target: a dot with Use your target to interact from far away, the target eye on a shop door, and the target list with Open shop, Sell fish and Talk](/images/interact/target.png)
+![Interact on a target: a dot with Use your target to interact from far away, the target eye on a shop door, and the target list with Open shop, Sell fish and Talk](/images/interact/target.png)
 
 ### Hint card
 
 A script can add a card that explains the spot before the player uses it.
 
-<img src="/images/interact/card.png" alt="FWB Interact hint card for a grill: title, description, Requires Spatula and Job Burger Shot lines, and the E Cook and Clean grill options" style="width:100%;max-width:420px;border-radius:12px">
+<img src="/images/interact/card.png" alt="Interact hint card for a grill: title, description, Requires Spatula and Job Burger Shot lines, and the E Cook and Clean grill options" style="width:100%;max-width:420px;border-radius:12px">
 
 ## Settings
 

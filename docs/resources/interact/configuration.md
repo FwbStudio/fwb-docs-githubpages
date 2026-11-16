@@ -1,6 +1,6 @@
 ---
 title: Interact Configuration | FWB Studio Docs
-description: Every FWB Interact setting in the in-game /fwb_interact menu — type, distances, dot shape and colour, keys, target icon and texts for FiveM ESX, QBCore, and Qbox.
+description: Every Interact setting in the in-game /fwb_interact menu — type, distances, dot shape and colour, keys, target icon and texts for FiveM ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

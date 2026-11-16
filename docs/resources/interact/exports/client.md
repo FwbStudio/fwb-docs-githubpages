@@ -1,6 +1,6 @@
 ---
 title: Interact Client Exports | FWB Studio Docs
-description: Client exports for FiveM FWB Interact (fwb_interact) — AddSphere, AddBox, AddPoly, AddEntity, AddModel, AddGlobal, RegisterCard, Update, Remove, SetType with examples for ESX, QBCore, and Qbox.
+description: Client exports for FiveM Interact (fwb_interact) — AddSphere, AddBox, AddPoly, AddEntity, AddModel, AddGlobal, RegisterCard, Update, Remove, SetType with examples for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

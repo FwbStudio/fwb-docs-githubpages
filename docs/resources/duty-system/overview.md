@@ -22,7 +22,7 @@ Works with **ESX**, **QBCore**, and **Qbox** through FS Bridge.
 * **Framework Sync** — Keeps duty status aligned with your active framework job data.
 * **Client & Server Exports** — Query duty state, force on/off duty, or toggle from external resources.
 * **Configurable Jobs** — Whitelist which jobs use the duty system and how they behave.
-* **Bridge Integration** — Plays nicely with FWB Bridge for notifications, target, and inventory hooks.
+* **Bridge Integration** — Plays nicely with Bridge for notifications, target, and inventory hooks.
 
 #### 💼 Perfect For:
 

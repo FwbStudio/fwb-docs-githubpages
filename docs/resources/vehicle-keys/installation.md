@@ -1,6 +1,6 @@
 ---
-title: FWB Vehicle Keys Installation | FWB Studio Docs
-description: Install FWB Vehicle Keys on FiveM — dependencies, items for ox_inventory, qb-inventory, qs-inventory and ESX, server.cfg order and the fwb_vehiclekeys.admin ACE.
+title: Vehicle Keys Installation | FWB Studio Docs
+description: Install Vehicle Keys on FiveM — dependencies, items for ox_inventory, qb-inventory, qs-inventory and ESX, server.cfg order and the fwb_vehiclekeys.admin ACE.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,7 +8,7 @@ description: Install FWB Vehicle Keys on FiveM — dependencies, items for ox_in
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB Vehicle Keys — Installation
+# Vehicle Keys — Installation
 
 ## Dependencies
 

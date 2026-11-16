@@ -1,9 +1,9 @@
 ---
-title: FWB HUD Common Errors & FAQ | FWB Studio Docs
-description: Troubleshooting FWB HUD on FiveM — admin access, missing hunger and thirst, fuel, two HUDs, stress and minimap issues.
+title: HUD Common Errors & FAQ | FWB Studio Docs
+description: Troubleshooting HUD on FiveM — admin access, missing hunger and thirst, fuel, two HUDs, stress and minimap issues.
 ---
 
-# FWB HUD — Common Errors & FAQ
+# HUD — Common Errors & FAQ
 
 ---
 
@@ -98,11 +98,11 @@ Open a ticket in our Discord:
 ### ❓ Q: Two seatbelts / cruise control turns on and off at once (QBCore / Qbox)
 
 ::: danger Cause
-FWB HUD's seatbelt and cruise control run next to the framework's (qb-smallresources, or qbx_seatbelt and qbx_cruise).
+HUD's seatbelt and cruise control run next to the framework's (qb-smallresources, or qbx_seatbelt and qbx_cruise).
 :::
 
 ::: tip Solution
-Keep one of each. Either turn off the framework's versions, or switch FWB HUD's off in **/fwb_hud → Features**. Step by step: [Installation → Framework Setup](./installation#framework-setup).
+Keep one of each. Either turn off the framework's versions, or switch HUD's off in **/fwb_hud → Features**. Step by step: [Installation → Framework Setup](./installation#framework-setup).
 :::
 
 ---

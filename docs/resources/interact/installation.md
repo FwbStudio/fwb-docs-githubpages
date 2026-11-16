@@ -1,6 +1,6 @@
 ---
 title: Interact Installation | FWB Studio Docs
-description: Install FWB Interact on FiveM — server.cfg order, ACE permission and optional ox_target / qb-target / qtarget for ESX, QBCore, and Qbox.
+description: Install Interact on FiveM — server.cfg order, ACE permission and optional ox_target / qb-target / qtarget for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

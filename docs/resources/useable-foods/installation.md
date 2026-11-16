@@ -15,7 +15,7 @@ description: Install Useable Foods on FiveM — dependencies and server.cfg. Fiv
 
 | Resource | Required | Notes |
 | --- | --- | --- |
-| `fs_bridge` | Yes | FWB Bridge — framework, inventory, target, dispatch |
+| `fs_bridge` | Yes | Bridge — framework, inventory, target, dispatch |
 | `ox_lib` | Yes | Shared UI / callbacks |
 | `ESX, QBCore, or Qbox` | Yes | One framework per server |
 

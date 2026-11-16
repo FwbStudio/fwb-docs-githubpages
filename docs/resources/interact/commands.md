@@ -1,6 +1,6 @@
 ---
 title: Interact Commands | FWB Studio Docs
-description: The /fwb_interact settings menu and the /fwbinteract_test command for FiveM FWB Interact on ESX, QBCore, and Qbox.
+description: The /fwb_interact settings menu and the /fwbinteract_test command for FiveM Interact on ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">

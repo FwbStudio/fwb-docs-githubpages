@@ -149,7 +149,7 @@ onUnmounted(() => {
 # 🎬 MP4 → WEBM Converter
 
 <p class="fwb-converter-subtitle">
-  Convert your video to <code>.webm</code> format for use as a local background in the FWB Loading Screen.<br>
+  Convert your video to <code>.webm</code> format for use as a local background in the Loading Screen.<br>
   <strong>100% private</strong> — your video never leaves your computer. Conversion runs entirely in your browser.
 </p>
 

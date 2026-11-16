@@ -1,6 +1,6 @@
 ---
-title: FWB HUD Installation | FWB Studio Docs
-description: Install FWB HUD on FiveM — dependencies, server.cfg order and the fwb_hud.admin ACE permission for ESX, QBCore, Qbox and Standalone.
+title: HUD Installation | FWB Studio Docs
+description: Install HUD on FiveM — dependencies, server.cfg order and the fwb_hud.admin ACE permission for ESX, QBCore, Qbox and Standalone.
 ---
 
 <div class="fwb-inline-cta">
@@ -8,7 +8,7 @@ description: Install FWB HUD on FiveM — dependencies, server.cfg order and the
   <a class="fwb-product-hero__buy" href="https://fwbstudio.tebex.io/" target="_blank" rel="noreferrer">Purchase on Tebex</a>
 </div>
 
-# FWB HUD — Installation
+# HUD — Installation
 
 ## Dependencies
 
@@ -38,30 +38,30 @@ ensure fwb_hud
 
 ## Framework Setup
 
-QBCore and Qbox come with their own **seatbelt** and **cruise control**. FWB HUD has them too, so you need to pick **one** of each. If both run, players get two seatbelt keys and two crash-ejection systems, and both cruise controls sit on the same `Y` key.
+QBCore and Qbox come with their own **seatbelt** and **cruise control**. HUD has them too, so you need to pick **one** of each. If both run, players get two seatbelt keys and two crash-ejection systems, and both cruise controls sit on the same `Y` key.
 
 ::: details ESX / Standalone
-Nothing to do. There is no other seatbelt or cruise control, so FWB HUD's are used.
+Nothing to do. There is no other seatbelt or cruise control, so HUD's are used.
 :::
 
-### Option 1 — Turn off FWB HUD's (easiest, no files to edit)
+### Option 1 — Turn off HUD's (easiest, no files to edit)
 
 Good if you are happy with the framework's seatbelt and its **harness** item.
 
 1. In game, run `/fwb_hud` and open **Features**.
 2. On the **Seatbelt** tab, switch the toggle at the top right to **Off**.
 
-   ![FWB HUD Features page with the Seatbelt tab open and its On/Off toggle at the top right](/images/fwb-hud/features-seatbelt.png)
+   ![HUD Features page with the Seatbelt tab open and its On/Off toggle at the top right](/images/fwb-hud/features-seatbelt.png)
 
 3. On the **Cruise control** tab, switch it **Off** too.
 
-   ![FWB HUD Features page with the Cruise control tab open and its On/Off toggle at the top right](/images/fwb-hud/features-cruise.png)
+   ![HUD Features page with the Cruise control tab open and its On/Off toggle at the top right](/images/fwb-hud/features-cruise.png)
 
 It saves straight away, and no restart is needed. The seatbelt and cruise icons on the HUD keep working: they follow qb-smallresources, qbx_seatbelt and qbx_cruise automatically.
 
 ### Option 2 — Turn off the framework's
 
-Do the steps for your framework, restart the server, and leave FWB HUD's **Seatbelt** and **Cruise control** **On** (they are on by default). The framework's harness item stops working with this option. FWB HUD has its own optional harness instead: switch it on in **/fwb_hud → Features → Seatbelt → Racing harness** (item name `harness` by default).
+Do the steps for your framework, restart the server, and leave HUD's **Seatbelt** and **Cruise control** **On** (they are on by default). The framework's harness item stops working with this option. HUD has its own optional harness instead: switch it on in **/fwb_hud → Features → Seatbelt → Racing harness** (item name `harness` by default).
 
 ::: details QBCore
 | What | File | Change |
@@ -70,7 +70,7 @@ Do the steps for your framework, restart the server, and leave FWB HUD's **Seatb
 | Cruise control | `qb-smallresources/client/cruise.lua` | Rename it to `cruise.lua.disabled` (or delete it) |
 | Radial menu | `qb-radialmenu/client/main.lua` | Edit one line (below) |
 
-**Why the radial menu?** When a player switches seats, qb-radialmenu asks the seatbelt file whether they wear a racing harness. With that file gone, the call errors. Search for `HasHarness` and point it at FWB HUD instead (it answers `false` while nobody is strapped into an FWB HUD harness):
+**Why the radial menu?** When a player switches seats, qb-radialmenu asks the seatbelt file whether they wear a racing harness. With that file gone, the call errors. Search for `HasHarness` and point it at HUD instead (it answers `false` while nobody is strapped into a HUD harness):
 
 ```lua
 -- before
@@ -88,13 +88,13 @@ local HasHarnass = exports.fwb_hud:HasHarness()
 | Other HUD | `resources/[qbx]/qbx_hud` | Delete or move it, or two HUDs draw at once |
 | Radial menu | `fwb_hud/fxmanifest.lua` | Uncomment `provide 'qbx_seatbelt'` (below). No radial menu edit needed |
 
-**Why the radial menu?** When a player switches seats, qbx_radialmenu calls `exports.qbx_seatbelt:HasHarness()`. With qbx_seatbelt gone, that call would error. Let FWB HUD stand in for qbx_seatbelt: open `fwb_hud/fxmanifest.lua` and remove the `--` in front of this line:
+**Why the radial menu?** When a player switches seats, qbx_radialmenu calls `exports.qbx_seatbelt:HasHarness()`. With qbx_seatbelt gone, that call would error. Let HUD stand in for qbx_seatbelt: open `fwb_hud/fxmanifest.lua` and remove the `--` in front of this line:
 
 ```lua
 provide 'qbx_seatbelt'  -- Qbox's seatbelt (qbx_radialmenu asks it about the harness)
 ```
 
-Now every `exports.qbx_seatbelt:HasHarness()` is answered by FWB HUD: `true` while strapped into an FWB HUD harness, otherwise `false`. See [Stand In for the Stock HUD](#stand-in-for-the-stock-hud) for the other lines.
+Now every `exports.qbx_seatbelt:HasHarness()` is answered by HUD: `true` while strapped into a HUD harness, otherwise `false`. See [Stand In for the Stock HUD](#stand-in-for-the-stock-hud) for the other lines.
 
 Prefer not to touch fxmanifest? Edit the radial menu instead: in `qbx_radialmenu/client/main.lua`, search for `HasHarness` and change the line:
 
@@ -107,13 +107,13 @@ local hasHarness = exports.fwb_hud:HasHarness()
 :::
 
 ::: info Not sure it worked?
-**/fwb_hud → Overview** shows a warning while FWB HUD's seatbelt and the framework's seatbelt are both on. Once one of them is off, the warning goes away.
+**/fwb_hud → Overview** shows a warning while HUD's seatbelt and the framework's seatbelt are both on. Once one of them is off, the warning goes away.
 :::
 ---
 
 ## Stand In for the Stock HUD
 
-Some scripts list `qb-hud`, `qbx_hud` or `qbx_seatbelt` as a dependency, or call their exports. Once you have removed that resource, FWB HUD can take its name: those scripts then start normally and their export calls reach FWB HUD, which answers the same way.
+Some scripts list `qb-hud`, `qbx_hud` or `qbx_seatbelt` as a dependency, or call their exports. Once you have removed that resource, HUD can take its name: those scripts then start normally and their export calls reach HUD, which answers the same way.
 
 Open `fwb_hud/fxmanifest.lua` and remove the `--` in front of the lines for the resources you **removed**:
 
@@ -126,7 +126,7 @@ Open `fwb_hud/fxmanifest.lua` and remove the `--` in front of the lines for the 
 
 | Line | What it answers |
 | :--- | :--- |
-| `provide 'qbx_seatbelt'` | `exports.qbx_seatbelt:HasHarness()` returns FWB HUD's harness state. The `seatbelt` / `harness` player state bags are set too. |
+| `provide 'qbx_seatbelt'` | `exports.qbx_seatbelt:HasHarness()` returns HUD's harness state. The `seatbelt` / `harness` player state bags are set too. |
 | `provide 'qb-hud'` / `'qbx_hud'` / `'ps-hud'` | Scripts with `dependency 'qb-hud'` (etc.) start. The stock HUD events (`hud:client:UpdateNeeds`, `hud:client:UpdateStress`, `hud:client:ShowAccounts`, `hud:server:GainStress`…) already work without it. |
 
 ::: danger Only for removed resources
@@ -144,9 +144,9 @@ Never uncomment a line while that resource is still on the server: two resources
 Both items are optional and **off by default**. Switch them on in game:
 
 - **Nitro:** **/fwb_hud → Features → Nitro**, toggle at the top right. Item name `nitrous`.
-- **Racing harness:** **/fwb_hud → Features → Seatbelt → Racing harness**. Item name `harness`. It needs FWB HUD's own seatbelt on, so on QBCore / Qbox do **Option 2** in [Framework Setup](#framework-setup) first.
+- **Racing harness:** **/fwb_hud → Features → Seatbelt → Racing harness**. Item name `harness`. It needs HUD's own seatbelt on, so on QBCore / Qbox do **Option 2** in [Framework Setup](#framework-setup) first.
 
-![FWB HUD Features page, Seatbelt tab scrolled to the Racing harness section: item switch, item name, crashes it lasts, fitting time, strap in time and damage taken](/images/fwb-hud/features-harness.png)
+![HUD Features page, Seatbelt tab scrolled to the Racing harness section: item switch, item name, crashes it lasts, fitting time, strap in time and damage taken](/images/fwb-hud/features-harness.png)
 
 The item names can be changed on the same pages. The item has to exist in your inventory:
 
@@ -194,9 +194,9 @@ INSERT INTO `items` (`name`, `label`, `weight`) VALUES
 | `nitrous` | Standing next to a car (not inside) | Hold `Left Shift` while driving to boost |
 | `harness` | Sitting inside the car | Press the seatbelt key (`K`) to strap in or out |
 
-Both show FWB HUD's progress bar while fitting. Players can press `X` to cancel, and a cancelled fitting keeps the item.
+Both show HUD's progress bar while fitting. Players can press `X` to cancel, and a cancelled fitting keeps the item.
 
-![FWB HUD progress bar: item icon, label, filling bar, seconds left and the X Cancel hint](/images/fwb-hud/progress-bar.png)
+![HUD progress bar: item icon, label, filling bar, seconds left and the X Cancel hint](/images/fwb-hud/progress-bar.png)
 
 ::: tip Harness wear
 A harness lasts a set number of hard crashes (default 20). When it breaks, everyone in the car gets a message and it works as a normal seatbelt. Using another `harness` item fits a new one.
