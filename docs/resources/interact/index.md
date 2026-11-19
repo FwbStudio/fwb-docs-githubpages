@@ -15,6 +15,10 @@ description: Interact for FiveM — one interaction engine for every script. Pre
   </div>
 </div>
 
+## Preview videos
+
+<div class="fwb-video-grid"><div class="fwb-video-card"><div class="fwb-video-card__frame"><iframe src="https://www.youtube.com/embed/SSspMejrIE0" title="Showcase" loading="lazy" allowfullscreen></iframe></div><p class="fwb-video-card__title">Showcase</p></div></div>
+
 ## Preview
 
 ### Press E
