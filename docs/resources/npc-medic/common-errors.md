@@ -1,68 +1,121 @@
 ---
 title: NPC Medic Common Errors & FAQ | FWB Studio Docs
-description: Frequently asked questions and troubleshooting for FiveM NPC Medic script (fs_npcmedic).
+description: Frequently asked questions and troubleshooting for FiveM NPC Medic script (fwb_npcmedic).
 ---
 
 # NPC Medic — Common Errors & FAQ
 
-Have a question or encounter an issue while running **fs_npcmedic**? Check the common questions and error solutions below.
+Have a question or an issue with **fwb_npcmedic**? Check the answers below.
 
 ---
 
-### ❓ Q: Why does `/help` say the service is currently unavailable?
+### ❓ Q: `/help` says "Enough EMS are on duty. Call them instead."
 
 ::: danger Cause
-This occurs when real player EMS/medics are online and on duty, and their count meets or exceeds the threshold configured in `config.mediccommands.restriction.stop_command_if_active_ems_more_then`.
+The number of on-duty players with a job in `ems_jobs` is at or above `stop_command_if_active_ems_more_then`.
 :::
 
 ::: tip Solution
-1. Open `fs_npcmedic/config/config.lua`.
-2. Check `config.mediccommands.restriction`:
-   ```lua
-   restriction = {
-       enable = true,
-       ems_jobs = { 'ambulance', 'doctor' },
-       stop_command_if_active_ems_more_then = 2, -- Increase this number or set enable = false for testing
-   }
-   ```
-3. If you want players to always be able to call NPC medics regardless of online EMS, set `enable = false`.
+In `config/config.lua`, raise the number, or set `enable = false` to let players call the NPC medic at any time:
+```lua
+restriction = {
+    enable = true,
+    ems_jobs = { 'ambulance', 'doctor' },
+    stop_command_if_active_ems_more_then = 2,
+},
+```
 :::
 
 ---
 
-### ❓ Q: Why does `/help` say "You are not dead" even though the player is downed?
+### ❓ Q: `/help` says "This player is not dead" even though the player is down.
 
 ::: danger Cause
-The death state from your custom or updated ambulance script is not recognized by `IsPlayerDead()` in the `bridge/` folder.
+Your ambulance script isn't one the script knows, so its death state isn't read.
 :::
 
 ::: tip Solution
-1. Open `fs_npcmedic/bridge/` and find `IsPlayerDead()`.
-2. Ensure your ambulance resource name matches the condition check:
-   - For **wasabi_ambulance v2+**: ensure `LocalPlayer.state['wasabi:deathState'] == 2`.
-   - For **qbx_medical**: ensure `exports.qbx_medical:IsDead()`.
-   - For custom scripts: add an `elseif` block calling your script's death export.
+Add your ambulance script to `IsPlayerDead()` in `bridge/ambulance/client.lua` and to `RevivePlayer()` in `bridge/ambulance/server.lua`. See [Installation → Supported Ambulance Scripts](./installation#supported-ambulance-scripts).
 :::
 
 ---
 
-### ❓ Q: Why is the revive fee not depositing into the society account?
+### ❓ Q: The console says "No supported ambulance job is running".
 
 ::: danger Cause
-The society name does not match your framework's banking configuration.
+None of the supported ambulance scripts is started, so the player is revived with a plain resurrect, which your own death system may undo.
 :::
 
 ::: tip Solution
-1. Open `fs_npcmedic/config/config.lua` and verify `money_job_name = 'ambulance'`.
-2. For ESX, the script automatically prefixes `society_` (resulting in `society_ambulance`). Ensure `society_ambulance` exists in your `addon_account` database table or banking system.
-3. For QBCore/Qbox, ensure management account `ambulance` exists in your banking resource (e.g. `qb-management`, `qb-banking`, or `renewed-banking`).
+Make sure your ambulance script starts **before** `fwb_npcmedic` in `server.cfg`, or add it to the `bridge/ambulance/` files.
 :::
 
 ---
 
+### ❓ Q: The console says "No supported framework is running" and `/help` does nothing.
+
+::: danger Cause
+`es_extended`, `qb-core` or `qbx_core` isn't started when `fwb_npcmedic` starts.
+:::
+
+::: tip Solution
+Put `ensure fwb_npcmedic` **after** your framework in `server.cfg`.
+:::
+
+---
+
+### ❓ Q: The console keeps saying "Please rename the folder ... to fwb_npcmedic".
+
+::: tip Solution
+Rename the resource folder to exactly `fwb_npcmedic` and update the `ensure` line.
+:::
+
+---
+
+### ❓ Q: `/help` opens another script's help or does nothing.
+
+::: danger Cause
+Another resource also registers `/help`.
+:::
+
+::: tip Solution
+Change the command name in `config/config.lua`, for example `callhelp = 'medic'`.
+:::
+
+---
+
+### ❓ Q: "Cooldown active" right after a revive.
+
+::: tip Solution
+This is the cooldown working: `mediccommands.cooldown` minutes after a successful revive. Calls that failed or were cancelled don't start it. Set `cooldown = 0` to turn it off.
+:::
+
+---
+
+### ❓ Q: The revive fee is not added to the society account.
+
+::: danger Cause
+The society name doesn't match your banking setup.
+:::
+
+::: tip Solution
+1. Check `money_job_name = 'ambulance'` in `config/config.lua`.
+2. **ESX:** `society_` is added in front (`society_ambulance`). Make sure that account exists in your `addon_account` table.
+3. **QBCore / Qbox:** the account `ambulance` must exist in your banking resource (Renewed-Banking, okokBanking, tgg-banking, qs-banking, fd_banking, qb-banking or qb-management). Other banking scripts can be added in `AddSocietyMoney()` in `bridge/framework/qbcore/server.lua` or `bridge/framework/qbox/server.lua`.
+:::
+
+---
+
+### ❓ Q: The ambulance never shows up and the paramedic appears next to me.
+
+::: tip Solution
+That's the fallback when there is no road near the player or the ambulance doesn't arrive within `timeouts.ambulance_to_player`. Raise the timeout or lower `vehicle_spawn_distance` so the ambulance spawns closer.
+:::
+
+---
 
 ### 💬 Need More Help?
 
-If your issue or question isn't listed here, feel free to open a ticket in our official Discord community:
+If your issue or question isn't listed here, open a ticket in our Discord:
 
 👉 **[Join FWB Studio Discord](https://discord.gg/fwbstudio)**

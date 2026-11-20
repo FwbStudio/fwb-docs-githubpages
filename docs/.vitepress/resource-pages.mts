@@ -131,6 +131,9 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   "npc-medic": {
     "audited": true,
     "configuration": true,
+    "exports": {
+      "server": true
+    },
     "commonErrors": true
   },
   "notify": {

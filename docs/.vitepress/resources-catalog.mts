@@ -208,7 +208,7 @@ export const RESOURCES: ResourceEntry[] = [
   {
     slug: 'npc-medic',
     name: 'NPC Medic',
-    repo: 'fs_npcmedic',
+    repo: 'fwb_npcmedic',
     category: 'scripts',
     seoKeywords: 'FiveM NPC medic script ESX QBCore Qbox',
     audited: true

@@ -1,6 +1,6 @@
 ---
 title: NPC Medic Configuration | FWB Studio Docs
-description: Complete configuration reference for FiveM NPC Medic script (fs_npcmedic) — commands, revive pricing, EMS limits, and hospital routing.
+description: Configuration reference for FiveM NPC Medic (fwb_npcmedic) — command, revive fee, EMS limit, zones, hospital transport, notifications and progress bar.
 ---
 
 <div class="fwb-inline-cta">
@@ -10,81 +10,103 @@ description: Complete configuration reference for FiveM NPC Medic script (fs_npc
 
 # NPC Medic — Configuration
 
-Edit `fs_npcmedic/config/config.lua` in your download to customize command permissions, cooldowns, active EMS restrictions, revive fees, society payouts, zones, and paramedic driving behaviors.
+Everything is set in `fwb_npcmedic/config/config.lua`. Texts are in `config/locales/<language>.lua`. Restart the resource after a change.
+
+::: tip Old config files
+A `config.lua` or locale file from an older version (including `fs_npcmedic`) works as it is. Settings it doesn't have use their defaults: built-in notify and progress bar, debug off.
+:::
 
 ---
 
-## Complete `config/config.lua` Reference
+## Full `config/config.lua`
 
 ```lua
 --[[
 
-    CR NPC Medic Configuration File
+    FwB NPC Medic Configuration File
 
 ]]
 
-config.Language = 'en'
+config.Language = 'en' -- file name in config/locales (en = config/locales/en.lua)
+
+config.debug = false   -- true prints extra lines in the F8 / server console while looking for a problem
+
+-- 'builtin'   = the script's own notification (default)
+-- 'ox_lib'    = ox_lib notify
+-- 'framework' = ESX.ShowNotification / QBCore.Functions.Notify
+config.notify = 'builtin'
+
+-- 'builtin' = the script's own progress bar (default)
+-- 'ox_lib'  = ox_lib progress bar
+config.progress = 'builtin'
 
 -- config.selfrevive = false means dead player will not be able to use /help command at all
 -- config.selfrevive = true means dead player will be able to use /help command to call medic for himself
 config.selfrevive = true
 
--- config.othersrevive = false means other player will be able to call /help playerid to call medic for dead player
--- config.othersrevive = true means other player will not be able to call /help playerid to call medic for dead player
+-- config.othersrevive = true means other players can use /help playerid to call a medic for a dead player
+-- config.othersrevive = false means other players can not call a medic for someone else
 config.othersrevive = true
 
 config.mediccommands = {
-    -- if config.selfrevive = false then dead player will not be able to use /help to call medic for himself but other player can use /help playerid to call medic for dead player
-    -- if config.selfrevive = true then dead player will be able to use /help to call medic for himself / also any other player will able to call help for any other person too
-    callhelp = 'help', -- Command used to summon the NPC medic
+    -- if config.selfrevive = false then dead player will not be able to use /help to call medic for himself but other player can use /help playerid to call medic for for dead player
+    -- if config.selfrevive = true then dead player will be able to use /help to call medic for himself / also any other player will able to call help for anyother person too
+    callhelp = 'help', -- {keep in mind upper settings depends upon if dead player can use this command or other player can use this command to call medic for dead player}
 
-    cooldown = 15,     -- Cooldown time in minutes before a player can use the revive command again
+    cooldown = 15,     -- Cooldown in minutes after a successful revive before the same player can get a medic again
 
     restriction = {
-        -- if enable = true then restriction will be applied on /help command usability (server will check amount of active EMS)
-        -- if enable = false then restriction will not be applied (anyone can call /help anytime)
+        -- if enable = true then restriction will be applied on /help command useable {server wil check amount of active_ems }
+        -- if enable = false then restriction will not be applied on /help command useable {any one call /help for dead person any time}
         enable = true,
         ems_jobs = { 'ambulance', 'doctor' },
 
-        -- stop_command_if_active_ems_more_then = 2 means if 2 or more EMS are online, the /help command is disabled
+        -- stop_command_if_active_ems_more_then = 2 means if this or greater then this number ems will be onlien then /help command will not work
+        --{default value is 2 mean if 2 or more ems online then /help command will not work}
+
         stop_command_if_active_ems_more_then = 2,
     },
 
-    -- Animation played when a player calls /help [id] for another downed player
+
+    -- only if anyone do /help id {call medic for other player}
+    -- animation will not player if player use /help for himself
     animation = {
         dict = 'missheistdockssetup1clipboard@base',
         name = 'base',
         flag = 49,
+        time = 4000, -- ms the caller plays it
     }
 }
 
 config.revive = {
-    revive_fee = { min = 500, max = 1000 }, -- Random price range charged to the player upon revive
 
-    revive_time = 30000,            -- Time in milliseconds (e.g. 30s) it takes for the medic to revive a player
+    revive_fee = { min = 500, max = 1000 }, -- Price of a revive (random between min and max), taken from cash first, then bank
 
-    revive_money_to_society = true, -- If true, the revive fee is deposited into the society account
+    revive_time = 30000,            -- Time in milliseconds it takes for the medic to revive a player
 
-    -- For ESX: automatically prefixes 'society_' to the job name (e.g. 'society_ambulance')
-    -- For QBCore/Qbox: uses the exact job name (e.g. 'ambulance')
+    revive_money_to_society = true, -- If true, the revive fee will be added to the society account
+
+    -- for esx it put society_ infront of job name written in money_job_name {if you have different society_ prefix then change it in bridg folders}
+    -- for qbcore it will just use job name written in money_job_name
     money_job_name = 'ambulance',
 
     crutch = {
         enable = false,
-        time = 10,  -- Duration in minutes player walks with a crutch after revive
+        time = 10,  -- time in mints
     }
 }
 
 config.blacklistzone = {
-    enable = false, -- Enable or disable blacklisted zones (where /help is blocked)
+    -- if you enable this then /help command will not work inside these zones
+    enable = false, -- Enable or disable blacklist zones
     zones = {
         [1] = { coords = vector3(1151.21, -1529.63, 34.84), radius = 100.0 },
     }
 }
 
 config.whitelistzone = {
-    -- If enabled, /help will ONLY work inside these defined zones
-    enable = false,
+    -- if you enable this then /help command will only work in these zones
+    enable = false, -- Enable or disable whitelist zones
     zones = {
         [1] = { coords = vector3(1151.21, -1529.63, 34.84), radius = 100.0 },
     }
@@ -93,74 +115,77 @@ config.whitelistzone = {
 config.medic = {
     models = { ped = 's_m_m_paramedic_01', vehicle = 'ambulance' },
 
-    -- Distance from player (in meters) where the ambulance vehicle spawns
+    -- distance from player where medic vehicle will spawn
     vehicle_spawn_distance = 200.0,
 
-    -- If true, the medic drives the dead player to the hospital before reviving them
+    -- if true then medic will bring dead player to hospital and then revive him
     bring_to_hospital = false,
 
     hospital_area = {
-        slowdown_radius = 40.0,
-        stop_radius = 15.0,
+        slowdown_radius = 40.0, -- the ambulance slows down inside this distance from the drop-off
+        stop_radius = 15.0,     -- the ride ends inside this distance from the drop-off
 
-        -- If distance between player and hospital exceeds this value, teleports player with a black screen
+        -- if distance between player and hospital is greater then this value then medic will teleport player to hospital {in black screen teleportation}
         teleport_distance = 5.0,
     },
 
-    -- Drop-off points used when bring_to_hospital = true (script chooses the closest hospital)
-    hospitals_dropoff = {
+    -- hospital points only used if bring_to_hospital = true
+    hospitals_dropoff = { -- {script will choose cloesest hospital from this list}
         [1] = vector3(292.4496, -585.3409, 43.1954),
     },
 }
 
 config.timeouts = {
-    ambulance_to_player = 60000, -- Max time in ms for ambulance to reach the player before failsafe teleport
-    doctor_to_player = 20000,    -- Max time in ms for doctor ped to reach the player
-    bring_to_hospital = 120000,  -- Max time in ms for medic to drive player to hospital
+    ambulance_to_player = 60000, -- Time in ms for ambulance to reach the player
+    doctor_to_player = 20000,    -- Time in ms for doctor to reach the player
+    doctor_to_vehicle = 60000,   -- Time in ms for doctor to carry the player to the ambulance (bring_to_hospital)
+    bring_to_hospital = 120000,  -- Time in ms for medic to bring player to hospital
 }
 ```
 
 ---
 
-## Configuration Parameter Details
+## Settings
 
-### Calling & EMS Restrictions
-* **`config.selfrevive`**: Set to `true` to allow dead players to run `/help` for themselves. Set to `false` if only other conscious players are allowed to call for them.
-* **`config.othersrevive`**: Set to `true` to allow players to call a medic for someone else using `/help [playerid]`.
-* **`config.mediccommands.cooldown`**: Cooldown time (in minutes) enforced before a player or target can request NPC medic service again.
-* **`config.mediccommands.restriction.stop_command_if_active_ems_more_then`**: The maximum active player EMS count threshold. If the number of online on-duty medics meets or exceeds this number, the NPC medic command is automatically locked.
+### General
+* **`config.Language`**: File name in `config/locales/`. To translate, copy `en.lua` to a new file (for example `de.lua`), change `config.Lang['en']` in it to `config.Lang['de']`, translate the texts and set `config.Language = 'de'`. Missing texts fall back to English.
+* **`config.debug`**: `true` prints extra lines in the F8 and server console while looking for a problem.
+* **`config.notify`**: `'builtin'` (the script's own notification, default), `'ox_lib'` or `'framework'` (ESX / QBCore / Qbox notify). When the picked one isn't running, the built-in one is shown.
+* **`config.progress`**: `'builtin'` (default) or `'ox_lib'`. The progress bar shows while the paramedic does CPR.
 
-### Pricing & Society Banking
-* **`config.revive.revive_fee`**: Table with `min` and `max` cash/bank amount charged to the patient.
-* **`config.revive.revive_money_to_society`**: When `true`, funds paid by the player are deposited directly into the `money_job_name` society account (`society_ambulance` for ESX, or `ambulance` management for QBCore/Qbox).
-* **`config.revive.crutch`**: Optional post-revive debuff giving the player a physical crutch and slowed walking animation for a configurable duration in minutes.
+### Who Can Call
+* **`config.selfrevive`**: `true` lets a downed player type `/help` for themselves.
+* **`config.othersrevive`**: `true` lets other players type `/help [playerid]` for someone who is down. The caller plays `mediccommands.animation` for `time` ms.
+* **`config.mediccommands.callhelp`**: The command name (default `help`). Change it if another script already uses `/help`.
+* **`config.mediccommands.cooldown`**: Minutes after a **successful** revive before the same player can get a medic again. A call that fails or is cancelled doesn't start the cooldown. The cooldown is kept per player license, so leaving and rejoining doesn't skip it.
+* **`config.mediccommands.restriction`**: With `enable = true`, the command turns off while `stop_command_if_active_ems_more_then` or more players with a job in `ems_jobs` are on duty.
 
-### Paramedic Navigation & Hospitals
-* **`config.medic.bring_to_hospital`**: When `false`, the paramedic treats and revives the player directly at the incident scene. When `true`, the paramedic loads the patient into the ambulance and drives to the closest coordinate listed in `hospitals_dropoff`.
-* **`config.timeouts`**: Failsafe timers (in milliseconds) that prevent NPCs from getting stuck in GTA V traffic.
+### Revive Fee & Society
+* **`config.revive.revive_fee`**: A random amount between `min` and `max`, taken from cash first, then bank. A player who can't pay can't call a medic.
+* **`config.revive.revive_time`**: How long the CPR takes, in milliseconds.
+* **`config.revive.revive_money_to_society`** / **`money_job_name`**: Sends the fee to the society account (`society_ambulance` on ESX, `ambulance` on QBCore / Qbox).
+* **`config.revive.crutch`**: Gives a crutch for `time` minutes after the revive (`wasabi_crutch` or `ak47_crutch`).
+
+### Zones
+* **`config.blacklistzone`**: With `enable = true`, the medic doesn't come inside these zones.
+* **`config.whitelistzone`**: With `enable = true`, the medic only comes inside these zones.
+
+### Paramedic & Hospital
+* **`config.medic.models`**: Paramedic ped and ambulance model.
+* **`config.medic.vehicle_spawn_distance`**: How far from the player the ambulance spawns.
+* **`config.medic.bring_to_hospital`**: `false` revives the player where they are. `true`: the paramedic carries the player to the ambulance and drives to the closest point in `hospitals_dropoff`; the screen fades and the player is revived there.
+* **`config.medic.hospital_area`**: The ambulance slows down inside `slowdown_radius` and stops inside `stop_radius` of the drop-off. When the player is farther than `teleport_distance` from it, they are moved to the drop-off during the fade.
+* **`config.timeouts`**: Safety timers in milliseconds so the paramedic never gets stuck. When the ambulance takes too long, the paramedic comes on foot; when the paramedic takes too long to walk over, they are placed next to the player.
 
 ---
 
-## Custom Ambulance Scripts (`bridge/`)
+## The open `bridge/` folder
 
-`fs_npcmedic` comes with an unlocked `bridge/` folder. Death states are handled in `IsPlayerDead()`:
+| Folder | What it does |
+| :--- | :--- |
+| `bridge/framework/esx`, `qbcore`, `qbox` | Money, jobs, EMS count, society money and the framework notify. Only the running framework is used. |
+| `bridge/ambulance` | `IsPlayerDead()` (client), `RevivePlayer()` and `ApplyCrutch()` (server). Add your own ambulance script here. |
+| `bridge/notify/builtin`, `ox_lib`, `framework` | The notifications picked with `config.notify`. |
+| `bridge/progressbar/builtin`, `ox_lib` | The progress bars picked with `config.progress`. |
 
-```lua
-function IsPlayerDead()
-    if GetResourceState("wasabi_ambulance") == 'started' and GetResourceMajorVersion("wasabi_ambulance") < 2 then
-        return exports.wasabi_ambulance:isPlayerDead()
-    elseif GetResourceState("wasabi_ambulance") == 'started' and GetResourceMajorVersion("wasabi_ambulance") >= 2 then
-        return (LocalPlayer.state?['wasabi:deathState'] or 0) == 2
-    elseif GetResourceState('ak47_ambulancejob') == 'started' then
-        return LocalPlayer.state?.dead
-    elseif GetResourceState('p_ambulancejob') == 'started' then
-        return LocalPlayer.state?.isDead
-    elseif GetResourceState('qbx_ambulancejob') == 'started' then
-        return exports.qbx_medical:IsDead()
-    elseif GetResourceState('tk_ambulancejob') == 'started' then
-        return LocalPlayer.state?.isDead
-    end
-end
-```
-
-To support a custom medical script, simply add your resource check to `IsPlayerDead()` inside the `bridge/` folder.
+To add your own notification, copy `bridge/notify/ox_lib/client.lua` to a new folder (for example `bridge/notify/mynotify/client.lua`), change `NotifyBridge.ox_lib` to `NotifyBridge.mynotify`, call your notify inside it, add the file to `client_scripts` in `fxmanifest.lua` and set `config.notify = 'mynotify'`. Progress bars work the same way with `ProgressBridge`.
