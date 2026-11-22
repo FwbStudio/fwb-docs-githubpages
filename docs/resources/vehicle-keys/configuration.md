@@ -54,7 +54,7 @@ You don't need the wizard for the script to work: without it, every setting has 
 | **Job keys** | Rules: members of a job (from a set rank) get keys to cars by plate start or model. |
 | **Car theft** | NPC car locks and rules, lockpicks and the alarm, hotwire and search, carjacking and searching the body. See [Car Theft](#car-theft) below. |
 | **Minigames** | The built-in puzzles per difficulty, with a live preview. |
-| **Bridges** | Framework, inventory, notification, target, text UI, progress bar, dispatch, and one minigame script **per puzzle**. Each is set to auto-detect or picked by hand. |
+| **Bridges** | Framework, inventory, notification, interaction (**Press E**, the default, or **Target**, through fwb_interact), progress bar, dispatch, and one minigame script **per puzzle**. Each is set to auto-detect or picked by hand. The **language** is picked here too. |
 | **Logs** | Discord webhook, Fivemanage or custom, and which groups get logged (keys given, theft, admin actions). |
 | **Settings** | The tabs below. |
 
@@ -64,9 +64,9 @@ You don't need the wizard for the script to work: without it, every setting has 
 
 | Tab | What you set there |
 | :--- | :--- |
-| **General** | Keys are items or saved keys, the key item name, how long **stolen keys** work (0 = until the owner changes the locks, the default), the format of **new plates** (for the `GeneratePlate` export), money sign and Debug. |
+| **General** | Keys are items or saved keys, the key item name, how long **stolen keys** work (0 = until the owner changes the locks, the default), the format of **new plates** (for the `GeneratePlate` export), money sign and **Debug** (console messages; leave it off on a live server). |
 | **Locking** | How far the lock key and the fob reach, how far **Summon** reaches (100 m by default, up to 150 m), which key ring controls players get (windows, doors, seats, lights), lock chirp, flashing lights, fob animation, engine auto-start, engine keeps running, Summon. |
-| **Trackers** | Item names (tracker, scanner, pliers), the props (the scanner is `w_am_digiscanner` by default), report rate, battery life, the fob's Track time, detector time per spot, minigame difficulties, what a wrong wire does, owner alerts and the kill switch. |
+| **Trackers** | Item names (tracker, scanner, pliers), the detector held while scanning (`w_am_metaldetector` by default; trackers show no prop on the car), report rate, battery life, the fob's Track time, detector time per spot, minigame difficulties, what a wrong wire does, owner alerts and the kill switch. |
 | **Police** | Police jobs (whole job or one rank), the alert chance per action, the built-in blip time, and how many police must be on duty before lockpicking or hotwiring works. |
 | **Spares & locksmith** | Spares per car, the spare fee, locksmith prices (new key, spare, change locks, tracker, detector, pliers, new plate), the plate cooldown and the hand-over fee. |
 | **Keybinds** | How the lock key works (tap to lock, hold for the fob, and how long: 1.5 s by default), and the default keys. |
@@ -94,8 +94,8 @@ You don't need the wizard for the script to work: without it, every setting has 
 | Tab | What you set there |
 | :--- | :--- |
 | **NPC cars** | **NPC cars are:** by chance (parked % and on-the-road %), every car locked, or no car locked. **Rules** are checked first, top to bottom, and the first that fits decides. Match by **vehicle type** (Emergency, Super, Motorcycles…), **model** (`police`) or **plate** (`LS*` = starts with LS). Each rule is always locked, never locked, or a chance %. |
-| **Lockpicks** | Lockpick and advanced lockpick: item name (`carlockpick`, `advancedlockpick`), minigame difficulty, chance to open, chance to break. The alarm: chance and how long it sounds. |
-| **Hotwire & search** | Hotwire: time, difficulty, chance. Search the car: time and chance to find a key. |
+| **Lockpicks** | Lockpick and advanced lockpick: item name (`carlockpick`, `advancedlockpick`), minigame difficulty, chance to open once the minigame is won (100% by default), chance to break. The alarm: chance and how long it sounds. |
+| **Hotwire & search** | Hotwire: time, difficulty, and the chance it works once the puzzle is won (100% by default: winning the puzzle always works). Search the car: time and chance to find a key. |
 | **Carjacking** | **Needs:** a gun, a gun or a melee weapon, or anything (bare hands). How long to threaten, the top speed of a car that still stops, and the threat animations. **What the driver does:** shares for throws you the key and runs / runs off with it / drives off / fights back, each shown as its real chance. **Police always get the key:** on by default, police jobs skip the roll. **Search the body:** time and chance (a driver who ran off with the key always has it). |
 
 
@@ -134,11 +134,11 @@ Players can rebind them in GTA's settings: **Key Bindings → FiveM**. The admin
 | `bridge/hooks/server.lua` | Your own rules before each action and reactions after it. See [Hooks & Events](./editable-files/server). |
 | `bridge/framework/*` | ESX, QBCore and Qbox: players, money, owned vehicles, items, jobs. |
 | `bridge/inventory/*.lua` | Key items with their plate, item counts. |
-| `bridge/notify/*.lua`, `bridge/progressbar/*.lua`, `bridge/textui/*.lua`, `bridge/target/*.lua` | Notifications, progress bars, text prompts and the locksmith's target. |
+| `bridge/notify/*.lua`, `bridge/progressbar/*.lua`, `bridge/target/fwb_interact.lua` | Notifications, progress bars and the interaction (fwb_interact: Press E or Target). |
 | `bridge/dispatch/*.lua` | Police alerts. |
 | `bridge/minigame/*.lua` | Minigame scripts. Fill in `custom.lua` to use your own. |
 | `bridge/logs/*.lua` | Where logs go. |
-| `locale/en.lua` | Every text players see in notifications and prompts. |
+| `locale/*.lua` | Every text players see: notifications, hints and the player screens (key ring, fob, locksmith, minigames). 11 languages: English, German, French, Spanish, Portuguese (Brazil), Dutch, Italian, Polish, Turkish, Arabic and Russian. Pick one under **Bridges → Language**. For another language, copy `en.lua` to `<code>.lua`, change the code on its first lines and translate the text after each `=`; it shows up in the list on restart. The admin panel is in English. |
 
 ::: tip
 A new file in one of the single-file bridge folders (inventory, notify, dispatch, minigame…) loads on restart and shows up on the **Bridges** page.

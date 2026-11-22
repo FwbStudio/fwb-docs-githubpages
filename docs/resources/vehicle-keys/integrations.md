@@ -16,8 +16,7 @@ Everything that touches other resources lives in the open `bridge/` folder. Each
 | Framework | ESX, QBCore, Qbox |
 | Inventory (key items) | ox_inventory, qb-inventory / ps-inventory / lj-inventory, qs-inventory, codem-inventory. Other inventories: saved keys. |
 | Notifications | fs_notify, ox_lib, okokNotify, mythic_notify, the framework's own |
-| Target (locksmith) | ox_target, qb-target, sleepless_interact, built-in "[E]" 3D text |
-| Text UI (key hints) | Built in, ox_lib, okokTextUI, esx_textui, qb-core |
+| Interaction | fwb_interact (free): **Press E** by default, or **Target** with ox_target, qb-target or qtarget. cr_interact works too. |
 | Progress bar | Built in, ox_lib, fwb_hud, progressbar, esx_progressbar |
 | Dispatch | cd_dispatch, ps-dispatch, qs-dispatch, rcore_dispatch, core_dispatch, built in (notification + blip) |
 | Minigames | Built in, ox_lib, ps-ui, custom. Pick one **per puzzle**: lockpick, hotwire, wire cutting, wire attaching. |
@@ -51,8 +50,8 @@ exports.fwb_vehiclekeys:EndTestDrive(source, vehicle)
 
 To give keys from your framework's own vehicle code (the admin `/car` command, the framework's spawn functions), see **Framework Integration**: [ESX](./framework-integration/esx), [QBCore](./framework-integration/qbcore), [Qbox](./framework-integration/qbox).
 
-::: tip Key items are never touched
-`GiveKeys` gives a session key, and `RemoveKeys` only takes a session or temporary key back. In items mode, the owner's key item stays in the inventory when the car is stored, and fits the car again when it comes out.
+::: tip Key items and garages
+With key items on, `GiveKeys` gives the owner their key item when the car comes out (only if they don't already carry one), and `RemoveKeys` takes it back when the car is stored. Spares and stolen keys are never taken. Anyone who is not the owner gets a key in memory, never an item.
 :::
 
 ::: tip Bought cars need nothing
@@ -61,7 +60,7 @@ Owners always have the key to their own cars: the script reads your framework's 
 
 | Situation | What to use |
 | :--- | :--- |
-| A player's own car out of the garage | Nothing (they own it), or client `GiveKeys(vehicle)` |
+| A player's own car out of the garage | Server `GiveKeys(src, plate)` when it comes out and `RemoveKeys(src, plate)` when it is stored: with key items on, the owner's key item comes and goes with the car. Saved keys: nothing needed (they own it) |
 | A rental, a job car, a mission car your script spawns | Server `GiveKeys(src, plate)`: it works **before** the car exists (keys are by plate), and the car is never locked by the NPC car roll |
 | Job cars, gang garages, keys for someone else | Server `GiveKey(src, vehicle, ...)` (the client export only works on a car the player owns or nobody owns) |
 | A test drive | Server `StartTestDrive(src, vehicle, seconds)` when it starts, `EndTestDrive(src, vehicle)` when it ends: never a key item |
@@ -85,16 +84,22 @@ These calls keep working without changes. Each one gives a key only for the car 
 | `TriggerEvent('qb-vehiclekeys:client:AddKeys', plate)` | Gives a key |
 | `TriggerServerEvent('qb-vehiclekeys:server:AcquireVehicleKeys', plate)` | Gives a key |
 | `TriggerServerEvent('vehicles_keys:selfGiveVehicleKeys', plate)` (jaksam) | Gives a key |
+| `TriggerServerEvent('vehicles_keys:selfGiveCurrentVehicleKeys')` (jaksam) | Gives a key to the car the player drives |
+| `TriggerServerEvent('vehicles_keys:selfRemoveKeys', plate)` (jaksam) | Drops the player's own session / temporary key |
+| `TriggerServerEvent('vehicles_keys:refreshMineOwnedVehicles')` (jaksam) | Reads the player's own cars again at once (after a purchase) |
 | `TriggerServerEvent('t1ger_keys:updateOwnedKeys', plate, true / false)` | Gives / takes back a key |
 
-The export names of other key scripts work too, as long as they call `exports.fwb_vehiclekeys`:
+A script that calls another key script's **exports** (`exports.qs-vehiclekeys:...`, `exports.wasabi_carlock:...`, jaksam's `exports["vehicles_keys"]:...`) needs one change: call ours instead. On the client, `GiveKeys(plate, model)` and `RemoveKeys(plate)` take the same arguments as qs-vehiclekeys (a second argument is ignored):
 
 | Other script's call | Becomes |
 | :--- | :--- |
-| `GiveKeys(plate, model)` (qs-vehiclekeys) | `exports.fwb_vehiclekeys:GiveKeys(plate, model)` |
-| `AddKey(vehicle)` (mk_vehiclekeys) | `exports.fwb_vehiclekeys:AddKey(vehicle)` |
-| `GiveKey(plate)` (wasabi_carlock) | `exports.fwb_vehiclekeys:GiveKey(plate)` |
-| `RemoveKeys(plate, model)` / `RemoveKey(plate)` | `exports.fwb_vehiclekeys:RemoveKeys(plate)` |
+| `exports['qs-vehiclekeys']:GiveKeys(plate, model)` | `exports.fwb_vehiclekeys:GiveKeys(plate, model)` |
+| `exports['qs-vehiclekeys']:RemoveKeys(plate, model)` | `exports.fwb_vehiclekeys:RemoveKeys(plate)` |
+| `exports.wasabi_carlock:GiveKey(plate)` (client) | `exports.fwb_vehiclekeys:GiveKeys(plate)` |
+| `exports.mk_vehiclekeys:AddKey(vehicle)` (client) | `exports.fwb_vehiclekeys:GiveKeys(vehicle)` |
+| `exports["vehicles_keys"]:giveVehicleKeysToPlayerId(src, plate)` (server) | `exports.fwb_vehiclekeys:GiveKeys(src, plate)` |
+| `exports["vehicles_keys"]:removeKeysFromPlayerId(src, plate)` (server) | `exports.fwb_vehiclekeys:RemoveKeys(src, plate)` |
+| `exports["vehicles_keys"]:refreshPlayerOwnedVehicles(src)` (server) | `exports.fwb_vehiclekeys:RefreshOwnedVehicles(src)` |
 
 ### Example: a garage with a "custom key system" slot
 

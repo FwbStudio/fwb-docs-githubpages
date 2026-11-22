@@ -53,9 +53,10 @@ Everyone. Turn it off, or rename it, in **Settings → Commands → Seats**. A n
 | :--- | :--- | :--- |
 | Lock / unlock | `U` (tap) | Near a car you have a key for, or sitting in it |
 | Key fob | `U` (hold 1.5 s) | Anywhere. Tap the fob's screen for every key you hold. |
-| Engine on / off | `G` | Driver seat, with a key |
+| Engine on / off | `G` | Driver seat, with a key. Turned off, it stays off: W does not start it. |
 | Hotwire | `H` | Driver seat, without a key |
-| Search for a key | `J` | Driver seat without a key, or next to a dead NPC driver |
+| Search the car for a key | `J` | Driver seat, without a key |
+| Search a dead NPC driver | `E` | Next to the body (through fwb_interact) |
 | Pick up a thrown key | `E` | Next to the key a carjacked driver threw |
 | Scan a spot | `E` | Holding the scanner, at each spot round a car |
 

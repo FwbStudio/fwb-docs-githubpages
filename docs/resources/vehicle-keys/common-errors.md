@@ -53,8 +53,12 @@ Cars the player **owns** (in your framework's owned-vehicles table) always work 
 
 ### ❓ Q: Storing a car in the garage doesn't remove the key item
 
-::: tip This is how it works
-The key item is a real, permanent key. A garage only gives and takes a **session** key; the owner's key item stays in the inventory and fits the car again next time. A lost or stolen key is fixed at the locksmith with **Change the locks**.
+::: danger Cause
+The garage does not call `RemoveKeys` when the car is stored.
+:::
+
+::: tip Solution
+Call `exports.fwb_vehiclekeys:RemoveKeys(src, plate)` when the car goes in. It takes back the owner's key item (with key items on) and any session key. **Spares and stolen keys stay**: they are someone else's keys. Taking the car out again with `GiveKeys` gives the owner exactly one key item; it never stacks.
 :::
 
 ---
@@ -129,7 +133,27 @@ A hook stopped it: in `bridge/hooks/server.lua` or in another resource that call
 ### ❓ Q: I need console prints to find a problem
 
 ::: tip Solution
-Turn on **Debug messages** in **Settings → General**. Leave it off on a live server.
+Turn on **Debug messages** in **Settings → General**. Leave it off on a live server. With Debug off, the console only shows install problems (oxmysql, the database, the framework, fwb_interact missing) and the update notice.
+:::
+
+---
+
+### ❓ Q: The engine key turns the engine off and straight back on
+
+::: danger Cause
+Another script also toggles the engine on the same key (often `G`). Both run on one press: one turns it off, the other turns it back on.
+:::
+
+::: tip Solution
+Turn the other script's engine toggle off, or move it to another key. **fwb_hud** does this by itself while Vehicle Keys runs.
+:::
+
+---
+
+### ❓ Q: The hotwire or lockpick puzzle was won, but it still failed
+
+::: tip This is how it works
+Winning the puzzle earns the chance set in **Car theft** (Hotwire & search / Lockpicks). The default is 100%, so winning always works; a server that lowered it gets "The wires sparked, but the engine did not catch". Servers that saved their settings before the default changed keep their old numbers: set them to 100 there.
 :::
 
 ---

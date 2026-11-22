@@ -151,6 +151,10 @@ end)
 | `trackerPlanted` | `source, plate, id, own` |
 | `trackerRemoved` | `source` (`nil`: admin or script), `plate, id, own` |
 | `engineKilled` | `source, plate` |
+| `policeAlerted` | `source, kind` (`lockpick` / `hotwire` / `alarm` / `carjack`), `plate, coords, model` |
+| `alarm` | `plate, entity, netId, seconds, on` (`false` = it was stopped) |
 | `plateChanged` | Fires as `fwb_vehiclekeys:plateChanged` with `(oldPlate, newPlate)`. In the open file: `after.plateChanged({ source, oldPlate, newPlate })`. |
 
 The event name is always `fwb_vehiclekeys:` plus the name in the table. These are server events only, so a player's game can't fake them.
+
+On the client, `fwb_vehiclekeys:client:lockChanged` `(vehicle, locked)` fires in every game within 40 m of a car that was locked or unlocked (see [Client Exports](../exports/client)).

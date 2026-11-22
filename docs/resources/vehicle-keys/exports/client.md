@@ -174,6 +174,43 @@ end
 
 ---
 
+::: details GetOwnedPlates
+The plates of the player's own cars (asks the server).
+
+### Export
+```lua
+exports.fwb_vehiclekeys:GetOwnedPlates()
+```
+
+### Returns
+* `{ 'ABC123', ... }`
+
+### Example
+```lua
+-- a phone app lists the player's cars
+for _, plate in ipairs(exports.fwb_vehiclekeys:GetOwnedPlates()) do
+    print(plate)
+end
+```
+:::
+
+::: details RefreshOwnedVehicles
+The player just bought or sold a car: the server reads their cars again at once. The same as the server export `RefreshOwnedVehicles(src)`, for a dealership that runs on the client side.
+
+### Export
+```lua
+exports.fwb_vehiclekeys:RefreshOwnedVehicles()
+```
+
+### Example
+```lua
+-- right after a purchase went through
+exports.fwb_vehiclekeys:RefreshOwnedVehicles()
+```
+:::
+
+---
+
 ## Locks & car
 
 ::: details ToggleLock
@@ -341,6 +378,29 @@ exports.fwb_vehiclekeys:RunMinigame(kind, difficulty)
 if exports.fwb_vehiclekeys:RunMinigame('lockpick', 'hard') then
     TriggerServerEvent('myrobbery:openSafe')
 end
+```
+:::
+
+---
+
+## Events
+
+::: details fwb_vehiclekeys:client:lockChanged
+Fires in the game of every player within 40 m of a car that was locked or unlocked.
+
+### Event
+```lua
+AddEventHandler('fwb_vehiclekeys:client:lockChanged', function(vehicle, locked) end)
+```
+
+### Example
+```lua
+-- a HUD shows a small lock icon for the car the player just locked
+AddEventHandler('fwb_vehiclekeys:client:lockChanged', function(vehicle, locked)
+    if vehicle == GetVehiclePedIsIn(PlayerPedId(), true) then
+        showLockIcon(locked)
+    end
+end)
 ```
 :::
 

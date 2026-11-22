@@ -22,9 +22,15 @@ Exports called by other scripts skip the player-action hooks, but the `giveKey` 
 ## Keys
 
 ::: details GiveKeys
-Gives a session key: it lasts until the player leaves or the server restarts. It is never a key item and is never saved.
+Gives the player a key to the car. Use it when a garage takes a car out, and for rentals and job cars.
+
+- **The owner, key items on:** they get their key item, only when they don't already carry a working one to this car. Taking a car out twice never stacks keys.
+- **The owner, key items off:** nothing is needed, the owner always has access.
+- **Anyone else:** a key in memory until they leave or the server restarts. Never a key item, never saved.
 
 Because keys are by plate, you can call it **before** the car exists: the key works as soon as a car with that plate spawns. When your script has just set the plate with `SetVehicleNumberPlateText`, pass that plate instead of the vehicle, because the server may still read the old plate for a moment.
+
+Garages that spawn the car on the server and send its plate in a `VehicleProperties` / `setVehicleProperties` state bag (ESX, ox_lib, Qbox) can pass the vehicle right after spawning: the key goes to the plate the car is getting, not the random one it has for a moment.
 
 ### Export
 ```lua
@@ -45,7 +51,11 @@ exports.fwb_vehiclekeys:GiveKeys(source, plate)
 :::
 
 ::: details RemoveKeys
-Takes back a key the player holds through this script: a session, temporary or saved spare key. The owner keeps access to their own car, and key items stay in the inventory (use [ChangeLocks](#keys) to make old key items stop working).
+Takes the key back. Use it when a garage stores the car.
+
+- A key the player holds in memory (from `GiveKeys`, a temporary or saved key) goes.
+- **Key items on:** the owner's key item to this car goes back too, so it is in the inventory only while the car is out. A spare or stolen key item stays (use [ChangeLocks](#keys) to make old key items stop working).
+- The owner keeps access to their own car either way.
 
 ### Export
 ```lua
@@ -140,6 +150,57 @@ exports.fwb_vehiclekeys:RemoveKeyById(identifier, plate)
 -- a rental company ends every rental of a plate, even for offline players
 for _, holder in ipairs(exports.fwb_vehiclekeys:GetKeyHolders('RENT 42')) do
     exports.fwb_vehiclekeys:RemoveKeyById(holder.identifier, 'RENT 42')
+end
+```
+:::
+
+::: details GiveKeyById
+Gives a key to a player who may be offline, by their character id (the framework's identifier).
+
+- **Online:** the same as `GiveKey`.
+- **Offline:** a saved key they find when they join: a spare, or a temporary key with an end time. It works with key items on too, it is just not an item.
+
+### Export
+```lua
+exports.fwb_vehiclekeys:GiveKeyById(identifier, plate, opts)
+```
+
+### Arguments
+| Name | Type | Required | Meaning |
+| :--- | :--- | :--- | :--- |
+| `identifier` | `string` | Required | The character id (ESX `identifier`, QBCore / Qbox `citizenid`) |
+| `plate` | `string` | Required | The car's plate |
+| `opts` | `table` or `string` | Optional | `{ kind = 'spare' or 'temp', seconds, label }`, or just the kind. Default `spare` |
+
+### Returns
+* `true`, or `false, reason` (`'player'`, `'plate'`, `'hook'`)
+
+### Example
+```lua
+-- a car rental website: the renter gets a 2-hour key, online or not
+exports.fwb_vehiclekeys:GiveKeyById(citizenid, 'RENT 042', { kind = 'temp', seconds = 7200, label = 'Rental' })
+```
+:::
+
+::: details GetKeysById
+Every key of a player who may be offline.
+
+- **Online:** what their key ring lists.
+- **Offline:** their saved keys and their own cars. Key items are not listed, because an offline player's inventory is not read.
+
+### Export
+```lua
+exports.fwb_vehiclekeys:GetKeysById(identifier)
+```
+
+### Returns
+* `{ { plate, kind, label, expires, owned } }`
+
+### Example
+```lua
+-- a police computer lists the keys of a suspect
+for _, k in ipairs(exports.fwb_vehiclekeys:GetKeysById(citizenid)) do
+    print(k.plate, k.kind, k.owned and 'owner' or '')
 end
 ```
 :::
@@ -362,6 +423,27 @@ exports.fwb_vehiclekeys:OwnerChanged(plate)
 -- a car auction moves the car to the winner itself
 MySQL.update.await('UPDATE owned_vehicles SET owner = ? WHERE plate = ?', { winnerId, plate })
 exports.fwb_vehiclekeys:OwnerChanged(plate)
+```
+:::
+
+::: details RefreshOwnedVehicles
+Call it after your dealership or garage wrote to the owned-vehicles table for a player (bought, sold, gifted). Their cars are read again at once, so a car they just bought counts straight away and a car they sold stops counting. Without it, a new car counts within 15 seconds.
+
+The same job as jaksam's `refreshPlayerOwnedVehicles`, without its 2-second wait.
+
+### Export
+```lua
+exports.fwb_vehiclekeys:RefreshOwnedVehicles(src)
+```
+
+### Returns
+* `true` when the player's cars were read, `false` when the player is not loaded
+
+### Example
+```lua
+-- a dealership after the sale
+MySQL.insert.await('INSERT INTO owned_vehicles (owner, plate, vehicle) VALUES (?, ?, ?)', { xPlayer.identifier, plate, json.encode(props) })
+exports.fwb_vehiclekeys:RefreshOwnedVehicles(source)
 ```
 :::
 
@@ -749,8 +831,37 @@ print(n .. ' trackers removed')
 ```
 :::
 
+::: details RemoveTracker
+Removes one tracker: an `id` from `GetTrackers`. Use it for your own removal scene, such as a mechanic job. Trackers show no prop on the car; players find them with the scanner item.
+
+### Export
+```lua
+exports.fwb_vehiclekeys:RemoveTracker(id, src)
+```
+
+### Arguments
+| Name | Type | Required | Meaning |
+| :--- | :--- | :--- | :--- |
+| `id` | `number` | Required | The tracker's id from `GetTrackers` |
+| `src` | `number` | Optional | Who removed it (passed on to the `trackerRemoved` event) |
+
+### Returns
+* `true` when the tracker was there and is gone, `false` when there was no such tracker
+
+### Example
+```lua
+-- a mechanic job: the mechanic takes off the first planted tracker
+for _, t in ipairs(exports.fwb_vehiclekeys:GetTrackers(plate)) do
+    if not t.own then
+        exports.fwb_vehiclekeys:RemoveTracker(t.id, mechanicSrc)
+        break
+    end
+end
+```
+:::
+
 ::: details KillEngine
-Stops the engine wherever the car is. It needs a key or a new hotwire to start again.
+Stops the engine wherever the car is. It needs a key or a new hotwire to start again. A driver with the key starts it with the engine key: pressing W alone does not start it.
 
 ### Export
 ```lua

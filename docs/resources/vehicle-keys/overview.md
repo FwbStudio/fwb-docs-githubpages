@@ -33,6 +33,7 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 
 * **Lock key** — tap to lock or unlock the nearest car you have a key for. Hold it (1.5 s by default) to take out the key fob. The notification says which car: *Car locked — Albany Manana · KO1Z1H9 is locked.*
 * **Key fob** — the screen shows the distance, signal, lock state and plate. The buttons are lock, unlock, trunk, remote engine, **Summon** (the car drives itself to you, from up to 100 m by default, 150 m at most) and **Track** (your car on the map for a while).
+* **Engine** — the engine key turns it on and off. Turned off, it stays off: pressing W does not start it again until the engine key, or until someone gets in anew.
 * **Seats** — `/seatshuffle` (renamable) moves you to the next free seat. Passengers are no longer slid into an empty driver seat by GTA (switchable).
 * **Key ring** — every key you hold, and for each car:
   * windows and doors one by one;
@@ -51,7 +52,7 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 | :--- | :--- |
 | **NPC cars** | Parked cars and cars on the road are locked by chance, or always, or never. **Rules** by vehicle type, model or plate come first: for example, emergency cars always locked and bicycles never. |
 | **Lockpick** | Two items (`carlockpick`, `advancedlockpick`) with their own chances. A disc-lock puzzle; the pick may break and the alarm may go off. |
-| **Hotwire** | In the driver seat without a key: a screwdriver-in-the-ignition puzzle. |
+| **Hotwire** | In the driver seat without a key: a screwdriver-in-the-ignition puzzle. Winning it starts the car (the admin can add a chance). |
 | **Search the car** | A chance to find the key in the car, once per car. |
 | **Carjacking** | Threaten an NPC driver with a gun, a melee weapon or bare hands (admin's choice): aim at the driver or anywhere on the car. A progress bar shows the threat. The car is braked and held, the driver keeps their hands up, then **throws the key at your feet and runs** (pick it up with **E**), **runs off with it**, **drives off** or **fights back**. You set the share of each. **Police always get the key** (switchable). A carjacked car you drive with its key is kept: the game no longer tidies it away as traffic. |
 | **Search the body** | A dead NPC driver may have the key. A driver who ran off with the key always has it. |
@@ -64,9 +65,9 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 
 #### 📡 GPS Trackers
 
-* **Plant a tracker** — lie under the car and wire it in (a wiring minigame). It sits under the body as a real prop, out of sight from outside, and you can see it on a lift or when the car flips. Its holder follows the car on the map until the battery dies. When the car is not in the city (in a garage, or gone) the card says **NO SIGNAL** and the blip turns grey where it was last seen.
+* **Plant a tracker** — lie under the car and wire it in (a wiring minigame). Nothing shows on the car: only the scanner finds it. Its holder follows the car on the map until the battery dies. When the car is not in the city (in a garage, or gone) the card says **NO SIGNAL** and the blip turns grey where it was last seen.
 * **Owner's own tracker** — owners fit their own to find their car, get theft alerts and use a **remote kill switch**.
-* **Scanner** — a handheld scanner (GTA's digiscanner). Walk round the car and press **E** at each spot, side by side, to find a hidden tracker. Police can read who planted it.
+* **Scanner** — a handheld scanner (GTA's digiscanner). Walk round the car and press **E** at each spot, side by side, to find a tracker on the car: a hidden one, or the owner's own (so a thief can find and cut it). Police can read who planted it.
 ![Tracking card: the tracked car's plate, battery, distance and direction, and the next report](/images/vehicle-keys/player-tracking.png)
 
 ![The scanner card: the car from above with its nine spots, the spot being scanned and the results so far](/images/vehicle-keys/player-scanner.png)
@@ -75,7 +76,7 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 
 #### 🔧 Locksmiths
 
-* Places set in game where the admin stands: a ped with your target script or "[E]" 3D text, and a map blip with its own icon, colour and size.
+* Places set in game where the admin stands: a salesperson players use through fwb_interact (Press E by default, or your target script), and a map blip with its own icon, colour and size.
 * Services: **new key**, **spare key**, **change the locks**, **new number plate** (with a cooldown), and a **shop** for trackers, detectors and pliers.
 
 #### 🧩 Minigames
@@ -88,6 +89,8 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 * **Simple and detailed exports** on the server and the client: keys, owners, plates, locks, windows, hazards, indicators, trackers, a plate generator, and switching features off for everyone or for one player. See [Exports — Server](./exports/server) and [Exports — Client](./exports/client).
 * **Hooks** like ox_inventory: stop any action with your own rules, or react after it happens. See [Hooks & Events](./editable-files/server).
 * **Works with scripts made for other key systems** — `vehiclekeys:client:SetOwner`, qs-vehiclekeys, mk_vehiclekeys, wasabi_carlock, jaksam and t1ger style calls.
+* **11 languages** — English, German, French, Spanish, Portuguese (Brazil), Dutch, Italian, Polish, Turkish, Arabic and Russian for everything players see. Add your own by copying `locale/en.lua`.
+* **Quiet console** — only install problems and the update notice print; everything else only with Debug on.
 * **Built for 1000+ player servers** — no loops over every player, small targeted network messages, cached data, and every call checked on the server. A player's own cars are read once when they join; many players asking about the same car share one database query. On start, the script warns you if your owned-vehicles table is missing an index it needs.
 
 ---

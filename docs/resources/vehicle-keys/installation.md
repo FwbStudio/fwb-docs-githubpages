@@ -17,7 +17,8 @@ description: Install Vehicle Keys on FiveM — dependencies, items for ox_invent
 | `oxmysql` | Yes | The database. Tables are created on first start; there is nothing to import. |
 | Framework | Yes | `es_extended`, `qb-core` or `qbx_core`. |
 | Inventory | Optional | Needed for keys **as items** (the key carries its plate): `ox_inventory`, `qb-inventory` / `ps-inventory` / `lj-inventory`, `qs-inventory` or `codem-inventory`. Without one, keys are saved keys. |
-| Target | Optional | `ox_target`, `qb-target` or `sleepless_interact` for the locksmith. Without one, a "[E]" 3D text is used. |
+| `fwb_interact` | Yes (Free) | How players use the locksmith, search a body, pick up a thrown key and scan a car: **Press E** by default. `cr_interact` works too. |
+| Target | Optional | `ox_target`, `qb-target` or `qtarget`, only if you pick **Target** instead of Press E. It goes through fwb_interact. |
 | Dispatch | Optional | `cd_dispatch`, `ps-dispatch`, `qs-dispatch`, `rcore_dispatch` or `core_dispatch`. Without one, the built-in alert is used. |
 | `ox_lib`, `ps-ui` | Optional | Only if you want their minigames instead of the built-in ones. |
 
@@ -47,6 +48,7 @@ description: Install Vehicle Keys on FiveM — dependencies, items for ox_invent
 ensure oxmysql
 ensure es_extended      # or qb-core / qbx_core
 ensure ox_inventory     # your inventory
+ensure fwb_interact
 ensure fwb_vehiclekeys
 ```
 
