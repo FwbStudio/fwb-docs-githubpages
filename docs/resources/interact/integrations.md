@@ -45,6 +45,8 @@ You choose how those spots are used in `/fwb_interact` → **General** → **How
 | **Press E** (default) | Walk up to the dot, look at it, press `E`. Several options show as a list: mouse wheel or arrow keys pick. |
 | **Target** | Interact's own target, because no ox_target / qb-target runs any more. The dot turns into an eye box when you are close enough. Hold `ALT`: an eye shows in the middle of the screen. Aim at the thing, its options show as a list, the mouse wheel or arrow keys pick and a **left click** runs the option. Shooting and punching are blocked while `ALT` is held. |
 
+Turn on **Players can choose** under it, and every player can pick press E or target for themselves on their **Keys** tab. They start on the admin's choice, and their pick only changes their own game.
+
 Scripts made for Interact that choose their own type (`type` on a spot or `SetType`) keep their choice.
 
 ### How far the dot shows

@@ -30,6 +30,7 @@ Every player gets these (unless admins turn them off). They only change what tha
 | Look | Key colour | FwB teal | The key and the badge on cards |
 | Look | Size on screen | 1.00 | Size of the dot and the prompt (0.5 to 2) |
 | Look | Aim help | 0.16 | Higher: a spot counts as looked at even when it is not in the middle of the screen |
+| Keys | How you use spots | Server's choice | Press E or Target (hold `ALT`, aim, click). Only shows while admins turn on **Players can choose** |
 | Keys | Use key | E | E, G, H, F, X, Y or Z |
 | Keys | Mouse wheel picks | On | Pick from a list with the mouse wheel |
 | Keys | Arrow keys pick | On | Pick from a list with arrow up / down |
@@ -45,6 +46,7 @@ Needs the ACE `fwb_interact.admin` (see [Installation](./installation#_2-menu-ac
 | :--- | :--- | :--- | :--- |
 | General | Players can change their own | On | Off: the menu is admin only and everyone uses the server settings |
 | General | How spots are used | Press E | Press E, or Target: `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target (hold `ALT`, aim, click). For spots whose script doesn't choose, and every script with Target Replacement on |
+| General | Players can choose | Off | On: every player picks press E or target for themselves on their **Keys** tab, starting on **How spots are used**. Needs **Players can change their own** on |
 | General | Use distance | 1.5 m | How close a player has to be to use an option without its own `distance` |
 | General | Dot range | 3.0 m | How far away the dot shows, for spots without their own `range` |
 | General | Range on models | 2.0 m | The same for `AddModel` and the `AddGlobal…` exports. Keep it low |
