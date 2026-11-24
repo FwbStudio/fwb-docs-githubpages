@@ -47,6 +47,17 @@ You choose how those spots are used in `/fwb_interact` → **General** → **How
 
 Scripts made for Interact that choose their own type (`type` on a spot or `SetType`) keep their choice.
 
+### How far the dot shows
+
+For these scripts, **Dot range** in `/fwb_interact` → **General** is counted on top of where the option can be used, so the dot always shows before the player is in reach:
+
+| Option usable from | Dot range | Dot shows from |
+| :--- | :--- | :--- |
+| `distance = 2.0` (set by the script) | 3.0 m | 5.0 m |
+| no `distance` (uses **Use distance**, 1.5 m) | 3.0 m | 4.5 m |
+
+Models, bones and global vehicles / peds / objects / players use **Range on models** the same way. Pressing E or the target eye still only works from the use distance.
+
 ### Turn it on
 
 1. **Delete the target resource** (`ox_target`, `qb-target` or `qtarget`) from your resources folder, and remove its `ensure` line from `server.cfg`. Moving it into a parked folder like `[disabled]` inside `resources` is not enough: FiveM still sees it there. Move it out of `resources` completely.
