@@ -59,4 +59,4 @@ Turn off **General → Players can change their own** to make the menu admin onl
 
 ## 3. Target Replacement (optional)
 
-Don't want to run `ox_target`, `qb-target` or `qtarget` at all? Delete it, turn on one `provide` line in `fwb_interact/fxmanifest.lua` and restart the server. Scripts made for that target then run on Interact without changes. See [Integrations → Target Replacement](./integrations#target-replacement) for the full steps.
+Don't want to run `ox_target`, `qb-target` or `qtarget` at all? Delete it, turn on one `provide` line in `fwb_interact/fxmanifest.lua`, ensure `fwb_interact` right after your framework (`es_extended`, `qb-core` or `qbx_core`) and restart the server. Scripts made for that target then run on Interact without changes. See [Integrations → Target Replacement](./integrations#target-replacement) for the full steps.

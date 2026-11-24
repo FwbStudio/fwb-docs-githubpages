@@ -48,20 +48,25 @@ Target Replacement lets Interact take the place of `ox_target`, `qb-target` or `
    ```
 
    Replacing ox_target and some scripts still use `exports.qtarget`? Turn on the `qtarget` line too: ox_target used to answer those for you.
-3. **Start `fwb_interact` before the scripts that use the target.** In `server.cfg`:
+3. **Ensure `fwb_interact` where your target was: right after your framework** (`es_extended`, `qb-core` or `qbx_core`) and before every script that uses the target. Scripts add their target options when they start, so if one starts before `fwb_interact`, its options are lost. In `server.cfg`:
 
    ```lua
    -- before
+   ensure oxmysql
    ensure ox_lib
+   ensure es_extended      -- or qb-core / qbx_core
    ensure ox_target
-   ensure fwb_interact
    ensure [scripts]
 
    -- after
+   ensure oxmysql
    ensure ox_lib
-   ensure fwb_interact
+   ensure es_extended      -- or qb-core / qbx_core
+   ensure fwb_interact     -- right after the framework, before every script that uses the target
    ensure [scripts]
    ```
+
+   Is `fwb_interact` inside a folder that starts later (for example `ensure [fwb]`)? Still add its own `ensure fwb_interact` line right after the framework. FiveM starts it there, and the later folder line skips it because it is already running.
 
 4. **Restart the server.** Restarting only the resource is not enough, because `provide` lines are read when the server starts.
 
@@ -119,16 +124,16 @@ Turn a target's `provide` line on in **only one** of them. If both have it on, `
 
 ### Turn it off again
 
-Put the `--` back in front of the `provide` line, add your target resource back with its `ensure` line before `fwb_interact`, and restart the server.
+Put the `--` back in front of the `provide` line, add your target resource back with its `ensure` line right after your framework, and restart the server.
 
 ### Troubleshooting
 
 | Problem | Fix |
 | :--- | :--- |
-| **"No such export … in resource ox_target"** | The `provide` line for that target is still off, or the server was only restarted per resource. Turn the line on and restart the server |
+| **"No such export … in resource ox_target"** | The `provide` line for that target is still off, the server was only restarted per resource, or the script starts before `fwb_interact`. Turn the line on, ensure `fwb_interact` right after your framework, and restart the server |
 | **Red console line: "provide 'ox_target' is on, but ox_target is still in your resources"** | Move the target resource out of the `resources` folder (a stopped copy in `[disabled]` counts too), or put the `--` back |
 | **Yellow console line: "cr_interact also has provide 'ox_target' on"** | Both Interacts have the line on. Put the `--` back in the one the message names |
-| **A script won't start and says it needs ox_target** | Check that the `provide` line is on and that `fwb_interact` starts before that script |
+| **A script won't start and says it needs ox_target** | Check that the `provide` line is on and that `fwb_interact` is ensured right after your framework, before that script |
 | **An option with a job or item never shows** | Check you have that job (and grade) or item. Jobs come from ESX, QBCore or Qbox; items from ox_inventory or your framework's inventory |
 | **A script's options are gone after restarting fwb_interact** | Restart that script too, or the whole server |
 | **Something works with ox_target but not here** | Tell us on [Discord](https://discord.com/invite/sPqkfQHPAa) which script and which export it uses |
