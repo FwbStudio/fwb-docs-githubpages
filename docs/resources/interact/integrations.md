@@ -38,7 +38,7 @@ Target Replacement lets Interact take the place of `ox_target`, `qb-target` or `
 
 ### Turn it on
 
-1. **Delete the target resource** (`ox_target`, `qb-target` or `qtarget`) from your resources folder, and remove its `ensure` line from `server.cfg`.
+1. **Delete the target resource** (`ox_target`, `qb-target` or `qtarget`) from your resources folder, and remove its `ensure` line from `server.cfg`. Moving it into a parked folder like `[disabled]` inside `resources` is not enough: FiveM still sees it there. Move it out of `resources` completely.
 2. **Open `fwb_interact/fxmanifest.lua`** and remove the `--` in front of that target's `provide` line. For ox_target:
 
    ```lua
@@ -126,7 +126,7 @@ Put the `--` back in front of the `provide` line, add your target resource back 
 | Problem | Fix |
 | :--- | :--- |
 | **"No such export … in resource ox_target"** | The `provide` line for that target is still off, or the server was only restarted per resource. Turn the line on and restart the server |
-| **Red console line: "provide 'ox_target' is on, but ox_target is still in your resources"** | Delete the target resource, or put the `--` back. Don't run both |
+| **Red console line: "provide 'ox_target' is on, but ox_target is still in your resources"** | Move the target resource out of the `resources` folder (a stopped copy in `[disabled]` counts too), or put the `--` back |
 | **Yellow console line: "cr_interact also has provide 'ox_target' on"** | Both Interacts have the line on. Put the `--` back in the one the message names |
 | **A script won't start and says it needs ox_target** | Check that the `provide` line is on and that `fwb_interact` starts before that script |
 | **An option with a job or item never shows** | Check you have that job (and grade) or item. Jobs come from ESX, QBCore or Qbox; items from ox_inventory or your framework's inventory |
