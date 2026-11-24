@@ -43,7 +43,7 @@ You choose how those spots are used in `/fwb_interact` → **General** → **How
 | Choice | What players do |
 | :--- | :--- |
 | **Press E** (default) | Walk up to the dot, look at it, press `E`. Several options show as a list: mouse wheel or arrow keys pick. |
-| **Target** | Interact's own target, because no ox_target / qb-target runs any more. The dot turns into an eye box when you are close enough. Hold `ALT`: an eye shows in the middle of the screen. Aim at the thing and its options show as a list next to the eye. **Left click**: the mouse cursor appears, then click any option to run it. Right click or `Esc` closes the list. Shooting and punching are blocked while `ALT` is held. Players can change the key in GTA **Settings → Key Bindings → FiveM → Target eye (hold)**. |
+| **Target** | Interact's own target, because no ox_target / qb-target runs any more. The dot turns into an eye box when you are close enough. Hold `ALT`: an eye shows in the middle of the screen. Aim at the thing and its options show next to the eye, in the same rows as the press E list, each with its icon (the option's own, for example from ox_target, else **Default icon** on the **Target** tab). **Left click**: the mouse cursor appears, then click any option to run it. Let go of `ALT` and the list closes. Shooting and punching are blocked while `ALT` is held. Players can change the key in GTA **Settings → Key Bindings → FiveM → Target eye (hold)**. |
 
 Turn on **Players can choose** under it, and every player can pick press E or target for themselves on their **Keys** tab. They start on the admin's choice, and their pick only changes their own game.
 
