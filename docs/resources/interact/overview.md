@@ -28,7 +28,7 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 * **Everything can be interactive** — spheres, rotated boxes, poly zones, single entities (by handle or netId), vehicle bones, every entity of a model, every vehicle / ped / player / object.
 * **Hidden behind walls** — spots behind a wall show no dot unless a spot turns it off.
 * **Per-player settings** — players choose their own dot shape, colours, size and keys (kept on their PC). Admins can turn this off.
-* **Press E or target** — admins pick it for everyone in `/fwb_interact`, and a script can pick its own (`type` per spot or `SetType`) and switch live. Target uses `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target: hold `ALT`, aim, click.
+* **Press E or target** — admins pick it for every spot in `/fwb_interact`, and can let each player pick their own. Spots switch live. Target uses `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target: hold `ALT`, aim, click.
 * **Clean up on its own** — when a script stops, all of its spots, cards and its type go with it.
 * **Target Replacement** — delete `ox_target`, `qb-target` or `qtarget`, turn on one `provide` line, and scripts made for them run on Interact without changes. See [Integrations](./integrations#target-replacement).
 * **Low resmon** — nothing runs until the first spot exists; places sit in a 64 m grid so 10 or 10,000 spots cost the same; the per-frame loop only runs while a dot is in range.

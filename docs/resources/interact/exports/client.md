@@ -1,6 +1,6 @@
 ---
 title: Interact Client Exports | FWB Studio Docs
-description: Client exports for FiveM Interact (fwb_interact) — AddSphere, AddBox, AddPoly, AddEntity, AddModel, AddGlobal, RegisterCard, Update, Remove, SetType with examples for ESX, QBCore, and Qbox.
+description: Client exports for FiveM Interact (fwb_interact) — AddSphere, AddBox, AddPoly, AddEntity, AddModel, AddGlobal, RegisterCard, Update, Remove, GetType with examples for ESX, QBCore, and Qbox.
 ---
 
 <div class="fwb-inline-cta">
@@ -40,7 +40,6 @@ Every `Add…` export takes one table. These fields work on all of them; each ex
 | :--- | :--- | :--- | :--- |
 | `options` | table | Required | One option or a list of options (see [Options](#options)) |
 | `id` | string | made up | Your own id. Adding again with the same id replaces the spot |
-| `type` | string | script / press E | `'draw3d'`, `'target'` or `'auto'` for this spot only |
 | `distance` | number | Use distance setting | How close the player must be to use the options that don't set their own |
 | `range` | number | 3.0 (2.0 global) | How far away the dot shows (max 30) |
 | `dot` | boolean | `true` | `false` = no dot when the spot is on a target |
@@ -98,36 +97,10 @@ If **every** option has a `key`, each one is its own row with that key. As soon 
 
 ## Type
 
-::: details SetType(type)
-Sets how all of **your script's** spots are used. Call it once at start, and again whenever you like (for example from your own in-game toggle): spots that don't set their own `type` switch over live. `nil` goes back to press E.
-
-**Arguments**
-
-* `type` — `'draw3d'`, `'target'`, `'auto'` or `nil`
-
-**Returns**
-
-* `true`, or `false` if the type isn't one of those
-
-**Example 1: from your own config**
-
-```lua
--- Config.Interact = 'target' in your script's config
-exports.fwb_interact:SetType(Config.Interact)
-```
-
-**Example 2: let your own command switch it**
-
-```lua
-RegisterCommand('interactmode', function(_, args)
-    local mode = args[1] == 'target' and 'target' or 'draw3d'
-    exports.fwb_interact:SetType(mode)   -- every spot of this script switches now
-end)
-```
-:::
+Press E or target is chosen in `/fwb_interact` → **General** → **How spots are used** (and by each player while **Players can choose** is on), not by your script. Your spots follow it and switch live. `SetType` and a spot's `type` field are no longer used: `SetType` still exists so older scripts don't error, but it does nothing.
 
 ::: details GetType(id?)
-With an id, returns what that spot uses right now. Without one, returns what your script's new spots would use right now (for example `'draw3d'` when you asked for target but none is running).
+With an id, returns what that spot uses right now. Without one, returns what new spots use right now for this player: `'draw3d'` (press E) or `'target'` (a target resource or Interact's own target).
 
 **Returns**
 
@@ -490,10 +463,10 @@ exports.fwb_interact:Update('myshop:door', {
 })
 ```
 
-**Example 2: switch one spot to target**
+**Example 2: move a spot**
 
 ```lua
-exports.fwb_interact:Update('myshop:counter', { type = 'target' })
+exports.fwb_interact:Update('myshop:counter', { coords = vec3(25.7, -1347.3, 29.5) })
 ```
 :::
 

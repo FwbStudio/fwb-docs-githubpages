@@ -45,7 +45,7 @@ Needs the ACE `fwb_interact.admin` (see [Installation](./installation#_2-menu-ac
 | Tab | Setting | Default | What it does |
 | :--- | :--- | :--- | :--- |
 | General | Players can change their own | On | Off: the menu is admin only and everyone uses the server settings |
-| General | How spots are used | Press E | Press E, or Target: `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target (hold `ALT`, aim, click). For spots whose script doesn't choose, and every script with Target Replacement on |
+| General | How spots are used | Press E | Press E, or Target: `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target (hold `ALT`, aim, click). For every spot of every script, including ox_target / qb-target scripts with Target Replacement on |
 | General | Players can choose | Off | On: every player picks press E or target for themselves on their **Keys** tab, starting on **How spots are used**. Needs **Players can change their own** on |
 | General | Use distance | 1.5 m | How close a player has to be to use an option without its own `distance` |
 | General | Dot range | 3.0 m | How far away the dot shows, for spots without their own `range` |

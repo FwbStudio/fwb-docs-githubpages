@@ -15,7 +15,7 @@ Interact works with your target resource in two ways. Pick the one that fits you
 | | Next to your target | Target Replacement |
 | :--- | :--- | :--- |
 | **Your target** (`ox_target`, `qb-target`, `qtarget`) | Stays installed | Deleted |
-| **Scripts made for Interact** | Press E or target, as each script or you choose | Press E or Interact’s own target, as each script or you choose |
+| **Scripts made for Interact** | Press E or target, as you choose in `/fwb_interact` | Press E or Interact’s own target, as you choose in `/fwb_interact` |
 | **Scripts made for ox_target / qb-target / qtarget** | Keep using your target | Run on Interact without changes: press E or Interact’s own target, as you choose in `/fwb_interact` |
 | **Setup** | Nothing to do | Turn on one line in `fxmanifest.lua` |
 
@@ -47,7 +47,7 @@ You choose how those spots are used in `/fwb_interact` → **General** → **How
 
 Turn on **Players can choose** under it, and every player can pick press E or target for themselves on their **Keys** tab. They start on the admin's choice, and their pick only changes their own game.
 
-Scripts made for Interact that choose their own type (`type` on a spot or `SetType`) keep their choice.
+This is the same for every script on the server, made for Interact or for a target: Interact decides, not the script.
 
 ### How far the dot shows
 
