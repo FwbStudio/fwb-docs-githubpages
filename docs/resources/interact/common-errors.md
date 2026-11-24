@@ -14,7 +14,7 @@ description: Fix common Interact problems on FiveM — nothing shows, no [E] pro
 | :--- | :--- |
 | **Nothing shows** | Make sure `fwb_interact` starts **before** your script, and look for `[fwb_interact]` lines in F8 (turn on **Developer → Debug** in `/fwb_interact`). An `Add…` with wrong data prints why. Check you're within range, on foot (unless the spot's `mode` says otherwise), and not looking through a wall. Try `los = false` to test |
 | **The dot shows but `[E]` doesn't** | You're not close enough (`distance`), not looking near enough to it (raise **Aim help**), or every option's `canInteract` returns `false` |
-| **"no target resource is running: using draw3d"** | A script (or the player) asked for target, but none of `ox_target`, `qb-target` or `qtarget` is started. The spots move onto the target as soon as one starts |
+| **Holding `ALT` shows no eye** | Spots are on press E. Set **General → How spots are used** to **Target** in `/fwb_interact`, or the script chose press E for its own spots. The eye only shows while a target spot is near |
 | **An option with a key isn't on its own row** | Another option on the spot has no key, so they all joined the pick list. Give every option a `key`, or `join = true` on the ones that should share E |
 | **"key X is used twice on one spot"** | Two options on the same thing (maybe from two scripts) want the same key. The first keeps it |
 | **"No such export … in resource ox_target" after removing ox_target / qb-target** | Turn on that target's `provide` line in `fwb_interact/fxmanifest.lua` and restart the server. See [Integrations → Target Replacement](./integrations#target-replacement) |

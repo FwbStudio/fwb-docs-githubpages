@@ -15,8 +15,8 @@ Interact works with your target resource in two ways. Pick the one that fits you
 | | Next to your target | Target Replacement |
 | :--- | :--- | :--- |
 | **Your target** (`ox_target`, `qb-target`, `qtarget`) | Stays installed | Deleted |
-| **Scripts made for Interact** | Press E or target, as each script or you choose | Press E |
-| **Scripts made for ox_target / qb-target / qtarget** | Keep using your target | Run on Interact as press E, without changes |
+| **Scripts made for Interact** | Press E or target, as each script or you choose | Press E or Interact’s own target, as each script or you choose |
+| **Scripts made for ox_target / qb-target / qtarget** | Keep using your target | Run on Interact without changes: press E or Interact’s own target, as you choose in `/fwb_interact` |
 | **Setup** | Nothing to do | Turn on one line in `fxmanifest.lua` |
 
 ---
@@ -34,7 +34,18 @@ Nothing else is needed.
 
 ## Target Replacement
 
-Target Replacement lets Interact take the place of `ox_target`, `qb-target` or `qtarget`. Scripts written for those targets keep calling `exports.ox_target` or `exports['qb-target']` as always. Interact answers those calls itself, so the script's options show up as Interact's dot and `[E]` prompt. You don't change anything in those scripts.
+Target Replacement lets Interact take the place of `ox_target`, `qb-target` or `qtarget`. Scripts written for those targets keep calling `exports.ox_target` or `exports['qb-target']` as always. Interact answers those calls itself, so the script's options show up on Interact. You don't change anything in those scripts.
+
+### Press E or target
+
+You choose how those spots are used in `/fwb_interact` → **General** → **How spots are used**. It is saved on the server and applies to everyone live.
+
+| Choice | What players do |
+| :--- | :--- |
+| **Press E** (default) | Walk up to the dot, look at it, press `E`. Several options show as a list: mouse wheel or arrow keys pick. |
+| **Target** | Interact's own target, because no ox_target / qb-target runs any more. The dot turns into an eye box when you are close enough. Hold `ALT`: an eye shows in the middle of the screen. Aim at the thing, its options show as a list, the mouse wheel or arrow keys pick and a **left click** runs the option. Shooting and punching are blocked while `ALT` is held. |
+
+Scripts made for Interact that choose their own type (`type` on a spot or `SetType`) keep their choice.
 
 ### Turn it on
 
@@ -73,7 +84,7 @@ Target Replacement lets Interact take the place of `ox_target`, `qb-target` or `
 ### Check that it works
 
 - The server console prints no red or yellow `[fwb_interact]` line about `provide`.
-- Walk up to something a target script added (a shop counter, an ATM, a job ped). It shows a dot, and up close the `[E]` prompt with that script's options.
+- Walk up to something a target script added (a shop counter, an ATM, a job ped). It shows a dot, and up close the `[E]` prompt with that script's options (with **Target**: hold `ALT`, aim and click).
 - With **Developer → Debug** on in `/fwb_interact`, F8 shows `answering target exports: ox_target` when you join.
 
 ### What works

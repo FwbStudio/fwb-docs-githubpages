@@ -41,4 +41,4 @@ A script can add a card that explains the spot before the player uses it.
 
 ## Settings
 
-Players can pick their own dot shape, colours, size and keys in `/fwb_interact`. Admins set the defaults for everyone in the same menu. Each script decides whether its spots use press E or a target.
+Players can pick their own dot shape, colours, size and keys in `/fwb_interact`. Admins set the defaults for everyone in the same menu. Admins also choose press E or target (hold `ALT`, aim, click) for every spot whose script doesn't choose its own.
