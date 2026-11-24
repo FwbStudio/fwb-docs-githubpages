@@ -17,7 +17,7 @@ description: Fix common Interact problems on FiveM — nothing shows, no [E] pro
 | **Holding `ALT` shows no eye** | Spots are on press E. Set **General → How spots are used** to **Target** in `/fwb_interact`, or the script chose press E for its own spots. The eye only shows while a target spot is near |
 | **An option with a key isn't on its own row** | Another option on the spot has no key, so they all joined the pick list. Give every option a `key`, or `join = true` on the ones that should share E |
 | **"key X is used twice on one spot"** | Two options on the same thing (maybe from two scripts) want the same key. The first keeps it |
-| **"No such export … in resource ox_target" after removing ox_target / qb-target** | Turn on that target's `provide` line in `fwb_interact/fxmanifest.lua` and restart the server. See [Integrations → Target Replacement](./integrations#target-replacement) |
+| **"No such export … in resource ox_target" after removing ox_target / qb-target** | Turn on that target's `provide` line in `fwb_interact/fxmanifest.lua` and restart the server. See [Replace Ox/Qb Target](./replace-target) |
 | **"This resource must be named fwb_interact"** | Rename the folder back to `fwb_interact`: other scripts call it by that name |
 | **Settings didn't change for one player** | That player picked their own value (it shows without the grey **Server** tag). They can press **Reset** on the row, or **Reset mine** in the footer |
 | **The menu says "Permission access denied"** | **Players can change their own** is off and you don't have the ACE. Add the `add_ace` line it shows to `server.cfg` and restart |

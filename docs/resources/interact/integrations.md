@@ -60,45 +60,9 @@ For every spot, **Dot range** in `/fwb_interact` → **General** is counted on t
 
 Models, bones and global vehicles / peds / objects / players use **Range on models** the same way. Pressing E or the target eye still only works from the use distance.
 
-### Turn it on
+### Set it up
 
-1. **Delete the target resource** (`ox_target`, `qb-target` or `qtarget`) from your resources folder, and remove its `ensure` line from `server.cfg`. Moving it into a parked folder like `[disabled]` inside `resources` is not enough: FiveM still sees it there. Move it out of `resources` completely.
-2. **Open `fwb_interact/fxmanifest.lua`** and remove the `--` in front of that target's `provide` line. For ox_target:
-
-   ```lua
-   provide 'ox_target'
-   -- provide 'qb-target'
-   -- provide 'qtarget'
-   ```
-
-   Replacing ox_target and some scripts still use `exports.qtarget`? Turn on the `qtarget` line too: ox_target used to answer those for you.
-3. **Ensure `fwb_interact` where your target was: right after your framework** (`es_extended`, `qb-core` or `qbx_core`) and before every script that uses the target. Scripts add their target options when they start, so if one starts before `fwb_interact`, its options are lost. In `server.cfg`:
-
-   ```lua
-   -- before
-   ensure oxmysql
-   ensure ox_lib
-   ensure es_extended      -- or qb-core / qbx_core
-   ensure ox_target
-   ensure [scripts]
-
-   -- after
-   ensure oxmysql
-   ensure ox_lib
-   ensure es_extended      -- or qb-core / qbx_core
-   ensure fwb_interact     -- right after the framework, before every script that uses the target
-   ensure [scripts]
-   ```
-
-   Is `fwb_interact` inside a folder that starts later (for example `ensure [fwb]`)? Still add its own `ensure fwb_interact` line right after the framework. FiveM starts it there, and the later folder line skips it because it is already running.
-
-4. **Restart the server.** Restarting only the resource is not enough, because `provide` lines are read when the server starts.
-
-### Check that it works
-
-- The server console prints no red or yellow `[fwb_interact]` line about `provide`.
-- Walk up to something a target script added (a shop counter, an ATM, a job ped). It shows a dot, and up close the `[E]` prompt with that script's options (with **Target**: hold `ALT`, aim and click).
-- With **Developer → Debug** on in `/fwb_interact`, F8 shows `answering target exports: ox_target` when you join.
+The steps, with pictures, are on [Replace Ox/Qb Target](./replace-target): move the target out of `resources`, turn on its `provide` line, ensure `fwb_interact` right after your framework, restart the server, then pick press E or target.
 
 ### What works
 
