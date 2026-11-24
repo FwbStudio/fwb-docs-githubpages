@@ -12,7 +12,7 @@ description: Interact features for FiveM. Press E dots and prompts, ox_target / 
 
 ### 👆 Interact – One Interaction Engine for Every Script
 
-Scripts add spots (places, props, vehicles, peds, players) with a few lines, and every spot works the same way for the player. FWB scripts that use it list `fwb_interact` as a dependency.
+Scripts add spots (places, props, vehicles, peds, players) with a few lines, and every spot works the same way for the player. FWB scripts that use it need `fwb_interact` running.
 
 There is **no config file**. Everything is set in game with `/fwb_interact`, saves on the server and applies to every player straight away.
 
@@ -30,6 +30,7 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 * **Per-player settings** — players choose their own dot shape, colours, size and keys (kept on their PC). Admins can turn this off.
 * **Each script decides** — a script picks press E or target for its spots (`type` per spot or `SetType`), and can switch them live, for example from its own in-game toggle.
 * **Clean up on its own** — when a script stops, all of its spots, cards and its type go with it.
+* **Target Replacement** — delete `ox_target`, `qb-target` or `qtarget`, turn on one `provide` line, and scripts made for them run on Interact without changes. See [Integrations](./integrations#target-replacement).
 * **Low resmon** — nothing runs until the first spot exists; places sit in a 64 m grid so 10 or 10,000 spots cost the same; the per-frame loop only runs while a dot is in range.
 
 ---
@@ -38,7 +39,7 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 
 | Package | Resource Folder | Version | Frameworks | Category |
 | :--- | :--- | :--- | :--- | :--- |
-| **Dependency** | `fwb_interact` | v1.1 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
+| **Dependency** | `fwb_interact` | v1.3 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
 
 ---
 
@@ -49,4 +50,5 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 - [Commands](./commands) — the menu and the test command
 - [Client Exports](./exports/client) — add, update and remove spots from your scripts
 - [Server Exports](./exports/server) — handling an option's `serverEvent` on the server
+- [Integrations](./integrations) — next to your target, or Target Replacement
 - [Common Errors](./common-errors) — troubleshooting

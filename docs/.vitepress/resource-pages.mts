@@ -9,6 +9,7 @@ export const RESOURCE_PAGES: Record<string, ResourcePages> = {
       "client": true,
       "server": true
     },
+    "integrations": true,
     "commonErrors": true
   },
   "bodybag": {

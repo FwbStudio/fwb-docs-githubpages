@@ -27,7 +27,7 @@ Nothing else is needed: no database and no framework. Settings are stored in the
 3. Start it **before** the scripts that use it:
 
 ```lua
-ensure ox_target -- optional, only if you use a target
+ensure ox_target -- your target, if you keep it (see Target Replacement below)
 
 ensure fwb_interact
 
@@ -55,3 +55,8 @@ add_ace identifier.license:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx fwb_interact
 Turn off **General → Players can change their own** to make the menu admin only. A player without access then sees their license and the exact `add_ace` line to copy.
 :::
 
+---
+
+## 3. Target Replacement (optional)
+
+Don't want to run `ox_target`, `qb-target` or `qtarget` at all? Delete it, turn on one `provide` line in `fwb_interact/fxmanifest.lua` and restart the server. Scripts made for that target then run on Interact without changes. See [Integrations → Target Replacement](./integrations#target-replacement) for the full steps.
