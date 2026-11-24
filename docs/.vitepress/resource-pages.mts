@@ -3,7 +3,7 @@ import type { ResourcePages } from './resources-catalog.mts'
 
 export const RESOURCE_PAGES: Record<string, ResourcePages> = {
   "interact": {
-    "guides": [
+    "installGuides": [
       { "text": "Replace Ox/Qb Target", "slug": "replace-target" }
     ],
     "configuration": true,

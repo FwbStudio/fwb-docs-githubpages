@@ -14,7 +14,7 @@ description: Install Interact on FiveM — server.cfg order, ACE permission and 
 
 | Resource | Required | Notes |
 | :--- | :--- | :--- |
-| `ox_target`, `qb-target` or `qtarget` | Optional | Only for the **target** type. Spots that ask for a target use press E until one is running, then move onto it |
+| `ox_target`, `qb-target` or `qtarget` | Optional | With **Target** chosen, spots go onto your target when one runs; without one they use Interact's own target (hold `ALT`). You can also replace your target: [Replace Ox/Qb Target](./replace-target) |
 
 Nothing else is needed: no database and no framework. Settings are stored in the resource's own server storage (KVP).
 
@@ -27,7 +27,7 @@ Nothing else is needed: no database and no framework. Settings are stored in the
 3. Start it **before** the scripts that use it:
 
 ```lua
-ensure ox_target -- your target, if you keep it (see Target Replacement below)
+ensure ox_target -- your target, if you keep it (see step 3: Replace Ox/Qb Target)
 
 ensure fwb_interact
 

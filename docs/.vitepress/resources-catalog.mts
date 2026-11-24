@@ -23,6 +23,8 @@ export interface ResourcePages {
   integrations?: boolean
   /** How-to pages with their own sidebar name, shown after Installation (file: <slug>.md) */
   guides?: { text: string; slug: string }[]
+  /** Pages shown inside Installation in the sidebar, open by default (file: <slug>.md) */
+  installGuides?: { text: string; slug: string }[]
   commonErrors?: boolean
   questions?: boolean
 }
@@ -520,10 +522,15 @@ function buildScriptSidebarItems(scripts: ResourceEntry[]): SidebarItem[] {
 function buildResourceGroup(resource: ResourceEntry): SidebarItem {
   const base = `/resources/${resource.slug}`
   const pages = getPages(resource)
+  const installation: SidebarItem = { text: 'Installation', link: `${base}/installation` }
+  if (pages.installGuides?.length) {
+    installation.collapsed = false
+    installation.items = pages.installGuides.map((g) => ({ text: g.text, link: `${base}/${g.slug}` }))
+  }
   const items: SidebarItem[] = [
     { text: 'Preview', link: `${base}/` },
     { text: 'Overview', link: `${base}/overview` },
-    { text: 'Installation', link: `${base}/installation` }
+    installation
   ]
 
   for (const guide of pages.guides ?? []) {
