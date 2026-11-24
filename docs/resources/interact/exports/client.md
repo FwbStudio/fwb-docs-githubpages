@@ -41,7 +41,7 @@ Every `Add…` export takes one table. These fields work on all of them; each ex
 | `options` | table | Required | One option or a list of options (see [Options](#options)) |
 | `id` | string | made up | Your own id. Adding again with the same id replaces the spot |
 | `distance` | number | Use distance setting | How close the player must be to use the options that don't set their own |
-| `range` | number | 3.0 (2.0 global) | How far away the dot shows (max 30) |
+| `range` | number | use distance + Dot range | How far away the dot shows, in metres from the spot (max 30). Without it: the use distance plus the **Dot range** setting (**Range on models** for models and globals) |
 | `dot` | boolean | `true` | `false` = no dot when the spot is on a target |
 | `targetIcon` | string | `'eye'` | On a target: the icon in the white box that shows when the player is close enough. `eye`, `lock`, `lock-open`, `hand`, `door`, `car`, `key` |
 | `color` | string / table | Key colour setting | The dot and key colour: `'#ff7a00'` or `{ 255, 122, 0 }` |

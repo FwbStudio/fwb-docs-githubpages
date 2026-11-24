@@ -48,7 +48,7 @@ Needs the ACE `fwb_interact.admin` (see [Installation](./installation#_2-menu-ac
 | General | How spots are used | Press E | Press E, or Target: `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target (hold `ALT`, aim, click). For every spot of every script, including ox_target / qb-target scripts with Target Replacement on |
 | General | Players can choose | Off | On: every player picks press E or target for themselves on their **Keys** tab, starting on **How spots are used**. Needs **Players can change their own** on |
 | General | Use distance | 1.5 m | How close a player has to be to use an option without its own `distance` |
-| General | Dot range | 3.0 m | How far away the dot shows, for spots without their own `range` |
+| General | Dot range | 3.0 m | How much further than the use distance the dot shows (2 m use distance + 3 m = dot from 5 m), for spots without their own `range` |
 | General | Range on models | 2.0 m | The same for `AddModel` and the `AddGlobal…` exports. Keep it low |
 | General | Hide behind walls | On | No dot for spots behind a wall (a spot can turn this off with `los = false`) |
 | Target | Default icon | `fa-solid fa-hand` | Font Awesome icon for target options without one. The button next to it opens a list of popular icons |
