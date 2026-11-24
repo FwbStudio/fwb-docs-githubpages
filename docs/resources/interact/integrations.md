@@ -103,7 +103,8 @@ Option fields: `label`, `icon`, `type` + `event` (`client`, `server`, `command`,
 
 - ox_target sub menus (`menuName` / `openMenu`), `offset` and `iconColor`.
 - qb-target `AddComboZone`, its `Get…Data` / `Update…Data` functions and entity outlines.
-- Everything the deleted target added by itself goes with it: ox_target's built-in vehicle door options, and the zones and peds in qb-target's own `config.lua`. Add those from a script if you still need them.
+- The door, hood and trunk options ox_target and qb-target put on every car are added by Interact instead: **Car options with target** in `/fwb_interact` → General (on by default), and **Car options with press E** (off by default).
+- Zones and peds in qb-target's own `config.lua` go with it. Add those from a script if you still need them.
 - Restarting `fwb_interact` removes the spots those scripts added, just as restarting ox_target does. Restart those scripts too, or the server.
 
 ### Running fwb_interact and cr_interact together

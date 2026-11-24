@@ -23,11 +23,13 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 * **Two types, same data** — `draw3d` (our dot and `[E]` prompt) or `target` (`ox_target`, then `qb-target`, then `qtarget`). A spot moves between them live, without being added again.
 * **A dot on everything nearby** — 7 shapes (circle, square, diamond, hexagon, ring, solid, plus), 5 animations, any colour. The key badge takes the same shape.
 * **Look-at prompt** — the spot nearest the middle of the screen shows `[E] Action`. Inside a box or poly zone you don't need to aim.
+* **GTA VI style** — by default the prompt is white text with a black outline and a white round key, no background. The Default style puts each option on a dark rounded bar instead.
+* **Car options** — toggle each door, the hood and the trunk of every car, like ox_target and qb-target. Two switches, apart from how other spots are used: with target (on) and with press E (off).
 * **Several options** — each with its own key (E, G, Z…), or all in one pick list on E, chosen with the mouse wheel or arrow keys. The weapon wheel is blocked while the list shows.
 * **Hint cards** — a title, text, up to 3 detail lines and an icon or image, shown when the player is close.
 * **Everything can be interactive** — spheres, rotated boxes, poly zones, single entities (by handle or netId), vehicle bones, every entity of a model, every vehicle / ped / player / object.
 * **Hidden behind walls** — spots behind a wall show no dot unless a spot turns it off.
-* **Per-player settings** — players choose their own dot shape, colours, size and keys (kept on their PC). Admins can turn this off.
+* **Per-player settings** — players choose their own dot shape, colours, prompt style, dot and prompt size and keys (kept on their PC). Admins can turn this off.
 * **Press E or target** — admins pick it for every spot in `/fwb_interact`, and can let each player pick their own. Spots switch live. Target uses `ox_target` / `qb-target` / `qtarget` when one runs, else Interact's own target: hold `ALT`, aim, click.
 * **Clean up on its own** — when a script stops, all of its spots, cards and its type go with it.
 * **Target Replacement** — delete `ox_target`, `qb-target` or `qtarget`, turn on one `provide` line, and scripts made for them run on Interact without changes. See [Replace Ox/Qb Target](./replace-target).

@@ -102,7 +102,7 @@ With **Players can choose** on, each player finds the same choice at the top of 
 
 All the usual ox_target, qb-target and qtarget exports and option fields: zones, models, entities, globals, bones, `SpawnPed`, jobs, gangs and items. The full list is on [Integrations → What works](./integrations#what-works).
 
-Not carried over: ox_target sub menus (`menuName` / `openMenu`), `offset` and `iconColor`; qb-target `AddComboZone` and its `Get…Data` / `Update…Data` functions. Everything the deleted target added by itself goes with it (ox_target's vehicle door options, the zones and peds in qb-target's own `config.lua`).
+Not carried over: ox_target sub menus (`menuName` / `openMenu`), `offset` and `iconColor`; qb-target `AddComboZone` and its `Get…Data` / `Update…Data` functions. The door, hood and trunk options ox_target and qb-target put on every car are added by Interact instead (**Car options with target** in `/fwb_interact` → General, on by default; **Car options with press E** adds them to press E too). Zones and peds in qb-target's own `config.lua` go with it.
 
 ## Turn it off again
 
