@@ -23,8 +23,8 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 * **Two types, same data** — `draw3d` (our dot and `[E]` prompt) or `target` (`ox_target`, then `qb-target`, then `qtarget`). A spot moves between them live, without being added again.
 * **A dot on everything nearby** — 7 shapes (circle, square, diamond, hexagon, ring, solid, plus), 5 animations, any colour. The key badge takes the same shape.
 * **Look-at prompt** — the spot nearest the middle of the screen shows `[E] Action`. Inside a box or poly zone you don't need to aim.
-* **GTA VI style** — by default the prompt is white text with a black outline and a white round key, no background. The Default style puts each option on a dark rounded bar instead.
-* **Car options** — toggle each door, the hood and the trunk of every car, like ox_target and qb-target. Two switches, apart from how other spots are used: with target (on) and with press E (off).
+* **GTA VI style** — by default the prompt is white text with a black outline and a white round key, no background. The target option list (hold `ALT`) and the target box use the same look. The Default style puts each option on a dark rounded bar instead.
+* **Car options** — toggle each door, the hood and the trunk of every car, like ox_target and qb-target. Two switches, apart from how other spots are used: with target (on) and with press E (off). The target ones show no dot on the car until `ALT` is held (**Dots on car options**, off by default).
 * **Several options** — each with its own key (E, G, Z…), or all in one pick list on E, chosen with the mouse wheel or arrow keys. The weapon wheel is blocked while the list shows.
 * **Hint cards** — a title, text, up to 3 detail lines and an icon or image, shown when the player is close.
 * **Everything can be interactive** — spheres, rotated boxes, poly zones, single entities (by handle or netId), vehicle bones, every entity of a model, every vehicle / ped / player / object.
@@ -41,7 +41,7 @@ There is **no config file**. Everything is set in game with `/fwb_interact`, sav
 
 | Package | Resource Folder | Version | Frameworks | Category |
 | :--- | :--- | :--- | :--- | :--- |
-| **Dependency** | `fwb_interact` | v1.3 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
+| **Dependency** | `fwb_interact` | v1.5 | Standalone (works with ESX, QBCore, Qbox) | FiveM Dependency |
 
 ---
 

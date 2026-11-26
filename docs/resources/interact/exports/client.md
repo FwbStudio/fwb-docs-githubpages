@@ -42,7 +42,7 @@ Every `Add…` export takes one table. These fields work on all of them; each ex
 | `id` | string | made up | Your own id. Adding again with the same id replaces the spot |
 | `distance` | number | Use distance setting | How close the player must be to use the options that don't set their own |
 | `range` | number | use distance + Dot range | How far away the dot shows, in metres from the spot (max 30). Without it: the use distance plus the **Dot range** setting (**Range on models** for models and globals) |
-| `dot` | boolean | `true` | `false` = no dot when the spot is on a target |
+| `dot` | boolean | `true` | `false` = no dot when the spot is on a target. On Interact's own target (hold `ALT`) there is then no dot and no box either: the spot shows only while `ALT` is held |
 | `targetIcon` | string | `'eye'` | On a target: the icon in the white box that shows when the player is close enough. `eye`, `lock`, `lock-open`, `hand`, `door`, `car`, `key` |
 | `color` | string / table | Key colour setting | The dot and key colour: `'#ff7a00'` or `{ 255, 122, 0 }` |
 | `shape` | string | Shape setting | `circle`, `square`, `diamond`, `hexagon`, `ring`, `solid`, `plus` |

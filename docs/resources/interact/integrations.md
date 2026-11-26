@@ -111,6 +111,8 @@ Option fields: `label`, `icon`, `type` + `event` (`client`, `server`, `command`,
 
 Turn a target's `provide` line on in **only one** of them. If both have it on, `fwb_interact` answers and the console tells you which line to turn off. Scripts that `cr_interact` was told to put on a target keep their own dot and `[E]` prompt.
 
+While both run, `fwb_interact` handles everything: every `cr_interact` spot is handed on to it and uses the settings in `/fwb_interact`, so there is one dot, one `ALT` target and nothing twice (the car options too). Either one can start first. When `fwb_interact` stops, `cr_interact` shows its spots itself again with its `config.lua`. Nothing is stopped, so anticheats are not bothered.
+
 ### Turn it off again
 
 Put the `--` back in front of the `provide` line, add your target resource back with its `ensure` line right after your framework, and restart the server.
