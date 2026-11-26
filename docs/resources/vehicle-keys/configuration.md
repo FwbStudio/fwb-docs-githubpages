@@ -16,30 +16,41 @@ Vehicle Keys has **no config file to edit**. Everything is set in game with `/fw
 
 ## First Setup
 
-The first time an admin opens `/fwb_vehiclekeys`, a setup wizard asks five questions. Every answer is an ordinary setting, so you can change it later on the pages below. **Skip** keeps the defaults; **Overview → Run the setup again** opens it later.
+The first time an admin opens `/fwb_vehiclekeys`, a setup wizard asks six questions. Every answer is an ordinary setting, so you can change it later on the pages below. **Skip** keeps the defaults; **Overview → Run the setup again** opens it later.
 
 | Step | Question |
 | :--- | :--- |
 | **Keys** | Key items in the inventory, or saved keys with no item |
 | **Controls** | Hold the lock key for the fob (and how long), or a key of its own; the lock, fob and engine keys |
-| **NPC cars** | Parked cars and cars on the road: all unlocked, random (and how many locked), or all locked |
+| **Engine** | How an engine that is off starts: from the key ring, with the engine key (`G`), and/or auto start (sitting down with a key, or pressing `W`). All on by default; the engine key or auto start always stays on |
+| **NPC cars** | Parked cars and cars on the road: all unlocked (the default), random (and how many locked), or all locked |
 | **Stealing cars** | Lockpick, hotwire, search for a key, carjacking: on or off |
-| **Police** | Police alerts on or off, the police jobs, the dispatch script |
+| **Police** | Police alerts on or off; alert when a driver is **pulled out** with the enter key (on by default) and on **carjacking with a weapon** (off by default); the police jobs; the dispatch script |
 
 You don't need the wizard for the script to work: without it, every setting has its default (for example the police jobs `police` and `sheriff`).
+
+::: tip Show the wizard again
+**Overview → Run the setup again** opens it with your current answers. To get the first-install wizard back, run this in your database and restart the resource (every other setting stays):
+
+```sql
+UPDATE fwb_keys_config SET v = JSON_SET(v, '$.setup.done', false) WHERE k = 'settings';
+```
+:::
 
 ![Vehicle Keys setup wizard, Controls step: hold the lock key for 1.5 seconds or a key of its own, with the lock, hold time and engine fields](/images/vehicle-keys/wizard-2-controls.png)
 
 ::: details Every step of the wizard
 ![Setup wizard step 1: key items in the inventory or saved keys with no item](/images/vehicle-keys/wizard-1-keys.png)
 
-![Setup wizard step 3: parked NPC cars and NPC cars on the road, all unlocked, random or all locked](/images/vehicle-keys/wizard-3-npc-cars.png)
+![Setup wizard step 3: how an engine that is off starts, from the key ring, with the engine key G or auto start](/images/vehicle-keys/wizard-3-engine.png)
 
-![Setup wizard step 4: lockpick, hotwire, search for a key and carjacking switches](/images/vehicle-keys/wizard-4-stealing.png)
+![Setup wizard step 4: parked NPC cars and NPC cars on the road, all unlocked, random or all locked](/images/vehicle-keys/wizard-4-npc-cars.png)
 
-![Setup wizard step 5: police alerts, police jobs and the dispatch script](/images/vehicle-keys/wizard-5-police.png)
+![Setup wizard step 5: lockpick, hotwire, search for a key and carjacking switches](/images/vehicle-keys/wizard-5-stealing.png)
 
-![Setup wizard summary: every answer with a Change button](/images/vehicle-keys/wizard-6-summary.png)
+![Setup wizard step 6: police alerts, driver pulled out and carjacking with a weapon, police jobs and the dispatch script](/images/vehicle-keys/wizard-6-police.png)
+
+![Setup wizard summary: every answer with a Change button](/images/vehicle-keys/wizard-7-summary.png)
 :::
 
 ---
@@ -65,9 +76,9 @@ You don't need the wizard for the script to work: without it, every setting has 
 | Tab | What you set there |
 | :--- | :--- |
 | **General** | Keys are items or saved keys, the key item name, how long **stolen keys** work (0 = until the owner changes the locks, the default), the format of **new plates** (for the `GeneratePlate` export), money sign and **Debug** (console messages; leave it off on a live server). |
-| **Locking** | How far the lock key and the fob reach, how far **Summon** reaches (100 m by default, up to 150 m), which key ring controls players get (windows, doors, seats, lights), lock chirp, flashing lights, fob animation, engine auto-start, engine keeps running, Summon. |
+| **Locking** | How far the lock key and the fob reach, how far **Summon** reaches (100 m by default, up to 150 m), which key ring controls players get (windows, doors, seats, lights), lock chirp, flashing lights, fob animation. **Engine:** starts by itself with a key, the engine key, the key ring's engine button (all on by default; it also starts a car nobody sits in), keeps running when you get out, Summon. While the engine is off, the driver sees a **[G] Start engine** hint at the bottom of the screen. |
 | **Trackers** | Item names (tracker, scanner, pliers), the detector held while scanning (`w_am_metaldetector` by default; trackers show no prop on the car), report rate, battery life, the fob's Track time, detector time per spot, minigame difficulties, what a wrong wire does, owner alerts and the kill switch. |
-| **Police** | Police jobs (whole job or one rank), the alert chance per action, the built-in blip time, and how many police must be on duty before lockpicking or hotwiring works. |
+| **Police** | Police jobs (whole job or one rank), the alert chance per action (lockpicking 40%, hotwiring 50%, **carjacking with a weapon 0%**, **driver pulled out 100%**, car alarm 100%), the built-in blip time, and how many police must be on duty before lockpicking or hotwiring works. **Driver pulled out** = a player pulls an NPC driver out of an unlocked car with the enter key, no weapon shown. |
 | **Spares & locksmith** | Spares per car, the spare fee, locksmith prices (new key, spare, change locks, tracker, detector, pliers, new plate), the plate cooldown and the hand-over fee. |
 | **Keybinds** | How the lock key works (tap to lock, hold for the fob, and how long: 1.5 s by default), and the default keys. |
 | **Commands** | The admin command name and its ACE. **Seats:** the seat command (`seatshuffle`, on or off) and **Passengers stay in their seat** (on by default: GTA no longer slides a front passenger into an empty driver seat). |
@@ -77,6 +88,8 @@ You don't need the wizard for the script to work: without it, every setting has 
 ![Settings, General tab: keys are items or saved keys, key item name, how long stolen keys work](/images/vehicle-keys/settings-general.png)
 
 ![Settings, Locking tab: lock key, fob and Summon reach, key ring controls](/images/vehicle-keys/settings-locking.png)
+
+![Settings, Locking tab, Engine: starts by itself with a key, engine key, key ring engine button, keeps running, Summon](/images/vehicle-keys/settings-locking-engine.png)
 
 ![Settings, Trackers tab: item names, scanner prop, report rate, battery and minigames](/images/vehicle-keys/settings-trackers.png)
 
@@ -93,7 +106,7 @@ You don't need the wizard for the script to work: without it, every setting has 
 
 | Tab | What you set there |
 | :--- | :--- |
-| **NPC cars** | **NPC cars are:** by chance (parked % and on-the-road %), every car locked, or no car locked. **Rules** are checked first, top to bottom, and the first that fits decides. Match by **vehicle type** (Emergency, Super, Motorcycles…), **model** (`police`) or **plate** (`LS*` = starts with LS). Each rule is always locked, never locked, or a chance %. |
+| **NPC cars** | **NPC cars are:** no car locked (the default), by chance (parked % and on-the-road %), or every car locked. **Rules** are checked first, top to bottom, and the first that fits decides. Match by **vehicle type** (Emergency, Super, Motorcycles…), **model** (`police`) or **plate** (`LS*` = starts with LS). Each rule is always locked, never locked, or a chance %. |
 | **Lockpicks** | Lockpick and advanced lockpick: item name (`carlockpick`, `advancedlockpick`), minigame difficulty, chance to open once the minigame is won (100% by default), chance to break. The alarm: chance and how long it sounds. |
 | **Hotwire & search** | Hotwire: time, difficulty, and the chance it works once the puzzle is won (100% by default: winning the puzzle always works). Search the car: time and chance to find a key. |
 | **Carjacking** | **Needs:** a gun, a gun or a melee weapon, or anything (bare hands). How long to threaten, the top speed of a car that still stops, and the threat animations. **What the driver does:** shares for throws you the key and runs / runs off with it / drives off / fights back, each shown as its real chance. **Police always get the key:** on by default, police jobs skip the roll. **Search the body:** time and chance (a driver who ran off with the key always has it). |

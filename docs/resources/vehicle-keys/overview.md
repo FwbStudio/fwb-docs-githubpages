@@ -33,7 +33,7 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 
 * **Lock key** — tap to lock or unlock the nearest car you have a key for. Hold it (1.5 s by default) to take out the key fob. The notification says which car: *Car locked — Albany Manana · KO1Z1H9 is locked.*
 * **Key fob** — the screen shows the distance, signal, lock state and plate. The buttons are lock, unlock, trunk, remote engine, **Summon** (the car drives itself to you, from up to 100 m by default, 150 m at most) and **Track** (your car on the map for a while).
-* **Engine** — the engine key turns it on and off. Turned off, it stays off: pressing W does not start it again until the engine key, or until someone gets in anew.
+* **Engine** — the engine key turns it on and off, and the fob's engine button starts and stops it from outside, also with nobody in the car. Turned off, it stays off: pressing W does not start it again until the engine key, the fob, or until someone gets in anew. While it is off, the driver sees a **[G] Start engine** hint. The admin picks which of the three ways (fob, engine key, auto start) players get.
 * **Seats** — `/seatshuffle` (renamable) moves you to the next free seat. Passengers are no longer slid into an empty driver seat by GTA (switchable).
 * **Key ring** — every key you hold, and for each car:
   * windows and doors one by one;
@@ -50,13 +50,13 @@ Works on **ESX**, **QBCore** and **Qbox**, detected automatically.
 
 | Feature | What it does |
 | :--- | :--- |
-| **NPC cars** | Parked cars and cars on the road are locked by chance, or always, or never. **Rules** by vehicle type, model or plate come first: for example, emergency cars always locked and bicycles never. |
+| **NPC cars** | Parked cars and cars on the road are unlocked by default, or locked by chance, or always. **Rules** by vehicle type, model or plate come first: for example, emergency cars always locked and bicycles never. |
 | **Lockpick** | Two items (`carlockpick`, `advancedlockpick`) with their own chances. A disc-lock puzzle; the pick may break and the alarm may go off. |
 | **Hotwire** | In the driver seat without a key: a screwdriver-in-the-ignition puzzle. Winning it starts the car (the admin can add a chance). |
 | **Search the car** | A chance to find the key in the car, once per car. |
 | **Carjacking** | Threaten an NPC driver with a gun, a melee weapon or bare hands (admin's choice): aim at the driver or anywhere on the car. A progress bar shows the threat. The car is braked and held, the driver keeps their hands up, then **throws the key at your feet and runs** (pick it up with **E**), **runs off with it**, **drives off** or **fights back**. You set the share of each. **Police always get the key** (switchable). A carjacked car you drive with its key is kept: the game no longer tidies it away as traffic. |
 | **Search the body** | A dead NPC driver may have the key. A driver who ran off with the key always has it. |
-| **Alarm & police alerts** | Chance per action, through your dispatch script or the built-in alert: a **POLICE ALERT** card for on-duty police (what happened, the car and plate, the street, how far and which way) and a flashing map blip. |
+| **Alarm & police alerts** | Chance per action. By default, pulling an NPC driver out with the enter key alerts the police, while a carjacking with a weapon stays quiet (both changeable). Through your dispatch script or the built-in alert: a **POLICE ALERT** card for on-duty police (what happened, the car and plate, the street, how far and which way) and a flashing map blip. |
 | **Owner alerts** | The owner is told their car is being stolen. |
 
 ![Built-in police alert card: Carjacking, Albany Manana with its plate, Vinewood Blvd / Power St, 640 m NE, on the map for 60 seconds](/images/vehicle-keys/player-police-alert.png)

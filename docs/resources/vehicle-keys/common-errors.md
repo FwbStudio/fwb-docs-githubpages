@@ -86,7 +86,7 @@ Cars made only in one player's game (`CreateVehicle(..., false, false)`) are ign
 ::: tip Solution
 1. Check the police jobs in **Settings → Police** (a whole job like `police`, or one rank like `sheriff:2`). The default is `police` and `sheriff`.
 2. The officer must be **on duty** in your framework (ESX: `/job` shows it).
-3. Check the alert chances there (0% = never). A carjacking alerts 70% of the time by default.
+3. Check the alert chances there (0% = never). By default a carjacking with a weapon never alerts (0%); pulling a driver out with the enter key always does (100%).
 4. Pick your dispatch script on the **Bridges** page, or leave it on auto. The built-in alert shows a **POLICE ALERT** card and a map blip to on-duty police.
 :::
 

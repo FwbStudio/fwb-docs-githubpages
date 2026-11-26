@@ -151,7 +151,7 @@ end)
 | `trackerPlanted` | `source, plate, id, own` |
 | `trackerRemoved` | `source` (`nil`: admin or script), `plate, id, own` |
 | `engineKilled` | `source, plate` |
-| `policeAlerted` | `source, kind` (`lockpick` / `hotwire` / `alarm` / `carjack`), `plate, coords, model` |
+| `policeAlerted` | `source, kind` (`lockpick` / `hotwire` / `alarm` / `carjack` / `pullout`), `plate, coords, model` |
 | `alarm` | `plate, entity, netId, seconds, on` (`false` = it was stopped) |
 | `plateChanged` | Fires as `fwb_vehiclekeys:plateChanged` with `(oldPlate, newPlate)`. In the open file: `after.plateChanged({ source, oldPlate, newPlate })`. |
 
