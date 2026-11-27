@@ -156,6 +156,21 @@ export const RESOURCES: ResourceEntry[] = [
     tagline: 'Customizable FiveM HUD & speedometer with 12 themes and an in-game admin panel.'
   },
   {
+    slug: 'appearance',
+    name: 'Appearance',
+    repo: 'fwb_appearance',
+    category: 'scripts',
+    seoKeywords: 'FiveM appearance clothing shop character creator barber tattoo wardrobe ESX QBCore Qbox illenium replacement'
+  },
+  {
+    slug: 'multicharacter',
+    name: 'Multicharacter',
+    repo: 'fwb_multicharacter',
+    category: 'scripts',
+    seoKeywords: 'FiveM multicharacter character select spawn selector map ESX QBCore Qbox esx_multicharacter qb-multicharacter replacement',
+    tagline: 'Character select with scene peds, registration and a GTA map spawn picker with homes, set up in game for ESX, QBCore and Qbox.'
+  },
+  {
     slug: 'gun-jamming',
     name: 'Gun Jamming',
     repo: 'fs_gunjamming',

@@ -2,6 +2,20 @@
 import type { ResourcePages } from './resources-catalog.mts'
 
 export const RESOURCE_PAGES: Record<string, ResourcePages> = {
+  "appearance": {
+    "guides": [
+      { "text": "Supported Scripts", "slug": "supported-scripts" }
+    ],
+    "exports": { "client": true, "server": true },
+    "editableFiles": { "client": true, "server": true }
+  },
+  "multicharacter": {
+    "guides": [
+      { "text": "Supported Scripts", "slug": "supported-scripts" }
+    ],
+    "exports": { "client": true, "server": true },
+    "editableFiles": { "client": true, "server": true }
+  },
   "interact": {
     "installGuides": [
       { "text": "Replace Ox/Qb Target", "slug": "replace-target" }
